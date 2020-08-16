@@ -5,10 +5,9 @@
     flex-direction: row;
     height: 500px;
     padding: 10px ;
-
 }
 
-.column {   
+/* .column {   
     border: 1px solid brown;
     flex: 50%;
 }
@@ -28,4 +27,4 @@
     .Login {
         flex-wrap: wrap-reverse;
     }
-}
+} */
