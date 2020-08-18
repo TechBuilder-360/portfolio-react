@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './LoginForm.module.css';
-import Layout from '../../hoc/Layout/Layout';
+import Layout from '../../HOC/Layout/Layout';
 
 const loginForm = () => {
   return (
