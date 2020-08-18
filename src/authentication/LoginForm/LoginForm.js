@@ -1,17 +1,10 @@
 import React,{useState,useCallback} from 'react';
 import classes from './LoginForm.module.css';
-import Layout from '../../hoc/Layout/Layout';
-
-const loginForm = () => {
-  const [email,setemail]=useState('')
-  const [password,setpassword]=useState('')
-
-  
-   let  onSubmit=useCallback((e)=>{
-    alert(email + ' '+ 'and' +' '+ password)
-   })
+import Layout from '../../Wrapper/Layout/Layout';
 
 
+
+const LoginForm = () => {
   return (
     <Layout>
     <div className={classes.Login}>
@@ -49,6 +42,6 @@ const loginForm = () => {
   );
 };
 
-export default loginForm;
 
 
+export default LoginForm;
