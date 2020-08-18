@@ -7,6 +7,144 @@
     padding: 10px ;
 }
 
+a{
+    text-decoration: none;
+}
+
+.column {   
+    border: 1px solid brown;
+    flex: 50%;
+}
+
+.signinbox {
+    border: 1px solid brown;
+    margin-top: 100px;
+    height: auto;   
+}
+
+.signin_title {
+    color: black;
+    text-align: center;
+    font-weight: 900;
+    font-size: 17pt;
+}
+.form{
+    
+    margin-left: 150px;
+    width: 270px;
+    margin-bottom: 20px;
+}
+
+#break_line{
+    color:#b6b4c6;
+}
+
+#text_box{
+width:100%;
+padding: 8px;
+margin-bottom: 10px;
+border:1px solid grey;
+}
+
+#google{
+width: 100%;
+padding: 5px;
+border:1px solid #2400ff;
+background-color: white;
+font-weight: bold;
+color:#766cb8;
+}
+#button{
+    padding: 10px;
+    background-color: #2400ff;
+    border-width: 0px;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+}
+button:hover{
+    cursor: pointer;
+}
+#forget{
+    float:right;
+    color:#766cb8;
+    font-weight: 600;
+}
+#forget2{
+    font-weight: 600; 
+    color:#766cb8;
+    
+}
+#forget2 a{
+    
+    color:#766cb8;
+    
+}
+#forget a{
+    
+    color:#766cb8;
+    
+}
+
+
+#sec{
+    width: 100%;
+}
+
+@media screen and (max-width: 600px){
+    .Login {
+        flex-wrap: wrap-reverse;
+    }
+    .form{
+       
+        margin-left:20px;
+        width: 270px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 320px){
+   
+    .form{
+        
+        margin-left:10px;
+        width: 250px;
+        margin-bottom: 20px;
+    }
+}
+@media screen and (min-width: 589px){
+    
+    .form{
+        
+        margin-left:100px;
+        width: 270px;
+        margin-bottom: 20px;
+    }
+}
+@media screen and (min-width: 600px){
+    
+    .form{
+        
+        margin-left:50px;
+        width: 270px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: 800px){
+    
+    .form{
+        
+        margin-left:140px;
+        width: 270px;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+
 /* .column {   
     border: 1px solid brown;
     flex: 50%;
