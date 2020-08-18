@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './LoginForm.module.css';
-import Layout from '../../HOC/Layout/Layout';
+import Layout from '../../Wrapper/Layout/Layout';
 
-const loginForm = () => {
+const LoginForm = () => {
   return (
     <Layout>
     <div className={classes.Login}>
@@ -24,4 +24,4 @@ const loginForm = () => {
   );
 };
 
-export default loginForm;
+export default LoginForm;
