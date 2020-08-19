@@ -4,7 +4,6 @@ import Layout from '../../container/Layout/Layout';
 
 const LoginForm = () => {
   return (
-    <Layout>
     <div className={classes.Login}>
         <div className="column">
             <div className="xlogo">logo here</div>
@@ -20,7 +19,6 @@ const LoginForm = () => {
         </div>
         <div className="column">Right</div>
     </div>
-    </Layout>
   );
 };
 
