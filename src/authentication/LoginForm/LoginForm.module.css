@@ -7,7 +7,7 @@
     padding: 10px ;
 }
 
-/* .column {   
+.column {   
     border: 1px solid brown;
     flex: 50%;
 }
@@ -16,15 +16,43 @@
     border: 1px solid brown;
     margin-top: 100px;
     height: 250px;
+    display: flex;
+    flex-direction: row;
 }
 
 .signin_title {
-    color: darkgreen;
+    color: #000000;
     text-align: center;
+    /* position: relative; */
+    width: 81px;
+    height: 36px;
+    left: 241px;
+    top: 239px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.input {
+    /* position: relative; */
+    width: 381px;
+    height: 40px;
+    left: 100px;
+    top: 302px;
+
+    border: 1px solid #6A6A6A;
+    box-sizing: border-box;
+}
+
+.password {
+    margin-top: 60px;
 }
 
 @media screen and (max-width: 600px){
     .Login {
         flex-wrap: wrap-reverse;
     }
-} */
+}
