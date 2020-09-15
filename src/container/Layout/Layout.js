@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Container from '../Container';
+import HomeNavBar from './Navigation/main-navigation';
+import classes from './Layout.module.css';
+import CarouselImage from './Carousel/carousel';
 
 
 class Layout extends Component {
@@ -7,12 +10,16 @@ class Layout extends Component {
         return (
             <Container>
                 <header>
-                    <nav>
-                        <h1>Navigation links goes here</h1>
-                    </nav>
+                    <HomeNavBar/>
                 </header>
-                <main>
-                    {this.props.children}
+                <main className={classes.Main}>
+                    <section className={classes.Section}>
+                        {this.props.children}
+                        Registration/Sign in form goes here
+                    </section>
+                    <aside className={classes.Aside}>
+                        <CarouselImage/>
+                    </aside>
                 </main>
             </Container>
         );
