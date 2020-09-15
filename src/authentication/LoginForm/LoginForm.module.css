@@ -56,3 +56,20 @@
         flex-wrap: wrap-reverse;
     }
 }
+
+.main {
+    height: 100vh;
+    background: linear-gradient(rgba(109,109,109), rgb(51, 50, 50));
+}
+
+.x {
+    border: 5px solid #6A6A6A;
+    border-radius: 5px;
+    background-color: darkgrey;
+    position : absolute;
+    top: 25%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+}

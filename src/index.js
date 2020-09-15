@@ -4,6 +4,8 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+// Importing the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.render(
