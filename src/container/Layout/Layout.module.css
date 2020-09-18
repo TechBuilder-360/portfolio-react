@@ -24,7 +24,7 @@
     .Section{
         display: inline-block;
         width: 50%;
-        border: 1px solid black;
+        /* border: 1px solid black; */
     }
     
     .Aside {
@@ -32,6 +32,6 @@
         vertical-align: top;
         width: 50%;
         margin-top: 0;
-        border: 1px solid black;
+        /* border: 1px solid black; */
     }
 }
