@@ -11,12 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.title {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-@media (min-width: 760px){
-
-}

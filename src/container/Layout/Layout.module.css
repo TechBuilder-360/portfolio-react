@@ -7,8 +7,8 @@
 .Section, .Aside {
     width: 100%;
     box-sizing: border-box;
-    padding: 1% 6%;
-    text-align: left;
+    padding: 8%;
+    text-align: center;
 }
 
 .Aside{
@@ -17,14 +17,21 @@
 
 @media (min-width: 760px){
 
-    .Section, .Aside{
+    /* .Section, .Aside{
+        float: none;
+    } */
+
+    .Section{
         display: inline-block;
-        padding-left: 10%;
-        padding-right: 10%;
         width: 50%;
+        border: 1px solid black;
     }
     
     .Aside {
+        display: inline-block;
         vertical-align: top;
+        width: 50%;
+        margin-top: 0;
+        border: 1px solid black;
     }
 }
