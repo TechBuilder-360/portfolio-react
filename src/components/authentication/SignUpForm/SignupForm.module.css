@@ -36,3 +36,24 @@
         /* border: 1px solid black; */
     }
 }
+
+@media screen and (max-width: 599px){  
+
+    .or {
+        margin-left: 60px;
+    } 
+}
+
+.or {
+    margin-top: 30px;
+    font-Family: 'Courier';
+    width: '100%';
+}
+
+.or::after {
+    content: "----"
+}
+
+.or::before {
+    content: "---"
+}

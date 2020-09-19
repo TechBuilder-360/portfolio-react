@@ -1,4 +1,4 @@
-.Login {
+/* .Login {
     color: rgb(102, 141, 12);
     border: 1px solid black;
     display: flex;
@@ -23,7 +23,7 @@
 .signin_title {
     color: #000000;
     text-align: center;
-    /* position: relative; */
+    position: relative;
     width: 81px;
     height: 36px;
     left: 241px;
@@ -37,7 +37,7 @@
 }
 
 .input {
-    /* position: relative; */
+    position: relative;
     width: 381px;
     height: 40px;
     left: 100px;
@@ -49,27 +49,17 @@
 
 .password {
     margin-top: 60px;
-}
+} */
 
-@media screen and (max-width: 600px){
-    .Login {
-        flex-wrap: wrap-reverse;
+@media screen and (max-width: 599px){
+    .or {
+        margin-left: 50px;
+        /* margin-top: 30px; */
     }
 }
 
-.main {
-    height: 100vh;
-    background: linear-gradient(rgba(109,109,109), rgb(51, 50, 50));
-}
-
-.x {
-    border: 5px solid #6A6A6A;
-    border-radius: 5px;
-    background-color: darkgrey;
-    position : absolute;
-    top: 25%;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    display: flex;
+.or {
+    margin-top: 30px;
+    font-Family: 'Courier';
+    width: '100%';
 }
