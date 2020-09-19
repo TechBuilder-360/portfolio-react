@@ -1,0 +1,59 @@
+.Main {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1%;
+}
+
+.Section, .Aside {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8%;
+    text-align: center;
+}
+
+.Aside{
+    margin-top: 10px;
+}
+
+@media (min-width: 760px){
+
+    /* .Section, .Aside{
+        float: none;
+    } */
+
+    .Section{
+        display: inline-block;
+        width: 50%;
+        /* border: 1px solid black; */
+    }
+    
+    .Aside {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        /* margin-top: 30px; */
+        height: 100vh;
+        /* border: 1px solid black; */
+    }
+}
+
+@media screen and (max-width: 599px){  
+
+    .or {
+        margin-left: 60px;
+    } 
+}
+
+.or {
+    margin-top: 30px;
+    font-Family: 'Courier';
+    width: '100%';
+}
+
+.or::after {
+    content: "----"
+}
+
+.or::before {
+    content: "---"
+}
