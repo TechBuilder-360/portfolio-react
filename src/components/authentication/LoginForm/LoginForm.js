@@ -22,8 +22,6 @@ class LoginForm extends Component {
           
           case 'password': this.setState({password: event.target.value});
               break;
-
-          default: console.log('blah');
       }
   }
 

@@ -35,8 +35,6 @@ class SignUpForm extends Component {
 
             case 'confirm_password': this.setState({confirm_password: event.target.value});
                 break;                
-
-            default: console.log('No input event') // fix this
         }
     }
 
