@@ -11,9 +11,13 @@ import Contact from '../../components/pre-auth/Contact';
 import Features from '../../components/pre-auth/Features';
 import FAQs from '../../components/pre-auth/FAQs';
 import Footer from '../../components/Footer/Footer';
+import Login from '../../components/authentication/LoginForm/LoginForm'
+import Signup from '../../components/authentication/SignUpForm/SignUpForm'
+
 
 
 class Layout extends Component {
+    
     render() {
         return (
             <Container>
@@ -27,8 +31,11 @@ class Layout extends Component {
                             <Route path="/features" exact component={Features}/>
                             <Route path="/contact" exact component={Contact}/>
                             <Route path="/about" exact component={About}/>
+                            <Route path="/login" exact component={Login}/>
+                            <Route path="/signup" exact component={Signup}/>
                             <Route path="/" exact component={Home}/>
                         </Switch>
+
                     </section>
                     <aside className={classes.Aside}>
                         <CarouselImage/>
