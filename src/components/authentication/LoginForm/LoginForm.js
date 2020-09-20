@@ -3,7 +3,8 @@ import Button from "react-bootstrap/Button";
 import googleLogo from "../../../google.svg";
 import { Link } from "react-router-dom";
 import classes from "../LoginForm/LoginForm.module.css";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
+import Layout from '../../../container/Layout/Layout'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class LoginForm extends Component {
 
   render() {
     return (
+      <Layout>
       <div className={classes.Container}>
         <p className="title">Sign in</p>
 
@@ -86,6 +88,7 @@ class LoginForm extends Component {
           </p>
         </div>
       </div>
+      </Layout>
     );
   }
 }

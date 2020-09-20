@@ -1,8 +1,9 @@
 import React from 'react';
+import Layout from '../../container/Layout/Layout'
 
 const Features = () => {
     return (
-        <div>
+        <Layout>
             <p className='title'>Features</p>
             <ul>
                 <li>Create a portfolio.</li>
@@ -10,7 +11,7 @@ const Features = () => {
                 <li>Use custom theme for present portfolio.</li>
                 <li>Choose a prefered template for resume download.</li>
             </ul>
-        </div>
+        </Layout>
     );
 };
 

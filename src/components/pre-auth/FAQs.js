@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from '../../container/Layout/Layout';
 
 const FAQs = () => {
     return (
-        <div>
+        <Layout>
             
-        </div>
+        </Layout>
     );
 };
 
