@@ -1,124 +1,118 @@
-import React, { Component } from 'react'
-import classes from './SignupForm.module.css';
-import Button from 'react-bootstrap/Button';
-import {Link} from 'react-router-dom';
-import googleLogo from '../../../google.svg';
-import { } from 'react-bootstrap'
+import React, { Component } from "react";
+import classes from "./SignupForm.module.css";
+import { Link } from "react-router-dom";
+import googleLogo from "../../../google.svg";
+import { Button, Form, Col } from "react-bootstrap";
 
 class SignUpForm extends Component {
+  constructor(props) {
+    super(props);
+    this.firstName = React.createRef();
+    this.lastName = React.createRef();
+    this.email = React.createRef();
+    this.password = React.createRef();
+    this.confirm_password = React.createRef();
+    this.accept_policy = React.createRef();
+  }
 
-    state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirm_password: '',
-        accept_policy: false,
-    }
-    
-    inputChangedHandler = (event, id) => {
-        event.preventDefault();
-        
-        switch(id){
+  onSignupHandler = (event) => {
+    event.preventDefault();
+    console.log(this.firstName.current.value);
+  };
 
-            case 'firstName': this.setState({firstName: event.target.value});
-                break;
-            
-            case 'lastName': this.setState({lastName: event.target.value});
-                break;
+  render() {
+    return (
+      <div className={classes.Container}>
+        <p className="title">Sign up</p>
+        <Link to="/" onClick={this.googleLogin} className={classes.Button}>
+          <i>
+            <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
+          </i>
+          &nbsp;&nbsp;Signup with Google
+        </Link>
 
-            case 'email': this.setState({email: event.target.value}); 
-                break;
-
-            case 'password': this.setState({password: event.target.value}); 
-                break;
-
-            case 'confirm_password': this.setState({confirm_password: event.target.value});
-                break;                
-        }
-    }
-
-    accept_policyChangeHandler = (event) => {
-        if (event.target.checked){
-            this.setState({accept_policy: true});
-        }else{
-            this.setState({accept_policy: false});
-        }
-    }
-    
-  
-    signup = (event) => {
-        event.preventDefault();
-        console.log(this.state)
-    }
-
-    render() {
-        return (
-            <div>
-                    <h5 className="card-title" style={{ 
-                        fontFamily: 'Poppins',
-                        lineHeight: '36px',
-                        height: '36px',
-                        marginBottom: '30px',
-                        marginLeft: '40%'
-                        }}>Sign up</h5>
-
-                    <div>
-                        <Button 
-                            style={{
-                                background:'#FFFFFF',
-                                color: '#6357AE',
-                                width: '100%',
-                                fontFamily: 'Poppins',
-                                fontSize: '15px',
-                            }}
-                            onClick={this.googleLogin} className="btn-primary mr-3"><i>
-                                <img src={googleLogo} alt="logo" style={{ width:"25px"}}/></i>&nbsp;&nbsp;Signup with Google</Button>
-                    </div>
-
-                    <div>
-                            <p className={classes.or}>---------------Or----------------</p>
-                    </div>
-
-                    <form>           
-                        <div className="form-group">
-                            <input type="text" className="form-control" placeholder="First Name"
-                            onChange={(event) => this.inputChangedHandler(event, 'firstName')}/>
-                        </div>
-
-                        <div className="form-group">
-                            <input type="text" className="form-control" placeholder="Last Name"
-                            onChange={(event) => this.inputChangedHandler(event, 'lastName')}/>
-                        </div>
-
-                        <div className="form-group">
-                            <input type="email" className="form-control" placeholder="Email"
-                            onChange={(event) => this.inputChangedHandler(event, 'email')}/>
-                        </div>
-                            
-                        <div className="form-group">
-                            <input type="password" className="form-control" placeholder="Password"
-                            onChange={(event) => this.inputChangedHandler(event, 'password')}/>
-                        </div>
-
-                        <div className="form-group">
-                            <input type="password" className="form-control" placeholder="Confirm Password"
-                            onChange={(event) => this.inputChangedHandler(event, 'confirm_password')}/>
-                        </div>
-                        <div >
-                            <input type="checkbox" autoComplete="off"
-                            onChange={this.accept_policyChangeHandler}/> I agree to the  <Link to='/'>Terms</Link> and <Link to='/'>Privacy Policy</Link>
-                        </div>
-                        <div className="mt-3">
-                            <Button style={{background: '#2400FF', width: '185px', marginLeft: '25%', fontFamily: 'Poppins'}} 
-                                onClick={this.signup} className="btn-secondary pull-left">Sign up
-                            </Button>
-                        </div>
-                        
-                    </form>
+        <div className={classes.Or}>
+          <hr className={classes.Hr} /> or <hr className={classes.Hr} />
         </div>
-        )
-    }
+
+        <Form onSubmit={this.onSignupHandler}>
+          <Form.Row className={classes.Mb}>
+            <Col>
+              <Form.Control
+                placeholder="First name"
+                required
+                ref={this.firstName}
+              />
+            </Col>
+            <Col>
+              <Form.Control
+                placeholder="Last name"
+                required
+                ref={this.lastName}
+              />
+            </Col>
+          </Form.Row>
+
+          <Form.Row className={classes.Mb}>
+            <Col>
+              <Form.Control
+                type="email"
+                placeholder="Email Address"
+                required
+                ref={this.email}
+              />
+            </Col>
+          </Form.Row>
+
+          <Form.Row className={classes.Mb}>
+            <Col>
+              <Form.Control
+                type="password"
+                required
+                placeholder="Password"
+                ref={this.password}
+              />
+            </Col>
+          </Form.Row>
+
+          <Form.Row className={classes.Mb}>
+            <Col>
+              <Form.Control
+                type="password"
+                required
+                placeholder="Confirm Password"
+                ref={this.confirm_password}
+              />
+            </Col>
+          </Form.Row>
+
+          <Form.Row className={classes.Mb}>
+            <Col>
+              <Form.Check
+                type="checkbox"
+                required
+                label="I agree to the Terms and Privacy Policy"
+                ref={this.accept_policy}
+              />
+            </Col>
+          </Form.Row>
+
+          <Form.Row>
+            <Col>
+              <Button type="submit" variant="primary">
+                Sign up
+              </Button>
+            </Col>
+            <Col>
+                <Link className={classes.Link} to="/login" style={{ textDecoration: "none" }}>
+                  &nbsp;Click here to login
+                </Link>
+            </Col>
+          </Form.Row>
+        </Form>
+      </div>
+    );
+  }
 }
 
-export default SignUpForm
+export default SignUpForm;

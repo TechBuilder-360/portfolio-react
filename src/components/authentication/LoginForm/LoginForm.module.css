@@ -1,65 +1,76 @@
-/* .Login {
-    color: rgb(102, 141, 12);
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    height: 500px;
-    padding: 10px ;
-}
-
-.column {   
-    border: 1px solid brown;
-    flex: 50%;
-}
-
-.signinbox {
-    border: 1px solid brown;
-    margin-top: 100px;
-    height: 250px;
-    display: flex;
-    flex-direction: row;
-}
-
-.signin_title {
-    color: #000000;
+.Or{
     text-align: center;
-    position: relative;
-    width: 81px;
-    height: 36px;
-    left: 241px;
-    top: 239px;
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 36px;
+    padding-bottom: 8px;
+    color: rgba(137, 137, 137, 1);
 }
 
-.input {
+.Hr{
     position: relative;
-    width: 381px;
-    height: 40px;
-    left: 100px;
-    top: 302px;
-
-    border: 1px solid #6A6A6A;
-    box-sizing: border-box;
+    top:9px;
+    width: 45%; 
+    display: inline-block;
+    border-top: 1px dashed rgba(137, 137, 137, 0.6);
 }
 
-.password {
-    margin-top: 60px;
-} */
+.Button {
+    background-color: #ffffff;
+    color: #6357AE;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 4px;
+    border: 1px solid #6357AE;
+    outline: none;
+    text-decoration: none;
+}
 
-@media screen and (max-width: 599px){
-    .or {
-        margin-left: 50px;
-        /* margin-top: 30px; */
+.Button:focus{
+    text-decoration: none;
+}
+
+.Button:active{
+    text-decoration: none;
+}
+
+.Button:hover{
+    text-decoration: none;
+    color: #6357AE;
+}
+
+.Button:visited{
+    text-decoration: none;
+}
+
+.inline-group{
+    width: 100%
+}
+
+.inline-group input{
+    width: 45%;
+}
+
+.Mb{
+    margin-bottom: 18px;
+}
+
+.Container{
+    padding-top: 10%;
+}
+
+.Link {
+    color: #6357AE;
+    float: right;
+    position: relative;
+    top: 8px;
+}
+
+
+@media (min-width: 760px){
+    .Container{
+        padding-top: 0;
     }
-}
 
-.or {
-    margin-top: 30px;
-    font-Family: 'Courier';
-    width: '100%';
+    .Link{
+        top: 6px;
+    }
 }

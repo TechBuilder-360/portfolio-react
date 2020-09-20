@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <Navbar sticky="bottom" expand="lg" variant="light" bg="light">
       <Container>
-        <Navbar.Brand><img src={logo} /></Navbar.Brand>
+        <Navbar.Brand><img src={logo} alt="xPortfolio" /></Navbar.Brand>
       </Container>
     </Navbar>
   );

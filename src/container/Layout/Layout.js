@@ -26,7 +26,7 @@ class Layout extends Component {
                 </header>
                 <main className={classes.Main}>
                     <section className={classes.Section}>
-                        <Switch style={{padding: '0', margin: '0'}}>
+                        <Switch style={{paddingLeft: '0'}}>
                             <Route path="/faqs" exact component={FAQs}/>
                             <Route path="/features" exact component={Features}/>
                             <Route path="/contact" exact component={Contact}/>
@@ -41,7 +41,7 @@ class Layout extends Component {
                         <CarouselImage/>
                     </aside>
                 </main>
-                <Footer/>
+                {/* <Footer/> */}
             </Container>
         );
     }

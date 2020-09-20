@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Layout from './container/Layout/Layout';
 import Dashboard from './container/dashboard/dashboard'
 import Switch from 'react-bootstrap/esm/Switch';

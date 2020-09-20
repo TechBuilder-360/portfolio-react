@@ -1,18 +1,16 @@
 import React from "react";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button } from "react-bootstrap";
 import classes from "./pre-auth.module.css";
 
 const Contact = () => {
 
-    const onSubmitHandler = (evt) =>{
-        evt.preventDefault()
-        console.log("Form Submitted");
-    }
+  const onSubmitHandler = (evt) =>{
+      evt.preventDefault()
+      console.log("Form Submitted");
+  }
 
   return (
-    <div className={classes.Wrapper}>
+    <div>
         <p className='title'>Contact Us</p>
       <Form onSubmit={onSubmitHandler}>
         <Form.Group controlId="exampleForm.ControlInput1">
@@ -25,7 +23,7 @@ const Contact = () => {
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label title="Required Field">Message*</Form.Label>
-          <Form.Control as="textarea" required={true} rows="3" />
+          <Form.Control as="textarea" placeholder="Message" required={true} rows="3" />
         </Form.Group>
         <Button variant="success" type="submit">
           Send
