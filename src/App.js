@@ -8,21 +8,24 @@ import Features from './components/pre-auth/Features'
 import Home from './components/pre-auth/Home'
 import Login from './components/authentication/LoginForm/LoginForm'
 import Signup from './components/authentication/SignUpForm/SignUpForm'
+import NotFound from './components/NotFound';
 
 
 function App() {
   return (
       <Switch style={{paddingLeft: '0'}}>
         {/* This view is to be only accessible to authenticated users */}
-        <Route path="/dashboard" exact component={Dashboard}/>
+        {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
+        <Route path="/profile/:username" exact component={Dashboard}/>
 
-        <Route path="/faqs" component={FAQs}/>
-        <Route path="/features" component={Features}/>
-        <Route path="/contact" component={Contact}/>
-        <Route path="/about" component={About}/>
-        <Route path="/login" component={Login}/>
-        <Route path="/signup" component={Signup}/>
+        <Route path="/faqs" exact component={FAQs}/>
+        <Route path="/features" exact component={Features}/>
+        <Route path="/contact" exact component={Contact}/>
+        <Route path="/about" exact component={About}/>
+        <Route path="/login" exact component={Login}/>
+        <Route path="/signup" exact component={Signup}/>
         <Route path="/" exact component={Home}/>
+        <Route path="*" component={NotFound}/>
       </Switch>
   );
 }
