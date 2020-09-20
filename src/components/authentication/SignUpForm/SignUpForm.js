@@ -5,15 +5,15 @@ import googleLogo from "../../../google.svg";
 import { Button, Form, Col } from "react-bootstrap";
 
 class SignUpForm extends Component {
-    constructor(props){
-        super(props);
-        this.firstName = React.createRef()
-        this.lastName = React.createRef()
-        this.email = React.createRef()
-        this.password =React.createRef()
-        this.confirm_password = React.createRef()
-        this.accept_policy = React.createRef()
-    }
+  constructor(props) {
+    super(props);
+    this.firstName = React.createRef();
+    this.lastName = React.createRef();
+    this.email = React.createRef();
+    this.password = React.createRef();
+    this.confirm_password = React.createRef();
+    this.accept_policy = React.createRef();
+  }
 
   onSignupHandler = (event) => {
     event.preventDefault();
@@ -38,45 +38,79 @@ class SignUpForm extends Component {
         <Form onSubmit={this.onSignupHandler}>
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control placeholder="First name" required ref={this.firstName} />
+              <Form.Control
+                placeholder="First name"
+                required
+                ref={this.firstName}
+              />
             </Col>
             <Col>
-              <Form.Control placeholder="Last name" required ref={this.lastName}/>
+              <Form.Control
+                placeholder="Last name"
+                required
+                ref={this.lastName}
+              />
             </Col>
           </Form.Row>
-         
+
           <Form.Row className={classes.Mb}>
-              <Col>
-                  <Form.Control type='email' placeholder='Email Address' required ref={this.email} />
-              </Col>
+            <Col>
+              <Form.Control
+                type="email"
+                placeholder="Email Address"
+                required
+                ref={this.email}
+              />
+            </Col>
           </Form.Row>
 
           <Form.Row className={classes.Mb}>
-              <Col>
-                  <Form.Control type='password' required placeholder='Password'ref={this.password} />
-              </Col>
-          </Form.Row >
-
-          <Form.Row className={classes.Mb}>
-              <Col>
-                  <Form.Control type='password' required placeholder='Confirm Password'ref={this.confirm_password} />
-              </Col>
+            <Col>
+              <Form.Control
+                type="password"
+                required
+                placeholder="Password"
+                ref={this.password}
+              />
+            </Col>
           </Form.Row>
 
           <Form.Row className={classes.Mb}>
-              <Col>
-                  <Form.Check type='checkbox' required label="I agree to the Terms and Privacy Policy" ref={this.accept_policy} />
-              </Col>
+            <Col>
+              <Form.Control
+                type="password"
+                required
+                placeholder="Confirm Password"
+                ref={this.confirm_password}
+              />
+            </Col>
           </Form.Row>
 
-          <Button
-              type="submit"
-              variant="primary"
-            >
-              Sign up
-            </Button>
-        </Form> 
-        </div>
+          <Form.Row className={classes.Mb}>
+            <Col>
+              <Form.Check
+                type="checkbox"
+                required
+                label="I agree to the Terms and Privacy Policy"
+                ref={this.accept_policy}
+              />
+            </Col>
+          </Form.Row>
+
+          <Form.Row>
+            <Col>
+              <Button type="submit" variant="primary">
+                Sign up
+              </Button>
+            </Col>
+            <Col>
+                <Link className={classes.Link} to="/login" style={{ textDecoration: "none" }}>
+                  &nbsp;Click here to login
+                </Link>
+            </Col>
+          </Form.Row>
+        </Form>
+      </div>
     );
   }
 }

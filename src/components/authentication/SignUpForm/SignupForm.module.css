@@ -57,9 +57,20 @@
     padding-top: 10%;
 }
 
+.Link {
+    color: #6357AE;
+    float: right;
+    position: relative;
+    top: 8px;
+}
+
 
 @media (min-width: 760px){
     .Container{
         padding-top: 0;
+    }
+
+    .Link{
+        top: 6px;
     }
 }
