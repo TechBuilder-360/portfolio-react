@@ -4,3 +4,40 @@
     padding: 2%;
     margin: 0;
 }
+
+ul{
+    padding-left: 10px;
+}
+
+.Link {
+    text-decoration: none;
+    color: #6357AE;
+}
+
+.Link:active{
+    text-decoration: none;
+    color: #6357AE;
+}
+
+.Link:visited{
+    text-decoration: none;
+    color: #6357AE;
+}
+
+.Link:active{
+    text-decoration: none;
+    color: #6357AE;
+}
+
+.Link:hover{
+    text-decoration: none;
+    color: #6357AE;
+}
+
+
+@media (min-width: 760px){
+    li{
+        padding: 6px;
+    }
+  }
+  
