@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import classes from "./pre-auth.module.css";
+import Layout from "../../container/Layout/Layout";
 
 const Contact = () => {
 
@@ -10,7 +10,7 @@ const Contact = () => {
   }
 
   return (
-    <div>
+    <Layout>
         <p className='title'>Contact Us</p>
       <Form onSubmit={onSubmitHandler}>
         <Form.Group controlId="exampleForm.ControlInput1">
@@ -29,7 +29,7 @@ const Contact = () => {
           Send
         </Button>
       </Form>
-    </div>
+    </Layout>
   );
 };
 

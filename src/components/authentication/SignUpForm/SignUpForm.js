@@ -3,6 +3,7 @@ import classes from "./SignupForm.module.css";
 import { Link } from "react-router-dom";
 import googleLogo from "../../../google.svg";
 import { Button, Form, Col } from "react-bootstrap";
+import Layout from '../../../container/Layout/Layout'
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class SignUpForm extends Component {
 
   render() {
     return (
+      <Layout>
       <div className={classes.Container}>
         <p className="title">Sign up</p>
         <Link to="/" onClick={this.googleLogin} className={classes.Button}>
@@ -111,6 +113,7 @@ class SignUpForm extends Component {
           </Form.Row>
         </Form>
       </div>
+      </Layout>
     );
   }
 }
