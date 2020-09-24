@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import googleLogo from "../../../google.svg";
 import { Button, Form, Col } from "react-bootstrap";
 import Layout from '../../../container/Layout/Layout'
+import SocialButton from '../SocialButton'
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -26,12 +27,18 @@ class SignUpForm extends Component {
       <Layout>
       <div className={classes.Container}>
         <p className="title">Sign up</p>
-        <Link to="/" onClick={this.googleLogin} className={classes.Button}>
-          <i>
-            <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
-          </i>
-          &nbsp;&nbsp;Signup with Google
-        </Link>
+
+        <SocialButton
+            provider="google"
+            appId="YOUR_APP_ID" // Used enviroment variable to store app id
+            onLoginSuccess={this.handleSocialLogin}
+            onLoginFailure={this.handleSocialLoginFailure}
+          >
+            <i>
+              <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
+            </i>
+            &nbsp;&nbsp;Signup with Google
+          </SocialButton>
 
         <div className={classes.Or}>
           <hr className={classes.Hr} /> or <hr className={classes.Hr} />

@@ -12,35 +12,6 @@
     border-top: 1px dashed rgba(137, 137, 137, 0.6);
 }
 
-.Button {
-    background-color: #ffffff;
-    color: #6357AE;
-    display: block;
-    text-align: center;
-    width: 100%;
-    padding: 4px;
-    border: 1px solid #6357AE;
-    outline: none;
-    text-decoration: none;
-}
-
-.Button:focus{
-    text-decoration: none;
-}
-
-.Button:active{
-    text-decoration: none;
-}
-
-.Button:hover{
-    text-decoration: none;
-    color: #6357AE;
-}
-
-.Button:visited{
-    text-decoration: none;
-}
-
 .inline-group{
     width: 100%
 }
