@@ -76,7 +76,7 @@ class LoginForm extends Component {
 
           <SocialButton
             provider="google"
-            appId="YOUR_APP_ID" // Used enviroment variable to store app id
+            appId={ `${process.env.REACT_APP_CLIENT_ID}` } // Used enviroment variable to store app id
             onLoginSuccess={this.handleSocialLogin}
             onLoginFailure={this.handleSocialLoginFailure}
           >
