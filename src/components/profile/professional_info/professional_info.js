@@ -1,10 +1,11 @@
 import React from 'react'
+import Container from '../../../container/Container'
 
 const ProfessionalInfo = props => {
     return (
-        <div>
+        <Container>
             <p>{props.title}</p>
-        </div>
+        </Container>
     )
 }
 
