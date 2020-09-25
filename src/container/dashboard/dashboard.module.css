@@ -1,6 +1,41 @@
-.main {
-    border: 2px solid black;
-    margin-left: 50px;
-    margin-right: 50px;
+.Wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
     text-align: center;
+    border: 1px solid black;
+}
+
+.Aside, .Main{
+    width: 100%;
+    margin-bottom: 8px;
+    border: 1px solid red;
+}
+
+
+/* Desktop view */
+@media (min-width: 760px){
+    .Wrapper{
+        padding: 1%;
+    }
+
+    .Aside, .Main {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 1%;
+    }
+
+    .Aside {
+        width: 30%;
+        vertical-align: top;
+        margin: 0 1%;
+        text-align: center;
+    }
+
+    .Main {
+        width: 68%;
+        height: 85vh;
+        overflow-x: auto;
+        text-align: left;
+    }
 }
