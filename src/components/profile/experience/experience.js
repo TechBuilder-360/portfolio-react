@@ -1,11 +1,20 @@
 import React from 'react'
+import {connect} from 'react-redux'
+
 
 const Experience = props => {
+    
     return (
-        <div>
+        <div className={props.wrapper}>
             <p>{props.title}</p>
         </div>
     )
 }
 
-export default Experience
+const mapStateToProps = state =>{
+    return{
+        experience:state.experience
+    }
+}
+
+export default connect(mapStateToProps)(Experience)

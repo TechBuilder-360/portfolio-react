@@ -2,7 +2,7 @@ import React from 'react'
 
 const Education = props => {
     return (
-        <div>
+        <div className={props.wrapper}>
             <p>{props.title}</p>
         </div>
     )

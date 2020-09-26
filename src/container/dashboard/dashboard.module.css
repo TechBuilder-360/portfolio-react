@@ -13,6 +13,16 @@
 }
 
 
+.Main_Content{
+    margin-bottom: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(102, 99, 99, 0.651);
+    box-shadow: #ccc 2px 2px;
+    padding: 8px;
+}
+
+
 /* Desktop view */
 @media (min-width: 760px){
     .Wrapper{
@@ -38,4 +48,6 @@
         overflow-x: auto;
         text-align: left;
     }
+
+    
 }

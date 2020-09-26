@@ -84,6 +84,15 @@ const initialState = {
   title: "Fraud detection using transaction pattern",
   description: "Fraud detection using transaction pattern and previous account records."
 },
+],
+social:[{
+  label: "facebook",
+  url: "https://facebook.com"
+},
+{
+  label: "twitter",
+  url: "https://twitter.com"
+},
 ]
 };
 
