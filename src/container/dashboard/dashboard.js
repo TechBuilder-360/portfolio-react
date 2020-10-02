@@ -29,7 +29,7 @@ export default class Dashboard extends Component {
             <ProfessionalSummary wrapper={classes.Main_Content} title="This is the professional info component" />
             <Education wrapper={classes.Main_Content} title="This is the education component" />
             <Experience wrapper={classes.Main_Content} title="This is the experience component" />
-            <Skills wrapper={classes.Main_Content} title="This is the skills info component" />
+            <Skills wrapper={classes.Main_Content} title="Skills" />
             <Projects wrapper={classes.Main_Content} title="This is the project component" />
             <SocialLinks wrapper={classes.Main_Content} title="This is the social component" />
           </main>
