@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classes from "./dashboard.module.css";
-import CoverImage from "../../components/profile/cover_Image/cover_image";
+// import CoverImage from "../../components/profile/cover_Image/cover_image";
 import PersonalInfo from "../../components/profile/personal_Info/personal_info";
 import ProfessionalSummary from "../../components/profile/professional_summary/professional_summary";
 import Education from "../../components/profile/education/education";
@@ -23,15 +23,15 @@ export default class Dashboard extends Component {
         <div className={classes.Wrapper}>
           <aside className={classes.Aside}>
             <PersonalInfo />
+            <SocialLinks/>
           </aside>
           <main className={classes.Main}>
             {/* <CoverImage title="This is the cover image component" /> */}
             <ProfessionalSummary wrapper={classes.Main_Content} title="This is the professional info component" />
-            <Education wrapper={classes.Main_Content} title="This is the education component" />
-            <Experience wrapper={classes.Main_Content} title="This is the experience component" />
+            <Education wrapper={classes.Main_Content} title="Education" />
+            <Experience wrapper={classes.Main_Content} title="Experience" />
             <Skills wrapper={classes.Main_Content} title="Skills" />
             <Projects wrapper={classes.Main_Content} title="This is the project component" />
-            <SocialLinks wrapper={classes.Main_Content} title="This is the social component" />
           </main>
         </div>
       </Container>
