@@ -40,24 +40,31 @@ const initialState = {
     "Postgres",
     "Django",
     "Spring Boot",
-    "Akka"
+    "Akka",
   ],
   education: [
     {
       education_type: "Tertiary",
       institution: "Lautech",
-      start_year: 2010,
-      end_year: 2014,
+      start_year: 2006,
+      end_year: 2011,
       degree: "BSc",
       course: "Accounting",
     },
     {
       education_type: "Tertiary",
       institution: "Manchester University",
-      start_year: 2015,
-      end_year: 2017,
+      start_year: 2012,
+      end_year: 2016,
       degree: "MBA",
       course: "Accounting",
+      class_of_degree: 'First Class'
+    },
+    {
+      education_type: "College",
+      institution: "Doregos College",
+      start_year: 2000,
+      end_year: 2006,
     },
   ],
   experience: [

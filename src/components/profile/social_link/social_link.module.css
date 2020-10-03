@@ -1,0 +1,16 @@
+.container{
+    margin-bottom: 15px;
+    display: flex;
+    width: 50%;
+    margin-left: 30%;
+}
+
+.icon {
+    height: 25px;
+    width: 50px;
+}
+
+.text {
+    padding-top: 2px;
+    font-size: 15px;
+}
