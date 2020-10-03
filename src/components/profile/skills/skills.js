@@ -6,7 +6,7 @@ const Skills = (props) => {
   
   return (
     <div className={props.wrapper}>
-      <p className="title" style={{textAlign: "left"}}>{props.title}</p>
+      <p style={{textAlign: "left"}}>{props.title}</p>
       <ul className={classes.Skill}>
         {props.skills.map((skills, index) => (
           <li key={index} title={skills} >
