@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import classes from "./experience.module.css";
+import classes from "../education/education.module.css";
 
 const Experience = (props) => {
   let direction = classes.left;

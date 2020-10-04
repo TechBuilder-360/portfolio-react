@@ -36,14 +36,14 @@
     }
 
     .Aside {
-        width: 30%;
+        width: 18%;
         vertical-align: top;
         margin: 0 1%;
         text-align: center;
     }
 
     .Main {
-        width: 68%;
+        width: 80%;
         height: 85vh;
         overflow-x: auto;
         text-align: left;

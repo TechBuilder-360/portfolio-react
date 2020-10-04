@@ -51,7 +51,7 @@ const Education = (props) => {
 
   return (
     <div className={`${props.wrapper}`}>
-      <p className={classes.title}>{props.title}</p>
+      <p className='title' style={{textAlign:'left'}}>{props.title}</p>
       <div className={classes.timeline}>
         {sortedEducationHistory.map((education, index) => (
           <div className={`${classes.container}  ${direction}`} key={index}>
