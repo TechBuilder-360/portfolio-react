@@ -55,7 +55,7 @@ const initialState = {
       education_type: "Tertiary",
       institution: "Manchester University",
       start_year: 2012,
-      end_year: 2016,
+      end_year: null,
       degree: "MBA",
       course: "Accounting",
       class_of_degree: 'First Class'
@@ -65,6 +65,7 @@ const initialState = {
       institution: "Doregos College",
       start_year: 2000,
       end_year: 2006,
+      degree: "SSCE"
     },
   ],
   experience: [
