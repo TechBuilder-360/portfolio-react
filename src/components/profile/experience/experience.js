@@ -1,20 +1,46 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
+import classes from "./experience.module.css";
 
+const Experience = (props) => {
+  let direction = classes.left;
 
-const Experience = props => {
-    
-    return (
-        <div className={props.wrapper}>
-            <p>{props.title}</p>
-        </div>
-    )
-}
+  const sortedExperienceHistory = [...props.experienceHistory].sort(
+    (a, b) => b.start_year - a.start_year
+  );
 
-const mapStateToProps = state =>{
-    return{
-        experience:state.experience
-    }
-}
+  return (
+    <div className={props.wrapper}>
+      <p className={classes.title}>{props.title}</p>
+      <div className={classes.timeline}>
+        {sortedExperienceHistory.map((experience, index) => (
+          <div className={`${classes.container}  ${direction}`} key={index}>
+            <div className={classes.content}>
+              <h2>
+                {experience.end_year
+                  ? `${experience.start_year} - ${experience.end_year}`
+                  : `${experience.start_year} - Till Date`}
+              </h2>
+              <p>Organization: {experience.organization}</p>
+              <p>Position: {experience.position}</p>
+              <p>Role:{experience.description}</p>
+              <p hidden>
+                {direction === classes.left
+                  ? (direction = classes.right)
+                  : (direction = classes.left)}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-export default connect(mapStateToProps)(Experience)
+const mapStateToProps = (state) => {
+  return {
+    experienceHistory: state.experience,
+  };
+};
+
+export default connect(mapStateToProps)(Experience);
