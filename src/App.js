@@ -9,12 +9,15 @@ import Home from './components/pre-auth/Home'
 import Login from './components/authentication/LoginForm/LoginForm'
 import Signup from './components/authentication/SignUpForm/SignUpForm'
 import NotFound from './components/NotFound';
+import ProfileEdit from './components/portfolio-edit/profile-edit';
 
 
 function App() {
   return (
       <Switch style={{paddingLeft: '0'}}>
         {/* This view is to be only accessible to authenticated users */}
+        <Route path="/profile/:username/edit" exact component={ProfileEdit}/>
+        
         {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
         <Route path="/profile/:username" exact component={Dashboard}/>
 

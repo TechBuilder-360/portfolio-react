@@ -1,0 +1,14 @@
+.Img {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    vertical-align: middle;
+}
+
+.Mt_10 {
+    margin-top: 10px;
+}
+
+.Mb_5 {
+    margin-bottom: 5px;
+}
