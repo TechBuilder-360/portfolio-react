@@ -1,13 +1,15 @@
 .Skill {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     text-align: justify;
 }
 
 .Skill li{
     list-style: none;
-    display: inline-block;
     font-size: 9pt;
-    padding: 5px;
-    margin: 0 3px 2px;
+    padding: 7px;
+    margin: 0 5px 5px;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.35);
     overflow: hidden;
@@ -18,6 +20,7 @@
 };
 
 
+
 /* Desktop view not responding ??? */
 @media (min-width: 760px){
     .Skill li{
@@ -25,4 +28,5 @@
         padding: 8px;
         margin: 0 5px 8px;
     }
+   
 }

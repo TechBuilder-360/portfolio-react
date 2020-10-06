@@ -21,7 +21,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "react-social-login": "^3.4.9",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "react-social-icons": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,7 +45,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "react-social-icons": "^4.1.0"
-  }
+  "devDependencies": {}
 }
