@@ -27,11 +27,11 @@ export default class Dashboard extends Component {
           </aside>
           <main className={classes.Main}>
             {/* <CoverImage title="This is the cover image component" /> */}
-            <ProfessionalSummary wrapper={classes.Main_Content} title="This is the professional info component" />
+            <ProfessionalSummary wrapper={classes.Main_Content} title="Professional Summary" />
             <Education wrapper={classes.Main_Content} title="Education" />
             <Experience wrapper={classes.Main_Content} title="Experience" />
             <Skills wrapper={classes.Main_Content} title="Skills" />
-            <Projects wrapper={classes.Main_Content} title="This is the project component" />
+            <Projects wrapper={classes.Main_Content} title="Project" />
           </main>
         </div>
       </Container>
