@@ -48,6 +48,12 @@
   float: right;
 }
 
+
+/* Modal size */
+.Modal {
+  width: 60%;
+}
+
 @media (max-width: 565px) {
   .card {
     max-width: 48%;
