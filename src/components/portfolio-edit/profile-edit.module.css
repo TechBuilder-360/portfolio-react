@@ -6,11 +6,12 @@
 }
 
 .SubSection {
-    text-align: left;
     display: inline-block;
-    width: 100%;
-    margin-top: 20px;
-    border: 1px solid green;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 2%;
+    margin-top: 5px;
+    border: 10px solid green;
 }
 
 .Wrapper section {
@@ -30,5 +31,10 @@
     
     .Wrapper section {
         width: 80%;
+    }
+
+    .SubSection {
+        width: 80%;
+        margin-top: 10px;
     }
 }

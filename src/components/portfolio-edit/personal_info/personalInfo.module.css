@@ -1,11 +1,13 @@
 .Img {
     width: 150px;
+    text-align: center;
+    margin-bottom: 10px;
     height: 150px;
-    border: 1px solid black;
     vertical-align: middle;
 }
 .wrapper{
     margin-top: 30px;
+    border: 1px solid black;
 }
 
 .Mt_10 {
@@ -37,11 +39,8 @@
     
     background-color: rgb(214, 233, 236);
 }
-.main{
-    margin-top: 40px;
-}
 span{
-    font-size: 15pt;
+    /* font-size: 15pt; */
     color:rgba(5, 81, 194, 0.8)
 }
 span:hover{
@@ -53,3 +52,9 @@ form label{
     color:rgb(148, 147, 147)
 }
 
+
+@media (min-width: 760px){
+    .Img{
+        margin-top: 23px;
+    }
+}
