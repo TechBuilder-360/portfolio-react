@@ -11,9 +11,6 @@ const profile_edit = () => {
             <div className={classes.Wrapper}>
                 <section>
                     <PersonalInfo/>
-                    <PersonalInfo/>
-                    <PersonalInfo/>
-                    <PersonalInfo/>
                 </section>
             </div>
         </Container>

@@ -4,11 +4,52 @@
     border: 1px solid black;
     vertical-align: middle;
 }
+.wrapper{
+    margin-top: 30px;
+}
 
 .Mt_10 {
     margin-top: 10px;
 }
 
 .Mb_5 {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
+.Mb_5 input{
+    height: 45px;
+    background-color: rgb(224, 234, 245);
+    border-right:2px ;
+    border: 0px;
+}
+
+.Mb_5 input:hover{
+    
+    background-color: rgb(214, 233, 236);
+}
+.Mb_5 textarea{
+    
+    background-color: rgb(224, 234, 245);
+    border-right:2px ;
+    border: 0px;
+}
+
+.Mb_5 textarea:hover{
+    
+    background-color: rgb(214, 233, 236);
+}
+.main{
+    margin-top: 40px;
+}
+span{
+    font-size: 15pt;
+    color:rgba(5, 81, 194, 0.8)
+}
+span:hover{
+    cursor: pointer;
+}
+
+form label{
+    font-size: 13pt;
+    color:rgb(148, 147, 147)
+}
+
