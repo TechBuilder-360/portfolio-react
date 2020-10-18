@@ -15,9 +15,9 @@ const profile_edit = () => {
       {/* Body */}
       <div className={classes.Wrapper}>
         <section>
-          <PersonalInfo Wrapper={classes.SubSection} />
-          <Education Wrapper={classes.SubSection}/>
-          <Experience Wrapper={classes.SubSection}/>
+          <PersonalInfo/>
+          <Education/>
+          <Experience/>
         </section>
       </div>
       {/*  End Body */}

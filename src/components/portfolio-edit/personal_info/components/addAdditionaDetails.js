@@ -55,7 +55,7 @@ const AddPersonalDetails = () => {
       </Row>
       <Form.Group>
           <Form.Label>Professional Summary</Form.Label>
-          <Form.Control  as="textarea" rows="6" cols='3' />
+          <Form.Control  as="textarea" rows="2" cols='3' />
           </Form.Group>
     </div>
   );

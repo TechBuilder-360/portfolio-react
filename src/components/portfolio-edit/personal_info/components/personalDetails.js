@@ -62,7 +62,7 @@ const PersonalDetails = () => {
               </span>
             ) : (
               <span>
-                edit additional Details{" "}
+                show additional Details{" "}
                 <FontAwesomeIcon icon={faAngleDown}/>{" "}
               </span>
             )}

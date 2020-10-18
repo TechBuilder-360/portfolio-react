@@ -45,7 +45,7 @@ const Experience = () => {
         </Row>
           <Form.Group>
             <Form.Label>Experience Summary</Form.Label>
-          <Form.Control  as="textarea" rows="6" cols='3' />
+          <Form.Control  as="textarea" rows="2" cols='3' />
           </Form.Group>
       </Form>
       <Button style={{ float: "right" }} type="submit" className={classes.Mb_5}>
