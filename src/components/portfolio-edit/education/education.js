@@ -1,68 +1,37 @@
-import React from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
-import classes from "../personal_info/personalInfo.module.css";
+import React,{useState,useCallback} from "react";
 import style from "../profile-edit.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faPlusCircle} from '@fortawesome/free-solid-svg-icons'
+import Child from "./components/child";
+
+
 
 const Education = () => {
+  const [numchild,setNumchild]=useState(0)
+               
+   let addMore=useCallback(()=> {
+   setNumchild(numchild + 1)
+      })
+ 
+      let removeMore=useCallback((index)=> {
+        const list =[...children]
+        list.splice(index,1)
+        setNumchild(list.length)
+           })
+
+    const children=[]
+    for (var i=0; i<numchild; i +=1){
+
+      children.push(<Child removeMore={removeMore} key={i} number={i}/>)
+    }
   return (
     <div className={style.SubSection}>
       <p className='title'>Education</p>
       <hr />
-
-      <Form>
-        <Row>
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>Education Type</Form.Label>
-              <Form.Control placeholder="Tertiary" />
-            </Form.Group>
-          </Col>
-
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>School Attended</Form.Label>
-              <Form.Control placeholder="Harvard University"/>
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>Degree</Form.Label>
-              <Form.Control placeholder="Bachelor of Science" />
-            </Form.Group>
-          </Col>
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>Course</Form.Label>
-              <Form.Control placeholder="Computer Science"/>
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>Start Year</Form.Label>
-              <Form.Control type="date"/>
-            </Form.Group>
-          </Col>
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>End Year</Form.Label>
-              <Form.Control type="date"/>
-            </Form.Group>
-          </Col>
-        </Row>
-      </Form>
-
-      <Button
-        style={{ float: "right" }}
-        type="submit"
-        className={classes.Mb_5}
-      >
-        Save
-      </Button>
-    </div>
+         {children}
+              <span onClick={addMore}><FontAwesomeIcon  icon={faPlusCircle} size='lg'/>
+               add more Education</span>
+          </div>  
   );
 };
 export default Education;

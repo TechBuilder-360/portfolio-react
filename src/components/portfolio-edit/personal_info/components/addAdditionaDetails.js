@@ -1,8 +1,6 @@
 import React from "react";
 import { Col, Row, Form } from "react-bootstrap";
 import classes from "../personalInfo.module.css";
-import CKEditor from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddPersonalDetails = () => {
   return (
@@ -55,20 +53,10 @@ const AddPersonalDetails = () => {
           </Form.Group>
         </Col>
       </Row>
+      <Form.Group>
           <Form.Label>Professional Summary</Form.Label>
-          <CKEditor
-            editor={ClassicEditor}
-            data=""
-            onInit={(editor) => {
-              // You can store the "editor" and use when it is needed.
-              editor.ui
-                .getEditableElement()
-                .parentElement.insertBefore(
-                  editor.ui.view.toolbar.element,
-                  editor.ui.getEditableElement()
-                );
-            }}
-          />
+          <Form.Control  as="textarea" rows="6" cols='3' />
+          </Form.Group>
     </div>
   );
 };
