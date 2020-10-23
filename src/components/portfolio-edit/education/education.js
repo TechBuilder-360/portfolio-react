@@ -20,7 +20,7 @@ const Education = () => {
   }
 
   for (var i = 0; i < numchild; i += 1) {
-    children.push(<Child removeMore={removeMore} index={i}/>);
+    children.push(<Child removeMore={removeMore} i={i} key={i}/>);
   }
 
   return (

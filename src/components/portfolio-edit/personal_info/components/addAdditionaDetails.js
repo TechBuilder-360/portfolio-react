@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row, Form } from "react-bootstrap";
 import classes from "../personalInfo.module.css";
+import TextArea from "./TextArea";
 
 const AddPersonalDetails = () => {
   return (
@@ -55,8 +56,8 @@ const AddPersonalDetails = () => {
       </Row>
       <Form.Group>
           <Form.Label>Professional Summary</Form.Label>
-          <Form.Control  as="textarea" rows="2" cols='3' />
-          </Form.Group>
+     <TextArea/>
+     </Form.Group>
     </div>
   );
 };
