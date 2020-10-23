@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import Child from "./Child";
 
-const Experience = (props) => {
+const Projects = (props) => {
   const [numchild, setNumchild] = useState(0);
   const children = [];
 
@@ -23,14 +23,14 @@ const Experience = (props) => {
   }
   return (
     <div className={style.SubSection}>
-     <p className='title'>Experience</p>
+     <p className='title'>Projects</p>
       <hr />
       {children}
         <span onClick={addMore}>
-  <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Experience
+  <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Projects
         </span>
       </div>
   )
 };
 
-export default Experience;
+export default Projects;

@@ -17,11 +17,20 @@ const Child = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.drop}>
-        <div onClick={toggleDisplay}>
+        <div >
           {show ? (
-            <SubEducation />
-          ) : (
             <div>
+           <div onClick={toggleDisplay}>Show institution name (2008-2012)
+             <div style={{ float: "right" }}>
+             <FontAwesomeIcon icon={faAngleUp} />
+           </div>
+          
+            </div>
+            <SubEducation submithandler={props.submithandler}/>
+            </div>
+          ) : (
+            
+            <div onClick={toggleDisplay}>
               Show institution name (2008-2012)
               <div style={{ float: "right" }}>
                 <FontAwesomeIcon icon={faAngleDown} />

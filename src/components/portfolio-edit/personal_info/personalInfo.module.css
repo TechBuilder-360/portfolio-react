@@ -63,7 +63,9 @@ form label {
 .delete {
   display: inline-block;
 }
-
+.delete:hover{
+  cursor: pointer;
+}
 .drop {
   border: 1px solid rgb(238, 229, 229);
   display: inline-block;

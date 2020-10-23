@@ -5,6 +5,7 @@ import Education from "./education/education";
 import Experience from "./experience/Experience";
 import PersonalInfo from "./personal_info/personalInfo";
 import classes from "./profile-edit.module.css";
+import Projects from "./projects/projects";
 
 const profile_edit = () => {
   return (
@@ -18,6 +19,7 @@ const profile_edit = () => {
           <PersonalInfo/>
           <Education/>
           <Experience/>
+          <Projects/>
         </section>
       </div>
       {/*  End Body */}
