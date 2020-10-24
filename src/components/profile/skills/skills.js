@@ -1,25 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import ProjectModal from "../projects/project-modal";
+// import ProjectModal from "../projects/project-modal";
 import classes from './skills.module.css'
 
 
-const handleClose = () => {
+// const handleClose = () => {
   // this.setState({
   //   show: false,
   //   project: null,
   // });
-};
+// };
 
 const Skills = (props) => {
 
-  const modal = (
-    <ProjectModal
+  // const modal = (
+  //   <ProjectModal
       // show={this.state.show}
       // handleClose={this.handleClose}
       // project={this.state.project}
-    />
-  );
+  //   />
+  // );
   return (
     <div className={props.wrapper}>
       <p className="title" style={{textAlign: "left"}}>{props.title}</p>
