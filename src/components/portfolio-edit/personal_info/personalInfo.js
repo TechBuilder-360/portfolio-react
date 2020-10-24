@@ -4,7 +4,7 @@ import style from "../profile-edit.module.css";
 import classes from "./personalInfo.module.css";
 import avatar from "../../../images/avatar.webp";
 
-const personalInfo = () => {
+const personalInfo = (props) => {
   return (
     <div className={style.SubSection}>
       <Container>
@@ -17,13 +17,13 @@ const personalInfo = () => {
             <Form>
               <Row>
                 <Col xs={12} md={4} className={classes.Mb_5}>
-                  <Form.Control title="First name" placeholder="First name" />
+                  <Form.Control title="First name" placeholder="First name" value={props.firstName} />
                 </Col>
                 <Col xs={12} md={4} className={classes.Mb_5}>
-                  <Form.Control placeholder="Last name" title="Last name" />
+                  <Form.Control placeholder="Last name" title="Last name" value={props.lastName}/>
                 </Col>
                 <Col xs={12} md={4} className={classes.Mb_5}>
-                  <Form.Control placeholder="Middle name" title="Middle name" />
+                  <Form.Control placeholder="Middle name" title="Middle name" value={props.middleName}/>
                 </Col>
               </Row>
               <Row>
@@ -32,10 +32,11 @@ const personalInfo = () => {
                     type="email"
                     placeholder="Email Address"
                     title="Email Address"
+                    value={props.email}
                   />
                 </Col>
                 <Col xs={12} md={4} className={classes.Mb_5}>
-                  <Form.Control title="Gender" as="select" custom>
+                  <Form.Control title="Gender" as="select" custom value={props.gender}>
                     <option value="">Select a gender</option>
                     <option value="Female">Female</option>
                     <option value="Male">Male</option>
@@ -46,23 +47,24 @@ const personalInfo = () => {
                   <Form.Control
                     placeholder="Languages i.e English, Yoruba"
                     title="Languages"
+                    value={props.languages}
                   />
                 </Col>
               </Row>
               <Row>
                 <Col xs={12} md={4} className={classes.Mb_5}>
-                  <Form.Control title="Location" placeholder="State, Country" />
+                  <Form.Control title="State of Residence" placeholder="State, Country" value={props.stateOfResidence}/>
                 </Col>
                 <Col xs={12} md={4} className={classes.Mb_5}>
-                  <Form.Control type="date" placeholder="Date of birth" title="Date of birth" />
+                  <Form.Control type="date" placeholder="Date of birth" title="Date of birth" value={props.dateOfBirth}/>
                 </Col>
                 <Col xs={12} md={4} className={classes.Mb_5}>
-                  <Form.Control title="Profession" placeholder="Profession" />
+                  <Form.Control title="Profession" placeholder="Profession" value={props.profession}/>
                 </Col>
               </Row>
               <Row>
                 <Col className={classes.Mb_5}>
-                  <Form.Control as="textarea" rows="3" placeholder="Professional Summary" title="Professional Summary" />
+                  <Form.Control as="textarea" rows="3" placeholder="Professional Summary" title="Professional Summary" value={props.professionalSummary} />
                 </Col>
               </Row>
               <Button type="submit" className={classes.Mb_5}>
