@@ -8,7 +8,7 @@ const initialState = {
     middle_name: "Orion",
     email: "John.Doe@mail.com",
     gender: "Male",
-    language: "English, French",
+    languages: "English, French",
     state_of_residence: "Lagos",
     nationality: "Nigeria",
     date_of_birth: "12th, December",
