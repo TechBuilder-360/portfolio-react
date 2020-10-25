@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^23.0.0",
+    "@ckeditor/ckeditor5-react": "^2.1.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
@@ -20,9 +22,9 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
+    "react-social-icons": "^4.1.0",
     "react-social-login": "^3.4.9",
-    "redux": "^4.0.5",
-    "react-social-icons": "^4.1.0"
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,14 +1,99 @@
 .Img {
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-    vertical-align: middle;
+  width: 150px;
+  text-align: center;
+  margin-bottom: 10px;
+  height: 150px;
+  vertical-align: middle;
+}
+
+.wrapper {
+  margin-top: 30px;
+  border: 1px solid black;
 }
 
 .Mt_10 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .Mb_5 {
-    margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.Mb_5 input {
+  height: 45px;
+  background-color: rgb(224, 234, 245);
+  border-radius: 5px;
+  border: 0px;
+}
+
+::placeholder,
+:-ms-input-placeholder {
+  color: rgb(224, 9, 9);
+  padding: 20px;
+}
+
+.Mb_5 input:hover {
+  background-color: rgb(214, 233, 236);
+}
+
+textarea {
+  background-color: rgb(214, 233, 236);
+  border-right: 2px;
+  border: 0px;
+}
+
+.Mb_5 textarea:hover {
+  background-color: rgb(214, 233, 236);
+}
+
+span {
+  /* font-size: 15pt; */
+  color: rgba(5, 81, 194, 0.8);
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+form label {
+  font-size: 13pt;
+  color: rgb(148, 147, 147);
+}
+
+.delete {
+  display: inline-block;
+}
+.delete:hover{
+  cursor: pointer;
+}
+.drop {
+  border: 1px solid rgb(238, 229, 229);
+  display: inline-block;
+  padding: 2%;
+  width: 94%;
+  margin-bottom: 20px;
+  margin-right: 2%;
+  background-color: rgb(253, 247, 247);
+}
+
+.drop:hover {
+    cursor: pointer;
+    background-color: rgb(248, 247, 247);
+  }
+
+
+
+/* Desktop view */
+@media (min-width: 760px) {
+  .Img {
+    margin-top: 23px;
+  }
+
+  .delete {
+    display: none;
+  }
+
+  .container:hover > .delete{
+      display: inline-block;
+  }
 }
