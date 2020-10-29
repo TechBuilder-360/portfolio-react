@@ -63,7 +63,7 @@ class LoginForm extends Component {
                 </Button>
               </Col>
               <Col>
-                <Link to="/" className={classes.Link}>
+                <Link to="/passwordreset" className={classes.Link}>
                   Forgot Password?
                 </Link>
               </Col>
