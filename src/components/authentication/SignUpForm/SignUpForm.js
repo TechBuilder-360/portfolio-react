@@ -30,7 +30,7 @@ class SignUpForm extends Component {
 
         <SocialButton
             provider="google"
-            appId={ `${process.env.REACT_APP_CLIENT_ID}` } // Used enviroment variable to store app id
+            appId={ `${process.env.REACT_APP_CLIENT_ID}` }
             onLoginSuccess={this.handleSocialLogin}
             onLoginFailure={this.handleSocialLoginFailure}
           >

@@ -76,7 +76,7 @@ class LoginForm extends Component {
 
           <SocialButton
             provider="google"
-            appId={ `${process.env.REACT_APP_CLIENT_ID}` } // Used enviroment variable to store app id
+            appId={ `${process.env.REACT_APP_CLIENT_ID}` }
             onLoginSuccess={this.handleSocialLogin}
             onLoginFailure={this.handleSocialLoginFailure}
           >
@@ -85,13 +85,6 @@ class LoginForm extends Component {
             </i>
             &nbsp;&nbsp;Login with Google
           </SocialButton>
-
-          {/* <Link to="/" onClick={this.googleLogin} className={classes.Button}>
-            <i>
-              <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
-            </i>
-            &nbsp;&nbsp;Login with Google
-          </Link> */}
 
           <div
             style={{
