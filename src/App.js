@@ -12,35 +12,29 @@ import NotFound from "./components/NotFound";
 import ProfileEdit from "./components/portfolio-edit/profile-edit";
 import PasswordReset from "./components/authentication/Password/PasswordReset";
 import PasswordChange from "./components/authentication/Password/PasswordChange";
+import Container from "./container/Container";
+import Messages from "./components/messages";
 
 function App() {
   return (
-    <Switch style={{ paddingLeft: "0" }}>
-      {/* This view is to be only accessible to authenticated users */}
-      <Route path="/profile/:username/edit" exact component={ProfileEdit} />
-      <Route
-        path="/passwordreset"
-        exact
-        component={PasswordReset}
-      />
-      <Route
-        path="/passwordchange"
-        exact
-        component={PasswordChange}
-      />
+      <Switch style={{ paddingLeft: "0" }}>
+        {/* This view is to be only accessible to authenticated users */}
+        <Route path="/profile/:username/edit" exact component={ProfileEdit} />
+        <Route path="/password/reset" exact component={PasswordReset} />
+        <Route path="/password/change" exact component={PasswordChange} />
 
-      {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
-      <Route path="/profile/:username" exact component={Dashboard} />
+        {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
+        <Route path="/profile/:username" exact component={Dashboard} />
 
-      <Route path="/faqs" exact component={FAQs} />
-      <Route path="/features" exact component={Features} />
-      <Route path="/contact" exact component={Contact} />
-      <Route path="/about" exact component={About} />
-      <Route path="/login" exact component={Login} />
-      <Route path="/signup" exact component={Signup} />
-      <Route path="/" exact component={Home} />
-      <Route path="*" component={NotFound} />
-    </Switch>
+        <Route path="/faqs" exact component={FAQs} />
+        <Route path="/features" exact component={Features} />
+        <Route path="/contact" exact component={Contact} />
+        <Route path="/about" exact component={About} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/" exact component={Home} />
+        <Route path="*" component={NotFound} />
+      </Switch>
   );
 }
 

@@ -232,6 +232,13 @@ const initialState = {
       url: "https://twitter.com",
     },
   ],
+  
+  messages: [
+    // types: success, info, warning, danger
+    {
+    type: "info",
+    message: "Flash message"
+  }]
 };
 
 const reducer = (state = initialState, action) => {
@@ -264,6 +271,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case actionType.MESSAGE:
+      return {
+        messages: action.msg,
+        ...state
+      }
     default:
       return state;
   }

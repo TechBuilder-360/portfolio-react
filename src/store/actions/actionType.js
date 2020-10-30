@@ -5,3 +5,5 @@ export const EDUCATION='EDUCATION'
 export const PROJECTS='PROJECTS'
 export const SKILL='SKILL'
 export const SOCIAL_LINK='SOCIAL_LINK'
+
+export const MESSAGE='MESSAGE'
