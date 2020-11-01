@@ -39,7 +39,7 @@ return(
         </Row>
           <Form.Group>
             <Form.Label>Experience Summary</Form.Label>
-         <TextArea/>
+         <TextArea value=""/>
           </Form.Group>
       </Form>
       <Button style={{ float: "right" }} type="submit" className={classes.Mb_5}>

@@ -1,4 +1,4 @@
-import React, {useState,useCallback} from "react";
+import React, { useState, useCallback } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
@@ -23,14 +23,14 @@ const Projects = (props) => {
   }
   return (
     <div className={style.SubSection}>
-     <p className='title'>Projects</p>
+      <p className="title">Projects</p>
       <hr />
       {children}
-        <span onClick={addMore}>
-  <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Projects
-        </span>
-      </div>
-  )
+      <span onClick={addMore}>
+        <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Projects
+      </span>
+    </div>
+  );
 };
 
 export default Projects;

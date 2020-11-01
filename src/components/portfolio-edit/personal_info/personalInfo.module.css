@@ -11,6 +11,10 @@
   border: 1px solid black;
 }
 
+.block{
+  display: block;
+}
+
 .Mt_10 {
   margin-top: 10px;
 }
@@ -19,7 +23,7 @@
   margin-bottom: 10px;
 }
 
-.Mb_5 input {
+.Mb_5 input, .datePicker{
   height: 45px;
   background-color: rgb(224, 234, 245);
   border-radius: 5px;
@@ -32,8 +36,12 @@
   padding: 20px;
 }
 
-.Mb_5 input:hover {
+.Mb_5 input:hover, .Mb_5 textarea:hover, .datePicker:hover {
   background-color: rgb(214, 233, 236);
+}
+
+.datePicker{
+  display: block;
 }
 
 textarea {
@@ -42,12 +50,7 @@ textarea {
   border: 0px;
 }
 
-.Mb_5 textarea:hover {
-  background-color: rgb(214, 233, 236);
-}
-
 span {
-  /* font-size: 15pt; */
   color: rgba(5, 81, 194, 0.8);
 }
 
@@ -56,7 +59,6 @@ span:hover {
 }
 
 form label {
-  font-size: 13pt;
   color: rgb(148, 147, 147);
 }
 

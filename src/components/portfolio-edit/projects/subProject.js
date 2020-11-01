@@ -20,7 +20,7 @@ return(
           <Form.Group>
             <Form.Label>Project Descriptions</Form.Label>
         
-          <TextArea/>
+          <TextArea value="The title of"/>
           </Form.Group>
       </Form>
       <Button style={{ float: "right" }} type="submit" className={classes.Mb_5}>
