@@ -8,7 +8,7 @@ const initialState = {
     middle_name: "Orion",
     email: "John.Doe@mail.com",
     gender: "Male",
-    languages: "English, French",
+    languages: "English, French", // MAX length 100
     state_of_residence: "Lagos",
     nationality: "Nigeria",
     date_of_birth: "12th, December",
@@ -17,6 +17,7 @@ const initialState = {
     // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
     bio:
       "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
+    resume: ""
   },
   skills: [{
     id: 1,

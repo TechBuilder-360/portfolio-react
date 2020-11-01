@@ -22,8 +22,7 @@
     "react-scripts": "^3.4.3",
     "react-social-login": "^3.4.9",
     "redux": "^4.0.5",
-    "react-social-icons": "^4.1.0",
-    "react-flash-message": "1.0.4"
+    "react-social-icons": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
