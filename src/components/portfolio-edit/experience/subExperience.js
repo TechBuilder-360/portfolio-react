@@ -36,11 +36,14 @@ return(
               <Form.Control type="date"/>
             </Form.Group>
           </Col>
-        </Row>
+          <Col xs={12} md={12} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Experience Summary</Form.Label>
          <TextArea value=""/>
           </Form.Group>
+            </Col>
+        </Row>
+          
       </Form>
       <Button style={{ float: "right" }} type="submit" className={classes.Mb_5}>
         Save

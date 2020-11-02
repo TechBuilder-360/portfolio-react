@@ -3,6 +3,7 @@ import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import Child from "./Child";
+import {Col} from "react-bootstrap"
 
 const Experience = (props) => {
   const [numchild, setNumchild] = useState(0);
@@ -23,12 +24,14 @@ const Experience = (props) => {
   }
   return (
     <div className={style.SubSection}>
-     <p className='title'>Experience</p>
+      <Col md={12}>    
+       <p className='title'>Experience</p>
       <hr />
       {children}
         <span onClick={addMore}>
   <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Experience
         </span>
+        </Col>
       </div>
   )
 };

@@ -62,9 +62,6 @@ form label {
   color: rgb(148, 147, 147);
 }
 
-.delete {
-  display: inline-block;
-}
 .delete:hover{
   cursor: pointer;
 }

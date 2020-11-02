@@ -16,12 +16,15 @@ return(
               <Form.Control />
             </Form.Group>
           </Col>
-          </Row>
+          <Col xs={12} md={12} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Project Descriptions</Form.Label>
         
           <TextArea value="The title of"/>
           </Form.Group>
+            
+            </Col>
+          </Row>
       </Form>
       <Button style={{ float: "right" }} type="submit" className={classes.Mb_5}>
         Save
