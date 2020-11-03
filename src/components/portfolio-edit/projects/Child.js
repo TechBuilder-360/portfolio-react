@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown,faAngleUp, faTrash} from '@fortawesome/free-solid-svg-icons'
 
 const Child = (props) => {
-  const [show,setShow]=useState(false)
+  const [show,setShow]=useState(true)
   
   let toggleDisplay = useCallback(() => {
                   setShow(!show);

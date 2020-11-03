@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Child = (props) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   let toggleDisplay = useCallback(() => {
     setShow(!show);
@@ -17,19 +17,18 @@ const Child = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.drop}>
-        <div >
+        <div>
           {show ? (
             <div>
-           <div onClick={toggleDisplay}>Show institution name (2008-2012)
-             <div style={{ float: "right" }}>
-             <FontAwesomeIcon icon={faAngleUp} />
-           </div>
-          
-            </div>
-            <SubEducation submithandler={props.submithandler}/>
+              <div onClick={toggleDisplay}>
+                Show institution name (2008-2012)
+                <div style={{ float: "right" }}>
+                  <FontAwesomeIcon icon={faAngleUp} />
+                </div>
+              </div>
+              <SubEducation submithandler={props.submithandler} />
             </div>
           ) : (
-            
             <div onClick={toggleDisplay}>
               Show institution name (2008-2012)
               <div style={{ float: "right" }}>
@@ -39,7 +38,11 @@ const Child = (props) => {
           )}
         </div>
       </div>
-      <FontAwesomeIcon className={classes.delete} onClick={props.removeMore} icon={faTrash} />
+      <FontAwesomeIcon
+        className={classes.delete}
+        onClick={props.removeMore}
+        icon={faTrash}
+      />
     </div>
   );
 };

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row, Form } from "react-bootstrap";
 import classes from "../personalInfo.module.css";
-import TextArea from "./TextArea";
+import TextArea from "../../../form/TextArea";
 import { connect } from "react-redux";
-import DatePicker from 'react-date-picker';
+import InputDate from "../../../form/InputDate";
 
 const AddPersonalDetails = (props) => {
-  const [value, onChange] = useState(new Date());
+  
   return (
     <div>
       <Row>
@@ -51,8 +51,7 @@ const AddPersonalDetails = (props) => {
         </Col>
       
         <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Label className={classes.block}>Date Of Birth</Form.Label>
-            <DatePicker onChange={onChange} className={classes.datePicker} value={value} clearIcon={null} />
+          <InputDate label="Date of Birth"/>
         </Col>
       </Row>
       <Form.Group>

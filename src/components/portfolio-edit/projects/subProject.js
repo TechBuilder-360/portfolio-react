@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Col, Form, Row ,Container} from "react-bootstrap";
+import TextArea from "../../form/TextArea";
 import classes from "../personal_info/personalInfo.module.css";
-import TextArea from "../personal_info/components/TextArea";
+
 
 const SubProjects=(props)=>{
 

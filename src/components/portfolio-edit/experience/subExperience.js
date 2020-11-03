@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Col, Form, Row ,Container} from "react-bootstrap";
+import InputDate from "../../form/InputDate";
+import TextArea from "../../form/TextArea";
 import classes from "../personal_info/personalInfo.module.css";
-import TextArea from "../personal_info/components/TextArea";
 
 const SubEducation=(props)=>{
 
@@ -25,16 +26,10 @@ return(
           </Col>
         
           <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>Start Year</Form.Label>
-              <Form.Control type="date"/>
-            </Form.Group>
+            <InputDate label="Start Year"/>
           </Col>
           <Col xs={12} md={6} className={classes.Mb_5}>
-            <Form.Group>
-              <Form.Label>End Year</Form.Label>
-              <Form.Control type="date"/>
-            </Form.Group>
+            <InputDate label="End Year"/>
           </Col>
           <Col xs={12} md={12} className={classes.Mb_5}>
           <Form.Group>
