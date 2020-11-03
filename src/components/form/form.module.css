@@ -1,0 +1,45 @@
+.textarea, .multiText {
+    background-color: rgb(224, 234, 245);
+    padding: 1%;
+    border: 0px;
+    border-radius: 6px;
+    width: 100%;
+    text-align: right;
+}
+
+.multiText{
+    text-align: left;
+    resize: none;
+    outline: none;
+}
+
+.textarea > span {
+    opacity: 0.45;
+}
+
+/* .textarea:hover > .multiText:hover{
+    background-color: rgb(214, 233, 236);
+} */
+
+.datePicker{
+    display: block;
+    width: 100%;
+    border:none;
+}
+
+.datePicker > div{
+    background-color: rgb(224, 234, 245);
+    border: none;
+    border-radius: 6px;
+    padding: 1%;
+    padding-left: 3%;
+}
+
+.datePicker input{
+    background-color: transparent;
+    outline: none;
+}
+
+.datePicker span{
+    color: black;
+}
