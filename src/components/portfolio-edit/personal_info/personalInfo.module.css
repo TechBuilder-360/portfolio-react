@@ -66,6 +66,10 @@ form label {
   }
 
 
+.Accordion_Parent, .Accordion_Child {
+  margin-bottom: 2%;
+}
+
 
 /* Desktop view */
 @media (min-width: 760px) {
@@ -79,5 +83,13 @@ form label {
 
   .container:hover > .delete{
       display: inline-block;
+  }
+
+  .Accordion_Child {
+    margin-bottom: 1%;
+  }
+
+  .Accordion_Parent{
+    margin-bottom: 2%;
   }
 }
