@@ -2,48 +2,49 @@ import React, { useState, useCallback } from "react";
 import classes from "../../personal_info/personalInfo.module.css";
 import SubEducation from "./educationForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {Accordion,Card, useAccordionToggle} from "react-bootstrap"
 import {
   faAngleDown,
   faAngleUp,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Child = (props) => {
-  const [show, setShow] = useState(true);
+function CustomToggle({children,eventKey}){
+const decoratedOnClick=useAccordionToggle(eventKey,()=>
+console.log(eventKey)
+)
+return(
+<a type="button" onClick={decoratedOnClick}> {children}</a>
 
-  let toggleDisplay = useCallback(() => {
-    setShow(!show);
-  });
+)
+
+}
+
+
+const Child = (props) => {
   return (
-    <div className={classes.container}>
-      <div className={classes.drop}>
-        <div>
-          {show ? (
-            <div>
-              <div onClick={toggleDisplay}>
-                Show institution name (2008-2012)
-                <div style={{ float: "right" }}>
-                  <FontAwesomeIcon icon={faAngleUp} />
-                </div>
-              </div>
-              <SubEducation submithandler={props.submithandler} />
-            </div>
-          ) : (
-            <div onClick={toggleDisplay}>
-              Show institution name (2008-2012)
-              <div style={{ float: "right" }}>
-                <FontAwesomeIcon icon={faAngleDown} />
-              </div>
-            </div>
-          )}
-        </div>
+    <div style={{paddingBottom:'15px'}}>
+      <Card >
+        <Card.Header>
+        Organization
+          <span style={{float: "Right"}}>
+          <CustomToggle eventKey={props.i}>edit</CustomToggle>|
+          <a type="button" onClick={props.removeMore}>delete</a>
+          </span>
+        </Card.Header>
+        <Accordion.Collapse eventKey={props.i}>
+       <Card.Body><SubEducation submithandler={props.submithandler} /></Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    
+     
+
+
+
+      
+      
       </div>
-      <FontAwesomeIcon
-        className={classes.delete}
-        onClick={props.removeMore}
-        icon={faTrash}
-      />
-    </div>
+    
   );
 };
 export default Child;

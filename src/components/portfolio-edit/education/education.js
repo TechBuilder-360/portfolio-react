@@ -1,7 +1,9 @@
 import React, { useState} from "react";
 import style from "../profile-edit.module.css";
+import classes from "../personal_info/personalInfo.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {Accordion} from "react-bootstrap"
 import Child from "./components/child";
 
 
@@ -27,9 +29,11 @@ const Education = () => {
     <div className={style.SubSection}>
       <p className="title">Education</p>
       <hr />
+      <Accordion defaultActiveKey="0">
       {children}
+      </Accordion>
         <span onClick={addMore}>
-  <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Education
+        <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Education
         </span>
       </div>
   )
