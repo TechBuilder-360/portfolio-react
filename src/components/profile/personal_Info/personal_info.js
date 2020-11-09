@@ -23,7 +23,7 @@ const PersonalInfo = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    personalInfo: state.personal_info,
+    personalInfo: state.portfolio.personal_info,
   };
 };
 

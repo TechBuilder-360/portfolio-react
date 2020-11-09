@@ -30,7 +30,7 @@ function App() {
       />
 
       {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
-      <Route path="/profile/:username" exact component={Dashboard} />
+      <Route path="/profile/:username/" exact component={Dashboard} />
 
       <Route path="/faqs" exact component={FAQs} />
       <Route path="/features" exact component={Features} />

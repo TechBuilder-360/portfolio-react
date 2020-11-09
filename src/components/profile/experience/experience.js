@@ -39,7 +39,7 @@ const Experience = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    experienceHistory: state.experience,
+    experienceHistory: state.portfolio.experience,
   };
 };
 

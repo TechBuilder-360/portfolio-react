@@ -70,7 +70,7 @@ const Education = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    educationHistory: state.education,
+    educationHistory: state.portfolio.education,
   };
 };
 
