@@ -20,7 +20,7 @@ const LoginForm = (props) => {
 
   useEffect(() => {
     setUserName(authState.username);
-  });
+  },[authState.username]);
 
   const loginHandler = (event) => {
     event.preventDefault();

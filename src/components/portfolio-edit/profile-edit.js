@@ -20,7 +20,6 @@ const Profile_Edit = (props) => {
             gender={props.personalInfo.gender}
             stateOfResidence={props.personalInfo.state_of_residence}
             profession={props.personalInfo.profession}
-            gender={props.personalInfo.gender}
             dateOfBirth={props.personalInfo.date_of_birth}
             professionalSummary={props.personalInfo.bio}
           />
