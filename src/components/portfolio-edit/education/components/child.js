@@ -1,49 +1,38 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
+import EducationForm from "./educationForm";
+import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
 import classes from "../../personal_info/personalInfo.module.css";
-import SubEducation from "./educationForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faAngleUp,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
 
-const Child = (props) => {
-  const [show, setShow] = useState(true);
+function CustomToggle({ children, eventKey }) {
+  const decoratedOnClick = useAccordionToggle(eventKey, null) // Add checker to see if form has been edited and needs saving before closing
 
-  let toggleDisplay = useCallback(() => {
-    setShow(!show);
-  });
   return (
-    <div className={classes.container}>
-      <div className={classes.drop}>
-        <div>
-          {show ? (
-            <div>
-              <div onClick={toggleDisplay}>
-                Show institution name (2008-2012)
-                <div style={{ float: "right" }}>
-                  <FontAwesomeIcon icon={faAngleUp} />
-                </div>
-              </div>
-              <SubEducation submithandler={props.submithandler} />
-            </div>
-          ) : (
-            <div onClick={toggleDisplay}>
-              Show institution name (2008-2012)
-              <div style={{ float: "right" }}>
-                <FontAwesomeIcon icon={faAngleDown} />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      <FontAwesomeIcon
-        className={classes.delete}
-        onClick={props.removeMore}
-        icon={faTrash}
-      />
-    </div>
+    <a id={`close-accordion-${eventKey}`} onClick={decoratedOnClick}>
+      {" "}
+      {children}
+    </a>
+  );
+}
+
+const Child = ({ education, ...props }) => {
+
+  return (
+    <Card className={classes.Accordion_Child}>
+      <Card.Header>
+        {education.institution}
+        <span style={{ float: "Right" }}>
+          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |{" "}
+          <a type="button" onClick={props.removeMore}>
+            Delete
+          </a>
+        </span>
+      </Card.Header>
+      <Accordion.Collapse eventKey={props.i}>
+        <Card.Body>
+          <EducationForm closeForm={()=>document.getElementById(`close-accordion-${props.i}`).click()}/>
+        </Card.Body>
+      </Accordion.Collapse>
+    </Card>
   );
 };
 export default Child;

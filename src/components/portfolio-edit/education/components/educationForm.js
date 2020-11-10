@@ -4,7 +4,8 @@ import Container from "../../../../container/Container";
 import InputDate from "../../../form/InputDate";
 import classes from "../../personal_info/personalInfo.module.css";
 
-const SubEducation = () => {
+const EducationForm = (props) => {
+
   return (
     <Container>
       <Form>
@@ -48,14 +49,22 @@ const SubEducation = () => {
       {/* I recommend we remove button later in future and save form field onBlur
           We may still rethink this later, just a suggestion :)
       */}
+      <div style={{textAlign: "right"}}>
       <Button
-        style={{ float: "right", marginTop: "15px" }}
+        type="button"
+        onClick={props.closeForm}
+        className="btn btn-info mt-15 mr-2"
+      >
+        Cancel
+      </Button>
+      <Button
         type="submit"
-        className={classes.Mb_5}
+        className="btn btn-primary mt-15"
       >
         Save
       </Button>
+      </div>
     </Container>
   );
 };
-export default SubEducation;
+export default EducationForm;

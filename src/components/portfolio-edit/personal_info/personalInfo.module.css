@@ -52,7 +52,6 @@ form label {
   cursor: pointer;
 }
 .drop {
-  border: 1px solid rgb(238, 229, 229);
   display: inline-block;
   padding: 2%;
   width: 94%;
@@ -63,9 +62,13 @@ form label {
 
 .drop:hover {
     cursor: pointer;
-    background-color: rgb(248, 247, 247);
+    
   }
 
+
+.Accordion_Parent, .Accordion_Child {
+  margin-bottom: 2%;
+}
 
 
 /* Desktop view */
@@ -80,5 +83,13 @@ form label {
 
   .container:hover > .delete{
       display: inline-block;
+  }
+
+  .Accordion_Child {
+    margin-bottom: 1%;
+  }
+
+  .Accordion_Parent{
+    margin-bottom: 2%;
   }
 }
