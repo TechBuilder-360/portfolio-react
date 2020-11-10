@@ -36,7 +36,7 @@ const Skills = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    skills: state.skills,
+    skills: state.portfolio.skills,
   };
 };
 

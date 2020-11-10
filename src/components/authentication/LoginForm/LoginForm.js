@@ -1,47 +1,57 @@
-import React, { Component } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import googleLogo from "../../../google.svg";
 import { Link } from "react-router-dom";
 import classes from "../LoginForm/LoginForm.module.css";
 import { Form, Col } from "react-bootstrap";
 import Layout from "../../../container/Layout/Layout";
-import SocialButton from '../SocialButton'
+import SocialButton from "../SocialButton";
+import { Redirect } from "react-router-dom";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import * as actions from "../../../store/actions/auth";
 
+const LoginForm = (props) => {
+  const email = useRef(null);
+  const password = useRef(null);
+  const authState = useSelector((state) => state.auth, shallowEqual);
+  const dispatch = useDispatch()
 
-class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.email = React.createRef();
-    this.password = React.createRef();
-  }
+  const [userName, setUserName] = useState(authState.username);
 
-  loginHandler = (event) => {
+  useEffect(() => {
+    setUserName(authState.username);
+  },[authState.username]);
+
+  const loginHandler = (event) => {
     event.preventDefault();
   };
 
-  handleSocialLogin = (user) => {
-    console.log(user)
-  }
-   
-  handleSocialLoginFailure = (err) => {
-    console.error(err)
-  }
+  const handleSocialLogin = (user) => {
+    dispatch(actions.sessionAuthStart());
+    dispatch(actions.googleAuthSuccess(user._token.accessToken));
+  };
 
+  const handleSocialLoginFailure = (err) => {
+    console.error('google auth fail', err);
+    dispatch(actions.googleAuthFail(err));
+  };
 
-  render() {
+  if (userName) {
+    return <Redirect to={`/profile/${userName}`} push={true} />;
+  } else {
     return (
       <Layout>
         <div className={classes.Container}>
           <p className="title">Sign in</p>
 
-          <Form onSubmit={this.loginHandler}>
+          <Form onSubmit={loginHandler}>
             <Form.Row className={classes.Mb}>
               <Col>
                 <Form.Control
                   type="email"
                   placeholder="Email Address"
                   required
-                  ref={this.email}
+                  ref={email}
                 />
               </Col>
             </Form.Row>
@@ -52,7 +62,7 @@ class LoginForm extends Component {
                   type="password"
                   required
                   placeholder="Password"
-                  ref={this.password}
+                  ref={password}
                 />
               </Col>
             </Form.Row>
@@ -103,6 +113,6 @@ class LoginForm extends Component {
       </Layout>
     );
   }
-}
+};
 
 export default LoginForm;
