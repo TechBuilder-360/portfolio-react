@@ -14,6 +14,7 @@ const initialState = {
     date_of_birth: "12th, December",
     profession: "Accountant",
     profile_pix: "",
+    phone: '+2347458747777',
     // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
     bio:
       "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",

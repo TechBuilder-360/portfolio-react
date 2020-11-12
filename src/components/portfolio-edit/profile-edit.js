@@ -4,32 +4,24 @@ import UserNavigation from '../Navigation/user_navigation';
 import PersonalInfo from './personal_info/personalInfo';
 import classes from './profile-edit.module.css';
 import { connect } from "react-redux";
-
-
-    // state_of_residence: "Lagos",
-    // nationality: "Nigeria",
-    // date_of_birth: "12th, December",
-    // profession: "Accountant",
-    // profile_pix: "",
+import Education from "./education/education";
+import Experience from "./experience/Experience";
+import Projects from "./projects/projects";
 
 
 const Profile_Edit = (props) => {
-    console.log(props.personalInfo)
-    console.log(props.personalInfo.username)
     return (
         <Container>
+            {/* Nav Bar */}
             <UserNavigation />
+            {/* End Nav Bar */}
+            {/* Body */}
             <div className={classes.Wrapper}>
                 <section>
-                    <PersonalInfo 
-                        firstName={props.personalInfo.first_name} lastName={props.personalInfo.last_name} 
-                        middleName={props.personalInfo.middle_name} email={props.personalInfo.email}
-                        languages={props.personalInfo.languages} gender={props.personalInfo.gender}
-                        stateOfResidence={props.personalInfo.state_of_residence}
-                        profession={props.personalInfo.profession} gender={props.personalInfo.gender}
-                        dateOfBirth={props.personalInfo.date_of_birth}
-                        professionalSummary={props.personalInfo.bio}
-                    />
+                    <PersonalInfo data={props.personalInfo}/>
+                    <Education/>
+                    <Experience/>
+                    <Projects/>
                 </section>
             </div>
         </Container>
