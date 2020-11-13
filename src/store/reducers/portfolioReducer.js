@@ -14,34 +14,117 @@ const initialState = {
     date_of_birth: "12th, December",
     profession: "Accountant",
     profile_pix: "",
+    phone: '+2347458747777',
     // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
     bio:
-      "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
+      "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writer and a loving Dog owner.A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writer and a loving Dog owner",
   },
-  skills: [
-    "ICAN",
-    "BSc",
-    "MBA",
-    "HTML",
-    "CSS",
-    "CCNA",
-    "AGILE",
-    "SCRUM",
-    "COMPTIA N+",
-    "COMPTIA A+",
-    "Python",
-    "Java",
-    "NodeJs",
-    "PHP",
-    "SPSS",
-    "Scala",
-    "Kafka",
-    "Cassandra",
-    "Postgres",
-    "Django",
-    "Spring Boot",
-    "Akka",
-  ],
+  skills: [{
+    id: 1,
+    title: "Web development",
+    subskill: [
+    {id: 1,
+      name: "HTML"
+    },
+    {id: 2,
+      name: "CSS"
+    },
+    {id: 3,
+      name: "Javascript"
+    },
+    {id: 4,
+      name: "SCSS"
+    },
+    {id: 5,
+      name: "Django"
+    },
+    {id: 6,
+      name: "Spring Boot"
+    },
+    ]
+  },
+  {
+    id: 2,
+    title: "Accounting",
+    subskill: [
+      {
+        id:1,
+        name: "ICAN"
+      }
+    ]
+  },
+  {
+    id:3,
+    title: "Networking",
+    subskill: [
+      {
+        id:1,
+        name:  "COMPTIA N+"
+      },
+      {
+        id:2,
+        name:  "CCNA"
+      },
+      {
+        id:3,
+        name:  "CCNP"
+      }
+    ]
+  },
+  {
+    id:4,
+    title: "Project Management",
+    subskill: [
+      {
+        id:1,
+        name: "SCRUM"
+      },
+      {
+        id:2,
+        name: "AGILE"
+      },
+      {
+        id:1,
+        name: "SPSS"
+      },
+    ]
+  },
+  {
+    id:5,
+    title: "Big Data",
+    subskill: [
+      {
+        id:1,
+        name: "Apache Spark"
+      },
+      {
+        id:2,
+        name: "Apache Kafka"
+      },
+    ]
+  },
+  {
+    id:6,
+    title: "Database Management",
+    subskill: [
+      {
+        id:1,
+        name: "Postgres"
+      },
+      {
+        id:2,
+        name: "Cassandra"
+      },
+      {
+        id:3,
+        name: "MYSQL"
+      },
+      {
+        id:4,
+        name: "MSSQL Server"
+      },
+    ]
+  }],
   education: [
     {
       education_type: "Tertiary",
@@ -89,46 +172,55 @@ const initialState = {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
+      url: "/"
     },
   ],
   social: [
