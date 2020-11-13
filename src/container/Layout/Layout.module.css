@@ -7,31 +7,24 @@
 .Section, .Aside {
     width: 100%;
     box-sizing: border-box;
-    padding: 8%;
-    text-align: center;
+    padding: 1% 6%;
+    text-align: left;
 }
 
 .Aside{
     margin-top: 20px;
+    display: none;
 }
 
 @media (min-width: 760px){
 
-    /* .Section, .Aside{
-        float: none;
-    } */
-
-    .Section{
+    .Section, .Aside{
         display: inline-block;
+        padding: 1% 5%;
         width: 50%;
-        border: 1px solid black;
     }
     
     .Aside {
-        display: inline-block;
         vertical-align: top;
-        width: 50%;
-        margin-top: 0;
-        border: 1px solid black;
     }
 }

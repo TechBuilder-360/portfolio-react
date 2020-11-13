@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Container from '../Container';
-import HomeNavBar from './Navigation/main-navigation';
+import HomeNavBar from '../../components/Navigation/main-navigation';
 import classes from './Layout.module.css';
-import CarouselImage from './Carousel/carousel';
+import CarouselImage from '../../components/Carousel/carousel';
 
 
 class Layout extends Component {
+    
     render() {
         return (
             <Container>
@@ -15,12 +16,12 @@ class Layout extends Component {
                 <main className={classes.Main}>
                     <section className={classes.Section}>
                         {this.props.children}
-                        Registration/Sign in form goes here
                     </section>
                     <aside className={classes.Aside}>
                         <CarouselImage/>
                     </aside>
                 </main>
+                {/* <Footer/> */}
             </Container>
         );
     }

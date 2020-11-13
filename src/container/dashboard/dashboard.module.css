@@ -1,0 +1,53 @@
+.Wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.Aside, .Main{
+    width: 100%;
+    margin-bottom: 8px;
+    border: 1px solid red;
+}
+
+
+.Main_Content{
+    margin-bottom: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(102, 99, 99, 0.651);
+    box-shadow: #ccc 2px 2px;
+    padding: 8px;
+}
+
+
+/* Desktop view */
+@media (min-width: 760px){
+    .Wrapper{
+        padding: 1%;
+    }
+
+    .Aside, .Main {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 1%;
+    }
+
+    .Aside {
+        width: 18%;
+        vertical-align: top;
+        margin: 0 1%;
+        text-align: center;
+    }
+
+    .Main {
+        width: 80%;
+        height: 85vh;
+        overflow-x: auto;
+        text-align: left;
+    }
+
+    
+}

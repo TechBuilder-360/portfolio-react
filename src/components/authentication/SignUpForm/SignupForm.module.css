@@ -1,0 +1,47 @@
+.Or{
+    text-align: center;
+    padding-bottom: 8px;
+    color: rgba(137, 137, 137, 1);
+}
+
+.Hr{
+    position: relative;
+    top:9px;
+    width: 45%; 
+    display: inline-block;
+    border-top: 1px dashed rgba(137, 137, 137, 0.6);
+}
+
+.inline-group{
+    width: 100%
+}
+
+.inline-group input{
+    width: 45%;
+}
+
+.Mb{
+    margin-bottom: 18px;
+}
+
+.Container{
+    padding-top: 10%;
+}
+
+.Link {
+    color: #6357AE;
+    float: right;
+    position: relative;
+    top: 8px;
+}
+
+
+@media (min-width: 760px){
+    .Container{
+        padding-top: 0;
+    }
+
+    .Link{
+        top: 6px;
+    }
+}

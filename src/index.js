@@ -4,11 +4,22 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from "react-redux";
+import {createStore} from 'redux'
+// Importing the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap.js';
+import reducer from './store/reducers/portfolioReducer'
+
+const store = createStore(reducer)
 
 ReactDOM.render(
+  <Provider store={store}>
     <BrowserRouter>
       <App/>
-   </BrowserRouter>,
+   </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
