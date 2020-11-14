@@ -25,12 +25,8 @@
     "react-scripts": "^3.4.3",
     "react-social-icons": "^4.1.0",
     "react-social-login": "^3.4.9",
-<<<<<<< HEAD
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
-=======
-    "redux": "^4.0.5"
->>>>>>> master
   },
   "scripts": {
     "start": "react-scripts start",

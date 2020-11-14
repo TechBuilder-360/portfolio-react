@@ -25,6 +25,8 @@ const Education = (props) => {
   function removeMore(index) { // rethink function
   }
 
+  console.log(props);
+
   // Populate accordion children with existing record
   const children = props.education.map((edu, i) => (
     <Child
@@ -40,7 +42,9 @@ const Education = (props) => {
     <div className={style.SubSection}>
       <p className="title">Education</p>
       <hr />
-      <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
+      <Accordion className={classes.Accordion_Parent}>
+        {children}
+        </Accordion>
       {form}
       <span onClick={()=>setFormVisible(true)}>
         <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
@@ -51,7 +55,7 @@ const Education = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    education: state.education,
+    education: state.portfolio.education,
   };
 };
 

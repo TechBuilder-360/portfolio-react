@@ -12,14 +12,24 @@ import NotFound from "./components/NotFound";
 import ProfileEdit from "./components/portfolio-edit/profile-edit";
 import PasswordReset from "./components/authentication/Password/PasswordReset";
 import PasswordChange from "./components/authentication/Password/PasswordChange";
+import { connect } from "react-redux";
 import Container from "./container/Container";
-import Messages from "./components/messages";
+import Logout from "./components/authentication/Logout/Logout";
 
-function App() {
-  return (
-      <Switch style={{ paddingLeft: "0" }}>
-        {/* This view is to be only accessible to authenticated users */}
-        <Route path="/profile/:username/edit" exact component={ProfileEdit} />
+const App = (props) =>{
+
+  let routes = (
+    <Switch>
+      <Route path="/profile/:username/edit" exact component={ProfileEdit} />
+      <Route path="/contact" exact component={Contact} />
+      <Route path='/logout' exact component={Logout}/>
+      <Route path="/" exact component={Dashboard} />
+    </Switch>
+  )
+
+  if(!props.isAuthenticated){
+    routes = (<Switch style={{ paddingLeft: "0" }}>
+        <Route path="/profile/:username/edit" exact component={ProfileEdit} /> {/* Remove url when authentication is ready */}
         <Route path="/password/reset" exact component={PasswordReset} />
         <Route path="/password/change" exact component={PasswordChange} />
 
@@ -34,8 +44,21 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/" exact component={Home} />
         <Route path="*" component={NotFound} />
-      </Switch>
+      </Switch>)
+  }
+
+
+  return (
+      <Container>
+        {routes}
+      </Container>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+      isAuthenticated: state.auth.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(App);
