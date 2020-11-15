@@ -6,7 +6,7 @@ import classes from "../personalInfo.module.css";
 const Images = () => {
   return (
     <Col xs={12} md={3} className={classes.Img}>
-      <Image className={classes.Img} src={avatar} roundedCircle />
+      <Image className={classes.Img} src={avatar} rounded />
     </Col>
   );
 };
