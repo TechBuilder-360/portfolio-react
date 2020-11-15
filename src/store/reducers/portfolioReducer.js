@@ -232,14 +232,7 @@ const initialState = {
       label: "twitter",
       url: "https://twitter.com",
     },
-  ],
-  
-  messages: [
-    // types: success, info, warning, danger
-    {
-    type: "info",
-    message: "Flash message"
-  }]
+  ]
 };
 
 const reducer = (state = initialState, action) => {
@@ -256,10 +249,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case actionType.PROFESSIONAL_SUMMARY:
-      return {
-        ...state,
-      };
     case actionType.PROJECTS:
       return {
         ...state,
@@ -272,13 +261,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case actionType.MESSAGE:
+
+    case actionType.AVATAR_UPLOAD:
       return {
-        messages: action.msg,
         ...state
       }
     default:
-      return state;
+    return state;
   }
 };
 

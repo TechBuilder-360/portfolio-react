@@ -1,3 +1,4 @@
+import axios from '../../axios-orders'
 import * as actionType from './actionType'
 
 export const Personal_Information = () => {
@@ -6,9 +7,29 @@ export const Personal_Information = () => {
     }
 }
 
-export const Professional_Summary = () => {
+export const setAvatar = () => {
     return {
-        type: actionType.PROFESSIONAL_SUMMARY
+        type: actionType.AVATAR_UPLOAD
+    }
+}
+
+export const AvatarUploadFailed = () => {
+    return {
+        type: actionType.AVATAR_UPLOAD_FAILED
+    }
+}
+
+export const avatar = (photo) =>{
+    return dispatch => {
+        let formData = new FormData();
+
+        formData.append("avatar", photo);
+        axios.post("/").then((response) => {
+            dispatch(setAvatar(response.data));
+        }).catch(error => {
+            console.log(error);
+            dispatch(AvatarUploadFailed())
+        });
     }
 }
 

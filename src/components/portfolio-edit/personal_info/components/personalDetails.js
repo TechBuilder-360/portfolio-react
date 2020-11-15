@@ -84,7 +84,7 @@ const PersonalDetails = (props) => {
         <Col xs={12} md={12} className={classes.Mb_5}>
         <Button
           type="submit"
-          variant="light"
+          variant="outline-dark"
         >
           Save
         </Button>
