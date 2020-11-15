@@ -1,39 +1,46 @@
-import React, {useState,useCallback} from "react";
+import React, { useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import Child from "./Child";
-import {Col} from "react-bootstrap"
+import { Col } from "react-bootstrap";
 
-const Experience = (props) => {
+const Experience = () => {
   const [numchild, setNumchild] = useState(0);
   const children = [];
 
-  let addMore = useCallback(() => {
+  let addMore = () => {
     setNumchild(numchild + 1);
-  });
+  };
 
-  let removeMore = useCallback((index) => {
+  let removeMore = (index) => {
     const list = [...children];
     list.splice(index, 1);
     setNumchild(list.length);
-  });
+  };
 
   for (var i = 0; i < numchild; i += 1) {
     children.push(<Child removeMore={removeMore} key={i} number={i} />);
   }
   return (
     <div className={style.SubSection}>
+<<<<<<< HEAD
       <p className='title'>Experience</p>
       <hr />
       <Col md={12}>    
       {children}
+=======
+      <Col md={12}>
+        <p className="title">Experience</p>
+        <hr />
+        {children}
+>>>>>>> 9430494fb98ff4571a02a83c523f706c4f4ef74c
         <span onClick={addMore}>
-  <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Experience
+          <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Experience
         </span>
-        </Col>
-      </div>
-  )
+      </Col>
+    </div>
+  );
 };
 
 export default Experience;

@@ -72,7 +72,7 @@ class Projects extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    projects: state.project,
+    projects: state.portfolio.project,
   };
 };
 

@@ -57,7 +57,7 @@ const SocialLinks = props => {
 
 const mapStateToProps = state =>{
     return{
-        social: state.social
+        social: state.portfolio.social
     }
 }
 

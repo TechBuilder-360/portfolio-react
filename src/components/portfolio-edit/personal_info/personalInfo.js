@@ -15,4 +15,4 @@ const personalInfo = (props) => {
   );
 };
 
-export default personalInfo
+export default personalInfo;
