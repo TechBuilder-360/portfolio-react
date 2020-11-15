@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
 import classes from "../personalInfo.module.css";
 import AddPersonalDetails from "./addAdditionaDetails";
@@ -8,9 +8,9 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 const PersonalDetails = (props) => {
   const [show, setShow] = useState(false);
 
-  let showAdditionalDetails = useCallback(() => {
+  let showAdditionalDetails = () => {
     setShow(!show);
-  });
+  }
 
   return (
     <Col xs={12} md={9}>

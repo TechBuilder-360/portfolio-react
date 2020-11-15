@@ -11,21 +11,21 @@ import SocialLinks from "../../components/profile/social_link/social_link";
 import { ProjectTitle } from "../../static";
 import DashboardNavBar from "../../components/Navigation/portfolio-navBar";
 import Container from "../Container";
-import { useParams, useHistory } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useSelector, shallowEqual } from "react-redux";
 
 const Dashboard = () => {
-  const { username } = useParams();
+  // const { username } = useParams();
   const authState = useSelector((state) => state.auth, shallowEqual);
-  let history = useHistory();
+  // let history = useHistory();
 
   useEffect(() => {
     document.title = `${ProjectTitle} Dashboard`;
-    console.log(username);
-    if (!authState.token) {
-      history.push("/login");
-    }
-  });
+    // Confirm if username (from url) exists before loading page. if it doesn't, redirect to 404 page
+    // if (username!='') {
+    //   history.push("/pageNotFound");
+    // }
+  }, [authState.username]);
 
   return (
     <Container>

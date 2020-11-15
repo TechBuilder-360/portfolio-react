@@ -88,15 +88,10 @@ export const googleAuthSuccessOld = async (token) => {
       };
 
       //   localStorage.setItem("user_data", JSON.stringify(userData));
-      console.log(
-        "user in actionType=",
-        response.data.data.socialAuth.social.user.username
-      );
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error); // Error needs improvement, maybe a flash message feature
     });
-  console.log("data wa re o= ", userData);
   return {
     type: actionTypes.GOOGLE_AUTH_SUCCESS,
     action: userData,

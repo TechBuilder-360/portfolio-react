@@ -1,64 +1,74 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import classes from "./SignupForm.module.css";
 import { Link } from "react-router-dom";
 import googleLogo from "../../../google.svg";
 import { Button, Form, Col } from "react-bootstrap";
-import Layout from '../../../container/Layout/Layout'
-import SocialButton from '../SocialButton'
+import Layout from "../../../container/Layout/Layout";
+import SocialButton from "../SocialButton";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import * as actions from "../../../store/actions/auth";
+import { useHistory } from "react-router-dom";
 
-class SignUpForm extends Component {
-  constructor(props) {
-    super(props);
-    this.firstName = React.createRef();
-    this.lastName = React.createRef();
-    this.email = React.createRef();
-    this.password = React.createRef();
-    this.confirm_password = React.createRef();
-    this.accept_policy = React.createRef();
-  }
+const SignUpForm = () => {
+  let firstName = React.createRef();
+  let lastName = React.createRef();
+  let email = React.createRef();
+  let password = React.createRef();
+  let confirm_password = React.createRef();
+  let accept_policy = React.createRef();
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth, shallowEqual);
+  let history = useHistory();
 
-  onSignupHandler = (event) => {
+  useEffect(() => {
+    console.log(authState.username);
+    if (authState.token){
+      history.push(`/profile/${authState.username}/edit`)
+    }
+  },);
+
+  const onSignupHandler = (event) => {
     event.preventDefault();
-    console.log(this.firstName.current.value);
+    console.log(firstName.current.value);
   };
 
-  render() {
-    return (
-      <Layout>
+  const handleSocialLogin = (user) => {
+    dispatch(actions.sessionAuthStart());
+    dispatch(actions.googleAuthSuccess(user._token.accessToken));
+  };
+
+  const handleSocialLoginFailure = (err) => {
+    dispatch(actions.googleAuthFail(err));
+  };
+
+  return (
+    <Layout>
       <div className={classes.Container}>
         <p className="title">Sign up</p>
 
         <SocialButton
-            provider="google"
-            appId={ `${process.env.REACT_APP_CLIENT_ID}` }
-            onLoginSuccess={this.handleSocialLogin}
-            onLoginFailure={this.handleSocialLoginFailure}
-          >
-            <i>
-              <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
-            </i>
-            &nbsp;&nbsp;Signup with Google
-          </SocialButton>
+          provider="google"
+          appId={`${process.env.REACT_APP_CLIENT_ID}`}
+          onLoginSuccess={handleSocialLogin}
+          onLoginFailure={handleSocialLoginFailure}
+        >
+          <i>
+            <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
+          </i>
+          &nbsp;&nbsp;Signup with Google
+        </SocialButton>
 
         <div className={classes.Or}>
           <hr className={classes.Hr} /> or <hr className={classes.Hr} />
         </div>
 
-        <Form onSubmit={this.onSignupHandler}>
+        <Form onSubmit={onSignupHandler}>
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
-                placeholder="First name"
-                required
-                ref={this.firstName}
-              />
+              <Form.Control placeholder="First name" required ref={firstName} />
             </Col>
             <Col>
-              <Form.Control
-                placeholder="Last name"
-                required
-                ref={this.lastName}
-              />
+              <Form.Control placeholder="Last name" required ref={lastName} />
             </Col>
           </Form.Row>
 
@@ -68,7 +78,7 @@ class SignUpForm extends Component {
                 type="email"
                 placeholder="Email Address"
                 required
-                ref={this.email}
+                ref={email}
               />
             </Col>
           </Form.Row>
@@ -79,7 +89,7 @@ class SignUpForm extends Component {
                 type="password"
                 required
                 placeholder="Password"
-                ref={this.password}
+                ref={password}
               />
             </Col>
           </Form.Row>
@@ -90,7 +100,7 @@ class SignUpForm extends Component {
                 type="password"
                 required
                 placeholder="Confirm Password"
-                ref={this.confirm_password}
+                ref={confirm_password}
               />
             </Col>
           </Form.Row>
@@ -101,7 +111,7 @@ class SignUpForm extends Component {
                 type="checkbox"
                 required
                 label="I agree to the Terms and Privacy Policy"
-                ref={this.accept_policy}
+                ref={accept_policy}
               />
             </Col>
           </Form.Row>
@@ -113,16 +123,19 @@ class SignUpForm extends Component {
               </Button>
             </Col>
             <Col>
-                <Link className={classes.Link} to="/login" style={{ textDecoration: "none" }}>
-                  &nbsp;Click here to login
-                </Link>
+              <Link
+                className={classes.Link}
+                to="/login"
+                style={{ textDecoration: "none" }}
+              >
+                &nbsp;Click here to login
+              </Link>
             </Col>
           </Form.Row>
         </Form>
       </div>
-      </Layout>
-    );
-  }
-}
+    </Layout>
+  );
+};
 
 export default SignUpForm;

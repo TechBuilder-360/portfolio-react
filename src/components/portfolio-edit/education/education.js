@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import { Accordion, Fade } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
 import { connect } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
