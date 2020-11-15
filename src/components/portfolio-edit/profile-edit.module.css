@@ -1,7 +1,6 @@
 .Wrapper {
     width: 100%;
     text-align: center;
-    border: 1px solid black;
     padding: 8px 1%;
 }
 
@@ -24,7 +23,6 @@
     width: 95%;
     display: inline-block;
     text-align: center;
-    border: 1px solid blue;
 }
 
 
@@ -38,5 +36,9 @@
     .SubSection {
         width: 80%;
         margin-top: 10px;
+    }
+
+    .SubSection > p{
+        text-align: left;
     }
 }

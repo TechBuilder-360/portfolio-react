@@ -24,9 +24,9 @@ const Experience = (props) => {
   }
   return (
     <div className={style.SubSection}>
-      <Col md={12}>    
-       <p className='title'>Experience</p>
+      <p className='title'>Experience</p>
       <hr />
+      <Col md={12}>    
       {children}
         <span onClick={addMore}>
   <FontAwesomeIcon icon={faPlusCircle} size="lg"/>{" "}add more Experience

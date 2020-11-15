@@ -12,8 +12,6 @@ import NotFound from "./components/NotFound";
 import ProfileEdit from "./components/portfolio-edit/profile-edit";
 import PasswordReset from "./components/authentication/Password/PasswordReset";
 import PasswordChange from "./components/authentication/Password/PasswordChange";
-import Container from "./container/Container";
-import Messages from "./components/messages";
 
 function App() {
   return (

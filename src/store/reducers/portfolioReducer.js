@@ -9,8 +9,7 @@ const initialState = {
     email: "John.Doe@mail.com",
     gender: "Male",
     languages: "English, French", // MAX length 100
-    state_of_residence: "Lagos",
-    nationality: "Nigeria",
+    location: "Lagos, Nigeria",
     date_of_birth: "12th, December",
     profession: "Accountant",
     profile_pix: "",
