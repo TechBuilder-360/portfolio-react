@@ -6,13 +6,15 @@ const initialState = {
   username: null,
   error: null,
   loading: false,
-//   authRedirectPath: "/",
+  //   authRedirectPath: "/",
 };
 
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.action.token,
     username: action.action.username,
+    loading: false,
+    error: null
   });
 };
 

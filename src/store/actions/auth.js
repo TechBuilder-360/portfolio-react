@@ -1,40 +1,15 @@
 import * as actionTypes from "../actions/actionType";
-import axios from "axios";
+import axios from '../../axios-orders'
+import * as query from './graphqlQuery'
 
-export const sessionAuthStart = () => {
-  return {
-    type: actionTypes.SESSION_TOKEN_START,
-  };
-};
 
-export const googleAuthSuccess = (token) => async (dispatch) => {
-  var data = JSON.stringify({
-    query: `mutation googleSignin {
-      \n  socialAuth(accessToken: "${token}", provider: "google-oauth2") {
-      \n    social {
-      \n      uid
-      \n      user {
-      \n        id
-      \n        firstName
-      \n        username
-      \n      }
-      \n    }
-      \n    token
-      \n  }
-      \n}`,
-  });
-
+export const googleAuthSuccess = (token) =>  (dispatch) => {
+  
   var config = {
-    method: "post",
-    url: "https://xportfolio.herokuapp.com/graphql/",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie:
-        "csrftoken=bQNReb0ipMwkcIraxN1ibpYu9K20WM6S7BERZNI4n45TqElnuQcDH8DRQJCnoEju", // protect csrftoken
-    },
-    data: data,
+    data: query.googleSignin(token),
   };
-  await axios(config)
+
+   axios(config)
     .then((response) => {
       const userData = {
         token: response.data.data.socialAuth.token,
@@ -45,57 +20,6 @@ export const googleAuthSuccess = (token) => async (dispatch) => {
     .catch((err) => {
       dispatch(sessionTokenFail(err));
     });
-
-  return {
-    type: actionTypes.GOOGLE_AUTH_SUCCESS,
-  };
-};
-
-export const googleAuthSuccessOld = async (token) => {
-  let userData = null;
-  var data = JSON.stringify({
-    query: `mutation googleSignin {
-      \n  socialAuth(accessToken: "${token}", provider: "google-oauth2") {
-      \n    social {
-      \n      uid
-      \n      user {
-      \n        id
-      \n        firstName
-      \n        username
-      \n      }
-      \n    }
-      \n    token
-      \n  }
-      \n}`,
-  });
-
-  var config = {
-    method: "post",
-    url: "https://xportfolio.herokuapp.com/graphql/",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie:
-        "csrftoken=bQNReb0ipMwkcIraxN1ibpYu9K20WM6S7BERZNI4n45TqElnuQcDH8DRQJCnoEju", // protect csrftoken
-    },
-    data: data,
-  };
-
-  await axios(config)
-    .then(function (response) {
-      userData = {
-        token: response.data.data.socialAuth.token,
-        username: response.data.data.socialAuth.social.user.username,
-      };
-
-      //   localStorage.setItem("user_data", JSON.stringify(userData));
-    })
-    .catch(function (error) {
-      console.log(error); // Error needs improvement, maybe a flash message feature
-    });
-  return {
-    type: actionTypes.GOOGLE_AUTH_SUCCESS,
-    action: userData,
-  };
 };
 
 export const googleAuthFail = (error) => {

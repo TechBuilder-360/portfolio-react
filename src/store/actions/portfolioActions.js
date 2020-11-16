@@ -24,7 +24,7 @@ export const avatar = (photo) =>{
         let formData = new FormData();
 
         formData.append("avatar", photo);
-        axios.post("/").then((response) => {
+        axios.post("").then((response) => {
             dispatch(setAvatar(response.data));
         }).catch(error => {
             console.log(error);

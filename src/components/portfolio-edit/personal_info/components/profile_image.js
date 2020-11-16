@@ -39,7 +39,7 @@ const handleChange = event => {
 
 const mapStateToProps = state => {
   return {
-    avatar: state.personal_info.profile_pix
+    avatar: state.portfolio.personal_info.profile_pix
   }
 }
 

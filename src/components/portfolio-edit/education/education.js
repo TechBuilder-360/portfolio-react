@@ -25,8 +25,6 @@ const Education = (props) => {
   function removeMore(index) { // rethink function
   }
 
-  console.log(props);
-
   // Populate accordion children with existing record
   const children = props.education.map((edu, i) => (
     <Child

@@ -24,17 +24,10 @@ const Experience = () => {
   }
   return (
     <div className={style.SubSection}>
-<<<<<<< HEAD
       <p className='title'>Experience</p>
       <hr />
       <Col md={12}>    
       {children}
-=======
-      <Col md={12}>
-        <p className="title">Experience</p>
-        <hr />
-        {children}
->>>>>>> 9430494fb98ff4571a02a83c523f706c4f4ef74c
         <span onClick={addMore}>
           <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Experience
         </span>
