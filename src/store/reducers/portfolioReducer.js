@@ -277,7 +277,8 @@ const reducer = (state = initialState, action) => {
 
       case actionType.ADD_EDUCATION:
         return{
-          ...state + action.payload
+          ...state,
+          education: [...state.education, action.payload]
         }
     default:
       return state;

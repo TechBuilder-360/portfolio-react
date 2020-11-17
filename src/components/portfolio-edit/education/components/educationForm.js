@@ -9,10 +9,10 @@ import {add_education} from '../../../../store/actions/portfolioActions'
 
 const EducationForm = (props) => {
  
-const [edu, setEdu]=useState('')
-const [ins, setIns]=useState('')
-const [course, setCourse]=useState('')
-const [degree,setDegree]=useState('')
+const [edu, setEdu]=useState('University')
+const [ins, setIns]=useState('LAUTECH')
+const [course, setCourse]=useState('Computer Science')
+const [degree,setDegree]=useState('BTech')
 const [end, setEnd]=useState('')
 const [start, setStart]=useState('') 
 
@@ -25,10 +25,7 @@ const content={
   course: course,
 }
 
-
-
   const handleAdd=()=>{
-    
     props.add_education(content)
   }
 

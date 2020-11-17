@@ -42,13 +42,10 @@ export const Social_Link = () => {
     }
 }
 
-export const add_education=content=>{
+export const add_education= content => {
 
     return{
         type:actionType.ADD_EDUCATION,
-        payload:{
-            content
-        }
-
+        payload: content
     }
 }
