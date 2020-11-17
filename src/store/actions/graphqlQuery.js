@@ -15,3 +15,15 @@ export const googleSignin = token => {
       }`,
   });
 }
+
+
+export const uploadAvatar = file => {
+  return JSON.stringify({
+    query: `mutation avatar {
+      avatar(avatar: "${file}") {
+        ok
+        warning
+      }
+    }`
+  })
+}

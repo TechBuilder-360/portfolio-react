@@ -1,5 +1,6 @@
 import axios from '../../axios-orders'
 import * as actionType from './actionType'
+import * as query from './graphqlQuery'
 
 export const Personal_Information = () => {
     return {
@@ -24,11 +25,12 @@ export const avatar = (photo) =>{
         let formData = new FormData();
 
         formData.append("avatar", photo);
-        axios.post("").then((response) => {
-            dispatch(setAvatar(response.data));
+        axios({data: formData}).then((response) => {
+            console.log(response);
+            // dispatch(setAvatar(response.data));
         }).catch(error => {
-            console.log(error);
-            dispatch(AvatarUploadFailed())
+            console.error(error);
+            // dispatch(AvatarUploadFailed())
         });
     }
 }

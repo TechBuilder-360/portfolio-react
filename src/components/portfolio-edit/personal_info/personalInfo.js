@@ -4,7 +4,7 @@ import style from "../profile-edit.module.css";
 import Images from "./components/profile_image";
 import PersonalDetails from "./components/personalDetails";
 
-const personalInfo = (props) => {
+const personalInfo = () => {
   return (
     <div className={style.SubSection}>
       <p className='title'> Personal Information </p>
