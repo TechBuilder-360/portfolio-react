@@ -138,12 +138,13 @@ const initialState = {
       education_type: "Tertiary",
       institution: "Manchester University",
       start_year: 2012,
-      end_year: null,
+      end_year: 2017,
       degree: "MBA",
       course: "Accounting",
       class_of_degree: 'First Class'
     },
     {
+      
       education_type: "College",
       institution: "Doregos College",
       start_year: 2000,
@@ -265,6 +266,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
+
+      case actionType.ADD_EDUCATION:
+        return{
+          ...state + action.payload
+        }
     default:
       return state;
   }

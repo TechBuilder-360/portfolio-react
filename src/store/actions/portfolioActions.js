@@ -41,3 +41,14 @@ export const Social_Link = () => {
         type: actionType.SOCIAL_LINK
     }
 }
+
+export const add_education=content=>{
+
+    return{
+        type:actionType.ADD_EDUCATION,
+        payload:{
+            content
+        }
+
+    }
+}
