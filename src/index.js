@@ -12,7 +12,7 @@ import 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.js';
 import reducer from './store/reducers/portfolioReducer'
 
-const store = createStore(reducer)
+const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <Provider store={store}>

@@ -14,7 +14,7 @@ const personalInfo = (props) => {
             middleName={props.data.middle_name} email={props.data.email}
             languages={props.data.languages} gender={props.data.gender}
             stateOfResidence={props.data.state_of_residence}
-            profession={props.data.profession} gender={props.data.gender}
+            profession={props.data.profession} 
             dateOfBirth={props.data.date_of_birth}
             professionalSummary={props.data.bio} phone={props.data.phone}
           />

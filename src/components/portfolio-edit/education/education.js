@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import { Accordion, Fade } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
 import { connect } from "react-redux";
+
 import classes from "../personal_info/personalInfo.module.css";
 import EducationForm from "./components/educationForm"
 
@@ -13,14 +14,21 @@ const Education = (props) => {
 
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
+  
 
   useEffect(() => {
     if(formVisible){
-      setForm(<EducationForm closeForm={()=>setFormVisible(false)}/>)
+      setForm(<EducationForm  closeForm={()=>setFormVisible(false)}/>)
     }else{
       setForm(null)
     }
   }, [formVisible]);
+
+  
+  
+
+  
+
 
   function removeMore(index) { // rethink function
   }
