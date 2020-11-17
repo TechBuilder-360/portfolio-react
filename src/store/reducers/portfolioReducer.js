@@ -1,3 +1,4 @@
+import education from "../../components/portfolio-edit/education/education";
 import * as actionType from "../actions/actionType";
 
 const initialState = {
@@ -280,6 +281,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           education: [...state.education, action.payload]
         }
+        case actionType.DELETE_SUCCESS:
+          
+          return {...state,
+          education:[state.education.filter(education=>education.id !==action.payload)]
+          }
     default:
       return state;
   }

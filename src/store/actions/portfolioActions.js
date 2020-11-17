@@ -49,3 +49,14 @@ export const add_education= content => {
         payload: content
     }
 }
+
+export const delete_success=(id)=>{
+return{
+    type:actionType.DELETE_SUCCESS,
+    
+     payload:id
+
+    
+}
+
+}

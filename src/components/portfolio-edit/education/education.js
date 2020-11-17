@@ -5,6 +5,7 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
 import { connect } from "react-redux";
+import {delete_success} from '../../../store/actions/portfolioActions'
 
 import classes from "../personal_info/personalInfo.module.css";
 import EducationForm from "./components/educationForm"
@@ -40,7 +41,9 @@ const Education = (props) => {
       removeMore={removeMore}
       closeForm={()=>setFormVisible(false)}
       i={i+1}
+      
       key={i}
+      onClick={(e)=>props.delete_success(i)}
     />
   ));
 
@@ -62,5 +65,6 @@ const mapStateToProps = (state) => {
     education: state.education,
   };
 };
+const mapDispatchToProps={delete_success}
 
-export default connect(mapStateToProps)(Education);
+export default connect(mapStateToProps,mapDispatchToProps)(Education);

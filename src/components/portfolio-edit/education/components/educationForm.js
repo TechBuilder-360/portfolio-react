@@ -90,7 +90,7 @@ const content={
       </div>
     </Container>
   );
-};
+}
 
 
 

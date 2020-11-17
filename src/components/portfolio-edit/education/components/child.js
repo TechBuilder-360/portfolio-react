@@ -3,6 +3,7 @@ import EducationForm from "./educationForm";
 import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
 import classes from "../../personal_info/personalInfo.module.css";
 
+
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionToggle(eventKey, null) // Add checker to see if form has been edited and needs saving before closing
 
@@ -22,7 +23,7 @@ const Child = ({ education, ...props }) => {
         {education.institution}
         <span style={{ float: "Right" }}>
           <CustomToggle eventKey={props.i}>Edit</CustomToggle> |{" "}
-          <a type="button" onClick={props.removeMore}>
+          <a type="button" onClick={props.onClick}>
             Delete
           </a>
         </span>
@@ -35,4 +36,4 @@ const Child = ({ education, ...props }) => {
     </Card>
   );
 };
-export default Child;
+export default Child
