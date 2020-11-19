@@ -225,11 +225,11 @@ const initialState = {
   ],
   social: [
     {
-      label: "facebook",
+      label: "Facebook",
       url: "https://facebook.com",
     },
     {
-      label: "twitter",
+      label: "Twitter",
       url: "https://twitter.com",
     },
   ],
