@@ -23,14 +23,14 @@ const Child = ({ education, ...props }) => {
         {education.institution}
         <span style={{ float: "Right" }}>
           <CustomToggle eventKey={props.i}>Edit</CustomToggle> |{" "}
-          <a type="button" onClick={props.onClick}>
+          <a type="button" onClick={()=>props.delete(education.id)}>
             Delete
           </a>
         </span>
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
         <Card.Body>
-          <EducationForm closeForm={()=>document.getElementById(`close-accordion-${props.i}`).click()}/>
+          <EducationForm closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
         </Card.Body>
       </Accordion.Collapse>
     </Card>

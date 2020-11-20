@@ -4,41 +4,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
-import { connect } from "react-redux";
-import {delete_success} from '../../../store/actions/portfolioActions'
-
+import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import EducationForm from "./components/educationForm"
+import { delete_education } from "../../../store/actions/portfolioActions";
 
 
 const Education = (props) => {
 
+  const dispatch = useDispatch()
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
   
 
   useEffect(() => {
     if(formVisible){
-      setForm(<EducationForm  closeForm={()=>setFormVisible(false)}/>)
+      setForm(<EducationForm closeForm={()=>setFormVisible(false)}/>)
     }else{
       setForm(null)
     }
   }, [formVisible]);
 
-  
-  
-
-  
-
-
-  function removeMore(index) { // rethink function
+  function handleDelete(index) {
+      dispatch(delete_education(index))
   }
 
   // Populate accordion children with existing record
   const children = props.education.map((edu, i) => (
     <Child
       education={edu}
-      removeMore={removeMore}
+      delete={(i)=> handleDelete(i) }
       closeForm={()=>setFormVisible(false)}
       i={i+1}
       
@@ -65,6 +60,5 @@ const mapStateToProps = (state) => {
     education: state.education,
   };
 };
-const mapDispatchToProps={delete_success}
 
-export default connect(mapStateToProps,mapDispatchToProps)(Education);
+export default connect(mapStateToProps)(Education);

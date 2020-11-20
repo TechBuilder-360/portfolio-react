@@ -1,13 +1,15 @@
 import React, { useState} from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import Container from "../../../../container/Container";
 import InputDate from "../../../form/InputDate";
 import classes from "../../personal_info/personalInfo.module.css";
-import { connect } from "react-redux";
-import {add_education} from '../../../../store/actions/portfolioActions'
+import {AddEducation} from "../../../../store/actions/portfolioActions"
 
 
 const EducationForm = (props) => {
+
+const dispatch = useDispatch()
  
 const [edu, setEdu]=useState('University')
 const [ins, setIns]=useState('LAUTECH')
@@ -17,7 +19,7 @@ const [end, setEnd]=useState('')
 const [start, setStart]=useState('') 
 
 const content={
- education_type:edu,
+  education_type:edu,
   institution: ins,
   start_year: start,
   end_year: end,
@@ -25,10 +27,10 @@ const content={
   course: course,
 }
 
-  const handleAdd=()=>{
-    props.add_education(content)
-  }
 
+  const handleSave = () => {
+      dispatch(AddEducation(content))
+  }
 
   return (
     <Container>
@@ -81,7 +83,7 @@ const content={
       >
         Cancel
       </Button>
-      <Button onClick={handleAdd}
+      <Button onClick={handleSave}
         type="submit"
         className="btn btn-primary mt-15"
       >
@@ -92,7 +94,4 @@ const content={
   );
 }
 
-
-
-export default connect(null,{add_education})(EducationForm);
-
+export default EducationForm;
