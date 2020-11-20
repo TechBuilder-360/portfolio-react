@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import classes from './form.module.css';
+import PropTypes from 'prop-types'
 
-const TextArea = (props) => {
+const TextArea = ({value}) => {
   const character = 200
-  const [textAreaValue, setTextAreaValue] = useState(props.value.substr(0,character));
-  const [textCount, setTextCount] = useState(props.value.length <= character ? character - props.value.length: 0);
-  const [countColor, setCountColor] = useState((character - props.value.length) <= 10 ? "red":"green" );
+  const [textAreaValue, setTextAreaValue] = useState(value.substr(0,character));
+  const [textCount, setTextCount] = useState(value.length <= character ? character - value.length: 0);
+  const [countColor, setCountColor] = useState((character - value.length) <= 10 ? "red":"green" );
   
   let onChange = (e) => {
     setTextAreaValue(e.target.value);
@@ -27,5 +28,10 @@ const TextArea = (props) => {
     </div>
   );
 };
+
+
+TextArea.prototype = {
+  value: PropTypes.string.isRequired
+}
 
 export default TextArea;

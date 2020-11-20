@@ -42,19 +42,20 @@ export const Social_Link = () => {
   };
 };
 
-const add_education = (content) => {
+export const add_education = (content) => {
+  content.id = Math.random()*100
   return {
     type: actionType.ADD_EDUCATION,
     payload: content,
   };
 };
 
-export const AddEducation = content =>{
-    return dispatch => {
-        content.id = Math.random()*100
-        dispatch(add_education(content))
-    }
-}
+// export const AddEducation = content =>{
+//     return dispatch => {
+//         content.id = Math.random()*100
+//         dispatch(add_education(content))
+//     }
+// }
 
 export const delete_education = (index) => {
   return {

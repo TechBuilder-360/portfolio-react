@@ -32,7 +32,7 @@ const Child = ({ education, ...props }) => {
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
         <Card.Body>
-          <EducationForm closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
+          <EducationForm education={education}  closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
         </Card.Body>
       </Accordion.Collapse>
     </Card>

@@ -15,11 +15,16 @@ const Education = (props) => {
   const dispatch = useDispatch()
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
+
+
+  const handleCloseForm = () => {
+    setFormVisible(false)
+  }
   
 
   useEffect(() => {
     if(formVisible){
-      setForm(<EducationForm closeForm={()=>setFormVisible(false)}/>)
+      setForm(<EducationForm closeForm={()=>handleCloseForm()}/>)
     }else{
       setForm(null)
     }
@@ -28,8 +33,6 @@ const Education = (props) => {
   function handleDelete(index) {
       dispatch(delete_education(index))
   }
-
-  console.log(props);
 
   // Populate accordion children with existing record
   const children = props.education.map((edu, i) => (

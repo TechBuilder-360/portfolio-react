@@ -1,4 +1,3 @@
-import education from "../../components/portfolio-edit/education/education";
 import * as actionType from "../actions/actionType";
 
 const initialState = {
@@ -15,122 +14,111 @@ const initialState = {
     date_of_birth: "12th, December",
     profession: "Accountant",
     profile_pix: "",
-    phone: '+2347458747777',
+    phone: "+2347458747777",
     // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
     bio:
       "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
-    resume: ""
+    resume: "",
   },
-  skills: [{
-    id: 1,
-    title: "Web development",
-    subskill: [
-    {id: 1,
-      name: "HTML"
+  skills: [
+    {
+      id: 1,
+      title: "Web development",
+      subskill: [
+        { id: 1, name: "HTML" },
+        { id: 2, name: "CSS" },
+        { id: 3, name: "Javascript" },
+        { id: 4, name: "SCSS" },
+        { id: 5, name: "Django" },
+        { id: 6, name: "Spring Boot" },
+      ],
     },
-    {id: 2,
-      name: "CSS"
+    {
+      id: 2,
+      title: "Accounting",
+      subskill: [
+        {
+          id: 1,
+          name: "ICAN",
+        },
+      ],
     },
-    {id: 3,
-      name: "Javascript"
+    {
+      id: 3,
+      title: "Networking",
+      subskill: [
+        {
+          id: 1,
+          name: "COMPTIA N+",
+        },
+        {
+          id: 2,
+          name: "CCNA",
+        },
+        {
+          id: 3,
+          name: "CCNP",
+        },
+      ],
     },
-    {id: 4,
-      name: "SCSS"
+    {
+      id: 4,
+      title: "Project Management",
+      subskill: [
+        {
+          id: 1,
+          name: "SCRUM",
+        },
+        {
+          id: 2,
+          name: "AGILE",
+        },
+        {
+          id: 1,
+          name: "SPSS",
+        },
+      ],
     },
-    {id: 5,
-      name: "Django"
+    {
+      id: 5,
+      title: "Big Data",
+      subskill: [
+        {
+          id: 1,
+          name: "Apache Spark",
+        },
+        {
+          id: 2,
+          name: "Apache Kafka",
+        },
+      ],
     },
-    {id: 6,
-      name: "Spring Boot"
+    {
+      id: 6,
+      title: "Database Management",
+      subskill: [
+        {
+          id: 1,
+          name: "Postgres",
+        },
+        {
+          id: 2,
+          name: "Cassandra",
+        },
+        {
+          id: 3,
+          name: "MYSQL",
+        },
+        {
+          id: 4,
+          name: "MSSQL Server",
+        },
+      ],
     },
-    ]
-  },
-  {
-    id: 2,
-    title: "Accounting",
-    subskill: [
-      {
-        id:1,
-        name: "ICAN"
-      }
-    ]
-  },
-  {
-    id:3,
-    title: "Networking",
-    subskill: [
-      {
-        id:1,
-        name:  "COMPTIA N+"
-      },
-      {
-        id:2,
-        name:  "CCNA"
-      },
-      {
-        id:3,
-        name:  "CCNP"
-      }
-    ]
-  },
-  {
-    id:4,
-    title: "Project Management",
-    subskill: [
-      {
-        id:1,
-        name: "SCRUM"
-      },
-      {
-        id:2,
-        name: "AGILE"
-      },
-      {
-        id:1,
-        name: "SPSS"
-      },
-    ]
-  },
-  {
-    id:5,
-    title: "Big Data",
-    subskill: [
-      {
-        id:1,
-        name: "Apache Spark"
-      },
-      {
-        id:2,
-        name: "Apache Kafka"
-      },
-    ]
-  },
-  {
-    id:6,
-    title: "Database Management",
-    subskill: [
-      {
-        id:1,
-        name: "Postgres"
-      },
-      {
-        id:2,
-        name: "Cassandra"
-      },
-      {
-        id:3,
-        name: "MYSQL"
-      },
-      {
-        id:4,
-        name: "MSSQL Server"
-      },
-    ]
-  }],
+  ],
   education: [
     {
-      id:1,
-      education_type: "Tertiary",
+      id: 1,
       institution: "Lautech",
       start_year: 2006,
       end_year: 2011,
@@ -138,22 +126,19 @@ const initialState = {
       course: "Accounting",
     },
     {
-      id:2,
-      education_type: "Tertiary",
+      id: 2,
       institution: "Manchester University",
       start_year: 2012,
       end_year: 2017,
       degree: "MBA",
       course: "Accounting",
-      class_of_degree: 'First Class'
     },
     {
-      id:3,
-      education_type: "College",
+      id: 3,
       institution: "Doregos College",
       start_year: 2000,
       end_year: 2006,
-      degree: "SSCE"
+      degree: "SSCE",
     },
   ],
   experience: [
@@ -177,55 +162,55 @@ const initialState = {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
   ],
   social: [
@@ -238,13 +223,14 @@ const initialState = {
       url: "https://twitter.com",
     },
   ],
-  
+
   messages: [
     // types: success, info, warning, danger
     {
-    type: "info",
-    message: "Flash message"
-  }]
+      type: "info",
+      message: "Flash message",
+    },
+  ],
 };
 
 const reducer = (state = initialState, action) => {
@@ -278,21 +264,20 @@ const reducer = (state = initialState, action) => {
         ...state,
       };
 
-      case actionType.ADD_EDUCATION:
-        return{
-          ...state,
-          education: [...state.education, action.payload]
-        }
-      case actionType.DELETE_EDUCATION:
-        return{
-          ...state,
-          education: [...state.education.filter( education => education.id !== action.payload)]
-        }
-        // case actionType.DELETE_SUCCESS:
-          
-        //   return {...state,
-        //   education:[state.education.filter(education=>education.id !==action.payload)]
-        //   }
+    case actionType.ADD_EDUCATION:
+      return {
+        ...state,
+        education: [...state.education, action.payload],
+      };
+    case actionType.DELETE_EDUCATION:
+      return {
+        ...state,
+        education: [
+          ...state.education.filter(
+            (education) => education.id !== action.payload
+          ),
+        ],
+      };
     default:
       return state;
   }
