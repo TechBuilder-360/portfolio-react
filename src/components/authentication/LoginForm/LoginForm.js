@@ -19,16 +19,19 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (authState.token) {
-      history.push(`/profile/${authState.username}`);
+      if (authState.authRedirectPath) {
+        history.push(authState.authRedirectPath);
+      } else {
+        history.push(`/profile/${authState.username}`);
+      }
     }
-  },);
+  });
 
   const loginHandler = (event) => {
     event.preventDefault();
   };
 
   const handleSocialLogin = (user) => {
-    dispatch(actions.sessionAuthStart());
     dispatch(actions.googleAuthSuccess(user._token.accessToken));
   };
 

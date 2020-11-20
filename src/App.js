@@ -14,51 +14,38 @@ import PasswordReset from "./components/authentication/Password/PasswordReset";
 import PasswordChange from "./components/authentication/Password/PasswordChange";
 import Container from "./container/Container";
 import Logout from "./components/authentication/Logout/Logout";
-import { connect } from "react-redux";
+import ProtectedRoute from "./components/authentication/ProtectedRoutes";
 
-const App = (props) => {
-  
-  //Protected routes
-  let routes = (
-    <Switch>
-      <Route path="/profile/:username/edit" exact component={ProfileEdit}/>
+const App = () => {
+  const routes = (
+    <Switch style={{ paddingLeft: "0" }}>
+      {/* Remove url when authentication is ready */}
+      <Route path="/password/reset" exact component={PasswordReset} />
+      <ProtectedRoute
+        path="/password/change"
+        exact
+        component={PasswordChange}
+      />
+      {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
+      <Route path="/faqs" exact component={FAQs} />
+      <Route path="/features" exact component={Features} />
       <Route path="/contact" exact component={Contact} />
-      <Route path="/logout" exact component={Logout} />
-      <Route path="/profile/:username" exact component={Dashboard} />
-      <Route path="/:username" exact component={Dashboard} />
+      <ProtectedRoute path="/about" exact component={About} />
+      <Route path="/login" exact component={Login} />
+      <Route path="/signup" exact component={Signup} />
+      <Route path="/" exact component={Home} />
+      <ProtectedRoute
+        path="/:username/edit"
+        exact
+        component={ProfileEdit}
+      />
+      <ProtectedRoute path="/logout" exact component={Logout} />
+      <ProtectedRoute path="/profile/:username" exact component={Dashboard} />
+      <ProtectedRoute path="/:username" exact component={Dashboard} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
-
-  if (!props.isAuthenticated) {
-    //unprotected routes
-    routes = (
-      <Switch style={{ paddingLeft: "0" }}>
-        {/* Remove url when authentication is ready */}
-        <Route path="/password/reset" exact component={PasswordReset} />
-        <Route path="/password/change" exact component={PasswordChange} />
-
-        {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
-        <Route path="/profile/:username" exact component={Dashboard} />
-        <Route path="/faqs" exact component={FAQs} />
-        <Route path="/features" exact component={Features} />
-        <Route path="/contact" exact component={Contact} />
-        <Route path="/about" exact component={About} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/" exact component={Home} />
-        <Route path="*" component={NotFound} />
-      </Switch>
-    );
-  }
-
   return <Container>{routes}</Container>;
 };
 
-const mapStateToProps = state =>{
-  return {
-    isAuthenticated: state.auth.token !== null
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

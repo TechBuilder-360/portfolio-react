@@ -33,7 +33,6 @@ const SignUpForm = () => {
   };
 
   const handleSocialLogin = (user) => {
-    dispatch(actions.sessionAuthStart());
     dispatch(actions.googleAuthSuccess(user._token.accessToken));
   };
 
