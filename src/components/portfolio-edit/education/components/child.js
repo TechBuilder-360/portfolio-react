@@ -26,10 +26,8 @@ const Child = ({ education, ...props }) => {
       <Card.Header>
         {education.institution}
         <span style={{ float: "Right" }}>
-          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |{" "}
-          <a type="button" onClick={()=>props.delete(education.id)}>
-            Delete
-          </a>
+          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
+          <button type="button" className="btn btn-primary-outline text-primary shadow-none" onClick={()=>props.delete(education.id)}>{" "} Delete </button>
         </span>
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
