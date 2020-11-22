@@ -40,7 +40,6 @@ const App = () => {
         component={ProfileEdit}
       />
       <ProtectedRoute path="/logout" exact component={Logout} />
-      <ProtectedRoute path="/profile/:username" exact component={Dashboard} />
       <ProtectedRoute path="/:username" exact component={Dashboard} />
       <Route path="*" component={NotFound} />
     </Switch>

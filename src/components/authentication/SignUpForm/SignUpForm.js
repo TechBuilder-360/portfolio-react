@@ -21,9 +21,8 @@ const SignUpForm = () => {
   let history = useHistory();
 
   useEffect(() => {
-    console.log(authState.username);
     if (authState.token){
-      history.push(`/profile/${authState.username}/edit`)
+      history.push(`/${authState.username}/edit`)
     }
   },);
 

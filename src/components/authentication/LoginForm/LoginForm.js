@@ -22,7 +22,7 @@ const LoginForm = () => {
       if (authState.authRedirectPath) {
         history.push(authState.authRedirectPath);
       } else {
-        history.push(`/profile/${authState.username}`);
+        history.push(`/${authState.username}`);
       }
     }
   });
@@ -36,7 +36,7 @@ const LoginForm = () => {
   };
 
   const handleSocialLoginFailure = (err) => {
-    console.error("google auth fail", err);
+    console.error("google auth fail", err); //replace with flash message
     dispatch(actions.googleAuthFail(err));
   };
 
