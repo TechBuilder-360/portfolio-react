@@ -29,10 +29,13 @@ const App = () => {
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/" exact component={Home} />
-      <Route path="/:username/edit" exact component={ProfileEdit} />
-      <Route path="/logout" exact component={Logout} />
-      <Route path="/profile/:username" exact component={Dashboard} />
-      <Route path="/:username" exact component={Dashboard} />
+      <ProtectedRoute
+        path="/:username/edit"
+        exact
+        component={ProfileEdit}
+      />
+      <ProtectedRoute path="/logout" exact component={Logout} />
+      <ProtectedRoute path="/:username" exact component={Dashboard} />
       <Route path="*" component={NotFound} />
     </Switch>
   );

@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/actionType";
 import axios from "axios";
+import cookie from "react-cookies";
 
-export const googleAuthSuccess = (token) => async (dispatch) => {
+export const googleAuthSuccess = (token) => (dispatch) => {
   var data = JSON.stringify({
     query: `mutation googleSignin {
       \n  socialAuth(accessToken: "${token}", provider: "google-oauth2") {
@@ -28,16 +29,26 @@ export const googleAuthSuccess = (token) => async (dispatch) => {
     },
     data: data,
   };
-  await axios(config)
+  axios(config)
     .then((response) => {
       const userData = {
         token: response.data.data.socialAuth.token,
         username: response.data.data.socialAuth.social.user.username,
       };
       dispatch(sessionTokenSuccess(userData));
-      //   localStorage.setItem("user_data", JSON.stringify(userData));
+      // const expires = new Date();
+      // expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14);
+      cookie.save("userData", userData, {
+        path: "/",
+        // expires,
+        // maxAge: 1000,
+        // domain: 'https://*.yourdomain.com',
+        // secure: true, //only accessible over https if true
+        // httpOnly: true
+      });
     })
     .catch((err) => {
+      console.log(err);
       dispatch(sessionTokenFail(err)); // Error needs improvement, maybe a flash message feature
     });
 
