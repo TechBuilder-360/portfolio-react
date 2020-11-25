@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Picker from 'react-month-picker'
 import MonthBox from './MonthBox';
-import YearsPanel from './YearsPanel'
 
 
 export default class List extends Component {
@@ -19,6 +18,7 @@ export default class List extends Component {
        
     }
 
+
     render() {
         const pickerLang = {
             months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -32,9 +32,9 @@ export default class List extends Component {
         }
 
         return (
-            <div>
-            <ul>
-                <li>
+            
+            
+            
                     
                     <div className="edit">
                         <Picker
@@ -49,10 +49,28 @@ export default class List extends Component {
                             <MonthBox value={makeText(singleValue)} onClick={this.handleClickMonthBox} />
                         </Picker>
                     </div>
-                </li>
                 
-                    </ul>
-                    </div>
                     )
                     }
+
+                    handleClickEditYears = (e) => {
+                        this.yearsPanel.current.show()
+                    }
+                    handleYearsChanged = (years) => {
+                        this.setState({
+                            yearsOfSingle: years.concat(),
+                            ageOfSingle: this.state.ageOfSingle + 1,
+                        })
+                    }
+            
+                    handleClickMonthBox = (e) => {
+                        this.pickAMonth.current.show()
+                    }
+                    handleAMonthChange = (value, text) => {
+                        //
+                    }
+                    handleAMonthDissmis = (value) => {
+                        this.setState( {singleValue: value} )
+                    }
+            
                 }
