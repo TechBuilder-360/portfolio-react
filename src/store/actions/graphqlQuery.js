@@ -31,7 +31,19 @@ export const uploadAvatar = file => {
 export const edit_personalinfo = detail => {
   return JSON.stringify({
     query: `mutation personal_info_change {
-      personalInfo(input: {email: "abc@mail.com", firstName: "Toluwalope", lastName: "Adegunwa", profession: "Software development", bio: "Dedicated software developer", gender: "Male"}) {
+      personalInfo(input: {
+          email: "${detail.email}",
+          firstName: "${detail.first_name}",
+          lastName: "${detail.last_name}",
+          middleName: "${detail.middle_name}",
+          profession: "${detail.profession}",
+          bio: "${detail.bio}",
+          gender: "${detail.gender}",
+          languages: "${detail.languages}",
+          location: "${detail.location}",
+          dateOfBirth: "2000-11-25",
+          phone: "${detail.phone}"
+        }) {
         errors {
           messages
           field
@@ -39,5 +51,5 @@ export const edit_personalinfo = detail => {
         ok
       }
     }`
-  })
+});
 }
