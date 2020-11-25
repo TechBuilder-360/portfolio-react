@@ -24,13 +24,12 @@ const [value, setValue] = useState(education || content)
 
   const handleSubmit = (evt) => {
       evt.preventDefault()
-      // const val = {
-      //   ...value, start_year: startDate,
-      //   end_year: endDate
-      // }
-      // console.log(val);
-      // dispatch(add_education(value))
-      // closeForm()
+       const val = {
+         ...value
+        
+       }
+       dispatch(add_education(value))
+       closeForm()
   }
 
   const handleChange = (e) =>{
@@ -57,20 +56,24 @@ const [value, setValue] = useState(education || content)
               <Form.Control name="degree" onChange={handleChange} value={value.degree || " "}  placeholder="Bachelor of Science" />
             </Form.Group>
           </Col>
+          </Row>
+
+          <Row>
+          <Col xs={6} md={6} className={classes.Mb_5}>
+            <InputDate name="start_year" changeHandler={handleChange} values={value.start_year} label="Start Year"/>
+          </Col>
+          <Col xs={6} md={6} className={classes.Mb_5}>
+          <InputDate name="end_year" changeHandler={handleChange} values={value.end_year} label="End Year"/>
+          </Col>
+          </Row>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
               <Form.Label>Course</Form.Label>
               <Form.Control name="course" onChange={handleChange} value={value.course || " "} placeholder="Computer Science" />
             </Form.Group>
           </Col>
-        
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <InputDate name="start_year" changeHandler={handleChange} value={value.start_year} label="Start Year"/>
-          </Col>
-          <Col xs={12} md={6} className={classes.Mb_5}>
-            <InputDate name="end_year" changeHandler={handleChange} value={value.end_year} label="End Year"/>
-          </Col>
-        </Row>
+       
+      
         <div style={{textAlign: "right"}}>
       <Button
         type="button"

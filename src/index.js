@@ -12,6 +12,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 import portfolioReducer from './store/reducers/portfolioReducer';
 import authReducer from './store/reducers/auth';
 import thunk from 'redux-thunk';
+import 'react-month-picker/css/month-picker.css';
 
 const rootReducer = combineReducers({
   portfolio: portfolioReducer,
