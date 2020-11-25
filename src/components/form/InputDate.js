@@ -13,7 +13,7 @@ const InputDate = (props) => {
       <label className={classes.block}>{props.label}</label>
       <div>
                 
-                <Main/>      
+                <Main />      
                             </div>
 
     </Container>

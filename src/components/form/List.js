@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Picker from 'react-month-picker'
 import MonthBox from './MonthBox';
+import classes from './css/month.module.css'
 
 
 export default class List extends Component {
@@ -8,8 +9,8 @@ export default class List extends Component {
         super(props, context)
 
         this.state = {
-            yearsOfSingle: [ 2008, 2011, 2012, 2014, 2016, ],
-            ageOfSingle: 0,
+            yearsOfSingle: [ 2008, 2011, 2012, 2014, 2016,2017, 2018, 2020],
+            
             singleValue: {year: 2014, month: 11},
         }
 
@@ -36,7 +37,7 @@ export default class List extends Component {
             
             
                     
-                    <div className="edit">
+                    <div className={classes.edit}>
                         <Picker
                             ref={this.pickAMonth}
                             age={ageOfSingle}
