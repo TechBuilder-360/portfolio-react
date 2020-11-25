@@ -1,12 +1,14 @@
+// Edit actions
 export const PERSONAL_INFORMATION='PERSONAL_INFORMATION'
 export const EXPERIENCE='EXPERIENCE'
 export const EDUCATION='EDUCATION'
 export const PROJECTS='PROJECTS'
 export const SKILL='SKILL'
 export const SOCIAL_LINK='SOCIAL_LINK'
-
 export const AVATAR_UPLOAD='AVATAR_UPLOAD'
 export const AVATAR_UPLOAD_FAILED='AVATAR_UPLOAD_FAILED'
+
+export const MESSAGES='MESSAGES'
 
 
 export const AUTH_CHECK_STATE = "AUTH_CHECK_STATE";

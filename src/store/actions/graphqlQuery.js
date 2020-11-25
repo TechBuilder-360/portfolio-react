@@ -20,9 +20,23 @@ export const googleSignin = token => {
 export const uploadAvatar = file => {
   return JSON.stringify({
     query: `mutation avatar {
-      avatar(avatar: "${file}") {
+      upload(file: ${file}) {
+        success
+      }
+    }`
+  })
+}
+
+
+export const edit_personalinfo = detail => {
+  return JSON.stringify({
+    query: `mutation personal_info_change {
+      personalInfo(input: {email: "abc@mail.com", firstName: "Toluwalope", lastName: "Adegunwa", profession: "Software development", bio: "Dedicated software developer", gender: "Male"}) {
+        errors {
+          messages
+          field
+        }
         ok
-        warning
       }
     }`
   })

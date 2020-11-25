@@ -10,7 +10,7 @@ const initialState = {
     gender: "Male",
     languages: "English, French", // MAX length 100
     location: "Lagos, Nigeria",
-    date_of_birth: "12th, December",
+    date_of_birth: "12/12/2019", // default null
     profession: "Accountant",
     profile_pix: "",
     phone: '+2347458747777',
@@ -225,10 +225,12 @@ const initialState = {
   ],
   social: [
     {
+      id: 1,
       label: "facebook",
       url: "https://facebook.com",
     },
     {
+      id: 2,
       label: "twitter",
       url: "https://twitter.com",
     },
@@ -240,6 +242,7 @@ const reducer = (state = initialState, action) => {
     case actionType.PERSONAL_INFORMATION:
       return {
         ...state,
+        personal_info: {...state.personal_info, ...action.detail}
       };
     case actionType.EDUCATION:
       return {
@@ -265,7 +268,11 @@ const reducer = (state = initialState, action) => {
     case actionType.AVATAR_UPLOAD:
       return {
         ...state
-      }
+    }
+    case actionType.MESSAGES:
+      return {
+        ...state
+    }
     default:
     return state;
   }

@@ -1,10 +1,32 @@
 import axios from '../../axios-orders'
+import ax from 'axios'
 import * as actionType from './actionType'
 import * as query from './graphqlQuery'
+import { data } from 'jquery'
 
-export const Personal_Information = () => {
+const Personal_Information = detail => {
     return {
-        type: actionType.PERSONAL_INFORMATION
+        type: actionType.PERSONAL_INFORMATION,
+        detail: detail
+    }
+}
+
+const messages = msg => {
+    return {
+        type: actionType.PERSONAL_INFORMATION,
+        detail: msg // Array of messages
+    }
+}
+
+export const set_personalInfo = detail => {
+    return dispatch => {
+        axios({data: query.edit_personalinfo(detail)})
+        .then(response=>{
+            dispatch(Personal_Information(detail))
+        }).catch(err=>{
+            dispatch(messages([]))
+        })
+        
     }
 }
 
@@ -24,11 +46,22 @@ export const avatar = (photo) =>{
     return dispatch => {
         let formData = new FormData();
 
-        formData.append("avatar", photo);
-        axios({data: formData}).then((response) => {
+        formData.append("avatar", formData);
+        ax.post("http://127.0.0.1:8000/api/avartar/", { 
+                data: photo,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "X-CSRFTOKEN": "KNsdOUx8u7MSMNPcQdwn5FlrznsGJuhmoCByYyVqW2UHEXV66FC0fBBP2OYlhuJF"
+                }
+            }).then((response) => {
             console.log(response);
             // dispatch(setAvatar(response.data));
         }).catch(error => {
+            console.log("Error encountered");
+            // console.log(error.response.data);
+            // console.log(error.response.status);
+            // console.log(error.response.headers);
+            console.log(error.config);
             console.error(error);
             // dispatch(AvatarUploadFailed())
         });
