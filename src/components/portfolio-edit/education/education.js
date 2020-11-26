@@ -51,10 +51,11 @@ const Education = (props) => {
     <div className={style.SubSection}>
       <p className="title">Education</p>
       <hr />
+      {form}
       <Accordion className={classes.Accordion_Parent}>
         {children}
         </Accordion>
-      {form}
+      
       <span onClick={()=>setFormVisible(true)}>
         <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
       </span>
