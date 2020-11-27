@@ -4,8 +4,8 @@ import cookie from "react-cookies";
 
 const userCookie = cookie.load("userData");
 const initialState = {
-  token: userCookie.token ? userCookie.token : null,
-  username: userCookie.username ? userCookie.username : null,
+  token: userCookie ? userCookie.token ? userCookie.token : null : null,
+  username: userCookie ? userCookie.username ? userCookie.username : null : null,
   error: null,
   loading: false,
   authRedirectPath: null,
