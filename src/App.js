@@ -14,6 +14,8 @@ import PasswordReset from "./components/authentication/Password/PasswordReset";
 import PasswordChange from "./components/authentication/Password/PasswordChange";
 import Container from "./container/Container";
 import Logout from "./components/authentication/Logout/Logout";
+import ProtectedRoute from './components/authentication/ProtectedRoutes'
+
 
 const App = () => {
   const routes = (
