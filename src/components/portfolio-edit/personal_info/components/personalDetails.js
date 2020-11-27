@@ -4,10 +4,10 @@ import classes from "../personalInfo.module.css";
 import InputDate from "../../../form/InputDate";
 import TextArea from "../../../form/TextArea";
 import { useDispatch } from "react-redux";
-import { set_personalInfo } from "../../../../store/actions/portfolioActions";
-
+import { set_personalInfo } from "../../../../store/actions/portfolioActions"
 
 const PersonalDetails = ({information}) => {
+
 
   const info = {
     first_name: "" || information.first_name,

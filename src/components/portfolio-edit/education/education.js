@@ -4,15 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import EducationForm from "./components/educationForm"
+import { delete_education } from "../../../store/actions/portfolioActions";
 
 
 const Education = (props) => {
 
+  const dispatch = useDispatch()
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
+  
 
   useEffect(() => {
     if(formVisible){
@@ -22,17 +25,20 @@ const Education = (props) => {
     }
   }, [formVisible]);
 
-  function removeMore(index) { // rethink function
+  function handleDelete(index) {
+      dispatch(delete_education(index))
   }
 
   // Populate accordion children with existing record
   const children = props.education.map((edu, i) => (
     <Child
       education={edu}
-      removeMore={removeMore}
+      delete={(i)=> handleDelete(i) }
       closeForm={()=>setFormVisible(false)}
       i={i+1}
+      
       key={i}
+      onClick={(e)=>props.delete_success(i)}
     />
   ));
 

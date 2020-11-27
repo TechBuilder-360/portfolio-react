@@ -1,3 +1,4 @@
+import education from "../../components/portfolio-edit/education/education";
 import * as actionType from "../actions/actionType";
 
 const initialState = {
@@ -127,6 +128,7 @@ const initialState = {
   }],
   education: [
     {
+      id:1,
       education_type: "Tertiary",
       institution: "Lautech",
       start_year: 2006,
@@ -135,15 +137,17 @@ const initialState = {
       course: "Accounting",
     },
     {
+      id:2,
       education_type: "Tertiary",
       institution: "Manchester University",
       start_year: 2012,
-      end_year: null,
+      end_year: 2017,
       degree: "MBA",
       course: "Accounting",
       class_of_degree: 'First Class'
     },
     {
+      id:3,
       education_type: "College",
       institution: "Doregos College",
       start_year: 2000,
@@ -273,6 +277,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state
     }
+      case actionType.ADD_EDUCATION:
+        return{
+          ...state,
+          education: [...state.education, action.payload]
+        }
+      case actionType.DELETE_EDUCATION:
+        return{
+          ...state,
+          education: [...state.education.filter( education => education.id !== action.payload)]
+        }
+        // case actionType.DELETE_SUCCESS:
+          
+        //   return {...state,
+        //   education:[state.education.filter(education=>education.id !==action.payload)]
+        //   }
     default:
     return state;
   }

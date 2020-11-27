@@ -2,11 +2,12 @@ import axios from "../../axios-orders";
 import ax from "axios";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
-import { useSelector, shallowEqual } from "react-redux";
-import { error } from "jquery";
+import cookie from 'react-cookies'
 
-const token = 999 // fetch token from cokkie or localstorage
-const headerToken = `JWT ${token}`
+
+console.log(cookie.load('userData')['token']);
+const headerToken = `JWT ${cookie.load('userData')['token']}`
+console.log(headerToken);
 
 const Personal_Information = (detail) => {
   return {
@@ -25,7 +26,9 @@ const messages = (msg) => {
 export const set_personalInfo = (detail) => {
   return (dispatch) => {
     // axios.defaults.headers.common['Authorization'] = headerToken
-    axios({ data: query.edit_personalinfo(detail) })
+    axios({ data: query.edit_personalinfo(detail), headers: {
+      'Authorization': headerToken
+    } })
     .then((response) => {
       console.log(response);
       dispatch(Personal_Information(detail));
@@ -108,3 +111,32 @@ export const Social_Link = () => {
     type: actionType.SOCIAL_LINK,
   };
 };
+
+const add_education = (content) => {
+  return {
+    type: actionType.ADD_EDUCATION,
+    payload: content,
+  };
+};
+
+export const AddEducation = content =>{
+    return dispatch => {
+        content.id = Math.random()*100
+        dispatch(add_education(content))
+    }
+}
+
+export const delete_education = (index) => {
+  return {
+    type: actionType.DELETE_EDUCATION,
+    payload: index,
+  };
+};
+
+
+// export const delete_success = (id) => {
+//   return {
+//     type: actionType.DELETE_SUCCESS,
+//     payload: id,
+//   };
+// };

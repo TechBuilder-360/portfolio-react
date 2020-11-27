@@ -18,9 +18,13 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (authState.token) {
-      history.push(`/profile/${authState.username}`);
+      if (authState.authRedirectPath) {
+        history.push(authState.authRedirectPath);
+      } else {
+        history.push(`/${authState.username}`);
+      }
     }
-  },);
+  });
 
   const loginHandler = (event) => {
     event.preventDefault();

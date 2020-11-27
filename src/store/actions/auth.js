@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionType";
 import axios from '../../axios-orders'
 import * as query from './graphqlQuery'
+import cookie from 'react-cookies'
 
 
 export const googleAuthSuccess = (token) =>  (dispatch) => {
@@ -16,10 +17,25 @@ export const googleAuthSuccess = (token) =>  (dispatch) => {
         username: response.data.data.socialAuth.social.user.username,
       };
       dispatch(sessionTokenSuccess(userData));
+      // const expires = new Date();
+      // expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14);
+      cookie.save("userData", userData, {
+        path: "/",
+        // expires,
+        // maxAge: 1000,
+        // domain: 'https://*.yourdomain.com',
+        // secure: true, //only accessible over https if true
+        // httpOnly: true
+      });
     })
     .catch((err) => {
-      dispatch(sessionTokenFail(err));
+      console.log(err);
+      dispatch(sessionTokenFail(err)); // Error needs improvement, maybe a flash message feature
     });
+
+  return {
+    type: actionTypes.GOOGLE_AUTH_SUCCESS,
+  };
 };
 
 export const googleAuthFail = (error) => {

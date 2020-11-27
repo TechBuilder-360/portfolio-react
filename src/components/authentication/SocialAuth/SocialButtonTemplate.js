@@ -5,8 +5,9 @@ import classes from "./SocialButton.module.css";
 class SocialButtonTemplate extends React.Component {
  
     render() {
+        const triggerlogin = this.props.triggerLogin;
         return (
-            <button onClick={this.props.triggerLogin} className={classes.Button} {...this.props}>
+            <button onClick={triggerlogin} className={classes.Button} {...this.props}>
               { this.props.children }
             </button>
         );
