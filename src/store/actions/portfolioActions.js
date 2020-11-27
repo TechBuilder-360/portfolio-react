@@ -2,7 +2,11 @@ import axios from "../../axios-orders";
 import ax from "axios";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
-import { data } from "jquery";
+import { useSelector, shallowEqual } from "react-redux";
+import { error } from "jquery";
+
+const token = 999 // fetch token from cokkie or localstorage
+const headerToken = `JWT ${token}`
 
 const Personal_Information = (detail) => {
   return {
@@ -20,16 +24,17 @@ const messages = (msg) => {
 
 export const set_personalInfo = (detail) => {
   return (dispatch) => {
-    dispatch(Personal_Information(detail));
-    // axios({ data: query.edit_personalinfo(detail) })
-    //   .then((response) => {
-    //     console.log(query.edit_personalinfo(detail));
-    //       console.log(response);
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error: ",err);
-    //     dispatch(messages([]));
-    //   });
+    // axios.defaults.headers.common['Authorization'] = headerToken
+    axios({ data: query.edit_personalinfo(detail) })
+    .then((response) => {
+      console.log(response);
+      dispatch(Personal_Information(detail));
+      })
+      .catch((err) => {
+        console.log(err.response);
+        console.error("Error: ",err);
+        dispatch(messages([]));
+      });
   };
 };
 

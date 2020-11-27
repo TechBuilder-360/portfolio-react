@@ -31,7 +31,7 @@ export const uploadAvatar = file => {
 export const edit_personalinfo = detail => {
   return JSON.stringify({
     query: `mutation personal_info_change {
-      personalInfo(input: {
+      personalInfo(
           email: "${detail.email}",
           firstName: "${detail.first_name}",
           lastName: "${detail.last_name}",
@@ -43,11 +43,7 @@ export const edit_personalinfo = detail => {
           location: "${detail.location}",
           dateOfBirth: "${detail.date_of_birth.toISOString().split('T')[0]}",
           phone: "${detail.phone}"
-        }) {
-        errors {
-          messages
-          field
-        }
+        ) {
         ok
       }
     }`
