@@ -60,7 +60,7 @@ const Social = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    socialLinks: state.social,
+    socialLinks: state.portfolio.social,
   };
 };
 
