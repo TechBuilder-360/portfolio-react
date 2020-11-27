@@ -20,15 +20,16 @@ const messages = (msg) => {
 
 export const set_personalInfo = (detail) => {
   return (dispatch) => {
-    axios({ data: query.edit_personalinfo(detail) })
-      .then((response) => {
-          console.log(response);
-        dispatch(Personal_Information(detail));
-      })
-      .catch((err) => {
-        console.error("Error: ",err);
-        dispatch(messages([]));
-      });
+    dispatch(Personal_Information(detail));
+    // axios({ data: query.edit_personalinfo(detail) })
+    //   .then((response) => {
+    //     console.log(query.edit_personalinfo(detail));
+    //       console.log(response);
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error: ",err);
+    //     dispatch(messages([]));
+    //   });
   };
 };
 

@@ -22,7 +22,7 @@ const TextArea = (props) => {
   
   return (
     <div className={classes.textarea}>
-        <textarea rows='4' maxLength={character} 
+        <textarea rows='2' maxLength={character} 
         className={classes.multiText} onChange={onChange}
         value={textAreaValue}
         name={props.name}></textarea>

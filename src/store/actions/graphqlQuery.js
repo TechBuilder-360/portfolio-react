@@ -41,7 +41,7 @@ export const edit_personalinfo = detail => {
           gender: "${detail.gender}",
           languages: "${detail.languages}",
           location: "${detail.location}",
-          dateOfBirth: "2000-11-25",
+          dateOfBirth: "${detail.date_of_birth.toISOString().split('T')[0]}",
           phone: "${detail.phone}"
         }) {
         errors {
