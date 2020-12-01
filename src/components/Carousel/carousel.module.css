@@ -1,0 +1,17 @@
+.Carousel{
+    box-sizing: border-box;
+    box-shadow: 14px 14px 15px rgba(41, 40, 40, 0.493);
+}
+
+.Carousel ol li{
+    background-color: grey; 
+    height: 2px;
+    width: 2px;
+    border-radius: 100%;
+}
+
+.Carousel ol li.active {
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+}
