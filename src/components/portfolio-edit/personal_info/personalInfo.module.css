@@ -79,6 +79,12 @@ form label {
   z-index: 5 !important;
 }
 
+.Accordion_Child span {
+  position: relative; 
+  top: 8px; 
+  color: inherit;
+}
+
 
 /* Desktop view */
 @media (min-width: 760px) {

@@ -1,49 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
+import ExperienceForm from "./ExperienceForm";
+import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
 import classes from "../personal_info/personalInfo.module.css";
-import SubEducation from "./subExperience";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faAngleUp,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
 
-const Child = (props) => {
-  const [show, setShow] = useState(true);
 
-  let toggleDisplay = () => {
-    setShow(!show);
-  }
+function CustomToggle({ children, eventKey }) {
+  const decoratedOnClick = useAccordionToggle(eventKey, null); // Add checker to see if form has been edited and needs saving before closing
+
   return (
-    <div className={classes.container}>
-      <div className={classes.drop}>
-        <div>
-          {show ? (
-            <div>
-              <div onClick={toggleDisplay}>
-                Show Organization name (2008-2012)
-                <div style={{ float: "right" }}>
-                  <FontAwesomeIcon icon={faAngleUp} />
-                </div>
-              </div>
-              <SubEducation submithandler={props.submithandler} />
-            </div>
-          ) : (
-            <div onClick={toggleDisplay}>
-              Show Organization name (2008-2012)
-              <div style={{ float: "right" }}>
-                <FontAwesomeIcon icon={faAngleDown} />
-              </div>
-            </div>
-          )}
+    <button
+      id={`close-accordion-${eventKey}`}
+      onClick={decoratedOnClick}
+      type="button"
+      className="btn btn-primary-outline text-primary shadow-none"
+    >
+      {" "}
+      {children}
+    </button>
+  );
+}
+
+const Child = ({ experience, ...props }) => {
+  return (
+    <Card className={classes.Accordion_Child}>
+      <Card.Header>
+        <span>{experience.organization}</span>
+        <div style={{ float: "Right" }}>
+          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
+          <button type="button" className="btn btn-primary-outline text-primary shadow-none" onClick={()=>props.delete(experience.id)}>{" "} Delete </button>
         </div>
-      </div>
-      <FontAwesomeIcon
-        className={classes.delete}
-        onClick={props.removeMore}
-        icon={faTrash}
-      />
-    </div>
+      </Card.Header>
+      <Accordion.Collapse eventKey={props.i}>
+        <Card.Body>
+          <ExperienceForm experience={experience}  closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
+        </Card.Body>
+      </Accordion.Collapse>
+    </Card>
   );
 };
-export default Child;
+export default Child

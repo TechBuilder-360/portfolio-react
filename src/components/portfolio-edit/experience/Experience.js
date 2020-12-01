@@ -1,39 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import Child from "./Child";
-import { Col } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
+import Child from "./child";
+import { connect, useDispatch } from "react-redux";
+import classes from "../personal_info/personalInfo.module.css";
+import ExperienceForm from "./ExperienceForm"
+import { delete_education } from "../../../store/actions/portfolioActions";
 
-const Experience = () => {
-  const [numchild, setNumchild] = useState(0);
-  const children = [];
 
-  let addMore = () => {
-    setNumchild(numchild + 1);
-  };
+const Experience = (props) => {
 
-  let removeMore = (index) => {
-    const list = [...children];
-    list.splice(index, 1);
-    setNumchild(list.length);
-  };
+  const dispatch = useDispatch()
+  const [form, setForm] = useState(null)
+  const [formVisible, setFormVisible] = useState(false)
 
-  for (var i = 0; i < numchild; i += 1) {
-    children.push(<Child removeMore={removeMore} key={i} number={i} />);
+
+  const handleCloseForm = () => {
+    setFormVisible(false)
   }
+  
+
+  useEffect(() => {
+    if(formVisible){
+      setForm(<ExperienceForm closeForm={()=>handleCloseForm()}/>)
+    }else{
+      setForm(null)
+    }
+  }, [formVisible]);
+
+  function handleDelete(index) {
+      // dispatch(delete_education(index))
+  }
+
+  // Populate accordion children with existing record
+  const children = props.experience.map((exp, i) => (
+    <Child
+      experience={exp}
+      delete={ (i)=> handleDelete(i) }
+      closeForm={()=>setFormVisible(false)}
+      i={i+1}
+      
+      key={i}
+      onClick={(e)=>props.delete_success(i)}
+    />
+  ));
+
   return (
     <div className={style.SubSection}>
-      <Col md={12}>
-        <p className="title">Experience</p>
-        <hr />
+      <p className="title">Experience</p>
+      <hr />
+      <Accordion className={classes.Accordion_Parent}>
         {children}
-        <span onClick={addMore}>
-          <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Experience
-        </span>
-      </Col>
+        </Accordion>
+        {form}
+      <span onClick={()=>setFormVisible(true)}>
+        <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Experience
+      </span>
     </div>
   );
 };
 
-export default Experience;
+const mapStateToProps = (state) => {
+  return {
+    experience: state.portfolio.experience,
+  };
+};
+
+export default connect(mapStateToProps)(Experience);

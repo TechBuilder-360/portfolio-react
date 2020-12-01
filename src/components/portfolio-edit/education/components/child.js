@@ -24,11 +24,11 @@ const Child = ({ education, ...props }) => {
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        {education.institution}
-        <span style={{ float: "Right" }}>
+        <span>{education.institution}</span>
+        <div style={{ float: "Right" }}>
           <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
           <button type="button" className="btn btn-primary-outline text-primary shadow-none" onClick={()=>props.delete(education.id)}>{" "} Delete </button>
-        </span>
+        </div>
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
         <Card.Body>
