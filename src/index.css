@@ -20,13 +20,6 @@
   font-size: 16px;
   line-height: 25px;
 }
-.carousel-indicators .active{
-  background-color: grey; 
-}
-.carousel-indicators > li{
-  border-radius: 100%
-}
-
 
 
 @media (min-width: 760px){
