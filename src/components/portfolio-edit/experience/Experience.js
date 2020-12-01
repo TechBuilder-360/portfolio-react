@@ -7,7 +7,7 @@ import Child from "./child";
 import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import ExperienceForm from "./ExperienceForm"
-import { delete_education } from "../../../store/actions/portfolioActions";
+// import { delete_education } from "../../../store/actions/portfolioActions";
 
 
 const Experience = (props) => {

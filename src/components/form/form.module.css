@@ -23,31 +23,19 @@
     border:none;
 }
 
-.month-year-picker > div{
+.datePicker > div{
     background-color: rgb(224, 234, 245);
     border: none;
-    border-radius:1px;
+    border-radius: 6px;
     padding: 1%;
-    padding-left: 0%;
+    padding-left: 3%;
 }
 
-.month-year-picker input{
+.datePicker input{
     background-color: transparent;
     outline: none;
 }
 
-.month-year-picker span{
-    
+.datePicker span{
+    color: black;
 }
-
-.Calender {
-    /* position: absolute; */
-    /* top: 100%;
-    left: 0; */
-    /* z-index: 2000; */
-    /* background-color: blue; */
-}
-/* 
-.react-calender {
-    background-color: red;
-} */
