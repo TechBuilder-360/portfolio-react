@@ -6,7 +6,7 @@ import { Accordion } from "react-bootstrap";
 import Child from "./components/Child";
 import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
-import SubExperience from "./components/SubExperience"
+import ExperienceForm from "./components/ExperienceForm"
 import { delete_experience } from "../../../store/actions/portfolioActions";
 
 
@@ -24,7 +24,7 @@ const Experience = (props) => {
 
   useEffect(() => {
     if(formVisible){
-      setForm(<SubExperience experience={props.experience} closeForm={()=>handleCloseForm()}/>)
+      setForm(<ExperienceForm experience={props.experience} closeForm={()=>handleCloseForm()}/>)
     }else{
       setForm(null)
     }

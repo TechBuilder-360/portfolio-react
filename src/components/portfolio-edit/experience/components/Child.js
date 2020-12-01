@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
 import classes from "../../personal_info/personalInfo.module.css";
-import EditExperience from "./EditExperience";
+import ExperienceForm from "./ExperienceForm";
 
 
 function CustomToggle({ children, eventKey }) {
@@ -32,7 +32,7 @@ const Child = ({ experience, ...props }) => {
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
         <Card.Body>
-          <EditExperience index={props.index} experience={experience}  closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
+          <ExperienceForm index={props.index} experience={experience}  closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
         </Card.Body>
       </Accordion.Collapse>
     </Card>
