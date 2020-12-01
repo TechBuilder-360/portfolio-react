@@ -8,76 +8,60 @@ export default class List extends Component {
     super(props);
 
     this.state = {
-      yearsOfSingle: [2010, 2011, 2012, 2014, 2016, 2017, 2018, 2020],
-      singleValue: { year: 2014, month: 11 },
+      singleValue: { year: 2010, month: 1 },
     };
 
     this.yearsPanel = React.createRef();
     this.pickAMonth = React.createRef();
   }
 
-  render() {
-    const pickerLang = {
-      months: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-      from: "From",
-      to: "To",
-    };
-    const { yearsOfSingle, ageOfSingle, singleValue } = this.state;
+  componentDidMount() {
+    this.splitText();
+  }
 
-    // TODO: write method to convert string to valid month year object
+  render() {
+    const { singleValue } = this.state;
 
     const makeText = (m) => {
       if (m && m.year && m.month)
-        return pickerLang.months[m.month - 1] + ". " + m.year;
+        return this.pickerLang[m.month - 1] + ". " + m.year;
       return "?";
     };
-  
-  
-    const handleClickEditYears = (e) => {
-      this.yearsPanel.current.show();
-    };
-    const handleYearsChanged = (years) => {
-      this.setState({
-        yearsOfSingle: years.concat(),
-        ageOfSingle: this.state.ageOfSingle + 1,
-      });
-    };
-  
+
     const handleClickMonthBox = (e) => {
       this.pickAMonth.current.show();
     };
+
     const handleAMonthChange = (year, month) => {
-      this.setState({ singleValue: {year, month} });
-      this.props.changeHandler(this.props.name, makeText(this.state.singleValue))
+      this.setState({ singleValue: { year, month } });
+      this.props.changeHandler(
+        this.props.name,
+        makeText(this.state.singleValue)
+      );
     };
+
     const handleAMonthDissmis = (value) => {
       this.setState({ singleValue: value });
-      this.props.changeHandler(this.props.name, makeText(this.state.singleValue))
+      this.props.changeHandler(
+        this.props.name,
+        makeText(this.state.singleValue)
+      );
     };
 
     return (
       <div className={classes.edit}>
         <Picker
           ref={this.pickAMonth}
-          age={ageOfSingle}
-          years={yearsOfSingle}
+          years={{ min: 1980, max: new Date().getFullYear() + 8 }}
           value={singleValue}
-          lang={pickerLang.months}
+          lang={this.pickerLang}
           onChange={handleAMonthChange}
           onDismiss={handleAMonthDissmis}
+          theme={
+            new Date().getHours() >= 19 || new Date().getHours() < 7
+              ? "dark"
+              : "light"
+          }
         >
           <MonthBox
             value={makeText(singleValue)}
@@ -87,4 +71,30 @@ export default class List extends Component {
       </div>
     );
   }
+
+  pickerLang = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  splitText = () => {
+    if (this.props.value) {
+      let month = this.pickerLang.indexOf(
+        this.props.value.substring(0, 3)
+      );
+      month = month > -1 ? ++month : 11;
+      let year = Number(this.props.value.substring(5, 4)) || 2017;
+      this.setState({ singleValue: { year: year, month: month } });
+    }
+  };
 }

@@ -3,15 +3,6 @@ import PropTypes from "prop-types";
 import List from "./List";
 
 export default class Main extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    // this.state = {
-    //   value: this.props.value,
-    //   name: this.props.name,
-    //   changed: this.props.changeHandler,
-    // };
-  }
 
   render() {
     return (

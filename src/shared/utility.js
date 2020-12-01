@@ -5,6 +5,7 @@ export const updateObject = (oldObject, updatedProperties) => {
     }
 }
 
+// Form validator
 export const checkValidity = (value, rules) =>{
     if (!rules) {
         return true;
@@ -36,3 +37,12 @@ export const checkValidity = (value, rules) =>{
 
     return isValid
 }
+
+
+export const text_truncate = (str, strLength=50) => {
+    let [ending] = ["..."];
+    if (str.length > strLength) {
+      return str.substring(0, strLength).concat(ending);
+    }
+    return str;
+  }

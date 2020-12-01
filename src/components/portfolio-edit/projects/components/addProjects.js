@@ -41,7 +41,7 @@ return(
           <Form.Group>
             <Form.Label>Project Descriptions</Form.Label>
         
-          <TextArea value="The title of"/>
+          <TextArea  value="The title of"/>
           </Form.Group>
             
             </Col>

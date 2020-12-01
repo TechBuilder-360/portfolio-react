@@ -7,7 +7,6 @@ import cookie from 'react-cookies'
 
 console.log(cookie.load('userData')['token']);
 const headerToken = `JWT ${cookie.load('userData')['token']}`
-console.log(headerToken);
 
 const Personal_Information = (detail) => {
   return {
@@ -112,14 +111,12 @@ export const Social_Link = () => {
   };
 };
 
-export const add_education = (content) => {
-  content.id = Math.random()*100
+const add_education = (content) => {
   return {
     type: actionType.ADD_EDUCATION,
     payload: content,
   };
 };
-
 
 export const delete_education = (index) => {
   return {
@@ -128,7 +125,7 @@ export const delete_education = (index) => {
   };
 };
 
-export const edit_education = (index,content) => {
+const edit_education = (index, content) => {
   return {
     type: actionType.EDIT_EDUCATION,
     payload: {
@@ -137,6 +134,19 @@ export const edit_education = (index,content) => {
     }
   };
 };
+
+export const educationAction = (index, edu) => {
+  return dispatch => {
+    if(edu.id){
+      edu.id = Math.random()*100
+      dispatch(add_education(edu))
+    }
+    else
+      dispatch(edit_education(index, edu))
+  }
+}
+
+
 
 export const add_experience = (content) => {
   content.id = Math.random()*100
@@ -154,7 +164,7 @@ export const delete_experience = (index) => {
   };
 };
 
-export const edit_experience = (index,content) => {
+export const edit_experience = (index, content) => {
   return {
     type: actionType.EDIT_EXPERIENCE,
     payload: {

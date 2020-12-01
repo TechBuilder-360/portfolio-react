@@ -119,95 +119,104 @@ const initialState = {
     {
       id: 1,
       institution: "Lautech",
-      start_year: 2006,
-      end_year: 2011,
+      start_year: "Aug. 2006",
+      end_year: "Dec. 2011",
       degree: "BSc",
       course: "Accounting",
     },
     {
       id: 2,
       institution: "Manchester University",
-      start_year: 2012,
-      end_year: 2017,
+      start_year: "Nov. 2012",
+      end_year: "Jan. 2017",
       degree: "MBA",
       course: "Accounting",
     },
     {
       id: 3,
       institution: "Doregos College",
-      start_year: 2000,
-      end_year: 2006,
+      start_year: "Oct. 2000",
+      end_year: "Oct. 2006",
       degree: "SSCE",
     },
   ],
   experience: [
     {
-      id:1,
+      id: 1,
       organization: "Consolidate Insurance",
       description: "Worked as an account manager",
       position: "Accounting managment",
-      start_year: 2016,
-      end_year: 2018,
+      start_year: "Jun. 2016",
+      end_year: "Jun. 2018",
     },
     {
-      id:2,
+      id: 2,
       organization: "Access Bank",
       description: "Worked as an account manager",
       position: "Accounting managment",
-      start_year: 2018,
-      end_year: null,
+      start_year: "Oct. 2018",
+      end_year: "Dec. 2019",
     },
   ],
   project: [
-    {id:2,
+    {
+      id: 2,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {id:2,
+    {
+      id: 2,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {id:3,
+    {
+      id: 3,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {id:4,
+    {
+      id: 4,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {id:5,
+    {
+      id: 5,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {id:6,
+    {
+      id: 6,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    { id:7,
+    {
+      id: 7,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    { id:8,
+    {
+      id: 8,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    { id:9,
+    {
+      id: 9,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
@@ -225,7 +234,7 @@ const initialState = {
       label: "twitter",
       url: "https://twitter.com",
     },
-  ]
+  ],
 };
 
 const reducer = (state = initialState, action) => {
@@ -233,7 +242,7 @@ const reducer = (state = initialState, action) => {
     case actionType.PERSONAL_INFORMATION:
       return {
         ...state,
-        personal_info: {...state.personal_info, ...action.detail}
+        personal_info: { ...state.personal_info, ...action.detail },
       };
     case actionType.EDUCATION:
       return {
@@ -258,80 +267,77 @@ const reducer = (state = initialState, action) => {
 
     case actionType.AVATAR_UPLOAD:
       return {
-        ...state
-    }
+        ...state,
+      };
     case actionType.MESSAGES:
       return {
-        ...state
-    }
-      case actionType.ADD_EDUCATION:
-        return{
-          ...state,
-          education: [...state.education, action.payload]
-        }
-      case actionType.DELETE_EDUCATION:
-        return{
-          ...state,
-          education: [...state.education.filter( education => education.id !== action.payload)]
-        }
-        // case actionType.DELETE_SUCCESS:
-          
-        //   return {...state,
-        //   education:[state.education.filter(education=>education.id !==action.payload)]
-        //   }
-      case actionType.EDIT_EDUCATION:
-        const newData=[...state.education]
-        newData[action.payload.index]=action.payload.content
+        ...state,
+      };
+    case actionType.ADD_EDUCATION:
       return {
         ...state,
-        education:newData
+        education: [...state.education, action.payload],
+      };
+    case actionType.DELETE_EDUCATION:
+      return {
+        ...state,
+        education: [
+          ...state.education.filter(
+            (education) => education.id !== action.payload
+          ),
+        ],
+      };
+    case actionType.EDIT_EDUCATION:
+      const newData = [...state.education];
+      newData[action.payload.index] = action.payload.content;
+      return {
+        ...state,
+        education: newData,
       };
 
-      case actionType.ADD_EXPERIENCE:
-        return {
-          ...state,
-          experience: [...state.experience, action.payload],
-        };
-      case actionType.DELETE_EXPERIENCE:
-        return {
-          ...state,
-          experience: [
-            ...state.experience.filter(
-              (experience) => experience.id !== action.payload
-            ),
-          ],
-        };
-        case actionType.EDIT_EXPERIENCE:
-          const newDataExp=[...state.experience]
-          newDataExp[action.payload.index]=action.payload.content
-        return {
-          ...state,
-          experience:newDataExp
-        };
+    case actionType.ADD_EXPERIENCE:
+      return {
+        ...state,
+        experience: [...state.experience, action.payload],
+      };
+    case actionType.DELETE_EXPERIENCE:
+      return {
+        ...state,
+        experience: [
+          ...state.experience.filter(
+            (experience) => experience.id !== action.payload
+          ),
+        ],
+      };
+    case actionType.EDIT_EXPERIENCE:
+      const newDataExp = [...state.experience];
+      newDataExp[action.payload.index] = action.payload.content;
+      return {
+        ...state,
+        experience: newDataExp,
+      };
 
-        case actionType.ADD_PORJECT:
-        return {
-          ...state,
-          project: [...state.project, action.payload],
-        };
-      case actionType.DELETE_PROJECT:
-        return {
-          ...state,
-          project: [
-            ...state.project.filter(
-              (project) => project.id !== action.payload
-            ),
-          ],
-        };
-        case actionType.EDIT_PROJECT:
-          const newDataPro=[...state.project]
-          newDataPro[action.payload.index]=action.payload.content
-        return {
-          ...state,
-          project:newDataPro
-        };
+    case actionType.ADD_PORJECT:
+      return {
+        ...state,
+        project: [...state.project, action.payload],
+      };
+    case actionType.DELETE_PROJECT:
+      return {
+        ...state,
+        project: [
+          ...state.project.filter((project) => project.id !== action.payload),
+        ],
+      };
+    case actionType.EDIT_PROJECT:
+      const newDataPro = [...state.project];
+      newDataPro[action.payload.index] = action.payload.content;
+      return {
+        ...state,
+        project: newDataPro,
+      };
     default:
-    return state;
+      return state;
   }
 };
 

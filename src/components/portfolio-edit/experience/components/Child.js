@@ -1,5 +1,6 @@
 import React from "react";
 import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
+import { text_truncate } from "../../../../shared/utility";
 import classes from "../../personal_info/personalInfo.module.css";
 import ExperienceForm from "./ExperienceForm";
 
@@ -8,7 +9,7 @@ function CustomToggle({ children, eventKey }) {
 
   return (
     <button
-      id={`close-accordion-${eventKey}`}
+      id={`close-experience-${eventKey}`}
       onClick={decoratedOnClick}
       type="button"
       className="btn btn-primary-outline text-primary shadow-none"
@@ -23,7 +24,7 @@ const Child = ({ experience, ...props }) => {
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <span>{experience.organization}</span>
+        <span title={experience.organization}>{text_truncate(experience.organization, 50)}</span>
         <div style={{ float: "Right" }}>
           <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
           <button
@@ -42,7 +43,7 @@ const Child = ({ experience, ...props }) => {
             index={props.index}
             experience={experience}
             closeForm={() =>
-              document.getElementById(`close-accordion-${props.i}`).click()
+              document.getElementById(`close-experience-${props.i}`).click()
             }
           />
         </Card.Body>
