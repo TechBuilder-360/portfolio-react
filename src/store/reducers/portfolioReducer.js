@@ -143,6 +143,7 @@ const initialState = {
   ],
   experience: [
     {
+      id:1,
       organization: "Consolidate Insurance",
       description: "Worked as an account manager",
       position: "Accounting managment",
@@ -150,6 +151,7 @@ const initialState = {
       end_year: 2018,
     },
     {
+      id:2,
       organization: "Access Bank",
       description: "Worked as an account manager",
       position: "Accounting managment",
@@ -158,55 +160,55 @@ const initialState = {
     },
   ],
   project: [
-    {
+    {id:2,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    {id:2,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    {id:3,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    {id:4,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    {id:5,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    {id:6,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    { id:7,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    { id:8,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
       url: "/",
     },
-    {
+    { id:9,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
@@ -278,6 +280,57 @@ const reducer = (state = initialState, action) => {
           ),
         ],
       };
+      case actionType.EDIT_EDUCATION:
+        const newData=[...state.education]
+        newData[action.payload.index]=action.payload.content
+      return {
+        ...state,
+        education:newData
+      };
+
+      case actionType.ADD_EXPERIENCE:
+        return {
+          ...state,
+          experience: [...state.experience, action.payload],
+        };
+      case actionType.DELETE_EXPERIENCE:
+        return {
+          ...state,
+          experience: [
+            ...state.experience.filter(
+              (experience) => experience.id !== action.payload
+            ),
+          ],
+        };
+        case actionType.EDIT_EXPERIENCE:
+          const newDataExp=[...state.experience]
+          newDataExp[action.payload.index]=action.payload.content
+        return {
+          ...state,
+          experience:newDataExp
+        };
+
+        case actionType.ADD_PORJECT:
+        return {
+          ...state,
+          project: [...state.project, action.payload],
+        };
+      case actionType.DELETE_PROJECT:
+        return {
+          ...state,
+          project: [
+            ...state.project.filter(
+              (project) => project.id !== action.payload
+            ),
+          ],
+        };
+        case actionType.EDIT_PROJECT:
+          const newDataPro=[...state.project]
+          newDataPro[action.payload.index]=action.payload.content
+        return {
+          ...state,
+          project:newDataPro
+        };
     default:
       return state;
   }

@@ -6,7 +6,7 @@ import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
 import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
-import EducationForm from "./components/educationForm"
+import AddEducationForm from "./components/addeducationForm"
 import { delete_education } from "../../../store/actions/portfolioActions";
 
 
@@ -24,7 +24,7 @@ const Education = (props) => {
 
   useEffect(() => {
     if(formVisible){
-      setForm(<EducationForm closeForm={()=>handleCloseForm()}/>)
+      setForm(<AddEducationForm education={props.education} closeForm={()=>handleCloseForm()}/>)
     }else{
       setForm(null)
     }
@@ -41,7 +41,7 @@ const Education = (props) => {
       delete={(i)=> handleDelete(i) }
       closeForm={()=>setFormVisible(false)}
       i={i+1}
-      
+      index={i}
       key={i}
       onClick={(e)=>props.delete_success(i)}
     />
@@ -51,11 +51,10 @@ const Education = (props) => {
     <div className={style.SubSection}>
       <p className="title">Education</p>
       <hr />
-      {form}
       <Accordion className={classes.Accordion_Parent}>
         {children}
         </Accordion>
-      
+        {form}
       <span onClick={()=>setFormVisible(true)}>
         <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
       </span>
