@@ -31,7 +31,7 @@ const App = () => {
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/" exact component={Home} />
-      <ProtectedRoute
+      <Route
         path="/:username/edit"
         exact
         component={ProfileEdit}

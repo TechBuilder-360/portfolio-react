@@ -1,7 +1,7 @@
 import React from "react";
-import EducationForm from "./educationForm";
 import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
 import classes from "../../personal_info/personalInfo.module.css";
+import SubProject from "./subProject";
 
 
 function CustomToggle({ children, eventKey }) {
@@ -20,19 +20,19 @@ function CustomToggle({ children, eventKey }) {
   );
 }
 
-const Child = ({ education, ...props }) => {
+const Child = ({ project, ...props }) => {
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <span>{education.institution}</span>
-        <div style={{ float: "Right" }}>
+        {project.title}
+        <span style={{ float: "Right" }}>
           <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
-          <button type="button" className="btn btn-primary-outline text-primary shadow-none" onClick={()=>props.delete(education.id)}>{" "} Delete </button>
-        </div>
+ <button type="button" className="btn btn-primary-outline text-primary shadow-none" onClick={()=>props.delete(project.id)}>{" "} Delete</button>
+        </span>
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
         <Card.Body>
-          <EducationForm index={props.index} education={education}  closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
+          <SubProject index={props.index} project={project}  closeForm={()=> document.getElementById(`close-accordion-${props.i}`).click()}/>
         </Card.Body>
       </Accordion.Collapse>
     </Card>

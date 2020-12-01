@@ -3,11 +3,11 @@ import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
-import Child from "./child";
+import Child from "./components/Child";
 import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
-import ExperienceForm from "./ExperienceForm"
-// import { delete_education } from "../../../store/actions/portfolioActions";
+import ExperienceForm from "./components/ExperienceForm"
+import { delete_experience } from "../../../store/actions/portfolioActions";
 
 
 const Experience = (props) => {
@@ -24,24 +24,24 @@ const Experience = (props) => {
 
   useEffect(() => {
     if(formVisible){
-      setForm(<ExperienceForm closeForm={()=>handleCloseForm()}/>)
+      setForm(<ExperienceForm experience={props.experience} closeForm={()=>handleCloseForm()}/>)
     }else{
       setForm(null)
     }
   }, [formVisible]);
 
   function handleDelete(index) {
-      // dispatch(delete_education(index))
+      dispatch(delete_experience(index))
   }
 
   // Populate accordion children with existing record
-  const children = props.experience.map((exp, i) => (
+  const children = props.experience.map((expp, i) => (
     <Child
-      experience={exp}
-      delete={ (i)=> handleDelete(i) }
+      experience={expp}
+      delete={(i)=> handleDelete(i) }
       closeForm={()=>setFormVisible(false)}
       i={i+1}
-      
+      index={i}
       key={i}
       onClick={(e)=>props.delete_success(i)}
     />

@@ -4,12 +4,18 @@ import { useDispatch } from "react-redux";
 import Container from "../../../../container/Container";
 import MonthPicker from "../../../form/monthYearPicker/month_year_picker";
 import classes from "../../personal_info/personalInfo.module.css";
-import { edit_education } from "../../../../store/actions/portfolioActions";
+import { add_education } from "../../../../store/actions/portfolioActions";
 import PropTypes from "prop-types";
 
-const EducationForm = ({ education, closeForm,...props }) => {
+const AddEducationForm = ({ education, closeForm,...props }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(education);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(add_education(value));
+    closeForm();
+  };
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -86,10 +92,7 @@ const EducationForm = ({ education, closeForm,...props }) => {
             Cancel
           </Button>
           <Button
-            onClick={()=>{
-              dispatch(edit_education(props.index,value));
-  closeForm();
-            }}
+            onClick={handleSubmit}
             type="button"
             className="btn btn-primary mt-15"
           >
@@ -101,9 +104,9 @@ const EducationForm = ({ education, closeForm,...props }) => {
   );
 };
 
-EducationForm.prototype = {
+AddEducationForm.prototype = {
   education: PropTypes.object,
   closeForm: PropTypes.func.isRequired,
 };
 
-export default EducationForm;
+export default AddEducationForm;
