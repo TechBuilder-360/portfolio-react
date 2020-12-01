@@ -38,7 +38,7 @@ const Child = ({ project, ...props }) => {
         </div>
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
-        <Card.Body>
+        <Card.Body className={classes.Accordion_Body}>
           <AddProjects
             index={props.index}
             project={project}

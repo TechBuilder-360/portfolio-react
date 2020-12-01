@@ -30,7 +30,7 @@ const Child = ({ label, link, ...props }) => {
         </span>
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
-        <Card.Body>
+        <Card.Body className={classes.Accordion_Body}>
           <SocialForm
             link={link}
             label={label}

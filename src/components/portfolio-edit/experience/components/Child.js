@@ -38,7 +38,7 @@ const Child = ({ experience, ...props }) => {
         </div>
       </Card.Header>
       <Accordion.Collapse eventKey={props.i}>
-        <Card.Body>
+        <Card.Body className={classes.Accordion_Body}>
           <ExperienceForm
             index={props.index}
             experience={experience}
