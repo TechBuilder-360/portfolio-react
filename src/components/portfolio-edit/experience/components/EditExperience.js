@@ -4,12 +4,13 @@ import { useDispatch } from "react-redux";
 import Container from "../../../../container/Container";
 import MonthPicker from "../../../form/monthYearPicker/month_year_picker";
 import classes from "../../personal_info/personalInfo.module.css";
-import { edit_education } from "../../../../store/actions/portfolioActions";
 import PropTypes from "prop-types";
+import TextArea from '../../../form/TextArea'
+import {edit_experience} from '../../../../store/actions/portfolioActions'
 
-const EducationForm = ({ education, closeForm,...props }) => {
+const EditExperience=({ experience,closeForm,...props })=>{
   const dispatch = useDispatch();
-  const [value, setValue] = useState(education);
+  const [value, setValue] = useState(experience);
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -19,31 +20,30 @@ const EducationForm = ({ education, closeForm,...props }) => {
     setValue({...value, [name]: date})
   }
 
-  return (
-    <Container>
+return(
+
+<Container>
       <Form>
         <Row>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
-              <Form.Label>School Attended</Form.Label>
+              <Form.Label>Organization</Form.Label>
               <Form.Control
-                name="institution"
+                name="organization"
                 onChange={handleChange}
-                value={value.institution}
+                value={value.organization}
                 placeholder="Harvard University"
               />
             </Form.Group>
           </Col>
-
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
-              <Form.Label>Degree</Form.Label>
+              <Form.Label>Position</Form.Label>
               <Form.Control
-                name="degree"
-                onChange={handleChange}
-                value={value.degree}
-                placeholder="Bachelor of Science"
-              />
+               name="position"
+               onChange={handleChange}
+               value={value.position}
+              placeholder="Head of Sales" />
             </Form.Group>
           </Col>
         </Row>
@@ -65,19 +65,13 @@ const EducationForm = ({ education, closeForm,...props }) => {
             />
           </Col>
         </Row>
-        <Col xs={12} md={6} className={classes.Mb_5}>
+          <Col xs={12} md={12} className={classes.Mb_5}>
           <Form.Group>
-            <Form.Label>Course</Form.Label>
-            <Form.Control
-              name="course"
-              onChange={handleChange}
-              value={value.course}
-              placeholder="Computer Science"
-            />
+            <Form.Label>Experience Summary</Form.Label>
+         <TextArea value={''}/>
           </Form.Group>
-        </Col>
-
-        <div style={{ textAlign: "right" }}>
+            </Col>
+            <div style={{ textAlign: "right" }}>
           <Button
             type="button"
             onClick={closeForm}
@@ -87,8 +81,8 @@ const EducationForm = ({ education, closeForm,...props }) => {
           </Button>
           <Button
             onClick={()=>{
-              dispatch(edit_education(props.index,value));
-  closeForm();
+                dispatch(edit_experience(props.index,value));
+                closeForm();
             }}
             type="button"
             className="btn btn-primary mt-15"
@@ -97,13 +91,18 @@ const EducationForm = ({ education, closeForm,...props }) => {
           </Button>
         </div>
       </Form>
-    </Container>
-  );
-};
+     </Container>
+        
 
-EducationForm.prototype = {
-  education: PropTypes.object,
+)
+
+
+
+}
+
+EditExperience.prototype = {
+  experience: PropTypes.object,
   closeForm: PropTypes.func.isRequired,
 };
 
-export default EducationForm;
+export default EditExperience
