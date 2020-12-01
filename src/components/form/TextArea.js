@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from './form.module.css';
-import PropTypes from 'prop-types'
+import Propstypes from 'prop-types'
 
 const TextArea = ({value}) => {
   const character = 200
@@ -11,6 +11,7 @@ const TextArea = ({value}) => {
   let onChange = (e) => {
     setTextAreaValue(e.target.value);
     setTextCount(character - e.target.value.length);
+    props.changed(props.name, e.target.value)
 
     if ((character - e.target.value.length) <= 10) {
         setCountColor("red");
@@ -21,17 +22,17 @@ const TextArea = ({value}) => {
   
   return (
     <div className={classes.textarea}>
-        <textarea rows='4' maxLength={character} 
+        <textarea rows='2' maxLength={character} 
         className={classes.multiText} onChange={onChange}
-        value={textAreaValue}></textarea>
+        value={textAreaValue}
+        name={props.name}></textarea>
         <span style={{ color: countColor }}>({textCount})</span>
     </div>
   );
 };
 
-
 TextArea.prototype = {
-  value: PropTypes.string.isRequired
+  changed: Propstypes.func.isRequired
 }
 
 export default TextArea;

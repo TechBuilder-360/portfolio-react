@@ -2,8 +2,8 @@ import React from 'react'
 import SocialLogin from 'react-social-login'
 import classes from "./SocialButton.module.css";
  
-class SocialButton extends React.Component {
-    
+class SocialButtonTemplate extends React.Component {
+ 
     render() {
         const triggerlogin = this.props.triggerLogin;
         return (
@@ -14,4 +14,4 @@ class SocialButton extends React.Component {
     }
 }
  
-export default SocialLogin(SocialButton);
+export default SocialLogin(SocialButtonTemplate);

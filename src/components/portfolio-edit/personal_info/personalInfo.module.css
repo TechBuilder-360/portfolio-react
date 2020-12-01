@@ -1,8 +1,8 @@
 .Img {
-  width: 150px;
+  width: 80px;
   text-align: center;
-  margin-bottom: 10px;
-  height: 150px;
+  margin: 5% 0;
+  height: 80px;
   vertical-align: middle;
 }
 
@@ -11,16 +11,12 @@
   border: 1px solid black;
 }
 
-.Mt_10 {
-  margin-top: 10px;
-}
-
 .Mb_5 {
-  margin-bottom: 10px;
+  margin-bottom: 1%;
 }
 
-.Mb_5 input{
-  height: 45px;
+.Mb_5 input, .Mb_5 select{
+  height: 35px;
   background-color: rgb(224, 234, 245);
   border-radius: 5px;
   border: 0px;
@@ -32,7 +28,7 @@
   padding: 20px;
 }
 
-.Mb_5 input:hover, .Mb_5 textarea:hover {
+.Mb_5 input:hover, .Mb_5 select:hover {
   background-color: rgb(214, 233, 236);
 }
 
@@ -51,6 +47,7 @@ form label {
 .delete:hover{
   cursor: pointer;
 }
+
 .drop {
   display: inline-block;
   padding: 2%;
@@ -65,9 +62,7 @@ form label {
     
   }
 
-
-.Accordion_Parent {
-  position: relative;
+.Accordion_Parent, .Accordion_Child {
   margin-bottom: 2%;
   overflow: visible !important;
   z-index: 2 !important;
@@ -88,9 +83,10 @@ form label {
 
 /* Desktop view */
 @media (min-width: 760px) {
-  .Img {
-    margin-top: 23px;
-  }
+.Img {
+  height: 150px;
+  width: 150px;
+}
 
   .delete {
     display: none;
@@ -108,5 +104,16 @@ form label {
 
   .Accordion_Parent{
     margin-bottom: 2%;
+  }
+
+  .Mb_5 {
+    margin-bottom: 10px;
+  }
+
+  .Mb_5 input, .Mb_5 select{
+    height: 45px;
+    background-color: rgb(224, 234, 245);
+    border-radius: 5px;
+    border: 0px;
   }
 }

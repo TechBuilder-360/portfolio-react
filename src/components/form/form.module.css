@@ -17,14 +17,10 @@
     opacity: 0.45;
 }
 
-/* .textarea:hover > .multiText:hover{
-    background-color: rgb(214, 233, 236);
-} */
-
-.month-year-picker{
-    display:inline;
-    width:100px;
-    
+.datePicker{
+    display: block;
+    width: 100%;
+    border:none;
 }
 
 .month-year-picker > div{

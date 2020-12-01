@@ -1,35 +1,16 @@
 import * as actionTypes from "../actions/actionType";
-import axios from "axios";
-import cookie from "react-cookies";
+import axios from '../../axios-orders'
+import * as query from './graphqlQuery'
+import cookie from 'react-cookies'
 
-export const googleAuthSuccess = (token) => (dispatch) => {
-  var data = JSON.stringify({
-    query: `mutation googleSignin {
-      \n  socialAuth(accessToken: "${token}", provider: "google-oauth2") {
-      \n    social {
-      \n      uid
-      \n      user {
-      \n        id
-      \n        firstName
-      \n        username
-      \n      }
-      \n    }
-      \n    token
-      \n  }
-      \n}`,
-  });
 
+export const googleAuthSuccess = (token) =>  (dispatch) => {
+  
   var config = {
-    method: "post",
-    url: "https://xportfolio.herokuapp.com/graphql/",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie:
-        "csrftoken=bQNReb0ipMwkcIraxN1ibpYu9K20WM6S7BERZNI4n45TqElnuQcDH8DRQJCnoEju", // protect csrftoken
-    },
-    data: data,
+    data: query.googleSignin(token),
   };
-  axios(config)
+
+   axios(config)
     .then((response) => {
       const userData = {
         token: response.data.data.socialAuth.token,

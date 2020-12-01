@@ -1,14 +1,13 @@
 import React, { useRef, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import googleLogo from "../../../google.svg";
 import { Link } from "react-router-dom";
 import classes from "../LoginForm/LoginForm.module.css";
 import { Form, Col } from "react-bootstrap";
 import Layout from "../../../container/Layout/Layout";
-import SocialButton from "../SocialButton";
 import { useHistory } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import * as actions from "../../../store/actions/auth";
+import SocialButton from "../SocialAuth/SocialButton";
 
 const LoginForm = () => {
   const email = useRef(null);
@@ -29,15 +28,6 @@ const LoginForm = () => {
 
   const loginHandler = (event) => {
     event.preventDefault();
-  };
-
-  const handleSocialLogin = (user) => {
-    dispatch(actions.googleAuthSuccess(user._token.accessToken));
-  };
-
-  const handleSocialLoginFailure = (err) => {
-    console.error("google auth fail", err); //replace with flash message
-    dispatch(actions.googleAuthFail(err));
   };
 
   return (
@@ -85,17 +75,7 @@ const LoginForm = () => {
           <hr className={classes.Hr} /> or <hr className={classes.Hr} />
         </div>
 
-        <SocialButton
-          provider="google"
-          appId={`${process.env.REACT_APP_CLIENT_ID}`}
-          onLoginSuccess={handleSocialLogin}
-          onLoginFailure={handleSocialLoginFailure}
-        >
-          <i>
-            <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
-          </i>
-          &nbsp;&nbsp;Login with Google
-        </SocialButton>
+        <SocialButton title="Login"/>
 
         <div
           style={{

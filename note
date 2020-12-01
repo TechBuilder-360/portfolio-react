@@ -9,3 +9,5 @@ Might need to add dependency, if using post request doesn't workout well
 
 3. Store refresh and auth token in local storage for authntication purpose, and add retry for token, 
 if valid show dashboard else try using refresh token to obtain new auth token, then retry else display login page.
+
+4. Use react-tag-input for adding skill

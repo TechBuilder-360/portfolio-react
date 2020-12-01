@@ -9,9 +9,8 @@ const initialState = {
     email: "John.Doe@mail.com",
     gender: "Male",
     languages: "English, French", // MAX length 100
-    state_of_residence: "Lagos",
-    nationality: "Nigeria",
-    date_of_birth: "12th, December",
+    location: "Lagos, Nigeria",
+    date_of_birth: "12/12/2019", // default null
     profession: "Accountant",
     profile_pix: "",
     phone: "+2347458747777",
@@ -215,22 +214,16 @@ const initialState = {
   ],
   social: [
     {
+      id: 1,
       label: "facebook",
       url: "https://facebook.com",
     },
     {
+      id: 2,
       label: "twitter",
       url: "https://twitter.com",
     },
-  ],
-
-  messages: [
-    // types: success, info, warning, danger
-    {
-      type: "info",
-      message: "Flash message",
-    },
-  ],
+  ]
 };
 
 const reducer = (state = initialState, action) => {
@@ -238,16 +231,13 @@ const reducer = (state = initialState, action) => {
     case actionType.PERSONAL_INFORMATION:
       return {
         ...state,
+        personal_info: {...state.personal_info, ...action.detail}
       };
     case actionType.EDUCATION:
       return {
         ...state,
       };
     case actionType.EXPERIENCE:
-      return {
-        ...state,
-      };
-    case actionType.PROFESSIONAL_SUMMARY:
       return {
         ...state,
       };
@@ -264,22 +254,31 @@ const reducer = (state = initialState, action) => {
         ...state,
       };
 
-    case actionType.ADD_EDUCATION:
+    case actionType.AVATAR_UPLOAD:
       return {
-        ...state,
-        education: [...state.education, action.payload],
-      };
-    case actionType.DELETE_EDUCATION:
+        ...state
+    }
+    case actionType.MESSAGES:
       return {
-        ...state,
-        education: [
-          ...state.education.filter(
-            (education) => education.id !== action.payload
-          ),
-        ],
-      };
+        ...state
+    }
+      case actionType.ADD_EDUCATION:
+        return{
+          ...state,
+          education: [...state.education, action.payload]
+        }
+      case actionType.DELETE_EDUCATION:
+        return{
+          ...state,
+          education: [...state.education.filter( education => education.id !== action.payload)]
+        }
+        // case actionType.DELETE_SUCCESS:
+          
+        //   return {...state,
+        //   education:[state.education.filter(education=>education.id !==action.payload)]
+        //   }
     default:
-      return state;
+    return state;
   }
 };
 
