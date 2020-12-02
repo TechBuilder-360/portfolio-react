@@ -93,7 +93,7 @@ export default class List extends Component {
         this.props.value.substring(0, 3)
       );
       month = month > -1 ? ++month : 11;
-      let year = Number(this.props.value.substring(5, 4)) || 2017;
+      let year = Number(this.props.value.substring(5)) || 2017;
       this.setState({ singleValue: { year: year, month: month } });
     }
   };
