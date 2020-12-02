@@ -5,8 +5,9 @@ import * as query from "./graphqlQuery";
 import cookie from 'react-cookies'
 
 
-console.log(cookie.load('userData')['token']);
-const headerToken = `JWT ${cookie.load('userData')['token']}`
+//console.log(cookie.load('userData')['token']);
+const headerToken =''
+//`JWT ${cookie.load('userData')['token']}`
 
 const Personal_Information = (detail) => {
   return {
@@ -138,24 +139,34 @@ const edit_education = (index, content) => {
 export const educationAction = (index, edu) => {
   return dispatch => {
     if(edu.id){
-      edu.id = Math.random()*100
-      dispatch(add_education(edu))
-    }
-    else
       dispatch(edit_education(index, edu))
   }
+    else{
+    edu.id = Math.random()*100
+      dispatch(add_education(edu))
+    }  
+}
 }
 
-
-
 export const add_experience = (content) => {
-  content.id = Math.random()*100
   return {
     type: actionType.ADD_EXPERIENCE,
     payload: content,
   };
 };
 
+export const experienceAction = (index, expp) => {
+  return dispatch => {
+    if(expp.id){
+      dispatch(edit_experience(index, expp))
+  }
+    else{
+    expp.id = Math.random()*100
+      dispatch(add_experience(expp))
+    }  
+}
+
+}
 
 export const delete_experience = (index) => {
   return {
@@ -183,6 +194,18 @@ export const add_project = (content) => {
   };
 };
 
+export const projectAction = (index, proj) => {
+  return dispatch => {
+    if(proj.id){
+      dispatch(edit_project(index, proj))
+  }
+    else{
+    proj.id = Math.random()*100
+      dispatch(add_project(proj))
+    }  
+}
+
+}
 
 export const delete_project = (index) => {
   return {

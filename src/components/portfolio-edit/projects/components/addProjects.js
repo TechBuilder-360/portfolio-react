@@ -6,20 +6,26 @@ import Container from "../../../../container/Container";
 import classes from "../../personal_info/personalInfo.module.css";
 import PropTypes from "prop-types";
 import TextArea from '../../../form/TextArea'
-import {add_project} from '../../../../store/actions/portfolioActions'
+import {projectAction} from '../../../../store/actions/portfolioActions'
 
 
 const AddProjects=({ project, closeForm,...props })=>{
-  const dispatch = useDispatch();
-  const [value, setValue] = useState(project);
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    dispatch(add_project(value));
-    closeForm();
+  const content = {
+    id:""|| project.id,
+    title: "" ||project.title ,
+    description:""|| project.description
+    
   };
+
+  const dispatch = useDispatch();
+  const [value, setValue] = useState(content);
+
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
+  };
+  const onChangeHandler = (name, value) => {
+    setValue({ ...value, [name]: value });
   };
 return(
 
@@ -41,7 +47,7 @@ return(
           <Form.Group>
             <Form.Label>Project Descriptions</Form.Label>
         
-          <TextArea  value="The title of"/>
+          <TextArea name="description"  value={value.description} changed={(name, value)=>onChangeHandler(name, value)}/>
           </Form.Group>
             
             </Col>
@@ -56,7 +62,12 @@ return(
             Cancel
           </Button>
           <Button
-            onClick={ handleSubmit}
+          
+              onClick={()=>{
+                dispatch(projectAction(props.index, value));
+                closeForm();
+            }}
+
             type="button"
             className="btn btn-primary mt-15"
           >

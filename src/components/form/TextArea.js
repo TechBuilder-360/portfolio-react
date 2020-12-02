@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from './form.module.css';
 import Propstypes from 'prop-types'
 
-const TextArea = (props) => {
+const TextArea = ({...props}) => {
   const character = 200
   const [textAreaValue, setTextAreaValue] = useState(props.value.substr(0,character));
   const [textCount, setTextCount] = useState(props.value.length <= character ? character - props.value.length: 0);

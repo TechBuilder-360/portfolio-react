@@ -45,7 +45,7 @@ const Child = ({ education, ...props }) => {
       <Accordion.Collapse eventKey={props.i}>
         <Card.Body className={classes.Accordion_Body}>
           <EducationForm
-            index={props.i}
+            index={props.index}
             education={education}
             closeForm={() =>
               document.getElementById(`close-education-${props.i}`).click()

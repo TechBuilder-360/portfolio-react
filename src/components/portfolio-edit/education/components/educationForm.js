@@ -25,7 +25,7 @@ const EducationForm = ({ education, closeForm, ...props }) => {
   };
 
   const onChangeHandler = (name, date) => {
-    setValue({ ...value, [name]: date });
+    setValue({ ...value, [name]: date })
   };
 
   return (
