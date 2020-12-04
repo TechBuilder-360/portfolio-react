@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionType";
-import axios from '../../axios-orders'
+import {instanceAxios} from '../../axios-orders'
 import * as query from './graphqlQuery'
 import cookie from 'react-cookies'
 
@@ -10,7 +10,7 @@ export const googleAuthSuccess = (token) =>  (dispatch) => {
     data: query.googleSignin(token),
   };
 
-   axios(config)
+  instanceAxios(config)
     .then((response) => {
       const userData = {
         token: response.data.data.socialAuth.token,

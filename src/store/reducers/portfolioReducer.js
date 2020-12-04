@@ -271,6 +271,11 @@ const reducer = (state = initialState, action) => {
 
     case actionType.AVATAR_UPLOAD:
       return {
+        ...state,
+        personal_info: {...state.personal_info, profile_pix: action.imageURL}
+    }
+    case actionType.AVATAR_UPLOAD_FAILED:
+      return {
         ...state
     }
     case actionType.MESSAGES:
