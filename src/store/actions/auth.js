@@ -7,6 +7,11 @@ import cookie from 'react-cookies'
 export const googleAuthSuccess = (token) =>  (dispatch) => {
   
   var config = {
+    method: 'post',
+    url: 'https://xportfolio.herokuapp.com/graphql/',
+    headers: { 
+      'Content-Type': 'application/json', 
+    },
     data: query.googleSignin(token),
   };
 
@@ -60,9 +65,8 @@ export const sessionTokenFail = (error) => {
 };
 
 export const logout = () => {
-  // localStorage.removeItem('token')
-  // localStorage.removeItem('expirationDate')
-  // localStorage.removeItem('userId')
+  cookie.remove("userData", { path: "/" });
+  console.log('cavche removed oo')
   return {
     type: actionTypes.AUTH_INITIATE_LOGOUT,
   };

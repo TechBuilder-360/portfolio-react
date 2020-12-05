@@ -28,7 +28,6 @@ const googleAuthFail = (state, action) => {
 };
 
 const authLogout = (state) => {
-  cookie.remove("userData", { path: "/" });
   return updateObject(state, { token: null, username: null });
 };
 
@@ -37,12 +36,13 @@ const setAuthRedirectPath = (state, action) => {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action.type)
   switch (action.type) {
     case actionTypes.SESSION_TOKEN_SUCCESS:
       return authSuccess(state, action);
     case actionTypes.GOOGLE_AUTH_FAIL:
       return googleAuthFail(state, action);
-    case actionTypes.AUTH_LOGOUT:
+    case actionTypes.AUTH_INITIATE_LOGOUT:
       return authLogout(state);
     case actionTypes.SET_AUTH_REDIRECT_PATH:
       return setAuthRedirectPath(state, action);

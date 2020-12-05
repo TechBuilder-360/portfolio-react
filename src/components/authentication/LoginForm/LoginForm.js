@@ -5,21 +5,23 @@ import classes from "../LoginForm/LoginForm.module.css";
 import { Form, Col } from "react-bootstrap";
 import Layout from "../../../container/Layout/Layout";
 import { useHistory } from "react-router-dom";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import * as actions from "../../../store/actions/auth";
+import { useSelector, shallowEqual } from "react-redux";
 import SocialButton from "../SocialAuth/SocialButton";
 
 const LoginForm = () => {
   const email = useRef(null);
   const password = useRef(null);
   const authState = useSelector((state) => state.auth, shallowEqual);
-  const dispatch = useDispatch();
   let history = useHistory();
 
   useEffect(() => {
     if (authState.token) {
       if (authState.authRedirectPath) {
-        history.push(authState.authRedirectPath);
+        if (authState.authRedirectPath === 'logout'){
+          history.push(`/${authState.username}`);
+        }else{
+          history.push(authState.authRedirectPath);
+        }       
       } else {
         history.push(`/${authState.username}`);
       }

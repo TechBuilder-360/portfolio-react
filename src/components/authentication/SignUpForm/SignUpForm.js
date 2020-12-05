@@ -3,7 +3,7 @@ import classes from "./SignupForm.module.css";
 import { Link } from "react-router-dom";
 import { Button, Form, Col } from "react-bootstrap";
 import Layout from "../../../container/Layout/Layout";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { useHistory } from "react-router-dom";
 import SocialButton from "../SocialAuth/SocialButton";
 

@@ -5,8 +5,9 @@ import * as query from "./graphqlQuery";
 import cookie from 'react-cookies'
 
 
-console.log(cookie.load('userData')['token']);
-const headerToken = `JWT ${cookie.load('userData')['token']}`
+// console.log(cookie.load('userData')['token']);
+const userCookie = cookie.load("userData");
+const headerToken =  userCookie ? `JWT ${userCookie.token}` : null
 console.log(headerToken);
 
 const Personal_Information = (detail) => {
