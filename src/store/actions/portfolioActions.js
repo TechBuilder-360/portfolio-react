@@ -1,13 +1,11 @@
-import axios from "../../axios-orders";
-import ax from "axios";
+import {instanceAxios, imageAxios} from "../../axios-orders";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
 import cookie from 'react-cookies'
 
 
-//console.log(cookie.load('userData')['token']);
-const headerToken =''
-//`JWT ${cookie.load('userData')['token']}`
+const userCookie = cookie.load("userData");
+const headerToken =  userCookie ? `JWT ${userCookie.token}` : null
 
 const Personal_Information = (detail) => {
   return {
@@ -25,29 +23,26 @@ const messages = (msg) => {
 
 export const set_personalInfo = (detail) => {
   return (dispatch) => {
-    // axios.defaults.headers.common['Authorization'] = headerToken
-    axios({ data: query.edit_personalinfo(detail), headers: {
+    instanceAxios({ data: query.edit_personalinfo(detail), headers: {
       'Authorization': headerToken
     } })
     .then((response) => {
-      console.log(response);
       dispatch(Personal_Information(detail));
       })
-      .catch((err) => {
-        console.log(err.response);
-        console.error("Error: ",err);
+      .catch(() => {
         dispatch(messages([]));
       });
   };
 };
 
-export const setAvatar = () => {
+const setAvatar = (url) => {
   return {
     type: actionType.AVATAR_UPLOAD,
+    imageURL: url
   };
 };
 
-export const AvatarUploadFailed = () => {
+const AvatarUploadFailed = () => {
   return {
     type: actionType.AVATAR_UPLOAD_FAILED,
   };
@@ -55,29 +50,18 @@ export const AvatarUploadFailed = () => {
 
 export const avatar = (photo) => {
   return (dispatch) => {
-    let formData = new FormData();
-
-    formData.append("avatar", formData);
-    ax.post("http://127.0.0.1:8000/api/avartar/", {
-      data: photo,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "X-CSRFTOKEN":
-          "KNsdOUx8u7MSMNPcQdwn5FlrznsGJuhmoCByYyVqW2UHEXV66FC0fBBP2OYlhuJF",
-      },
+    const formData = new FormData();
+    formData.append("image", photo);
+    imageAxios({data: formData,
+        headers: {
+          'Authorization': headerToken
+        }
     })
       .then((response) => {
-        console.log(response);
-        // dispatch(setAvatar(response.data));
+        dispatch(setAvatar(response.data.url));
       })
-      .catch((error) => {
-        console.log("Error encountered");
-        // console.log(error.response.data);
-        // console.log(error.response.status);
-        // console.log(error.response.headers);
-        console.log(error.config);
-        console.error(error);
-        // dispatch(AvatarUploadFailed())
+      .catch(() => {
+        dispatch(AvatarUploadFailed())
       });
   };
 };

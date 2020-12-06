@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../../container/Container';
-import UserNavigation from '../Navigation/user_navigation';
+import UserNavigation from '../Navigation/portfolio-navBar';
 import PersonalInfo from './personal_info/personalInfo';
 import classes from './profile-edit.module.css';
 import Education from "./education/education";

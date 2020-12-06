@@ -1,16 +1,20 @@
 import * as actionTypes from "../actions/actionType";
-import axios from '../../axios-orders'
+import {instanceAxios} from '../../axios-orders'
 import * as query from './graphqlQuery'
 import cookie from 'react-cookies'
 
+export const authStart = () => {
+  return {
+    type: actionTypes.GOOGLE_AUTH_START,
+  };
+};
 
 export const googleAuthSuccess = (token) =>  (dispatch) => {
-  
   var config = {
     data: query.googleSignin(token),
   };
 
-   axios(config)
+  instanceAxios(config)
     .then((response) => {
       const userData = {
         token: response.data.data.socialAuth.token,
@@ -29,8 +33,7 @@ export const googleAuthSuccess = (token) =>  (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
-      dispatch(sessionTokenFail(err)); // Error needs improvement, maybe a flash message feature
+      dispatch(sessionTokenFail(err));
     });
 
   return {
@@ -60,17 +63,9 @@ export const sessionTokenFail = (error) => {
 };
 
 export const logout = () => {
-  // localStorage.removeItem('token')
-  // localStorage.removeItem('expirationDate')
-  // localStorage.removeItem('userId')
+  cookie.remove("userData", { path: "/" });
   return {
     type: actionTypes.AUTH_INITIATE_LOGOUT,
-  };
-};
-
-export const logoutSucceed = () => {
-  return {
-    type: actionTypes.AUTH_LOGOUT,
   };
 };
 
@@ -97,8 +92,9 @@ export const setAuthRedirectPath = (path) => {
   };
 };
 
-export const authCheckState = () => {
+export const resetError = () => {
   return {
-    type: actionTypes.AUTH_CHECK_STATE,
+    type: actionTypes.RESET_ERROR,
   };
 };
+

@@ -36,7 +36,7 @@ const App = () => {
         exact
         component={ProfileEdit}
       />
-      <ProtectedRoute path="/logout" exact component={Logout} />
+      <Route path="/logout" exact component={Logout} />
       <ProtectedRoute path="/:username" exact component={Dashboard} />
       <Route path="*" component={NotFound} />
     </Switch>
