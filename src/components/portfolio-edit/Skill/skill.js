@@ -1,6 +1,5 @@
 import React from 'react';
 import style from "../profile-edit.module.css";
-import classes from "../personal_info/personalInfo.module.css";
 
 const Skill = () => {
     return (

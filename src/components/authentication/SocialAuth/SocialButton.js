@@ -2,11 +2,12 @@ import React from 'react';
 import SocialButtonTemplate from './SocialButtonTemplate';
 import googleLogo from "../../../images/google.svg";
 import * as actions from "../../../store/actions/auth";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual} from 'react-redux';
 
 const SocialButton = (props) => {
 
     const dispatch = useDispatch();
+    const loading = useSelector((state) => state.auth.loading, shallowEqual);
 
     const handleSocialLogin = (user) => {
         dispatch(actions.googleAuthSuccess(user._token.accessToken));
@@ -22,7 +23,8 @@ const SocialButton = (props) => {
           appId={`${process.env.REACT_APP_CLIENT_ID}`}
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginFailure}
-        >
+          loadspinner={loading}
+        >&nbsp;&nbsp;
           <i>
             <img src={googleLogo} alt="logo" style={{ width: "20px" }} />
           </i>

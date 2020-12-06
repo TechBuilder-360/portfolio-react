@@ -1,8 +1,11 @@
 import axios from 'axios';
 
 
-const instance = axios.create({
-    baseURL: "http://127.0.0.1:8000/graphql/", //"https://xportfolio.herokuapp.com/graphql/",
+const url = "https://xportfolio.herokuapp.com"
+// const url = "http://127.0.0.1:8000"
+
+export const instanceAxios = axios.create({
+    baseURL: `${url}/graphql/`, 
     timeout: 3000,
     headers: {
         "Content-Type": "application/json",
@@ -11,4 +14,12 @@ const instance = axios.create({
     method: 'post'
 })
 
-export default instance;
+export const imageAxios = axios.create({
+    baseURL: `${url}/accounts/upload/`,
+    timeout: 3000,
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    },
+    responseType: 'json',
+    method: 'post'
+})
