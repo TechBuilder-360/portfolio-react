@@ -1,79 +1,75 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, Col, Form, Row, Container } from "react-bootstrap";
+import { Accordion, Button, Col, Form, Row, Container } from "react-bootstrap";
+import SubSkill from "./subSkill";
 import classes from "../../personal_info/personalInfo.module.css";
 import { add_skill } from "../../../../store/actions/portfolioActions";
 
-const SkillForms = ({ skills, closeForm, ...props }) => {
+const SkillForms = ({ skill, closeForm, ...props }) => {
   const content = {
-    id: "",
-    title:'',
-   
+    id: skill.id || "",
+    title: skill.title || "",
   };
 
   const dispatch = useDispatch();
   const [value, setValue] = useState();
+  const [title, setTitle] = useState();
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
-  
   return (
     <Container>
-      <Form className={classes.form}>
-          <Row>
-          <Col xs={12} md={7} className={classes.Mb_5}>
+      <Form>
+        <Row>
+          <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
-              <Form.Label> Skill</Form.Label>
-        <Form.Control as="select" name="title" onChange={handleChange} >
-        <option value='' selected >Choose Skill</option>
-        {props.skill.map((skill,i)=>(
-
-<option key={i} value={skill.title} >{skill.title}</option>
-))
-}
-        </Form.Control>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                name="title"
+                onChange={(e) => setTitle({ [e.target.name]: e.target.value })}
+                placeholder="Accounting"
+                required={true}
+              />
             </Form.Group>
           </Col>
-          <Col md={5}></Col>
-</Row>
-<span>Add Subskills</span>
-<Row>
-    
-    <Col xs={12} md={8}>
-        <Form.Group>
-            
-            <Form.Control size={'lg'}></Form.Control>
-        </Form.Group>
-
-    </Col>
-    <Col xs={12} md={4}>
-
-        <Button size={'lg'}>Enter</Button>
-    </Col>
-</Row>
-
-<Col xs={12} md={12} style={{textAlign: "right", marginTop:'30px'}}>
+          <Col xs={12} md={6} className={classes.Mb_5}>
             <Button
-              type="button"
-              onClick={closeForm}
-              className="btn btn-info mt-15 mr-2"
+              variant="success"
+              style={{ display: "block", position: "relative", top: "35px" }}
+              onClick={()=> alert("change skill title")}
             >
-              Cancel
-            </Button>
-            <Button
-              onClick={() => {
-                dispatch(add_skill(value));
-                closeForm();
-              }}
-              type="button"
-              className="btn btn-primary mt-15"
-            >
-              Save
+              Enter
             </Button>
           </Col>
-        </Form>
+          {/* Sub-skills */}
+          <Col xs={12} md={12}>
+            <SubSkill skill={skill.subskill || []} />
+          </Col>
+          {/* End Sub-skills */}
+          <Col xs={12} md={6} className={classes.Mb_5}>
+            <Form.Group>
+              <Form.Label>Sub-skill</Form.Label>
+              <Form.Control
+                name="title"
+                onChange={(e) => setTitle({ [e.target.name]: e.target.value })}
+                placeholder="Accounting"
+                required={true}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={12} md={6} className={classes.Mb_5}>
+            <Button
+              variant="success"
+              style={{ display: "block", position: "relative", top: "35px" }}
+
+            >
+              Enter
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </Container>
   );
 };

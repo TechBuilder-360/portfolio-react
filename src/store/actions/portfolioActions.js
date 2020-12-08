@@ -1,11 +1,10 @@
-import {instanceAxios, imageAxios} from "../../axios-orders";
+import { instanceAxios, imageAxios } from "../../axios-orders";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
-import cookie from 'react-cookies'
-
+import cookie from "react-cookies";
 
 const userCookie = cookie.load("userData");
-const headerToken =  userCookie ? `JWT ${userCookie.token}` : null
+const headerToken = userCookie ? `JWT ${userCookie.token}` : null;
 
 const Personal_Information = (detail) => {
   return {
@@ -23,11 +22,14 @@ const messages = (msg) => {
 
 export const set_personalInfo = (detail) => {
   return (dispatch) => {
-    instanceAxios({ data: query.edit_personalinfo(detail), headers: {
-      'Authorization': headerToken
-    } })
-    .then((response) => {
-      dispatch(Personal_Information(detail));
+    instanceAxios({
+      data: query.edit_personalinfo(detail),
+      headers: {
+        Authorization: headerToken,
+      },
+    })
+      .then((response) => {
+        dispatch(Personal_Information(detail));
       })
       .catch(() => {
         dispatch(messages([]));
@@ -38,7 +40,7 @@ export const set_personalInfo = (detail) => {
 const setAvatar = (url) => {
   return {
     type: actionType.AVATAR_UPLOAD,
-    imageURL: url
+    imageURL: url,
   };
 };
 
@@ -52,16 +54,17 @@ export const avatar = (photo) => {
   return (dispatch) => {
     const formData = new FormData();
     formData.append("image", photo);
-    imageAxios({data: formData,
-        headers: {
-          'Authorization': headerToken
-        }
+    imageAxios({
+      data: formData,
+      headers: {
+        Authorization: headerToken,
+      },
     })
       .then((response) => {
         dispatch(setAvatar(response.data.url));
       })
       .catch(() => {
-        dispatch(AvatarUploadFailed())
+        dispatch(AvatarUploadFailed());
       });
   };
 };
@@ -114,23 +117,22 @@ const edit_education = (index, content) => {
   return {
     type: actionType.EDIT_EDUCATION,
     payload: {
-      'index':index,
-      'content':content
-    }
+      index: index,
+      content: content,
+    },
   };
 };
 
 export const educationAction = (index, edu) => {
-  return dispatch => {
-    if(edu.id){
-      dispatch(edit_education(index, edu))
-  }
-    else{
-    edu.id = Math.random()*100
-      dispatch(add_education(edu))
-    }  
-}
-}
+  return (dispatch) => {
+    if (edu.id) {
+      dispatch(edit_education(index, edu));
+    } else {
+      edu.id = Math.random() * 100;
+      dispatch(add_education(edu));
+    }
+  };
+};
 
 export const add_experience = (content) => {
   return {
@@ -140,17 +142,15 @@ export const add_experience = (content) => {
 };
 
 export const experienceAction = (index, expp) => {
-  return dispatch => {
-    if(expp.id){
-      dispatch(edit_experience(index, expp))
-  }
-    else{
-    expp.id = Math.random()*100
-      dispatch(add_experience(expp))
-    }  
-}
-
-}
+  return (dispatch) => {
+    if (expp.id) {
+      dispatch(edit_experience(index, expp));
+    } else {
+      expp.id = Math.random() * 100;
+      dispatch(add_experience(expp));
+    }
+  };
+};
 
 export const delete_experience = (index) => {
   return {
@@ -163,15 +163,14 @@ export const edit_experience = (index, content) => {
   return {
     type: actionType.EDIT_EXPERIENCE,
     payload: {
-      'index':index,
-      'content':content
-    }
+      index: index,
+      content: content,
+    },
   };
 };
 
-
 export const add_project = (content) => {
-  content.id = Math.random()*100
+  content.id = Math.random() * 100;
   return {
     type: actionType.ADD_PORJECT,
     payload: content,
@@ -179,17 +178,15 @@ export const add_project = (content) => {
 };
 
 export const projectAction = (index, proj) => {
-  return dispatch => {
-    if(proj.id){
-      dispatch(edit_project(index, proj))
-  }
-    else{
-    proj.id = Math.random()*100
-      dispatch(add_project(proj))
-    }  
-}
-
-}
+  return (dispatch) => {
+    if (proj.id) {
+      dispatch(edit_project(index, proj));
+    } else {
+      proj.id = Math.random() * 100;
+      dispatch(add_project(proj));
+    }
+  };
+};
 
 export const delete_project = (index) => {
   return {
@@ -198,21 +195,18 @@ export const delete_project = (index) => {
   };
 };
 
-export const edit_project = (index,content) => {
+export const edit_project = (index, content) => {
   return {
     type: actionType.EDIT_PROJECT,
     payload: {
-      'index':index,
-      'content':content
-    }
+      index: index,
+      content: content,
+    },
   };
 };
 
-
-
-
 export const add_skill = (content) => {
-  content.id = Math.random()*100
+  content.id = Math.random() * 100;
   return {
     type: actionType.ADD_SKILL,
     payload: content,
@@ -226,11 +220,8 @@ export const delete_skill = (index) => {
   };
 };
 
-
-
-
 export const add_subskill = (content) => {
-  content.id = Math.random()*100
+  content.id = Math.random() * 100;
   return {
     type: actionType.ADD_SUBSKILL,
     payload: content,
@@ -243,4 +234,3 @@ export const delete_subskill = (index) => {
     payload: index,
   };
 };
-

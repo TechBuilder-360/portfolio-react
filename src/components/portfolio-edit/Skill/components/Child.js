@@ -1,24 +1,32 @@
-import { faTimes,} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { Accordion, Button, Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { delete_skill} from "../../../../store/actions/portfolioActions";
-import classes from "../../personal_info/personalInfo.module.css";
+import { delete_skill } from "../../../../store/actions/portfolioActions";
+import SkillForms from "./SkillForms";
 
+const Child = ({ skill, ...props }) => {
 
-
-
-const Child = ({ skills,...props }) => {
   const dispatch = useDispatch()
+  const deleteHandler = (index) =>{
+    // dispatch(delete_skill(index))
+  }
 
   return (
-    <div className={classes.span}>
-      
-        <span >{skills.title} <FontAwesomeIcon 
-          onClick={() => dispatch(delete_skill(skills.id))}
-        icon={faTimes} size="lg" /> </span>
-   
-            </div>
+    <Card>
+    <Card.Header >
+      <Accordion.Toggle as={Button} variant="link" eventKey={props.i}>
+        {skill.title}
+      </Accordion.Toggle>
+      <Button variant="link" style={{width: "20%", float: "right"}} onClick={deleteHandler}>Delete</Button>
+    </Card.Header>
+    <Accordion.Collapse eventKey={props.i}>
+      <Card.Body>
+        <SkillForms 
+        skill={skill}
+        closeForm={null}/>
+      </Card.Body>
+    </Accordion.Collapse>
+  </Card>
   );
 };
 export default Child;
