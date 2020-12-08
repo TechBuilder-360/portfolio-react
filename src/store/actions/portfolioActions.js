@@ -209,3 +209,38 @@ export const edit_project = (index,content) => {
 };
 
 
+
+
+export const add_skill = (content) => {
+  content.id = Math.random()*100
+  return {
+    type: actionType.ADD_SKILL,
+    payload: content,
+  };
+};
+
+export const delete_skill = (index) => {
+  return {
+    type: actionType.DELETE_SKILL,
+    payload: index,
+  };
+};
+
+
+
+
+export const add_subskill = (content) => {
+  content.id = Math.random()*100
+  return {
+    type: actionType.ADD_SUBSKILL,
+    payload: content,
+  };
+};
+
+export const delete_subskill = (index) => {
+  return {
+    type: actionType.DELETE_SUBSKILL,
+    payload: index,
+  };
+};
+
