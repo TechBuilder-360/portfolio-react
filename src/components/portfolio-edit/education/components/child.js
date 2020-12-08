@@ -28,8 +28,8 @@ const Child = ({ education, ...props }) => {
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <span title={education.institution}>
-          {text_truncate(education.institution, 50)}
+        <span className={classes.Span} title={education.institution}>
+          {education.institution}
         </span>
         <div style={{ float: "Right" }}>
           <CustomToggle eventKey={props.i}>Edit</CustomToggle> |

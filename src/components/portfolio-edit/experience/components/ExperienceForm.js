@@ -7,17 +7,19 @@ import classes from "../../personal_info/personalInfo.module.css";
 import { experienceAction } from "../../../../store/actions/portfolioActions";
 
 const ExperienceForm = ({ experience, closeForm, ...props }) => {
+  
   const content = {
-    id: "" || experience.id,
-    organization: "" || experience.organization,
-    description: "" || experience.description,
-    position: "" || experience.position,
-    start_year: "" || experience.start_year,
-    end_year: "" || experience.end_year,
+    id: experience.id || "",
+    organization: experience.organization || "",
+    description: experience.description || "",
+    position: experience.position || "",
+    start_year: experience.start_year || "",
+    end_year: experience.end_year || "",
   };
 
   const dispatch = useDispatch();
   const [value, setValue] = useState(content);
+
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -26,9 +28,17 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
   const onChangeHandler = (name, txt) => {
     setValue({ ...value, [name]: txt });
   };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+
+    dispatch(experienceAction(props.index, value));
+    closeForm();
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
@@ -38,6 +48,7 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
                 onChange={handleChange}
                 placeholder="Monetary Assurance"
                 value={value.organization}
+                required={true}
               />
             </Form.Group>
           </Col>
@@ -50,6 +61,7 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
                 onChange={handleChange}
                 placeholder="Head of Sales"
                 value={value.position}
+                required={true}
               />
             </Form.Group>
           </Col>
@@ -76,29 +88,19 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
                 value={value.description}
                 name="description"
                 changed={(name, value) => onChangeHandler(name, value)}
+                required={true}
               />
             </Form.Group>
           </Col>
           <Col xs={12} md={12} style={{ textAlign: "right" }}>
-            <Button
+          <Button
               type="button"
               onClick={closeForm}
               className="btn btn-info mt-15 mr-2"
             >
               Cancel
             </Button>
-            <Button
-              onClick={() => {
-                console.log(value);
-                dispatch(experienceAction(props.index, value));
-                closeForm();
-              }}
-              style={{ float: "right" }}
-              type="submit"
-              className={classes.Mb_5}
-            >
-              Save
-            </Button>
+            <Button type="submit" className="btn btn-primary mt-15"> Save </Button>
           </Col>
         </Row>
       </Form>

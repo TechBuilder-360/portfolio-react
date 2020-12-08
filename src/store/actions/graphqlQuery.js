@@ -3,10 +3,7 @@ export const googleSignin = token => {
     query: `mutation googleSignin {
         socialAuth(accessToken: "${token}", provider: "google-oauth2") {
           social {
-            uid
             user {
-              id
-              firstName
               username
             }
           }
@@ -48,4 +45,69 @@ export const edit_personalinfo = detail => {
       }
     }`
 });
+}
+
+
+export const education = detail => {
+  return JSON.stringify({
+    query: `mutation education {
+      education(
+        id: "${detail.id}",
+        course: "${detail.course}", 
+        degree: "${detail.degree}", 
+        startYear: "${detail.start_year}", 
+        endYear: "${detail.end_year}", 
+        institution: "${detail.institution}"){
+        education{
+          id
+        }
+        created
+      }
+    }
+    `
+  })
+}
+
+export const experience = detail => {
+  return JSON.stringify({
+    query: `mutation experience{
+      experience(
+        id: "${detail.id}",
+        description: "${detail.description}",
+        startYear: "${detail.start_year}",
+        endYear: "${detail.end_year}",
+        organization: "${detail.organization}"
+      ){
+        experience{
+          id
+        }
+        created
+      }
+    }
+    `
+  })
+}
+
+export const delete_experience = id => {
+  return JSON.stringify({
+    query: `mutation removeExperience{
+          removeExperience(id: ${id}){
+            ok
+            message
+          }
+        }
+    `
+  })
+}
+
+export const delete_education = id => {
+  return JSON.stringify({
+    query: `mutation removeEducation{
+      removeEducation(id: ${id}){
+        ok
+        message
+      }
+    }
+    `
+  })
 }

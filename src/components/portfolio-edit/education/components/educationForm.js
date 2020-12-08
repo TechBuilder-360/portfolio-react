@@ -10,12 +10,12 @@ import PropTypes from "prop-types";
 const EducationForm = ({ education, closeForm, ...props }) => {
 
   const content = {
-    id: "" || education.id,
-    institution: "" || education.institution,
-    start_year: "" || education.start_year,
-    end_year: "" || education.end_year,
-    degree: "" || education.degree,
-    course: "" || education.course,
+    id: education.id ||  "",
+    institution: education.institution || "",
+    start_year: education.start_year || "",
+    end_year: education.end_year || "",
+    degree: education.degree || "",
+    course: education.course || "",
   }
   const dispatch = useDispatch();
   const [value, setValue] = useState(content);
@@ -28,9 +28,16 @@ const EducationForm = ({ education, closeForm, ...props }) => {
     setValue({ ...value, [name]: date })
   };
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+
+    dispatch(educationAction(props.index, value));
+    closeForm();
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
@@ -40,6 +47,7 @@ const EducationForm = ({ education, closeForm, ...props }) => {
                 onChange={handleChange}
                 value={value.institution}
                 placeholder="Harvard University"
+                required={true}
               />
             </Form.Group>
           </Col>
@@ -52,6 +60,7 @@ const EducationForm = ({ education, closeForm, ...props }) => {
                 onChange={handleChange}
                 value={value.degree}
                 placeholder="Bachelor of Science"
+                required={true}
               />
             </Form.Group>
           </Col>
@@ -79,6 +88,7 @@ const EducationForm = ({ education, closeForm, ...props }) => {
                 onChange={handleChange}
                 value={value.course}
                 placeholder="Computer Science"
+                required={true}
               />
             </Form.Group>
           </Col>
@@ -91,16 +101,7 @@ const EducationForm = ({ education, closeForm, ...props }) => {
             >
               Cancel
             </Button>
-            <Button
-              onClick={() => {
-                dispatch(educationAction(props.index, value));
-                closeForm();
-              }}
-              type="button"
-              className="btn btn-primary mt-15"
-            >
-              Save
-            </Button>
+            <Button type="submit" className="btn btn-primary mt-15"> Save </Button>
           </Col>
         </Row>
       </Form>

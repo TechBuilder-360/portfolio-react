@@ -74,10 +74,15 @@ form label {
   /* z-index: 5 !important; */
 }
 
-.Accordion_Child span {
+.Accordion_Child  .Span {
   position: relative; 
-  top: 8px; 
+  top: 5px; 
   color: inherit;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 60%;
 }
 
 .Accordion_Body {
@@ -122,5 +127,10 @@ form label {
     background-color: rgb(224, 234, 245);
     border-radius: 5px;
     border: 0px;
+  }
+
+  .Accordion_Child  .Span {
+    top: 8px;
+    width: 80%;
   }
 }

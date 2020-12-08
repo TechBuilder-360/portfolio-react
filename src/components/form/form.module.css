@@ -1,7 +1,7 @@
 .textarea, .multiText {
     background-color: rgb(224, 234, 245);
     padding: 1%;
-    border: 0px;
+    box-sizing: border-box;
     border-radius: 6px;
     width: 100%;
     text-align: right;
@@ -11,10 +11,12 @@
     text-align: left;
     resize: none;
     outline: none;
+    border: 0;
 }
 
 .textarea > span {
     opacity: 0.45;
+    font-size: 10px;
 }
 
 .datePicker{
@@ -38,4 +40,12 @@
 
 .datePicker span{
     color: black;
+}
+
+
+@media (min-width: 760px) {
+
+    .textarea > span {
+        font-size: inherit
+    }
 }

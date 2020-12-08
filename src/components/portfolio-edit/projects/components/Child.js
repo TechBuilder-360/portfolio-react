@@ -24,8 +24,8 @@ const Child = ({ project, ...props }) => {
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <span title={project.title}>{text_truncate(project.title)}</span>
-        <div style={{ float: "Right" }}>
+        <span className={classes.Span} title={project.title}>{project.title}</span>
+        <div style={{ float: "Right"}}>
           <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
           <button
             type="button"

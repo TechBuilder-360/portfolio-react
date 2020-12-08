@@ -12,6 +12,7 @@ const AddProjects = ({ project, closeForm, ...props }) => {
   const content = {
     id: "" || project.id,
     title: "" || project.title,
+    url: "" || project.url,
     description: "" || project.description,
   };
 
@@ -27,6 +28,7 @@ const AddProjects = ({ project, closeForm, ...props }) => {
   return (
     <Container>
       <Form>
+        <Row>
         <Col xs={12} md={6} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Project Title</Form.Label>
@@ -37,11 +39,19 @@ const AddProjects = ({ project, closeForm, ...props }) => {
             />
           </Form.Group>
         </Col>
-
+        <Col xs={12} md={6} className={classes.Mb_5}>
+          <Form.Group>
+            <Form.Label>Project URL</Form.Label>
+            <Form.Control
+              name="url"
+              onChange={handleChange}
+              value={value.url}
+            />
+          </Form.Group>
+        </Col>
         <Col xs={12} md={12} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Project Descriptions</Form.Label>
-
             <TextArea
               name="description"
               value={value.description}
@@ -68,6 +78,7 @@ const AddProjects = ({ project, closeForm, ...props }) => {
             Save
           </Button>
         </Col>
+        </Row>
       </Form>
     </Container>
   );

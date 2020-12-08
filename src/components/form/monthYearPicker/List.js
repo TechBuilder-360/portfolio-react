@@ -7,8 +7,22 @@ export default class List extends Component {
   constructor(props) {
     super(props);
 
+    const splitText = () => {
+      if (this.props.value) {
+        let month = this.pickerLang.indexOf(
+          this.props.value.substring(0, 3)
+        );
+        month = month > -1 ? ++month : 11;
+        let year = Number(this.props.value.substring(5)) || 2017;
+        return { year: year, month: month };
+      }else{
+        const date = new Date()
+        return { year: date.getFullYear(), month: date.getMonth() };
+      }
+    };
+
     this.state = {
-      singleValue: { year: 2010, month: 1 },
+      singleValue: splitText()
     };
 
     this.yearsPanel = React.createRef();
@@ -16,7 +30,6 @@ export default class List extends Component {
   }
 
   componentDidMount() {
-    this.splitText();
   }
 
   render() {
@@ -27,6 +40,13 @@ export default class List extends Component {
         return this.pickerLang[m.month - 1] + ". " + m.year;
       return "?";
     };
+
+    if(!this.props.value){
+      this.props.changeHandler(
+        this.props.name,
+        makeText(this.state.singleValue)
+      );
+    }
 
     const handleClickMonthBox = (e) => {
       this.pickAMonth.current.show();
@@ -52,7 +72,7 @@ export default class List extends Component {
       <div className={classes.edit}>
         <Picker
           ref={this.pickAMonth}
-          years={{ min: 1980, max: new Date().getFullYear() + 8 }}
+          years={{ min: new Date().getFullYear() - 40, max: new Date().getFullYear() + 8 }}
           value={singleValue}
           lang={this.pickerLang}
           onChange={handleAMonthChange}
@@ -86,15 +106,4 @@ export default class List extends Component {
     "Nov",
     "Dec",
   ];
-
-  splitText = () => {
-    if (this.props.value) {
-      let month = this.pickerLang.indexOf(
-        this.props.value.substring(0, 3)
-      );
-      month = month > -1 ? ++month : 11;
-      let year = Number(this.props.value.substring(5)) || 2017;
-      this.setState({ singleValue: { year: year, month: month } });
-    }
-  };
 }
