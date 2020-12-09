@@ -7,9 +7,7 @@ import SkillForms from "./SkillForms";
 const Child = ({ skill, ...props }) => {
 
   const dispatch = useDispatch()
-  const deleteHandler = (index) =>{
-    // dispatch(delete_skill(index))
-  }
+  
 
   return (
     <Card>
@@ -17,12 +15,14 @@ const Child = ({ skill, ...props }) => {
       <Accordion.Toggle as={Button} variant="link" eventKey={props.i}>
         {skill.title}
       </Accordion.Toggle>
-      <Button variant="link" style={{width: "20%", float: "right"}} onClick={deleteHandler}>Delete</Button>
+      <Button variant="link" style={{width: "20%", float: "right"}}
+       onClick={()=>dispatch(delete_skill(skill.id))}>Delete</Button>
     </Card.Header>
     <Accordion.Collapse eventKey={props.i}>
       <Card.Body>
         <SkillForms 
         skill={skill}
+        index={props.index}
         closeForm={null}/>
       </Card.Body>
     </Accordion.Collapse>

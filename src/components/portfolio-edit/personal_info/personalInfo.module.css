@@ -18,8 +18,23 @@ margin-top:20px;
 padding: 7px;
 box-shadow:0px 0px 4px rgba(35, 52, 77, 0.2);
 }
+.icon{
+  color:rgb(235, 194, 194);
+  margin-left: 10px;
+}
 
-
+.li{
+  background-color: rgb(222, 230, 243);
+  list-style:none;
+  display:inline-block;
+  margin: 5px;
+  color:rgb(49, 108, 235);
+  padding: 7px;
+  border-radius:20px;
+}
+.icon:hover{
+  cursor: pointer;
+}
 
 .wrapper {
   margin-top: 30px;
