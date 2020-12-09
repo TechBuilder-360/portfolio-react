@@ -10,7 +10,8 @@ const HomeNavBar = () => {
   const error = useSelector((state) => state.auth.error, shallowEqual);
   return (
     <div>
-      {error ? <Toast headerText="Error" bodyText={error}/> : null}
+      {error ? <Toast headerText={error.name ? error.name : "Authentication Error"} 
+      bodyText={"Authentication Error occured. Reload"}/> : null}
       <nav className={classes.Nav}>
         <img src={logo} className={classes.Logo} alt="xPortfolio"/>
         <div className={classes.Nav_item}>

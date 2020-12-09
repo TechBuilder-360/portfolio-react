@@ -32,12 +32,12 @@ const App = () => {
       <Route path="/signup" exact component={Signup} />
       <Route path="/" exact component={Home} />
       <ProtectedRoute
-        path="/:username/edit"
+        path="/edit"
         exact
         component={ProfileEdit}
       />
       <Route path="/logout" exact component={Logout} />
-      <ProtectedRoute path="/:username" exact component={Dashboard} />
+      <Route path="/:username" exact component={Dashboard} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
