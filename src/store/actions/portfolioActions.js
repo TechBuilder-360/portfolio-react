@@ -90,9 +90,24 @@ export const Skill = () => {
   };
 };
 
-export const Social_Link = () => {
+export const addSocialLink = (data) => {
   return {
-    type: actionType.SOCIAL_LINK,
+    type: actionType.ADD_SOCIAL_LINK,
+    payload : data
+  };
+};
+
+export const editSocialLink = (data) => {
+  return {
+    type: actionType.EDIT_SOCIAL_LINK,
+    payload : data
+  };
+};
+
+export const deleteSocialLink = (id) => {
+  return {
+    type: actionType.DELETE_SOCIAL_LINK,
+    id : id
   };
 };
 

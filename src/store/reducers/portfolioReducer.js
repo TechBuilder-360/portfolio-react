@@ -263,11 +263,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case actionType.SOCIAL_LINK:
-      return {
-        ...state,
-      };
-
     case actionType.AVATAR_UPLOAD:
       return {
         ...state,
@@ -281,15 +276,37 @@ const reducer = (state = initialState, action) => {
       return {
         ...state
     }
-      case actionType.ADD_EDUCATION:
-        return{
-          ...state,
-          education: [...state.education, action.payload]
-        }
-      case actionType.DELETE_EDUCATION:
+    case actionType.ADD_EDUCATION:
+      return{
+        ...state,
+        education: [...state.education, action.payload]
+      }
+    case actionType.DELETE_EDUCATION:
         return{
           ...state,
           education: [...state.education.filter( education => education.id !== action.payload)]
+        }
+    case actionType.ADD_SOCIAL_LINK:
+      return{
+        ...state,
+        social: [...state.social, action.payload]
+      }
+    case actionType.EDIT_SOCIAL_LINK:
+      let newSocial = state.social.map((socialLink) => {
+        if (socialLink.id === action.payload.id){
+          socialLink.label = action.payload.label;
+          socialLink.url = action.payload.url;
+        }
+        return socialLink
+    });
+      return{
+        ...state,
+        social: newSocial
+      }
+    case actionType.DELETE_SOCIAL_LINK:
+        return{
+          ...state,
+          social: [...state.social.filter( link => link.id !== action.id)]
         }
         // case actionType.DELETE_SUCCESS:
           

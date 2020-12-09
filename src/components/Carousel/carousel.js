@@ -21,7 +21,7 @@ const CarouselImage = () => {
           < h1 style={{color:"tomato"}}>H A M Z A T   R I D W A N</h1>
           <p>Graphics designer and illustrator</p>
           <div className="contact" style={{display:"flex",justifyContent:"space-around"}}>
-            <a href="#" className="link" style={{color:"white",marginRight:"35px"}}> <FontAwesomeIcon icon={faEnvelope} style={{marginRight:"5px"}}/> ridwanulllah@gmail.com</a>
+            <a href="#/" className="link" style={{color:"white",marginRight:"35px"}}> <FontAwesomeIcon icon={faEnvelope} style={{marginRight:"5px"}}/> ridwanulllah@gmail.com</a>
             <p> <FontAwesomeIcon icon={faPhone} style={{transform:"rotate(90deg)",marginRight:"5px"}}/> 08093167861</p>
           </div>
           </aside>
@@ -144,47 +144,12 @@ const CarouselImage = () => {
       </div>
     </Carousel.Item> 
   </Carousel>
-
-
-      
     
 )
 }
 
-
-
-
 export default CarouselImage;
 
-
-
-{/* <div style={{ width: "100%", height: "300px", backgroundColor: '#000000' }}>
-        <img className="d-block w-100" src={img1} alt="First slide" />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </div>
-    </Carousel.Item>
-    <Carousel.Item>
-      <div style={{ width: "100%", height: "300px", backgroundColor: '#000000' }}>
-        <img className="d-block w-100" src={img2} alt="Second slide" />
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </div>
-    </Carousel.Item>
-    <Carousel.Item>
-      <div style={{ width: "100%", height: "300px", backgroundColor: '#000000' }}>
-        <img className="d-block w-100" src={img3} alt="Third slide" />
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </div> */}
 
 //       In the video above, you can see when the carousel slides from one image to another, the rounded corners temporarily disappear. Is there anyway to prevent that?
 

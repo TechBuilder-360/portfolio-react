@@ -1,11 +1,14 @@
 import React, {useRef} from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Container from "../../../container/Container";
-import classes from "../personal_info/personalInfo.module.css"
+import classes from "../personal_info/personalInfo.module.css";
+import { useDispatch } from "react-redux";
+import { addSocialLink, editSocialLink } from "../../../store/actions/portfolioActions"
 
 const SocialForm = (props) => {
   const inputLabel = useRef(null);
   const inputLink = useRef(null);
+  const dispatch = useDispatch();
   const socialNetworks = [
     "Facebook",
     "LinkedIn",
@@ -17,8 +20,13 @@ const SocialForm = (props) => {
     <option key={item}>{item}</option>
   ));
   let save = (inputLabel, inputLink) => {
-    console.log("item to be save", inputLabel, inputLink);
-    //Dispatch event to add the parameter to redux
+    if (props.id){
+      dispatch(editSocialLink({id: props.id, label:inputLabel, url:inputLink}))
+    }else{
+      dispatch(addSocialLink({id: Math.random(), label:inputLabel, url:inputLink}))
+    }
+    
+    props.closeForm()
   };
   return (
     <Container>
@@ -36,7 +44,7 @@ const SocialForm = (props) => {
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
               <Form.Label>Link to your page</Form.Label>
-              <Form.Control value={props.link} ref={inputLink} />
+              <Form.Control defaultValue={props.link} ref={inputLink} />
             </Form.Group>
           </Col>
         </Row>
