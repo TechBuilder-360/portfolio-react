@@ -16,7 +16,7 @@ const CarouselImage = () => {
   return (
     <Carousel >
     <Carousel.Item>
-     <div className="container" style={{ width: "100", height: "806px",padding:"10px",fontFamily:"cursive"}}>
+     <div className="container" style={{ width: "100", height: "806px",padding:"10px",fontFamily:"cursive",alignItems:"center"}}>
       <section style={{display:"flex",backgroundColor:"#000000",color:"#ffffff",padding:"15px"}}>
         <aside>
             <div className="box" style={{width:"50px",height:"50px",border:"4px solid tomato",transform:"rotate(45deg)",margin:"30px",borderRadius:"5px",backgroundColor
@@ -24,7 +24,10 @@ const CarouselImage = () => {
         </aside>
         <aside>
           <summary>Hello, my name is</summary>
-          < h1 style={{color:"tomato"}}>H A M Z A T   R I D W A N</h1>
+          <div style={{display:"flex",justifyContent:"space-between"}}>
+          < h2  style={{color:"tomato"}}>H A M Z A T  </h2>
+          <h2 style={{color:"tomato"}}> R I D W A N</h2>
+          </div>
           <p>Graphics designer and illustrator</p>
           <div className="contact" style={{display:"flex",justifyContent:"space-around"}}>
             <a href="#" className="link" style={{color:"white",marginRight:"35px"}}> <FontAwesomeIcon icon={faEnvelope} style={{marginRight:"5px"}}/> ridwanulllah@gmail.com</a>
