@@ -29,10 +29,17 @@
   font-size: 16px;
   line-height: 25px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3f81ab7daecdadc6033a28a99ef4b90aced55ff1
 
 
 @media (min-width: 760px){
+
+  *{
+    font-size: 15px;
+  }
 
   .title {
     text-align: center;

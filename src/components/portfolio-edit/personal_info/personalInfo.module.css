@@ -1,14 +1,126 @@
 .Img {
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-    vertical-align: middle;
+  width: 80px;
+  text-align: center;
+  margin: 5% 0;
+  height: 80px;
+  vertical-align: middle;
 }
 
-.Mt_10 {
-    margin-top: 10px;
+.wrapper {
+  margin-top: 30px;
+  border: 1px solid black;
 }
 
 .Mb_5 {
-    margin-bottom: 5px;
+  margin-bottom: 1%;
+}
+
+.Mb_5 input, .Mb_5 select{
+  height: 35px;
+  background-color: rgb(224, 234, 245);
+  border-radius: 5px;
+  border: 0px;
+}
+
+::placeholder,
+:-ms-input-placeholder {
+  color: rgb(224, 9, 9);
+  padding: 20px;
+}
+
+.Mb_5 input:hover, .Mb_5 select:hover {
+  background-color: rgb(214, 233, 236);
+}
+
+span {
+  color: rgba(5, 81, 194, 0.8);
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+form label {
+  color: rgb(148, 147, 147);
+}
+
+.delete:hover{
+  cursor: pointer;
+}
+
+.drop {
+  display: inline-block;
+  padding: 2%;
+  width: 94%;
+  margin-bottom: 20px;
+  margin-right: 2%;
+  background-color: rgb(253, 247, 247);
+}
+
+.drop:hover {
+    cursor: pointer;
+    
+  }
+
+.Accordion_Parent {
+  margin-bottom: 2%;
+  overflow: visible !important;
+  /* z-index: 2 !important; */
+}
+
+
+.Accordion_Child{
+  overflow: visible !important;
+  /* z-index: 5 !important; */
+}
+
+.Accordion_Child span {
+  position: relative; 
+  top: 8px; 
+  color: inherit;
+}
+
+.Accordion_Body {
+  position: relative !important;
+  top: 0;
+  overflow: auto !important;
+  z-index: 12 !important;
+}
+
+
+/* Desktop view */
+@media (min-width: 760px) {
+.Img {
+  height: 150px;
+  width: 150px;
+}
+
+  .delete {
+    display: none;
+  }
+
+  .container:hover > .delete{
+      display: inline-block;
+  }
+
+  .Accordion_Child {
+    margin-bottom: 1%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .Accordion_Parent{
+    margin-bottom: 2%;
+  }
+
+  .Mb_5 {
+    margin-bottom: 10px;
+  }
+
+  .Mb_5 input, .Mb_5 select{
+    height: 45px;
+    background-color: rgb(224, 234, 245);
+    border-radius: 5px;
+    border: 0px;
+  }
 }

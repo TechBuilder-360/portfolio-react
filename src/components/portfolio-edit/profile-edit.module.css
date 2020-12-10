@@ -1,16 +1,18 @@
 .Wrapper {
     width: 100%;
     text-align: center;
-    border: 1px solid black;
     padding: 8px 1%;
 }
 
 .SubSection {
-    text-align: left;
     display: inline-block;
+    text-align: left;
     width: 100%;
-    margin-top: 20px;
-    border: 1px solid green;
+    box-sizing: border-box;
+    padding: 2%;
+    margin-top: 5px;
+    border: 1px solid rgb(231, 233, 232);
+    box-shadow: 2px 4px 14px rgba(35, 52, 77, 0.2);
 }
 
 .Wrapper section {
@@ -21,7 +23,6 @@
     width: 95%;
     display: inline-block;
     text-align: center;
-    border: 1px solid blue;
 }
 
 
@@ -30,5 +31,14 @@
     
     .Wrapper section {
         width: 80%;
+    }
+
+    .SubSection {
+        width: 80%;
+        margin-top: 10px;
+    }
+
+    .SubSection > p{
+        text-align: left;
     }
 }

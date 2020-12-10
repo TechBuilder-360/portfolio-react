@@ -1,20 +1,21 @@
 import React from "react";
-
+import classes from './carousel.module.css'
 import "bootstrap/dist/css/bootstrap.css";
 import { Carousel } from "react-bootstrap";
-import img1 from "../../images/images.jpeg";
-import img2 from "../../images/images2.jpeg";
-import img3 from "../../images/portfolio.jpeg";
 import image from "../../components/Carousel/Carousel Image/carouselImage.jpg"
 import {faAward, faCog, faEnvelope,faPhone} from "@fortawesome/free-solid-svg-icons"
 
+<<<<<<< HEAD
 import {fontAwesome, FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import styled from 'styled-components'
 
 
+=======
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+>>>>>>> 3f81ab7daecdadc6033a28a99ef4b90aced55ff1
 const CarouselImage = () => {
   return (
-    <Carousel >
+    <Carousel className={classes.Carousel}>
     <Carousel.Item>
      <div className="container" style={{ width: "100", height: "806px",padding:"10px",fontFamily:"cursive",alignItems:"center"}}>
       <section style={{display:"flex",backgroundColor:"#000000",color:"#ffffff",padding:"15px"}}>

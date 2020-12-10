@@ -12,26 +12,18 @@ import NotFound from "./components/NotFound";
 import ProfileEdit from "./components/portfolio-edit/profile-edit";
 import PasswordReset from "./components/authentication/Password/PasswordReset";
 import PasswordChange from "./components/authentication/Password/PasswordChange";
+import Container from "./container/Container";
+import Logout from "./components/authentication/Logout/Logout";
+import ProtectedRoute from './components/authentication/ProtectedRoutes'
 
-function App() {
-  return (
+
+const App = () => {
+  const routes = (
     <Switch style={{ paddingLeft: "0" }}>
-      {/* This view is to be only accessible to authenticated users */}
-      <Route path="/profile/:username/edit" exact component={ProfileEdit} />
-      <Route
-        path="/passwordreset"
-        exact
-        component={PasswordReset}
-      />
-      <Route
-        path="/passwordchange"
-        exact
-        component={PasswordChange}
-      />
-
+      {/* Remove url when authentication is ready */}
+      <Route path="/password/reset" exact component={PasswordReset} />
+      <Route path="/password/change" exact component={PasswordChange} />
       {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
-      <Route path="/profile/:username" exact component={Dashboard} />
-
       <Route path="/faqs" exact component={FAQs} />
       <Route path="/features" exact component={Features} />
       <Route path="/contact" exact component={Contact} />
@@ -39,9 +31,17 @@ function App() {
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/" exact component={Home} />
+      <ProtectedRoute
+        path="/edit"
+        exact
+        component={ProfileEdit}
+      />
+      <Route path="/logout" exact component={Logout} />
+      <Route path="/:username" exact component={Dashboard} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
-}
+  return <Container>{routes}</Container>;
+};
 
 export default App;
