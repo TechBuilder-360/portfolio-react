@@ -2,7 +2,6 @@ import { instanceAxios, imageAxios } from "../../axios-orders";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
-import skill from "../../components/portfolio-edit/Skill/skill";
 
 const userCookie = cookie.load("userData");
 const headerToken = userCookie ? `JWT ${userCookie.token}` : null;
@@ -85,12 +84,6 @@ export const Education = () => {
 export const Projects = () => {
   return {
     type: actionType.PROJECTS,
-  };
-};
-
-export const Skill = () => {
-  return {
-    type: actionType.SKILL,
   };
 };
 
@@ -206,7 +199,13 @@ export const edit_project = (index, content) => {
   };
 };
 
-export const edit_skill = (index,content) => {
+const add_skill = () => {
+  return {
+    type: actionType.SKILL,
+  };
+};
+
+const edit_skill = (index,content) => {
   return {
     type: actionType.EDIT_SKILL,
     payload:{
@@ -216,12 +215,18 @@ export const edit_skill = (index,content) => {
 }
 };
 
-export const delete_skill = (index) => {
+const delete_skill = (index) => {
   return {
     type: actionType.DELETE_SKILL,
     payload: index,
   };
 };
+
+export const skill = (title) => {
+  return dispatch => {
+    // instanceAxios({query.})
+  }
+}
 
 export const edit_subskill = (index,content) => {
   content.id = Math.random() * 100;

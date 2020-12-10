@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Accordion, Button, Col, Form, Row, Container } from "react-bootstrap";
+import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import SubSkill from "./subSkill";
 import classes from "../../personal_info/personalInfo.module.css";
-import { add_skill, edit_skill, edit_subskill } from "../../../../store/actions/portfolioActions";
+// import { add_skill, edit_skill, edit_subskill } from "../../../../store/actions/portfolioActions";
 
 const SkillForms = ({ skill, closeForm, ...props }) => {
   const content = {
@@ -39,7 +39,7 @@ const SkillForms = ({ skill, closeForm, ...props }) => {
             <Button
               variant="success"
               style={{ display: "block", position: "relative", top: "35px" }}
-              onClick={()=> dispatch(edit_skill(props.index,value))}
+              // onClick={()=> dispatch(edit_skill(props.index,value))}
             >
               Enter
             </Button>
@@ -64,7 +64,7 @@ const SkillForms = ({ skill, closeForm, ...props }) => {
             <Button
               variant="success"
               style={{ display: "block", position: "relative", top: "35px" }}
-onClick={()=>dispatch(edit_subskill(props.index,value))}
+// onClick={()=>dispatch(edit_subskill(props.index,value))}
             >
               Enter
             </Button>

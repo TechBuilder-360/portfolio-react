@@ -6,7 +6,7 @@ import classes from "../personal_info/personalInfo.module.css";
 import { connect, useDispatch } from "react-redux";
 import Child from "./components/Child";
 import { Accordion } from "react-bootstrap";
-import SkillForms from "./components/SkillForms";
+import AddForm from './components/addForm';
 
 
 const Skill = (props) => {
@@ -21,12 +21,9 @@ const Skill = (props) => {
   useEffect(() => {
     if (formVisible) {
       setForm(
-        // Use a different form to get the inputted skill and sub-skill
-        // <SkillForms
-        //   index={null}
-        //   skill={{}}
-        //   closeForm={() => handleCloseForm()}
-        // />
+        <AddForm
+          closeForm={() => handleCloseForm()}
+        />
       );
     } else {
       setForm(null);
