@@ -13,217 +13,214 @@ const initialState = {
     date_of_birth: "12/12/2019", // default null
     profession: "Accountant",
     profile_pix: "",
-    phone: '+2347458747777',
+    phone: "+2347458747777",
     // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
     bio:
       "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
-    resume: ""
+    resume: "",
   },
-  skills: [{
-    id: 1,
-    title: "Web development",
-    subskill: [
-    {id: 1,
-      name: "HTML"
+  skills: [
+    {
+      id: 1,
+      title: "Web development",
+      subskill: [
+        { id: 1, name: "HTML" },
+        { id: 2, name: "CSS" },
+        { id: 3, name: "Javascript" },
+        { id: 4, name: "SCSS" },
+        { id: 5, name: "Django" },
+        { id: 6, name: "Spring Boot" },
+      ],
     },
-    {id: 2,
-      name: "CSS"
+    {
+      id: 2,
+      title: "Accounting",
+      subskill: [
+        {
+          id: 1,
+          name: "ICAN",
+        },
+      ],
     },
-    {id: 3,
-      name: "Javascript"
+    {
+      id: 3,
+      title: "Networking",
+      subskill: [
+        {
+          id: 1,
+          name: "COMPTIA N+",
+        },
+        {
+          id: 2,
+          name: "CCNA",
+        },
+        {
+          id: 3,
+          name: "CCNP",
+        },
+      ],
     },
-    {id: 4,
-      name: "SCSS"
+    {
+      id: 4,
+      title: "Project Management",
+      subskill: [
+        {
+          id: 1,
+          name: "SCRUM",
+        },
+        {
+          id: 2,
+          name: "AGILE",
+        },
+        {
+          id: 1,
+          name: "SPSS",
+        },
+      ],
     },
-    {id: 5,
-      name: "Django"
+    {
+      id: 5,
+      title: "Big Data",
+      subskill: [
+        {
+          id: 1,
+          name: "Apache Spark",
+        },
+        {
+          id: 2,
+          name: "Apache Kafka",
+        },
+      ],
     },
-    {id: 6,
-      name: "Spring Boot"
+    {
+      id: 6,
+      title: "Database Management",
+      subskill: [
+        {
+          id: 1,
+          name: "Postgres",
+        },
+        {
+          id: 2,
+          name: "Cassandra",
+        },
+        {
+          id: 3,
+          name: "MYSQL",
+        },
+        {
+          id: 4,
+          name: "MSSQL Server",
+        },
+      ],
     },
-    ]
-  },
-  {
-    id: 2,
-    title: "Accounting",
-    subskill: [
-      {
-        id:1,
-        name: "ICAN"
-      }
-    ]
-  },
-  {
-    id:3,
-    title: "Networking",
-    subskill: [
-      {
-        id:1,
-        name:  "COMPTIA N+"
-      },
-      {
-        id:2,
-        name:  "CCNA"
-      },
-      {
-        id:3,
-        name:  "CCNP"
-      }
-    ]
-  },
-  {
-    id:4,
-    title: "Project Management",
-    subskill: [
-      {
-        id:1,
-        name: "SCRUM"
-      },
-      {
-        id:2,
-        name: "AGILE"
-      },
-      {
-        id:1,
-        name: "SPSS"
-      },
-    ]
-  },
-  {
-    id:5,
-    title: "Big Data",
-    subskill: [
-      {
-        id:1,
-        name: "Apache Spark"
-      },
-      {
-        id:2,
-        name: "Apache Kafka"
-      },
-    ]
-  },
-  {
-    id:6,
-    title: "Database Management",
-    subskill: [
-      {
-        id:1,
-        name: "Postgres"
-      },
-      {
-        id:2,
-        name: "Cassandra"
-      },
-      {
-        id:3,
-        name: "MYSQL"
-      },
-      {
-        id:4,
-        name: "MSSQL Server"
-      },
-    ]
-  }],
+  ],
   education: [
     {
-      id:1,
-      education_type: "Tertiary",
+      id: 1,
       institution: "Lautech",
-      start_year: 2006,
-      end_year: 2011,
+      start_year: "Aug. 2006",
+      end_year: "Dec. 2011",
       degree: "BSc",
       course: "Accounting",
     },
     {
-      id:2,
-      education_type: "Tertiary",
+      id: 2,
       institution: "Manchester University",
-      start_year: 2012,
-      end_year: 2017,
+      start_year: "Nov. 2012",
+      end_year: "Jan. 2017",
       degree: "MBA",
       course: "Accounting",
-      class_of_degree: 'First Class'
     },
     {
-      id:3,
-      education_type: "College",
+      id: 3,
       institution: "Doregos College",
-      start_year: 2000,
-      end_year: 2006,
-      degree: "SSCE"
+      start_year: "Oct. 2000",
+      end_year: "Oct. 2006",
+      degree: "SSCE",
     },
   ],
   experience: [
     {
+      id: 1,
       organization: "Consolidate Insurance",
       description: "Worked as an account manager",
       position: "Accounting managment",
-      start_year: 2016,
-      end_year: 2018,
+      start_year: "Jun. 2016",
+      end_year: "Jun. 2018",
     },
     {
+      id: 2,
       organization: "Access Bank",
       description: "Worked as an account manager",
       position: "Accounting managment",
-      start_year: 2018,
-      end_year: null,
+      start_year: "Oct. 2018",
+      end_year: "Dec. 2019",
     },
   ],
   project: [
     {
+      id: 2,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 2,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 3,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 4,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 5,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 6,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 7,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 8,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
     {
+      id: 9,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/"
+      url: "/",
     },
   ],
   social: [
@@ -237,7 +234,7 @@ const initialState = {
       label: "twitter",
       url: "https://twitter.com",
     },
-  ]
+  ],
 };
 
 const reducer = (state = initialState, action) => {
@@ -245,7 +242,7 @@ const reducer = (state = initialState, action) => {
     case actionType.PERSONAL_INFORMATION:
       return {
         ...state,
-        personal_info: {...state.personal_info, ...action.detail}
+        personal_info: { ...state.personal_info, ...action.detail },
       };
     case actionType.EDUCATION:
       return {
@@ -279,25 +276,73 @@ const reducer = (state = initialState, action) => {
     }
     case actionType.MESSAGES:
       return {
-        ...state
-    }
-      case actionType.ADD_EDUCATION:
-        return{
-          ...state,
-          education: [...state.education, action.payload]
-        }
-      case actionType.DELETE_EDUCATION:
-        return{
-          ...state,
-          education: [...state.education.filter( education => education.id !== action.payload)]
-        }
-        // case actionType.DELETE_SUCCESS:
-          
-        //   return {...state,
-        //   education:[state.education.filter(education=>education.id !==action.payload)]
-        //   }
+        ...state,
+      };
+    case actionType.ADD_EDUCATION:
+      return {
+        ...state,
+        education: [...state.education, action.payload],
+      };
+    case actionType.DELETE_EDUCATION:
+      return {
+        ...state,
+        education: [
+          ...state.education.filter(
+            (education) => education.id !== action.payload
+          ),
+        ],
+      };
+    case actionType.EDIT_EDUCATION:
+      const newData = [...state.education];
+      newData[action.payload.index] = action.payload.content;
+      return {
+        ...state,
+        education: newData,
+      };
+
+    case actionType.ADD_EXPERIENCE:
+      return {
+        ...state,
+        experience: [...state.experience, action.payload],
+      };
+    case actionType.DELETE_EXPERIENCE:
+      return {
+        ...state,
+        experience: [
+          ...state.experience.filter(
+            (experience) => experience.id !== action.payload
+          ),
+        ],
+      };
+    case actionType.EDIT_EXPERIENCE:
+      const newDataExp = [...state.experience];
+      newDataExp[action.payload.index] = action.payload.content;
+      return {
+        ...state,
+        experience: newDataExp,
+      };
+
+    case actionType.ADD_PORJECT:
+      return {
+        ...state,
+        project: [...state.project, action.payload],
+      };
+    case actionType.DELETE_PROJECT:
+      return {
+        ...state,
+        project: [
+          ...state.project.filter((project) => project.id !== action.payload),
+        ],
+      };
+    case actionType.EDIT_PROJECT:
+      const newDataPro = [...state.project];
+      newDataPro[action.payload.index] = action.payload.content;
+      return {
+        ...state,
+        project: newDataPro,
+      };
     default:
-    return state;
+      return state;
   }
 };
 

@@ -1,0 +1,9 @@
+.edit{
+    padding: 8px;
+    border: 1px solid rgb(212, 212, 212);
+}
+.edit:hover{
+    cursor: pointer;
+    background-color: rgb(242, 247, 245);
+    border: 0px;
+}
