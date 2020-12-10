@@ -4,15 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Carousel } from "react-bootstrap";
 import image from "../../components/Carousel/Carousel Image/carouselImage.jpg"
 import {faAward, faCog, faEnvelope,faPhone} from "@fortawesome/free-solid-svg-icons"
-
-<<<<<<< HEAD
-import {fontAwesome, FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import styled from 'styled-components'
-
-
-=======
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
->>>>>>> 3f81ab7daecdadc6033a28a99ef4b90aced55ff1
 const CarouselImage = () => {
   return (
     <Carousel className={classes.Carousel}>
