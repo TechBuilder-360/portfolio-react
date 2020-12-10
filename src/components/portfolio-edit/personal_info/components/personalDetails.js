@@ -118,7 +118,7 @@ const PersonalDetails = ({information}) => {
         <Col xs={12} md={12} className={classes.Mb_5}>
         <Button
           type="submit"
-          variant="outline-dark"
+          variant="light"
         >
           Save
         </Button>

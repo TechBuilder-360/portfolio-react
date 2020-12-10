@@ -43,9 +43,8 @@ const Education = (props) => {
       i={i+1}
       index={i}
       key={i}
-      onClick={(e)=>props.delete_success(i)}
     />
-  ));
+  ))
 
   return (
     <div className={style.SubSection}>

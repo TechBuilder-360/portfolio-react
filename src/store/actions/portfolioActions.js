@@ -87,12 +87,6 @@ export const Projects = () => {
   };
 };
 
-export const Skill = () => {
-  return {
-    type: actionType.SKILL,
-  };
-};
-
 export const Social_Link = () => {
   return {
     type: actionType.SOCIAL_LINK,
@@ -279,5 +273,55 @@ export const edit_project = (index, content) => {
       index: index,
       content: content,
     },
+  };
+};
+
+const add_skill = () => {
+  return {
+    type: actionType.SKILL,
+  };
+};
+
+const edit_skill = (index,content) => {
+  return {
+    type: actionType.EDIT_SKILL,
+    payload:{
+    index:index,
+    content:content,
+  }
+}
+};
+
+const delete_skill = (index) => {
+  return {
+    type: actionType.DELETE_SKILL,
+    payload: index,
+  };
+};
+
+export const skill = (title) => {
+  return dispatch => {
+    // instanceAxios({query.})
+  }
+}
+
+export const edit_subskill = (index,content) => {
+  content.id = Math.random() * 100;
+  return {
+    type: actionType.EDIT_SUBSKILL,
+    payload: 
+    {
+      index:index,
+      content:content,
+    }
+  };
+};
+
+export const delete_subskill = (index,id) => {
+  return {
+    type: actionType.DELETE_SUBSKILL,
+    payload: {index:index,
+    id:id
+    }
   };
 };

@@ -341,6 +341,46 @@ const reducer = (state = initialState, action) => {
         ...state,
         project: newDataPro,
       };
+
+      case actionType.EDIT_SKILL:
+        const newDataPro1 = [...state.skills];
+        newDataPro1[action.payload.index].title = action.payload.content.title;
+    
+      return {
+        ...state,
+        skills: newDataPro1,
+      };
+
+    case actionType.DELETE_SKILL:
+      return {
+        ...state,
+        skills: [
+          ...state.skills.filter(
+            (skills) => skills.id !== action.payload
+          ),
+        ],
+      };
+
+      case actionType.EDIT_SUBSKILL:
+        const newDataPro2 = [...state.skills];
+        newDataPro2[action.payload.index].subskill =[...state.skills[action.payload.index].subskill,action.payload.content];
+      return {
+        ...state,
+        skills:newDataPro2,
+      };
+
+    case actionType.DELETE_SUBSKILL:
+      return {
+        ...state,
+        skills:[
+          ...state.skills,
+       /*   subskill:[
+   ...state.skills[action.payload.index].subskill.filter((skill) => 
+          skill.id !== action.payload.id
+          ),
+        ],*/
+      ]
+      };
     default:
       return state;
   }
