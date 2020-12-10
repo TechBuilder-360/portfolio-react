@@ -73,6 +73,7 @@ export const experience = detail => {
     query: `mutation experience{
       experience(
         id: "${detail.id}",
+        position: "${detail.position}",
         description: "${detail.description}",
         startYear: "${detail.start_year}",
         endYear: "${detail.end_year}",
