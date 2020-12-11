@@ -7,7 +7,7 @@ import Child from "./components/Child";
 import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import AddProject from "./components/addProjects"
-import { delete_project } from "../../../store/actions/portfolioActions";
+import { deleteProject } from "../../../store/actions/portfolioActions";
 
 
 const Project = (props) => {
@@ -31,14 +31,14 @@ const Project = (props) => {
   }, [formVisible]);
 
   function handleDelete(index) {
-      dispatch(delete_project(index))
+      dispatch(deleteProject(index))
   }
 
   // Populate accordion children with existing record
   const children = props.project.map((proj, i) => (
     <Child
       project={proj}
-      delete={(i)=> handleDelete(i) }
+      delete={(i)=> handleDelete(proj.id) }
       closeForm={()=>setFormVisible(false)}
       i={i+1}
       index={i}

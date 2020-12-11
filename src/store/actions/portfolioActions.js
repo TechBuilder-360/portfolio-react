@@ -142,7 +142,7 @@ export const educationAction = (index, edu) => {
 };
 
 export const delete_education = (index) => {
-  return dispatch => {
+  return (dispatch) => {
     instanceAxios({
       data: query.delete_education(index),
       headers: {
@@ -151,10 +151,9 @@ export const delete_education = (index) => {
     }).then((responce) => {
       if (!responce.data.errors) {
         let res = responce.data.data.removeEducation;
-        if(res.ok){
+        if (res.ok) {
           dispatch(deleteEducation(index));
-        }
-        else{
+        } else {
           console.log("Failed");
           // DISPATCH Message action
           // dispatch(deleteExperience_failed())
@@ -206,7 +205,7 @@ const deleteExperience = (index) => {
 };
 
 export const delete_experience = (index) => {
-  return dispatch => {
+  return (dispatch) => {
     instanceAxios({
       data: query.delete_experience(index),
       headers: {
@@ -215,11 +214,10 @@ export const delete_experience = (index) => {
     }).then((responce) => {
       if (!responce.data.errors) {
         let res = responce.data.data.removeExperience;
-        if(res.ok){
+        if (res.ok) {
           dispatch(deleteExperience(index));
-        }
-        else{
-          console.log("Failed");
+        } else {
+          console.log(res.warning);
           // DISPATCH Message action
           // dispatch(deleteExperience_failed())
         }
@@ -241,55 +239,86 @@ const edit_experience = (index, content) => {
   };
 };
 
-export const add_project = (content) => {
+const add_project = (content) => {
   return {
     type: actionType.ADD_PORJECT,
     payload: content,
   };
 };
 
-export const projectAction = (index, proj) => {
-  return (dispatch) => {
-    if (proj.id) {
-      dispatch(edit_project(index, proj));
-    } else {
-      proj.id = Math.random() * 100;
-      dispatch(add_project(proj));
-    }
+const edit_project = (content) => {
+  return {
+    type: actionType.EDIT_PROJECT,
+    content: content,
   };
 };
 
-export const delete_project = (index) => {
+const delete_project = (index) => {
   return {
     type: actionType.DELETE_PROJECT,
     payload: index,
   };
 };
 
-export const edit_project = (index, content) => {
-  return {
-    type: actionType.EDIT_PROJECT,
-    payload: {
-      index: index,
-      content: content,
-    },
+export const projectAction = (request) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.mutate_project(request),
+      headers: {
+        Authorization: headerToken,
+      },
+    })
+      .then((responce) => {
+        if (!responce.data.errors) {
+          let res = responce.data.data.project;
+          if (res.created) {
+            dispatch(add_project({ ...request, id: res.project.id }));
+          } else {
+            dispatch(edit_project(request));
+          }
+        }
+        console.log(responce.data.errors);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
-const add_skill = () => {
+export const deleteProject = (index) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.remove_project(index),
+      headers: {
+        Authorization: headerToken,
+      },
+    }).then((responce) => {
+      if (!responce.data.errors) {
+        let res = responce.data.data.removeProject;
+        if (res.ok) {
+          dispatch(delete_project(index));
+        } else {
+          console.log(res.warning);
+        }
+      } else {
+        console.log(responce.data.errors);
+      }
+    });
+  };
+};
+
+const add_skill = (id, title) => {
   return {
     type: actionType.SKILL,
+    skill: { title, id, subskill: [] },
   };
 };
 
-const edit_skill = (index,content) => {
+const edit_skill = (content) => {
   return {
     type: actionType.EDIT_SKILL,
-    payload:{
-    index:index,
-    content:content,
-  }
-}
+    payload: { ...content },
+  };
 };
 
 const delete_skill = (index) => {
@@ -299,29 +328,111 @@ const delete_skill = (index) => {
   };
 };
 
-export const skill = (title) => {
-  return dispatch => {
-    // instanceAxios({query.})
-  }
-}
-
-export const edit_subskill = (index,content) => {
-  content.id = Math.random() * 100;
-  return {
-    type: actionType.EDIT_SUBSKILL,
-    payload: 
-    {
-      index:index,
-      content:content,
-    }
+export const skillAction = (request) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.mutate_skill(request),
+      headers: {
+        Authorization: headerToken,
+      },
+    })
+      .then((responce) => {
+        if (!responce.data.errors) {
+          let res = responce.data.data.skill;
+          if (res.created) {
+            dispatch(add_skill(res.skill.id, request.title));
+          } else {
+            dispatch(edit_skill({ ...request }));
+          }
+        } else {
+          console.log(responce.data.errors);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
-export const delete_subskill = (index,id) => {
+export const removeSkill = (id) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.delete_skill(id),
+      headers: {
+        Authorization: headerToken,
+      },
+    }).then((responce) => {
+      if (!responce.data.errors) {
+        let res = responce.data.data.removeSkill;
+        if (res.ok) {
+          dispatch(delete_skill(id));
+        } else {
+          console.log(res.warning);
+        }
+      } else {
+        console.log("Error: " + responce.data.errors);
+      }
+    });
+  };
+};
+
+const add_subskill = (index, req) => {
+  return {
+    type: actionType.SUBSKILL,
+    payload: { index, req },
+  };
+};
+
+export const subskillAction = (index, name) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.add_subskill(index, name),
+      headers: {
+        Authorization: headerToken,
+      },
+    })
+      .then((responce) => {
+        if (!responce.data.errors) {
+          let res = responce.data.data.subSkill;
+          if (res.created) {
+            dispatch(add_subskill(index, { name, id: res.subSkill.id }));
+          }
+        } else {
+          console.log(responce.data.errors);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const delete_subskill = (skillId, id) => {
   return {
     type: actionType.DELETE_SUBSKILL,
-    payload: {index:index,
-    id:id
-    }
+    payload: { skillId, id },
+  };
+};
+
+export const deleteSubskillAction = (skillId, id) => {
+  return (dispatch) => {
+    dispatch(delete_subskill(skillId, id));
+    instanceAxios({
+      data: query.remove_subskill(id),
+      headers: {
+        Authorization: headerToken,
+      },
+    }).then((responce) => {
+      if (!responce.data.errors) {
+        let res = responce.data.data.removeSubskill;
+        if (res.ok) {
+          dispatch(delete_subskill(id));
+        } else {
+          console.log(res.warning);
+        }
+      } else {
+        console.log("Error: " + responce.data.errors);
+      }
+    });
   };
 };

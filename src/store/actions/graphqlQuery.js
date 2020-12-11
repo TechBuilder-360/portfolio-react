@@ -1,5 +1,5 @@
-export const googleSignin = token => {
-    return JSON.stringify({
+export const googleSignin = (token) => {
+  return JSON.stringify({
     query: `mutation googleSignin {
         socialAuth(accessToken: "${token}", provider: "google-oauth2") {
           social {
@@ -11,21 +11,19 @@ export const googleSignin = token => {
         }
       }`,
   });
-}
+};
 
-
-export const uploadAvatar = file => {
+export const uploadAvatar = (file) => {
   return JSON.stringify({
     query: `mutation avatar {
       upload(file: ${file}) {
         success
       }
-    }`
-  })
-}
+    }`,
+  });
+};
 
-
-export const edit_personalinfo = detail => {
+export const edit_personalinfo = (detail) => {
   return JSON.stringify({
     query: `mutation personal_info_change {
       personalInfo(
@@ -38,17 +36,16 @@ export const edit_personalinfo = detail => {
           gender: "${detail.gender}",
           languages: "${detail.languages}",
           location: "${detail.location}",
-          dateOfBirth: "${detail.date_of_birth.toISOString().split('T')[0]}",
+          dateOfBirth: "${detail.date_of_birth.toISOString().split("T")[0]}",
           phone: "${detail.phone}"
         ) {
         ok
       }
-    }`
-});
-}
+    }`,
+  });
+};
 
-
-export const education = detail => {
+export const education = (detail) => {
   return JSON.stringify({
     query: `mutation education {
       education(
@@ -64,11 +61,11 @@ export const education = detail => {
         created
       }
     }
-    `
-  })
-}
+    `,
+  });
+};
 
-export const experience = detail => {
+export const experience = (detail) => {
   return JSON.stringify({
     query: `mutation experience{
       experience(
@@ -85,11 +82,11 @@ export const experience = detail => {
         created
       }
     }
-    `
-  })
-}
+    `,
+  });
+};
 
-export const delete_experience = id => {
+export const delete_experience = (id) => {
   return JSON.stringify({
     query: `mutation removeExperience{
           removeExperience(id: ${id}){
@@ -97,11 +94,11 @@ export const delete_experience = id => {
             message
           }
         }
-    `
-  })
-}
+    `,
+  });
+};
 
-export const delete_education = id => {
+export const delete_education = (id) => {
   return JSON.stringify({
     query: `mutation removeEducation{
       removeEducation(id: ${id}){
@@ -109,6 +106,94 @@ export const delete_education = id => {
         message
       }
     }
-    `
-  })
-}
+    `,
+  });
+};
+
+export const mutate_skill = (req) => {
+  return JSON.stringify({
+    query: `mutation Skill {
+      skill(
+        title: "${req.title}", 
+        id: "${req.id}") {
+          created
+          skill {
+            id
+          }
+        }
+      }
+    `,
+  });
+};
+
+export const delete_skill = (id) => {
+  return JSON.stringify({
+    query: `mutation removeSkill {
+      removeSkill(skillId: "${id}") {
+        ok
+        warning
+      }
+    }
+    `,
+  });
+};
+
+export const mutate_project = (req) => {
+  return JSON.stringify({
+    query: `mutation project{
+      project(
+        description: "${req.description}",
+        projectUrl: "${req.url}",
+        title: "${req.title}",
+        id: "${req.id}"){
+        created
+        project{
+          id
+        }
+      }
+    }
+    `,
+  });
+};
+
+export const remove_project = (id) => {
+  return JSON.stringify({
+    query: `mutation removeProject{
+      removeProject(projectId: "${id}"){
+        ok
+        warning
+      }
+    }
+    `,
+  });
+};
+
+export const subSkill = (skill, title) => {
+  return JSON.stringify({
+    query: `mutation subSkill{
+      subSkill(
+        skill: "${skill}",
+        title: "${title}"
+      ){
+        warning
+        created
+        subSkill{
+          id
+        }
+      }
+    }
+    `,
+  });
+};
+
+export const remove_subskill = (id) => {
+  return JSON.stringify({
+    query: `mutation removeSubSkill {
+      removeSubskill(id: "${id}"){
+        ok
+        warning
+      }
+    }
+    `,
+  });
+};

@@ -259,6 +259,7 @@ const reducer = (state = initialState, action) => {
     case actionType.SKILL:
       return {
         ...state,
+        skills: [...state.skills, action.skill],
       };
     case actionType.SOCIAL_LINK:
       return {
@@ -268,12 +269,12 @@ const reducer = (state = initialState, action) => {
     case actionType.AVATAR_UPLOAD:
       return {
         ...state,
-        personal_info: {...state.personal_info, profile_pix: action.imageURL}
-    }
+        personal_info: { ...state.personal_info, profile_pix: action.imageURL },
+      };
     case actionType.AVATAR_UPLOAD_FAILED:
       return {
-        ...state
-    }
+        ...state,
+      };
     case actionType.MESSAGES:
       return {
         ...state,
@@ -336,16 +337,16 @@ const reducer = (state = initialState, action) => {
       };
     case actionType.EDIT_PROJECT:
       const newDataPro = [...state.project];
-      newDataPro[action.payload.index] = action.payload.content;
+      newDataPro[action.content.id] = action.content;
       return {
         ...state,
         project: newDataPro,
       };
 
-      case actionType.EDIT_SKILL:
-        const newDataPro1 = [...state.skills];
-        newDataPro1[action.payload.index].title = action.payload.content.title;
-    
+    case actionType.EDIT_SKILL:
+      const newDataPro1 = [...state.skills];
+      newDataPro1[action.payload.index].title = action.payload.content.title;
+
       return {
         ...state,
         skills: newDataPro1,
@@ -355,31 +356,26 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         skills: [
-          ...state.skills.filter(
-            (skills) => skills.id !== action.payload
-          ),
+          ...state.skills.filter((skills) => skills.id !== action.payload),
         ],
       };
 
-      case actionType.EDIT_SUBSKILL:
-        const newDataPro2 = [...state.skills];
-        newDataPro2[action.payload.index].subskill =[...state.skills[action.payload.index].subskill,action.payload.content];
+    case actionType.SUBSKILL:
+      const skills = [...state.skills];
+      let i = skills.findIndex((skill) => skill.id == action.payload.index);
+      skills[i].subskill.push(action.payload.req);
       return {
         ...state,
-        skills:newDataPro2,
+        skills: skills,
       };
 
     case actionType.DELETE_SUBSKILL:
+      const skills = [...state.skills];
+      let i = skills.findIndex((skill) => skill.id == action.payload.index);
+      skills[i].subskill.push(action.payload.req);
       return {
         ...state,
-        skills:[
-          ...state.skills,
-       /*   subskill:[
-   ...state.skills[action.payload.index].subskill.filter((skill) => 
-          skill.id !== action.payload.id
-          ),
-        ],*/
-      ]
+        skills: skills,
       };
     default:
       return state;

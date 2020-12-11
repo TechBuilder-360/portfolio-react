@@ -6,7 +6,7 @@ import classes from "../personal_info/personalInfo.module.css";
 import { connect, useDispatch } from "react-redux";
 import Child from "./components/Child";
 import { Accordion } from "react-bootstrap";
-import AddForm from './components/addForm';
+import SkillForm from './components/skillForm';
 
 
 const Skill = (props) => {
@@ -14,15 +14,12 @@ const Skill = (props) => {
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
 
-  const handleCloseForm = () => {
-    setFormVisible(false);
-  };
-
   useEffect(() => {
     if (formVisible) {
       setForm(
-        <AddForm
-          closeForm={() => handleCloseForm()}
+        <SkillForm
+        skill={{}}
+          closeForm={() => setFormVisible(false)}
         />
       );
     } else {

@@ -39,7 +39,7 @@ const Experience = (props) => {
   const children = props.experience.map((expp, i) => (
     <Child
       experience={expp}
-      delete={(i) => handleDelete(i)}
+      delete={(i) => handleDelete(expp.id)}
       closeForm={() => setFormVisible(false)}
       i={i + 1}
       index={i}

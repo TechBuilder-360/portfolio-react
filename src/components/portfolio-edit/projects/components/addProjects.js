@@ -10,10 +10,10 @@ import { projectAction } from "../../../../store/actions/portfolioActions";
 
 const AddProjects = ({ project, closeForm, ...props }) => {
   const content = {
-    id: "" || project.id,
-    title: "" || project.title,
-    url: "" || project.url,
-    description: "" || project.description,
+    id: project.id || "",
+    title: project.title || "",
+    url: project.url || "",
+    description: project.description || "",
   };
 
   const dispatch = useDispatch();
@@ -22,12 +22,19 @@ const AddProjects = ({ project, closeForm, ...props }) => {
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
-  const onChangeHandler = (name, value) => {
-    setValue({ ...value, [name]: value });
+  const onChangeHandler = (name, txt) => {
+    setValue({ ...value, [name]: txt });
   };
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(projectAction(value));
+    closeForm();
+  }
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={submitHandler}>
         <Row>
         <Col xs={12} md={6} className={classes.Mb_5}>
           <Form.Group>
@@ -36,6 +43,7 @@ const AddProjects = ({ project, closeForm, ...props }) => {
               name="title"
               onChange={handleChange}
               value={value.title}
+              required={true}
             />
           </Form.Group>
         </Col>
@@ -43,9 +51,11 @@ const AddProjects = ({ project, closeForm, ...props }) => {
           <Form.Group>
             <Form.Label>Project URL</Form.Label>
             <Form.Control
+              type="url"
               name="url"
               onChange={handleChange}
               value={value.url}
+              required={true}
             />
           </Form.Group>
         </Col>
@@ -55,6 +65,7 @@ const AddProjects = ({ project, closeForm, ...props }) => {
             <TextArea
               name="description"
               value={value.description}
+              required={true}
               changed={(name, value) => onChangeHandler(name, value)}
             />
           </Form.Group>
@@ -68,11 +79,7 @@ const AddProjects = ({ project, closeForm, ...props }) => {
             Cancel
           </Button>
           <Button
-            onClick={() => {
-              dispatch(projectAction(props.index, value));
-              closeForm();
-            }}
-            type="button"
+            type="submit"
             className="btn btn-primary mt-15"
           >
             Save
