@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionType";
 import {instanceAxios} from '../../axios-orders';
 import * as query from './graphqlQuery';
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
 
 export const authStart = () => {
   return {

@@ -19,20 +19,21 @@
   height: 5px;
   border-radius: 50%;
   background-color: grey;
+  margin: 5px;
+
 }
 .Layout_Aside__1H6uu > .slide{
- box-shadow: 17px 8px 16px rgba(0, 0, 0, 0.25);}
-
-
+ box-shadow: 17px 8px 16px rgba(0, 0, 0, 0.25);
+}
+.carousel .carousel-indicators{
+margin-bottom: -3px;
+}
 .title {
   font-weight: 500;
   font-size: 16px;
   line-height: 25px;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 3f81ab7daecdadc6033a28a99ef4b90aced55ff1
 
 
 @media (min-width: 760px){
