@@ -1,4 +1,4 @@
-Might need to add dependency, if using post request doesn't workout well
+nMight need to add dependency, if using post request doesn't workout well
 "graphql": "^15.3.0",
 "apollo-boost": "^0.4.9",
 "react-apollo": "^3.1.5"
