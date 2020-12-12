@@ -1,32 +1,36 @@
 import React from "react";
-import classes from './carousel.module.css'
+import classes from "./carousel.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Carousel } from "react-bootstrap";
-import image from "../../components/Carousel/Carousel Image/carouselImage.jpg"
-import {faAward, faCog, faEnvelope,faPhone} from "@fortawesome/free-solid-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import FirstCarouselImage from './Carousel Image/ffirstCarouselSlide.PNG'
-import SecondCarouselImage from './Carousel Image/secondCarouselSlide.PNG'
-
+import FirstCarouselImage from "./Carousel Image/ffirstCarouselSlide.PNG";
+import SecondCarouselImage from "./Carousel Image/secondCarouselSlide.PNG";
 
 const CarouselImage = () => {
   return (
     <Carousel className={classes.Carousel}>
-    <Carousel.Item>
-                 <img className="d-block w-100" src={FirstCarouselImage} alt="First slide" style={{width:"348px",height:"700px"}} />
-  </Carousel.Item>
-  <Carousel.Item>
-                <img className="d-block w-100" src={SecondCarouselImage} alt="First slide" style={{width:"348px",height:"700px"}} />
-  </Carousel.Item>  
-  </Carousel>  
-    )
-}
+      <Carousel.Item>
+        <img
+          src={FirstCarouselImage}
+          alt="First slide"
+          className="d-block w-100"
+        />
+        <p>First Slide</p>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          src={SecondCarouselImage}
+          alt="First slide"
+          className="d-block w-100"
+        />
+         <p>Second Slide</p>
+      </Carousel.Item>
+    </Carousel>
+  );
+};
 export default CarouselImage;
 
-
-
-
-{/* <div className="container" style={{ width: "100", height: "806px", backgroundColor: '#ffffff',padding:"2rem" }}>
+{
+  /* <div className="container" style={{ width: "100", height: "806px", backgroundColor: '#ffffff',padding:"2rem" }}>
 <section className="imageSection" style={{marginBottom:"8rem"}}>
   <img className="d-block w-100" src={image} alt="First slide" style={{width:"348px",height:"274px"}} />
   </section>
@@ -35,10 +39,11 @@ export default CarouselImage;
       quaerat, suscipit exercitationem totam. Ab tenetur recusandae veritatis dolore laborum quaerat ratione quis commodi hic reiciendis animi  </p>
   </section>
 
-</div> */}
+</div> */
+}
 
-
-{/* <div style={{ width: "100%", height: "300px", backgroundColor: '#000000' }}>
+{
+  /* <div style={{ width: "100%", height: "300px", backgroundColor: '#000000' }}>
         <img className="d-block w-100" src={img1} alt="First slide" />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -64,7 +69,8 @@ export default CarouselImage;
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
         </Carousel.Caption>
-      </div> */}
+      </div> */
+}
 
 //       In the video above, you can see when the carousel slides from one image to another, the rounded corners temporarily disappear. Is there anyway to prevent that?
 
@@ -125,7 +131,8 @@ export default CarouselImage;
 //         </a>
 //     </div>
 
-{/* <div className="container" style={{ width: "100%",padding:"10px",fontFamily:"cursive",alignItems:"center"}}>
+{
+  /* <div className="container" style={{ width: "100%",padding:"10px",fontFamily:"cursive",alignItems:"center"}}>
 <section style={{display:"flex",backgroundColor:"#000000",color:"#ffffff",padding:"15px"}}>
   <aside>
      <div className="box" style={{width:"50px",height:"50px",border:"4px solid tomato",transform:"rotate(45deg)",margin:"30px",borderRadius:"5px",backgroundColor
@@ -248,11 +255,5 @@ export default CarouselImage;
   
   </p>
 </section>
-</div> */}
-
-
-
- 
-
-
-
+</div> */
+}
