@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import style from "../profile-edit.module.css";
 import classes from "../personal_info/personalInfo.module.css";
 import Child from "./child";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import SocialForm from "./socialForm";
 import { Accordion } from "react-bootstrap";
 import {deleteSocialLink} from "../../../store/actions/portfolioActions";
 
 const Social = () => {
   const dispatch = useDispatch();
-  const socialLinks = useSelector((state) => state.portfolio.social, shallowEqual);
+  let socialLinks = useSelector((state) => state.portfolio.social);
 
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);

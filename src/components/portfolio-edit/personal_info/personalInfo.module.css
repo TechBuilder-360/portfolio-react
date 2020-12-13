@@ -62,8 +62,29 @@ form label {
     
   }
 
-.Accordion_Parent, .Accordion_Child {
+.Accordion_Parent {
   margin-bottom: 2%;
+  overflow: visible !important;
+  /* z-index: 2 !important; */
+}
+
+
+.Accordion_Child{
+  overflow: visible !important;
+  /* z-index: 5 !important; */
+}
+
+.Accordion_Child span {
+  position: relative; 
+  top: 8px; 
+  color: inherit;
+}
+
+.Accordion_Body {
+  position: relative !important;
+  top: 0;
+  overflow: auto !important;
+  z-index: 12 !important;
 }
 
 
@@ -84,6 +105,8 @@ form label {
 
   .Accordion_Child {
     margin-bottom: 1%;
+    position: absolute;
+    z-index: 1;
   }
 
   .Accordion_Parent{

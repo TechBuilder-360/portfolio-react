@@ -118,13 +118,6 @@ const add_education = (content) => {
   };
 };
 
-export const AddEducation = content =>{
-    return dispatch => {
-        content.id = Math.random()*100
-        dispatch(add_education(content))
-    }
-}
-
 export const delete_education = (index) => {
   return {
     type: actionType.DELETE_EDUCATION,
@@ -132,10 +125,102 @@ export const delete_education = (index) => {
   };
 };
 
+const edit_education = (index, content) => {
+  return {
+    type: actionType.EDIT_EDUCATION,
+    payload: {
+      'index':index,
+      'content':content
+    }
+  };
+};
 
-// export const delete_success = (id) => {
-//   return {
-//     type: actionType.DELETE_SUCCESS,
-//     payload: id,
-//   };
-// };
+export const educationAction = (index, edu) => {
+  return dispatch => {
+    if(edu.id){
+      dispatch(edit_education(index, edu))
+  }
+    else{
+    edu.id = Math.random()*100
+      dispatch(add_education(edu))
+    }  
+}
+}
+
+export const add_experience = (content) => {
+  return {
+    type: actionType.ADD_EXPERIENCE,
+    payload: content,
+  };
+};
+
+export const experienceAction = (index, expp) => {
+  return dispatch => {
+    if(expp.id){
+      dispatch(edit_experience(index, expp))
+  }
+    else{
+    expp.id = Math.random()*100
+      dispatch(add_experience(expp))
+    }  
+}
+
+}
+
+export const delete_experience = (index) => {
+  return {
+    type: actionType.DELETE_EXPERIENCE,
+    payload: index,
+  };
+};
+
+export const edit_experience = (index, content) => {
+  return {
+    type: actionType.EDIT_EXPERIENCE,
+    payload: {
+      'index':index,
+      'content':content
+    }
+  };
+};
+
+
+export const add_project = (content) => {
+  content.id = Math.random()*100
+  return {
+    type: actionType.ADD_PORJECT,
+    payload: content,
+  };
+};
+
+export const projectAction = (index, proj) => {
+  return dispatch => {
+    if(proj.id){
+      dispatch(edit_project(index, proj))
+  }
+    else{
+    proj.id = Math.random()*100
+      dispatch(add_project(proj))
+    }  
+}
+
+}
+
+export const delete_project = (index) => {
+  return {
+    type: actionType.DELETE_PROJECT,
+    payload: index,
+  };
+};
+
+export const edit_project = (index,content) => {
+  return {
+    type: actionType.EDIT_PROJECT,
+    payload: {
+      'index':index,
+      'content':content
+    }
+  };
+};
+
+

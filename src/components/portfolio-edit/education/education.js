@@ -15,11 +15,16 @@ const Education = (props) => {
   const dispatch = useDispatch()
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
+
+
+  const handleCloseForm = () => {
+    setFormVisible(false)
+  }
   
 
   useEffect(() => {
     if(formVisible){
-      setForm(<EducationForm closeForm={()=>setFormVisible(false)}/>)
+      setForm(<EducationForm index={null} education={{}} closeForm={()=>handleCloseForm()}/>)
     }else{
       setForm(null)
     }
@@ -36,7 +41,7 @@ const Education = (props) => {
       delete={(i)=> handleDelete(i) }
       closeForm={()=>setFormVisible(false)}
       i={i+1}
-      
+      index={i}
       key={i}
       onClick={(e)=>props.delete_success(i)}
     />
@@ -49,8 +54,8 @@ const Education = (props) => {
       <Accordion className={classes.Accordion_Parent}>
         {children}
         </Accordion>
-      {form}
-      <span onClick={()=>setFormVisible(true)}>
+        {form}
+      <span style={{marginTop: "2%"}} onClick={()=>setFormVisible(true)}>
         <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
       </span>
     </div>

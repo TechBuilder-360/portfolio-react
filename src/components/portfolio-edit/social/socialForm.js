@@ -27,6 +27,7 @@ const SocialForm = (props) => {
     }
     
     props.closeForm()
+    
   };
   return (
     <Container>

@@ -12,13 +12,13 @@ import 'bootstrap/dist/js/bootstrap.js';
 import portfolioReducer from './store/reducers/portfolioReducer';
 import authReducer from './store/reducers/auth';
 import thunk from 'redux-thunk';
+import 'react-month-picker/css/month-picker.css';
 
 const rootReducer = combineReducers({
   portfolio: portfolioReducer,
   auth: authReducer
 })
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose; 
-
+const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 ReactDOM.render(

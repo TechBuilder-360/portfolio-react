@@ -5,7 +5,6 @@ import DatePicker from 'react-date-picker';
 import Proptypes from 'prop-types'
 
 
-
 const InputDate = (props) => {
     let init = props.value || null
     const [value, onChange] = useState(new Date(init));

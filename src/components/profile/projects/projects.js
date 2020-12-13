@@ -4,14 +4,7 @@ import { connect } from "react-redux";
 import classes from "./projects.module.css";
 import Container from "../../../container/Container";
 import ProjectModal from "./project-modal";
-
-function text_truncate(str) {
-  let [maxLength, ending] = [50, "..."];
-  if (str.length > maxLength) {
-    return str.substring(0, maxLength).concat(ending);
-  }
-  return str;
-}
+import { text_truncate } from "../../../shared/utility";
 
 class Projects extends Component {
   state = {
@@ -52,7 +45,7 @@ class Projects extends Component {
               <div key={index} className={classes.card}>
                 <div className={classes.head}>{project.title}</div>
                 <div className={classes.body}>
-                  <div>{text_truncate(project.description)}</div>
+                  <div>{text_truncate(project.description, 50)}</div>
                   <Button
                     onClick={() => this.showModal(index)}
                     className="btn btn-info btn-outline"
