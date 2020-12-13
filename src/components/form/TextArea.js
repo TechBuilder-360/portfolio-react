@@ -3,6 +3,7 @@ import classes from './form.module.css';
 import Propstypes from 'prop-types'
 
 const TextArea = (props) => {
+  console.log(props.value)
   const character = 200
   const [textAreaValue, setTextAreaValue] = useState(props.value.substr(0,character));
   const [textCount, setTextCount] = useState(props.value.length <= character ? character - props.value.length: 0);

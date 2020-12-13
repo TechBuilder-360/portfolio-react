@@ -29,7 +29,7 @@ const Experience = (props) => {
     } else {
       setForm(null);
     }
-  }, [formVisible, props.experience]);
+  }, [formVisible]);
 
   function handleDelete(index) {
     dispatch(delete_experience(index));
