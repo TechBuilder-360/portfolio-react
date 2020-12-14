@@ -7,12 +7,10 @@ import Child from "./components/child";
 import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import EducationForm from "./components/educationForm"
-import { delete_education } from "../../../store/actions/portfolioActions";
 
 
 const Education = (props) => {
 
-  const dispatch = useDispatch()
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
 
@@ -24,24 +22,18 @@ const Education = (props) => {
 
   useEffect(() => {
     if(formVisible){
-      setForm(<EducationForm index={null} education={{}} closeForm={()=>handleCloseForm()}/>)
+      setForm(<EducationForm education={{}} closeForm={()=>handleCloseForm()}/>)
     }else{
       setForm(null)
     }
   }, [formVisible]);
 
-  function handleDelete(index) {
-      dispatch(delete_education(index))
-  }
-
   // Populate accordion children with existing record
   const children = props.education.map((edu, i) => (
     <Child
       education={edu}
-      delete={(i)=> handleDelete(i) }
       closeForm={()=>setFormVisible(false)}
-      i={i+1}
-      index={i}
+      index={i+1}
       key={i}
     />
   ))

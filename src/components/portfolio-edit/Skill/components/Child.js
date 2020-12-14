@@ -7,13 +7,13 @@ import SkillForms from "./skillForm";
 import SubSkills from "./subSkill";
 import SubSkillForm from "./subskillForms";
 
-const Child = ({ skill, ...props }) => {
+const Child = ({ skill, index }) => {
   const dispatch = useDispatch();
 
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <Accordion.Toggle as={Button} variant="link" eventKey={props.i}>
+        <Accordion.Toggle as={Button} variant="link" eventKey={index}>
           {skill.title}
         </Accordion.Toggle>
         <Button
@@ -24,10 +24,10 @@ const Child = ({ skill, ...props }) => {
           Delete
         </Button>
       </Card.Header>
-      <Accordion.Collapse eventKey={props.i}>
+      <Accordion.Collapse eventKey={index}>
         <Card.Body>
           <SkillForms skill={skill} hide={true} />
-          <SubSkills subskill={skill.subskill} skillId={skill.id} />
+          <SubSkills skillId={skill.id} />
           <SubSkillForm skillId={skill.id}/>
         </Card.Body>
       </Accordion.Collapse>

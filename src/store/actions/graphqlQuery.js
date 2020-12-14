@@ -172,7 +172,7 @@ export const subSkill = (skill, title) => {
   return JSON.stringify({
     query: `mutation subSkill{
       subSkill(
-        skill: "${skill}",
+        skill: ${skill},
         title: "${title}"
       ){
         warning
@@ -189,7 +189,7 @@ export const subSkill = (skill, title) => {
 export const remove_subskill = (id) => {
   return JSON.stringify({
     query: `mutation removeSubSkill {
-      removeSubskill(id: "${id}"){
+      removeSubskill(id: ${id}){
         ok
         warning
       }

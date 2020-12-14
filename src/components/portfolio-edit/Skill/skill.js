@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import style from "../profile-edit.module.css";
 import classes from "../personal_info/personalInfo.module.css";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import Child from "./components/Child";
 import { Accordion } from "react-bootstrap";
 import SkillForm from './components/skillForm';
 
 
 const Skill = (props) => {
-  const dispatch = useDispatch();
+
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
 
@@ -31,8 +31,7 @@ const Skill = (props) => {
     <Child
       skill={sk}
       closeForm={() => setFormVisible(false)}
-      i={i + 1}
-      index={i}
+      index={i+1}
       key={i}
     />
   ));

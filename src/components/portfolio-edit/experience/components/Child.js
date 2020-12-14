@@ -1,11 +1,12 @@
 import React from "react";
 import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
-import { text_truncate } from "../../../../shared/utility";
 import classes from "../../personal_info/personalInfo.module.css";
+import { useDispatch } from "react-redux";
 import ExperienceForm from "./ExperienceForm";
+import { delete_experience } from "../../../../store/actions/portfolioActions"
 
 function CustomToggle({ children, eventKey }) {
-  const decoratedOnClick = useAccordionToggle(eventKey, null); // Add checker to see if form has been edited and needs saving before closing
+  const decoratedOnClick = useAccordionToggle(eventKey, null);
 
   return (
     <button
@@ -21,29 +22,28 @@ function CustomToggle({ children, eventKey }) {
 }
 
 const Child = ({ experience, ...props }) => {
+  const dispatch = useDispatch();
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
         <span className={classes.Span} title={experience.organization}>{experience.organization}</span>
         <div style={{ float: "Right" }}>
-          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
+          <CustomToggle eventKey={props.index}>Edit</CustomToggle> |
           <button
             type="button"
             className="btn btn-primary-outline text-primary shadow-none"
-            onClick={() => props.delete(experience.id)}
+            onClick={() => dispatch(delete_experience(experience.id))}
           >
-            {" "}
             Delete
           </button>
         </div>
       </Card.Header>
-      <Accordion.Collapse eventKey={props.i}>
+      <Accordion.Collapse eventKey={props.index}>
         <Card.Body className={classes.Accordion_Body}>
           <ExperienceForm
-            index={props.index}
             experience={experience}
             closeForm={() =>
-              document.getElementById(`close-experience-${props.i}`).click()
+              document.getElementById(`close-experience-${props.index}`).click()
             }
           />
         </Card.Body>

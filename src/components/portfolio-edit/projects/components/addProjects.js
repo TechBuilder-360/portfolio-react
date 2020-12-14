@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import TextArea from "../../../form/TextArea";
 import { projectAction } from "../../../../store/actions/portfolioActions";
 
-const AddProjects = ({ project, closeForm, ...props }) => {
+const AddProjects = ({ project, closeForm }) => {
   const content = {
     id: project.id || "",
     title: project.title || "",

@@ -6,7 +6,7 @@ import TextArea from "../../../form/TextArea";
 import classes from "../../personal_info/personalInfo.module.css";
 import { experienceAction } from "../../../../store/actions/portfolioActions";
 
-const ExperienceForm = ({ experience, closeForm, ...props }) => {
+const ExperienceForm = ({ experience, closeForm }) => {
   
   const content = {
     id: experience.id || "",
@@ -32,7 +32,7 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    dispatch(experienceAction(props.index, value));
+    dispatch(experienceAction(value));
     closeForm();
   };
 

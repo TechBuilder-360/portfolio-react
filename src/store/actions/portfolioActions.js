@@ -100,13 +100,10 @@ const add_education = (content) => {
   };
 };
 
-const edit_education = (index, content) => {
+const edit_education = (content) => {
   return {
     type: actionType.EDIT_EDUCATION,
-    payload: {
-      index: index,
-      content: content,
-    },
+    payload:  content
   };
 };
 
@@ -117,7 +114,7 @@ const deleteEducation = (index) => {
   };
 };
 
-export const educationAction = (index, edu) => {
+export const educationAction = (edu) => {
   return (dispatch) => {
     instanceAxios({
       data: query.education(edu),
@@ -131,12 +128,15 @@ export const educationAction = (index, edu) => {
           edu.id = res.education.id;
           dispatch(add_education(edu));
         } else {
-          dispatch(edit_education(index, edu));
+          dispatch(edit_education(edu));
         }
       } else {
         console.log(responce.data.errors);
         // Dispatch Login required message or goto login page
       }
+    })
+    .catch(err=>{
+      console.log(err);
     });
   };
 };
@@ -173,7 +173,7 @@ const add_experience = (content) => {
   };
 };
 
-export const experienceAction = (index, exp) => {
+export const experienceAction = (exp) => {
   return (dispatch) => {
     instanceAxios({
       data: query.experience(exp),
@@ -187,12 +187,15 @@ export const experienceAction = (index, exp) => {
           exp.id = res.experience.id;
           dispatch(add_experience(exp));
         } else {
-          dispatch(edit_experience(index, exp));
+          dispatch(edit_experience(exp));
         }
       } else {
         console.log(responce.data.errors);
         // Dispatch Login required message or goto login page
       }
+    })
+    .catch(err=>{
+      console.error(err);
     });
   };
 };
@@ -310,14 +313,14 @@ export const deleteProject = (index) => {
 const add_skill = (id, title) => {
   return {
     type: actionType.SKILL,
-    skill: { title, id, subskill: [] },
+    skill: { id, title },
   };
 };
 
 const edit_skill = (content) => {
   return {
     type: actionType.EDIT_SKILL,
-    payload: { ...content },
+    payload: content,
   };
 };
 
@@ -328,8 +331,9 @@ const delete_skill = (index) => {
   };
 };
 
-export const skillAction = (request) => {
+export const skillAction = request => {
   return (dispatch) => {
+
     instanceAxios({
       data: query.mutate_skill(request),
       headers: {
@@ -342,7 +346,7 @@ export const skillAction = (request) => {
           if (res.created) {
             dispatch(add_skill(res.skill.id, request.title));
           } else {
-            dispatch(edit_skill({ ...request }));
+            dispatch(edit_skill(request));
           }
         } else {
           console.log(responce.data.errors);
@@ -372,30 +376,32 @@ export const removeSkill = (id) => {
       } else {
         console.log("Error: " + responce.data.errors);
       }
+    }).catch(err=>{
+      console.error(err);
     });
   };
 };
 
-const add_subskill = (index, req) => {
+const add_subskill = req => {
   return {
     type: actionType.SUBSKILL,
-    payload: { index, req },
+    payload: req,
   };
 };
 
-export const subskillAction = (index, name) => {
+export const subskillAction = (skill, name) => {
   return (dispatch) => {
     instanceAxios({
-      data: query.add_subskill(index, name),
+      data: query.subSkill(skill, name),
       headers: {
         Authorization: headerToken,
-      },
+      }
     })
       .then((responce) => {
         if (!responce.data.errors) {
           let res = responce.data.data.subSkill;
           if (res.created) {
-            dispatch(add_subskill(index, { name, id: res.subSkill.id }));
+            dispatch(add_subskill({skill, name, id: res.subSkill.id }));
           }
         } else {
           console.log(responce.data.errors);
@@ -407,16 +413,15 @@ export const subskillAction = (index, name) => {
   };
 };
 
-export const delete_subskill = (skillId, id) => {
+const delete_subskill = id => {
   return {
     type: actionType.DELETE_SUBSKILL,
-    payload: { skillId, id },
+    payload: id ,
   };
 };
 
-export const deleteSubskillAction = (skillId, id) => {
+export const deleteSubskillAction = id => {
   return (dispatch) => {
-    dispatch(delete_subskill(skillId, id));
     instanceAxios({
       data: query.remove_subskill(id),
       headers: {
@@ -433,6 +438,8 @@ export const deleteSubskillAction = (skillId, id) => {
       } else {
         console.log("Error: " + responce.data.errors);
       }
+    }).catch(err=>{
+      console.error(err);
     });
   };
 };

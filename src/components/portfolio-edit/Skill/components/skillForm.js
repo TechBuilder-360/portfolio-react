@@ -4,17 +4,21 @@ import { useDispatch } from "react-redux";
 import { skillAction } from "../../../../store/actions/portfolioActions";
 import classes from "../../personal_info/personalInfo.module.css";
 
-const AddForm = ({ skill, ...props }) => {
+const AddForm = ({ skill, closeForm, hide }) => {
 
-  const id = skill.id || ""
+  const content = {
+    id: skill.id || "",
+    title: skill.title || ""
+  }
   const dispatch = useDispatch();
-  const [value, setValue] = useState(skill.title || "");
-
+  const [value, setValue] = useState(content);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(skillAction({id, title: value}));
-    if(!props.hide){
-      props.closeForm()
+
+    dispatch(skillAction(value));
+    if(!hide){
+      closeForm()
     }
   };
 
@@ -27,9 +31,9 @@ const AddForm = ({ skill, ...props }) => {
               <Form.Label>Skill</Form.Label>
               <Form.Control
                 name="title"
-                onChange={(e)=> setValue(e.target.value)}
+                onChange={(e)=> setValue({...value, title: e.target.value})}
                 placeholder="Accounting"
-                value={value}
+                value={value.title}
                 required={true}
               />
             </Form.Group>
@@ -38,11 +42,11 @@ const AddForm = ({ skill, ...props }) => {
             <Button type="submit" variant="success">
               Add
             </Button>
-            {props.hide ? null : (
+            {hide ? null : (
               <Button
                 variant="danger"
                 style={{ marginLeft: "2%" }}
-                onClick={() => props.closeForm()}
+                onClick={() => closeForm()}
               >
                 Cancel
               </Button>

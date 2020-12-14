@@ -15,8 +15,8 @@
   font-weight: 500;
 }
 .carousel > .carousel-indicators >li{
-  width: 5px;
-  height: 5px;
+  width: 1px;
+  height: .1px;
   border-radius: 50%;
   background-color: grey;
   margin: 5px;

@@ -4,13 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/Child";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import ExperienceForm from "./components/ExperienceForm";
-import { delete_experience } from "../../../store/actions/portfolioActions";
 
 const Experience = (props) => {
-  const dispatch = useDispatch();
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
 
@@ -31,20 +29,13 @@ const Experience = (props) => {
     }
   }, [formVisible]);
 
-  function handleDelete(index) {
-    dispatch(delete_experience(index));
-  }
-
   // Populate accordion children with existing record
-  const children = props.experience.map((expp, i) => (
+  const children = props.experience.map((exp, i) => (
     <Child
-      experience={expp}
-      delete={(i) => handleDelete(expp.id)}
+      experience={exp}
       closeForm={() => setFormVisible(false)}
-      i={i + 1}
-      index={i}
+      index={i+1}
       key={i}
-      onClick={(e) => props.delete_success(i)}
     />
   ));
 

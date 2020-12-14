@@ -7,7 +7,7 @@ import classes from "../../personal_info/personalInfo.module.css";
 import { educationAction } from "../../../../store/actions/portfolioActions";
 import PropTypes from "prop-types";
 
-const EducationForm = ({ education, closeForm, ...props }) => {
+const EducationForm = ({ education, closeForm }) => {
 
   const content = {
     id: education.id ||  "",
@@ -31,7 +31,7 @@ const EducationForm = ({ education, closeForm, ...props }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    dispatch(educationAction(props.index, value));
+    dispatch(educationAction(value));
     closeForm();
   };
 

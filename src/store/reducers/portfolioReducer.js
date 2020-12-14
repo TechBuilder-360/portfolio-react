@@ -1,3 +1,4 @@
+import { faSdCard } from "@fortawesome/free-solid-svg-icons";
 import * as actionType from "../actions/actionType";
 
 const initialState = {
@@ -19,100 +20,99 @@ const initialState = {
       "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
     resume: "",
   },
+  subskill: [
+    { id: 1, name: "HTML", skill: 1 },
+    { id: 2, name: "CSS", skill: 1 },
+    { id: 3, name: "Javascript", skill: 1 },
+    { id: 4, name: "SCSS", skill: 1 },
+    { id: 5, name: "Django", skill: 1 },
+    { id: 6, name: "Spring Boot", skill: 1 },
+    { id: 7, name: "ICAN", skill: 2 },
+    {
+      id: 8,
+      name: "COMPTIA N+",
+      skill: 3,
+    },
+    {
+      id: 9,
+      name: "CCNA",
+      skill: 3,
+    },
+    {
+      id: 10,
+      name: "CCNP",
+      skill: 3,
+    },
+    {
+      id: 11,
+      name: "SCRUM",
+      skill: 4,
+    },
+    {
+      id: 12,
+      name: "AGILE",
+      skill: 4,
+    },
+    {
+      id: 13,
+      name: "SPSS",
+      skill: 4,
+    },
+    {
+      id: 14,
+      name: "Apache Spark",
+      skill: 5,
+    },
+    {
+      id: 15,
+      name: "Apache Kafka",
+      skill: 5,
+    },
+    {
+      id: 16,
+      name: "Postgres",
+      skill: 6,
+    },
+    {
+      id: 17,
+      name: "Cassandra",
+      skill: 6,
+    },
+    {
+      id: 18,
+      name: "MYSQL",
+      skill: 6,
+    },
+    {
+      id: 19,
+      name: "MSSQL Server",
+      skill: 6,
+    },
+  ],
   skills: [
     {
       id: 1,
       title: "Web development",
-      subskill: [
-        { id: 1, name: "HTML" },
-        { id: 2, name: "CSS" },
-        { id: 3, name: "Javascript" },
-        { id: 4, name: "SCSS" },
-        { id: 5, name: "Django" },
-        { id: 6, name: "Spring Boot" },
-      ],
     },
     {
       id: 2,
       title: "Accounting",
-      subskill: [
-        {
-          id: 1,
-          name: "ICAN",
-        },
-      ],
     },
     {
       id: 3,
       title: "Networking",
-      subskill: [
-        {
-          id: 1,
-          name: "COMPTIA N+",
-        },
-        {
-          id: 2,
-          name: "CCNA",
-        },
-        {
-          id: 3,
-          name: "CCNP",
-        },
-      ],
     },
     {
       id: 4,
       title: "Project Management",
-      subskill: [
-        {
-          id: 1,
-          name: "SCRUM",
-        },
-        {
-          id: 2,
-          name: "AGILE",
-        },
-        {
-          id: 1,
-          name: "SPSS",
-        },
-      ],
     },
     {
       id: 5,
       title: "Big Data",
-      subskill: [
-        {
-          id: 1,
-          name: "Apache Spark",
-        },
-        {
-          id: 2,
-          name: "Apache Kafka",
-        },
-      ],
     },
     {
       id: 6,
       title: "Database Management",
-      subskill: [
-        {
-          id: 1,
-          name: "Postgres",
-        },
-        {
-          id: 2,
-          name: "Cassandra",
-        },
-        {
-          id: 3,
-          name: "MYSQL",
-        },
-        {
-          id: 4,
-          name: "MSSQL Server",
-        },
-      ],
     },
   ],
   education: [
@@ -294,11 +294,16 @@ const reducer = (state = initialState, action) => {
         ],
       };
     case actionType.EDIT_EDUCATION:
-      const newData = [...state.education];
-      newData[action.payload.index] = action.payload.content;
+      const oldEdu = [...state.education];
+      const education = oldEdu.map((edu) => {
+        if (edu.id == action.payload.id) {
+          edu = action.payload;
+        }
+        return edu;
+      });
       return {
         ...state,
-        education: newData,
+        education,
       };
 
     case actionType.ADD_EXPERIENCE:
@@ -316,11 +321,16 @@ const reducer = (state = initialState, action) => {
         ],
       };
     case actionType.EDIT_EXPERIENCE:
-      const newDataExp = [...state.experience];
-      newDataExp[action.payload.index] = action.payload.content;
+      const oldExp = [...state.experience];
+      const experience = oldExp.map((exp) => {
+        if (exp.id == action.payload.id) {
+          exp = action.payload;
+        }
+        return exp;
+      });
       return {
         ...state,
-        experience: newDataExp,
+        experience,
       };
 
     case actionType.ADD_PORJECT:
@@ -336,46 +346,51 @@ const reducer = (state = initialState, action) => {
         ],
       };
     case actionType.EDIT_PROJECT:
-      const newDataPro = [...state.project];
-      newDataPro[action.content.id] = action.content;
+      const oldProject = [...state.project];
+      const project = oldProject.map((proj) => {
+        if (proj.id == action.payload.id) {
+          proj = action.payload;
+        }
+        return proj;
+      });
       return {
         ...state,
-        project: newDataPro,
+        project
       };
 
     case actionType.EDIT_SKILL:
-      const newDataPro1 = [...state.skills];
-      newDataPro1[action.payload.index].title = action.payload.content.title;
-
+      const oldSkill = [...state.skills];
+      const skills = oldSkill.map((skill) => {
+        if (skill.id == action.payload.id) {
+          skill = action.payload;
+        }
+        return skill;
+      });
       return {
         ...state,
-        skills: newDataPro1,
+        skills
       };
 
     case actionType.DELETE_SKILL:
       return {
         ...state,
         skills: [
-          ...state.skills.filter((skills) => skills.id !== action.payload),
+          ...state.skills.filter((skill) => skill.id !== action.payload),
         ],
       };
 
     case actionType.SUBSKILL:
-      const skills = [...state.skills];
-      let i = skills.findIndex((skill) => skill.id == action.payload.index);
-      skills[i].subskill.push(action.payload.req);
       return {
         ...state,
-        skills: skills,
+        subskill: [...state.subskill, action.payload],
       };
 
     case actionType.DELETE_SUBSKILL:
-      const skills = [...state.skills];
-      let i = skills.findIndex((skill) => skill.id == action.payload.index);
-      skills[i].subskill.push(action.payload.req);
       return {
         ...state,
-        skills: skills,
+        subskill: [
+          ...state.subskill.filter((skill) => skill.id !== action.payload),
+        ],
       };
     default:
       return state;
