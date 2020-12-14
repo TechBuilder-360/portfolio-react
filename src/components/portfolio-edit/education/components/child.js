@@ -28,7 +28,7 @@ const Child = ({ education, ...props }) => {
         <span className={classes.Span} title={education.institution}>
           {education.institution}
         </span>
-        <div style={{ float: "Right" }}>
+        <div className={classes.Card_Action}>
           <CustomToggle eventKey={props.index}>Edit</CustomToggle> |
           <button
             type="button"

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import Container from "../../../../container/Container";
-
 import classes from "../../personal_info/personalInfo.module.css";
 import PropTypes from "prop-types";
 import TextArea from "../../../form/TextArea";

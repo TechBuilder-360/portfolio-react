@@ -7,11 +7,12 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import SocialForm from "./socialForm";
 import { Accordion } from "react-bootstrap";
-import {deleteSocialLink} from "../../../store/actions/portfolioActions";
+import {delete_social} from "../../../store/actions/portfolioActions";
 
 const Social = () => {
   const dispatch = useDispatch();
-  let socialLinks = useSelector((state) => state.portfolio.social);
+  const limit = process.env.REACT_APP_SOCIAL_LINKS_LIMIT
+  const socialLinks = useSelector((state) => state.portfolio.social);
 
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
@@ -25,7 +26,7 @@ const Social = () => {
   }, [formVisible]);
 
   let remove = (id) => {
-    dispatch(deleteSocialLink(id))
+    dispatch(delete_social(id))
   };
 
   // Populate accordion children with existing record
@@ -36,7 +37,7 @@ const Social = () => {
       id={item.id}
       removeMore={remove}
       closeForm={() => setFormVisible(false)}
-      i={i + 1}
+      index={i + 1}
       key={i}
     />
   ));
@@ -44,14 +45,10 @@ const Social = () => {
   return (
     <div className={style.SubSection}>
       <p className="title">Social Contact</p>
-      <p className="sub-title">
-        You can have up to {process.env.REACT_APP_SOCIAL_LINKS_LIMIT} social
-        contact details
-      </p>
       <hr />
       <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
       {form}
-      {socialLinks.length < 3 ? 
+      {socialLinks.length < limit ? 
       <span onClick={() => setFormVisible(true)}>
       <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more social
       contact

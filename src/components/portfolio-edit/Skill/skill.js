@@ -11,6 +11,7 @@ import SkillForm from './components/skillForm';
 
 const Skill = (props) => {
 
+  const limit = process.env.REACT_APP_SKILL_LIMIT
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
 
@@ -43,9 +44,11 @@ const Skill = (props) => {
       <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
       <br />
       {form}
+      {props.skill.length < limit ? 
       <span onClick={() => setFormVisible(true)}>
-        <FontAwesomeIcon icon={faPlus} size="lg" /> add Skill
-      </span>
+      <FontAwesomeIcon icon={faPlus} size="lg" /> add Skill
+    </span>
+      : null}
     </div>
   );
 };

@@ -6,25 +6,24 @@ import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
 import { connect, useDispatch } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
-import EducationForm from "./components/educationForm"
-
+import EducationForm from "./components/educationForm";
 
 const Education = (props) => {
-
-  const [form, setForm] = useState(null)
-  const [formVisible, setFormVisible] = useState(false)
-
+  const limit = process.env.REACT_APP_EDUCATION_LIMIT;
+  const [form, setForm] = useState(null);
+  const [formVisible, setFormVisible] = useState(false);
 
   const handleCloseForm = () => {
-    setFormVisible(false)
-  }
-  
+    setFormVisible(false);
+  };
 
   useEffect(() => {
-    if(formVisible){
-      setForm(<EducationForm education={{}} closeForm={()=>handleCloseForm()}/>)
-    }else{
-      setForm(null)
+    if (formVisible) {
+      setForm(
+        <EducationForm education={{}} closeForm={() => handleCloseForm()} />
+      );
+    } else {
+      setForm(null);
     }
   }, [formVisible]);
 
@@ -32,23 +31,23 @@ const Education = (props) => {
   const children = props.education.map((edu, i) => (
     <Child
       education={edu}
-      closeForm={()=>setFormVisible(false)}
-      index={i+1}
+      closeForm={() => setFormVisible(false)}
+      index={i + 1}
       key={i}
     />
-  ))
+  ));
 
   return (
     <div className={style.SubSection}>
       <p className="title">Education</p>
       <hr />
-      <Accordion className={classes.Accordion_Parent}>
-        {children}
-        </Accordion>
-        {form}
-      <span style={{marginTop: "2%"}} onClick={()=>setFormVisible(true)}>
-        <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
-      </span>
+      <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
+      {form}
+      {props.education.length < limit ? (
+        <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>
+          <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
+        </span>
+      ) : null}
     </div>
   );
 };

@@ -93,26 +93,80 @@ export const Skill = () => {
   };
 };
 
-export const addSocialLink = (data) => {
+const addSocialLink = (data) => {
   return {
     type: actionType.ADD_SOCIAL_LINK,
     payload : data
   };
 };
 
-export const editSocialLink = (data) => {
+const editSocialLink = (data) => {
   return {
     type: actionType.EDIT_SOCIAL_LINK,
     payload : data
   };
 };
 
-export const deleteSocialLink = (id) => {
+export const socialAction = (req) => {
+  return dispatch => {
+    instanceAxios({
+      data: query.social(req),
+      headers: {
+        Authorization: headerToken,
+      },
+    }).then((responce) => {
+      if (!responce.data.errors) {
+        let res = responce.data.data.social;
+        if (res.created) {
+          req.id = res.social.id;
+          dispatch(addSocialLink(req));
+        } else {
+          dispatch(editSocialLink(req));
+        }
+      } else {
+        console.log(responce.data.errors);
+        // Dispatch Login required message or goto login page
+      }
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+  }
+}
+
+const deleteSocialLink = (id) => {
   return {
     type: actionType.DELETE_SOCIAL_LINK,
     id : id
   };
 };
+
+
+export const delete_social = (index) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.remove_social(index),
+      headers: {
+        Authorization: headerToken,
+      },
+    }).then((responce) => {
+      if (!responce.data.errors) {
+        let res = responce.data.data.removeSocial;
+        if (res.ok) {
+          dispatch(deleteSocialLink(index));
+        } else {
+          console.log(res.warning);
+          // DISPATCH Message action
+        }
+      } else {
+        console.log(responce.data.errors);
+        // Dispatch Login required message or goto login page
+      }
+    });
+  };
+};
+
+
 
 const add_education = (content) => {
   return {

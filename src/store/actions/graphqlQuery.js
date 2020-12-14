@@ -197,3 +197,33 @@ export const remove_subskill = (id) => {
     `,
   });
 };
+
+export const social = (social) => {
+  return JSON.stringify({
+    query: `mutation social{
+      social(
+        id: "${social.id}"
+        label: "${social.label}"
+        url: "${social.url}"
+        ){
+          created
+          social{
+            id
+          }
+        }
+      }
+      `,
+  });
+};
+
+export const remove_social = (id) => {
+  return JSON.stringify({
+    query: `mutation removeSocial{
+        removeSocial(id: ${id}){
+          ok
+          warning
+        }
+      }
+      `,
+  });
+};

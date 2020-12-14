@@ -7,11 +7,11 @@ import Child from "./components/Child";
 import { connect } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import AddProject from "./components/addProjects"
-import { deleteProject } from "../../../store/actions/portfolioActions";
 
 
 const Project = (props) => {
 
+  const limit = process.env.REACT_APP_PROJECT_LIMIT
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
 
@@ -48,9 +48,11 @@ const Project = (props) => {
         {children}
         </Accordion>
         {form}
+        {props.project.length < limit ? 
       <span onClick={()=>setFormVisible(true)}>
-        <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Project
-      </span>
+      <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Project
+    </span>
+      : null}
     </div>
   );
 };

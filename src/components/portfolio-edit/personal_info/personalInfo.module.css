@@ -118,11 +118,22 @@ form label {
   width: 60%;
 }
 
+.Accordion_Child .Button{
+  text-align: left;
+  width: 60%;
+  color: inherit;
+}
+
 .Accordion_Body {
   position: relative !important;
   top: 0;
   overflow: auto !important;
   z-index: 12 !important;
+}
+
+.Accordion_Child .Card_Action{
+  width: 40%;
+  float: right;
 }
 
 

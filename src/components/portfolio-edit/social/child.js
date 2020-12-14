@@ -22,22 +22,22 @@ const Child = ({ label, link, id, eventKey, ...props }) => {
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <span title={label}>
+        <span className={classes.Span} title={label}>
           {label}
         </span>
-        <span style={{ float: "Right" }}>
-          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
+        <div className={classes.Card_Action}>
+          <CustomToggle eventKey={props.index}>Edit</CustomToggle> |
           <button type="button" className="btn btn-primary-outline text-primary shadow-none" onClick={() => props.removeMore(id)}>{" "} Delete </button>
-        </span>
+        </div>
       </Card.Header>
-      <Accordion.Collapse eventKey={props.i}>
+      <Accordion.Collapse eventKey={props.index}>
         <Card.Body className={classes.Accordion_Body}>
           <SocialForm
             link={link}
             label={label}
             id={id}
             closeForm={() =>
-              document.getElementById(`close-social-${props.i}`).click()
+              document.getElementById(`close-social-${props.index}`).click()
             }
           />
           {label}

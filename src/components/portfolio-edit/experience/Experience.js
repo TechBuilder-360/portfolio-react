@@ -9,6 +9,8 @@ import classes from "../personal_info/personalInfo.module.css";
 import ExperienceForm from "./components/ExperienceForm";
 
 const Experience = (props) => {
+
+  const limit = process.env.REACT_APP_EXPERIENCE_LIMIT;
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
 
@@ -45,9 +47,11 @@ const Experience = (props) => {
       <hr />
       <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
       {form}
-      <span onClick={() => setFormVisible(true)}>
+      {props.experience.length < limit ? (
+        <span onClick={() => setFormVisible(true)}>
         <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Experience
       </span>
+      ) : null}
     </div>
   );
 };

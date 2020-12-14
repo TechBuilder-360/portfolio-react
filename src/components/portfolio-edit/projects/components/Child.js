@@ -28,7 +28,7 @@ const Child = ({ project, index }) => {
         <span className={classes.Span} title={project.title}>
           {project.title}
         </span>
-        <div style={{ float: "Right" }}>
+        <div className={classes.Card_Action}>
           <CustomToggle eventKey={index}>Edit</CustomToggle> |
           <button
             type="button"

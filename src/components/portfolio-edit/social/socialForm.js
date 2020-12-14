@@ -1,13 +1,14 @@
-import React, {useRef} from "react";
+import React, { useRef, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Container from "../../../container/Container";
 import classes from "../personal_info/personalInfo.module.css";
 import { useDispatch } from "react-redux";
-import { addSocialLink, editSocialLink } from "../../../store/actions/portfolioActions"
+import {
+  socialAction
+} from "../../../store/actions/portfolioActions";
 
-const SocialForm = (props) => {
-  const inputLabel = useRef(null);
-  const inputLink = useRef(null);
+const SocialForm = ({link, label, id, ...props}) => {
+
   const dispatch = useDispatch();
   const socialNetworks = [
     "Facebook",
@@ -16,27 +17,40 @@ const SocialForm = (props) => {
     "Instagram",
     "Github",
   ];
-  let socialNetworkOptions = socialNetworks.map((item) => (
-    <option key={item}>{item}</option>
+
+  const content = {
+    url: link || "",
+    label: label || socialNetworks[0],
+    id: id || ""
+  }
+
+  const [value, setValue] = useState(content)
+
+  const socialNetworkOptions = socialNetworks.map((item, i) => (
+    <option key={i} value={item}>{item}</option>
   ));
-  let save = (inputLabel, inputLink) => {
-    if (props.id){
-      dispatch(editSocialLink({id: props.id, label:inputLabel, url:inputLink}))
-    }else{
-      dispatch(addSocialLink({id: Math.random(), label:inputLabel, url:inputLink}))
-    }
-    
-    props.closeForm()
-    
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(socialAction(value))
+    props.closeForm();
   };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={submitHandler}>
         <Row>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
               <Form.Label>Select Social Network</Form.Label>
-              <Form.Control as="select" defaultValue={props.label} ref={inputLabel} custom>
+              <Form.Control
+                as="select"
+                name="label"
+                value={value.label}
+                required={true}
+                onChange={e=>setValue({ ...value, [e.target.name]: e.target.value })}
+                custom
+              >
                 {socialNetworkOptions}
               </Form.Control>
             </Form.Group>
@@ -45,27 +59,32 @@ const SocialForm = (props) => {
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
               <Form.Label>Link to your page</Form.Label>
-              <Form.Control defaultValue={props.link} ref={inputLink} />
+              <Form.Control
+                type="url"
+                name="url"
+                required={true}
+                value={value.url}
+                onChange={e=>setValue({ ...value, [e.target.name]: e.target.value })}
+              />
             </Form.Group>
+          </Col>
+          <Col xs={12} md={12} style={{ textAlign: "right" }}>
+            <Button
+              type="button"
+              onClick={props.closeForm}
+              className="btn btn-info mt-15 mr-2"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="btn btn-primary mt-15"
+            >
+              Save
+            </Button>
           </Col>
         </Row>
       </Form>
-
-      {/* I recommend we remove button later in future and save form field onBlur
-          We may still rethink this later, just a suggestion :)
-      */}
-      <div style={{ textAlign: "right" }}>
-        <Button
-          type="button"
-          onClick={props.closeForm}
-          className="btn btn-info mt-15 mr-2"
-        >
-          Cancel
-        </Button>
-        <Button type="submit" className="btn btn-primary mt-15" onClick={() => save(inputLabel.current.value, inputLink.current.value)}>
-          Save
-        </Button>
-      </div>
     </Container>
   );
 };

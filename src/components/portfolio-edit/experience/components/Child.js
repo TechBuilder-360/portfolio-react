@@ -27,7 +27,7 @@ const Child = ({ experience, ...props }) => {
     <Card className={classes.Accordion_Child}>
       <Card.Header>
         <span className={classes.Span} title={experience.organization}>{experience.organization}</span>
-        <div style={{ float: "Right" }}>
+        <div className={classes.Card_Action}>
           <CustomToggle eventKey={props.index}>Edit</CustomToggle> |
           <button
             type="button"
