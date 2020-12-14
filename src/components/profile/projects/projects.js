@@ -7,11 +7,14 @@ import ProjectModal from "./project-modal";
 import { text_truncate } from "../../../shared/utility";
 
 class Projects extends Component {
-  state = {
+  constructor(props){
+    super(props)
+  this.state = {
     show: false,
     project: null,
   };
 
+  }
   showModal = (id) => {
     this.setState({
       show: true,
@@ -40,6 +43,7 @@ class Projects extends Component {
           <p className="title" style={{ textAlign: "left" }}>
             {this.props.title}
           </p>
+          <div className={this.props.div}>
           <div className={classes.container}>
             {this.props.projects.map((project, index) => (
               <div key={index} className={classes.card}>
@@ -56,6 +60,7 @@ class Projects extends Component {
               </div>
             ))}
           </div>
+        </div>
         </div>
         {this.state.show ? modal : null}
       </Container>

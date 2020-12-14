@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { delete_skill } from "../../../../store/actions/portfolioActions";
 import SkillForms from "./SkillForms";
 
-const Child = ({ skill, ...props }) => {
+const Child = ({ skill, closeForm ,...props }) => {
 
   const dispatch = useDispatch()
   
@@ -16,14 +16,16 @@ const Child = ({ skill, ...props }) => {
         {skill.title}
       </Accordion.Toggle>
       <Button variant="link" style={{width: "20%", float: "right"}}
-       onClick={()=>dispatch(delete_skill(skill.id))}>Delete</Button>
+       onClick={()=>{dispatch(delete_skill(skill.id))
+       closeForm()}
+       }>Delete</Button>
     </Card.Header>
     <Accordion.Collapse eventKey={props.i}>
       <Card.Body>
         <SkillForms 
         skill={skill}
         index={props.index}
-        closeForm={null}/>
+        closeForm={props.closeForm}/>
       </Card.Body>
     </Accordion.Collapse>
   </Card>

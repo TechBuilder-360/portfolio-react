@@ -131,14 +131,7 @@ const initialState = {
       end_year: "Jan. 2017",
       degree: "MBA",
       course: "Accounting",
-    },
-    {
-      id: 3,
-      institution: "Doregos College",
-      start_year: "Oct. 2000",
-      end_year: "Oct. 2006",
-      degree: "SSCE",
-    },
+    }
   ],
   experience: [
     {
@@ -157,6 +150,7 @@ const initialState = {
       start_year: "Oct. 2018",
       end_year: "Dec. 2019",
     },
+    
   ],
   project: [
     {
@@ -374,7 +368,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         skills:[
           ...state.skills,
-       /*   subskill:[
+          /*
+        subskill:[
    ...state.skills[action.payload.index].subskill.filter((skill) => 
           skill.id !== action.payload.id
           ),

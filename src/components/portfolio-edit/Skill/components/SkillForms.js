@@ -39,14 +39,17 @@ const SkillForms = ({ skill, closeForm, ...props }) => {
             <Button
               variant="success"
               style={{ display: "block", position: "relative", top: "35px" }}
-              onClick={()=> dispatch(edit_skill(props.index,value))}
+              onClick={()=>{ dispatch(edit_skill(props.index,value))
+              closeForm()
+              }}
             >
               Enter
             </Button>
           </Col>
           {/* Sub-skills */}
           <Col xs={12} md={12}>
-            <SubSkill skill={skill.subskill || []} index={props.index} />
+            <SubSkill skill={skill.subskill || []} index={props.index} 
+            closeForm={props.closeForm} />
           </Col>
           {/* End Sub-skills */}
           <Col xs={12} md={6} className={classes.Mb_5}>
@@ -64,7 +67,9 @@ const SkillForms = ({ skill, closeForm, ...props }) => {
             <Button
               variant="success"
               style={{ display: "block", position: "relative", top: "35px" }}
-onClick={()=>dispatch(edit_subskill(props.index,value))}
+onClick={()=>{dispatch(edit_subskill(props.index,value))
+closeForm()
+}}
             >
               Enter
             </Button>

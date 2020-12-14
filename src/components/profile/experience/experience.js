@@ -11,10 +11,14 @@ const Experience = (props) => {
 
   return (
     <div className={props.wrapper}>
-      <p className='title' style={{textAlign: "left"}}>{props.title}</p>
+      <p className='title' style={{textAlign: "left"}}>
+        {props.title}</p>
+<div className={props.timeline}>
       <div className={classes.timeline}>
         {sortedExperienceHistory.map((experience, index) => (
-          <div className={`${classes.container}  ${direction}`} key={index}>
+          <div className={`${classes.container}  ${direction}`}
+          key={index}>
+            
             <div className={classes.content}>
               <h2>
                 {experience.end_year
@@ -32,6 +36,7 @@ const Experience = (props) => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

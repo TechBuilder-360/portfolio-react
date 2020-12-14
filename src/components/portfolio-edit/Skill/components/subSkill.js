@@ -9,15 +9,19 @@ import { useDispatch } from "react-redux"
 
 
 
-const SubSkill = ({skill,...props}) => {
+const SubSkill = ({skill,closeForm,...props}) => {
     const dispatch = useDispatch()
 
     const children = skill.map((sub, i) => 
         (<li className={classes.li} key={i}> {sub.name} 
         <FontAwesomeIcon size="lg" className={classes.icon} icon={faTimes}
 
-onClick={() => dispatch(delete_subskill(props.index,sub.id))}
-        
+onClick={() =>{ dispatch(delete_subskill(props.index,sub.id))
+closeForm()
+
+}
+
+}
         /> </li>)
     )
     return (

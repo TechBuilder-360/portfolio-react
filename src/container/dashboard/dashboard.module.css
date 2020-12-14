@@ -1,42 +1,68 @@
 .Wrapper {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 2%;
     text-align: center;
-    border: 1px solid black;
+    background-color: rgb(226, 229, 250);
 }
 
-.Aside, .Main{
-    width: 100%;
+.div{
+background-color: white;
+border-radius: 10px;
+padding: 20px;
+color: black;
+height: auto;
+}
+.Butt{
+    background-color: rgb(212, 164, 6);
+    color: black;
+    border-width: 0px;
+    padding: 10px;
+    font-size: 20pt;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.timeline{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 20px 0px 20px;
+    color: black;
+    height: auto;
+    }
+   
+    
+.Aside{
     margin-bottom: 8px;
-    border: 1px solid red;
+    background-color: rgb(241, 241, 245);
+    height: auto;
 }
 
+.Main{
+    margin-bottom: 8px;
+    background-color: rgb(26, 23, 23);
+    color: white;
+    font-weight: bold;
+    padding: 1%;
+    
+   
+}
 
 .Main_Content{
     margin-bottom: 8px;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid rgba(102, 99, 99, 0.651);
-    box-shadow: #ccc 2px 2px;
-    padding: 8px;
+    border-width: 0px;
+    padding:8px;
 }
 
 
 /* Desktop view */
-@media (min-width: 760px){
+/*@media (min-width: 760px){
     .Wrapper{
         padding: 1%;
     }
 
-    .Aside, .Main {
-        display: inline-block;
-        box-sizing: border-box;
-        padding: 1%;
-    }
+    
 
     .Aside {
-        width: 18%;
+        width:30%;
         vertical-align: top;
         margin: 0 1%;
         text-align: center;
@@ -44,10 +70,10 @@
 
     .Main {
         width: 80%;
-        height: 85vh;
-        overflow-x: auto;
+        height: auto;
+        
         text-align: left;
     }
 
     
-}
+}*/

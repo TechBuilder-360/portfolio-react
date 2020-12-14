@@ -11,13 +11,13 @@ const SocialLinks = props => {
 
         switch(social.label){
             case 'twitter':
-                socialTypeContent = (
+                socialTypeContent =(
                     <div className={classes.container}>
                         <div className={classes.icon}>
                             <SocialIcon 
-                            network={social.label} 
-                            style={{ height: 25, width: 25}} 
-                            url={social.url}/>
+                             network={social.label} 
+                             style={{ height: 25, width: 25}} 
+                               url={social.url}/>
                         </div>
                         <div className={classes.text}>Twitter</div>
                             

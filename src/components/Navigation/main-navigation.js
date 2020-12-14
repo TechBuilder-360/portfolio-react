@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./main-navigation.module.css";
 import logo from "../../images/logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Toast from "../toast/toast";
 import { useSelector, shallowEqual,} from "react-redux";
 
@@ -12,7 +12,8 @@ const HomeNavBar = () => {
     <div>
       {error ? <Toast headerText="Error" bodyText={error}/> : null}
       <nav className={classes.Nav}>
-        <img src={logo} className={classes.Logo} alt="xPortfolio"/>
+       <Link to='/'>
+         <img src={logo} className={classes.Logo} alt="xPortfolio"/></Link>
         <div className={classes.Nav_item}>
           <NavLink to={"/"}>Home</NavLink>
           <NavLink to={"/features"}>Features</NavLink>
