@@ -10,12 +10,12 @@ const PersonalInfo = (props) => {
       <div className={classes.Avatar_Wrapper}>
         <img
           className={classes.Avatar}
-          src={props.personalInfo.profile_pix?props.personalInfo.profile_pix: avatar}
+          src={props.personalInfo.profilePix ? props.personalInfo.profilePix: avatar}
           alt={props.personalInfo.username}
         />
       </div>
       <p>
-        {props.personalInfo.last_name} {props.personalInfo.first_name}
+        {props.personalInfo.lastName} {props.personalInfo.firstName}
       </p>
     </Container>
   );
@@ -23,7 +23,7 @@ const PersonalInfo = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    personalInfo: state.portfolio.personal_info,
+    personalInfo: state.portfolio.personalInfo,
   };
 };
 

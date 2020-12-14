@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import EducationForm from "./components/educationForm";
 

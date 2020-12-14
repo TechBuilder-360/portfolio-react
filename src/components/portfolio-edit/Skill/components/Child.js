@@ -10,7 +10,7 @@ import SubSkillForm from "./subskillForms";
 const Child = ({ skill, index }) => {
   const dispatch = useDispatch();
   const limit = process.env.REACT_APP_SUBSKILL_LIMIT
-  const subskill = useSelector( state => state.portfolio.subskill.filter(sub=> sub.skill == skill.id))
+  const subskill = useSelector( state => state.portfolio.subskill.filter(sub=> sub.skill === skill.id))
 
   return (
     <Card className={classes.Accordion_Child}>

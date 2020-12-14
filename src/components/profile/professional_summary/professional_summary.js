@@ -12,7 +12,7 @@ const ProfessionalSummary = props => {
 
 const mapStateToProps = state =>{
     return{
-        summary: state.portfolio.personal_info.bio
+        summary: state.portfolio.personalInfo.bio
     }
 }
 

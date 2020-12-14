@@ -11,7 +11,7 @@ const AddProjects = ({ project, closeForm }) => {
   const content = {
     id: project.id || "",
     title: project.title || "",
-    url: project.url || "",
+    url: project.projectUrl || "",
     description: project.description || "",
   };
 
@@ -53,7 +53,7 @@ const AddProjects = ({ project, closeForm }) => {
               type="url"
               name="url"
               onChange={handleChange}
-              value={value.url}
+              value={value.projectUrl}
               required={true}
             />
           </Form.Group>

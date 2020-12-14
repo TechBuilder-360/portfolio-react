@@ -6,12 +6,12 @@ import { subskillAction } from "../../../../store/actions/portfolioActions";
 
 const SkillForms = ({ skillId }) => {
   const dispatch = useDispatch();
-  const [name, setName] = useState();
+  const [title, setTitle] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(subskillAction(skillId, name));
-    setName("");
+    dispatch(subskillAction(skillId, title));
+    setTitle("");
   };
 
   return (
@@ -22,9 +22,9 @@ const SkillForms = ({ skillId }) => {
             <Form.Group>
               <Form.Label>Sub-skill</Form.Label>
               <Form.Control
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
+                name="title"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
                 placeholder=""
                 required={true}
               />

@@ -13,8 +13,8 @@ const ExperienceForm = ({ experience, closeForm }) => {
     organization: experience.organization || "",
     description: experience.description || "",
     position: experience.position || "",
-    start_year: experience.start_year || "",
-    end_year: experience.end_year || "",
+    startYear: experience.startYear || "",
+    endYear: experience.endYear || "",
   };
 
   const dispatch = useDispatch();
@@ -67,17 +67,17 @@ const ExperienceForm = ({ experience, closeForm }) => {
           </Col>
           <Col xs={6} md={3} className={classes.Mb_5}>
             <MonthYear
-              name="start_year"
+              name="startYear"
               changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.start_year}
+              value={value.startYear}
               label="Start Year"
             />
           </Col>
           <Col xs={6} md={3} className={classes.Mb_5}>
             <MonthYear
-              name="end_year"
+              name="endYear"
               changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.end_year}
+              value={value.endYear}
               label="End Year"
             />
           </Col>

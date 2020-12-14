@@ -20,7 +20,7 @@ const SocialButton = (props) => {
     return (
         <SocialButtonTemplate
           provider="google"
-          appId={`${process.env.CLIENT_ID}`}
+          appId={`${process.env.REACT_APP_CLIENT_ID}`}
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginFailure}
           loadspinner={loading}

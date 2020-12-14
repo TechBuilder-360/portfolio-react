@@ -6,7 +6,7 @@ const Experience = (props) => {
   let direction = classes.left;
 
   const sortedExperienceHistory = [...props.experienceHistory].sort(
-    (a, b) => b.start_year - a.start_year
+    (a, b) => b.startYear - a.startYear
   );
 
   return (
@@ -17,9 +17,9 @@ const Experience = (props) => {
           <div className={`${classes.container}  ${direction}`} key={index}>
             <div className={classes.content}>
               <h2>
-                {experience.end_year
-                  ? `${experience.start_year} - ${experience.end_year}`
-                  : `${experience.start_year} - Till Date`}
+                {experience.endYear
+                  ? `${experience.startYear} - ${experience.endYear}`
+                  : `${experience.startYear} - Till Date`}
               </h2>
               <p>Organization: {experience.organization}</p>
               <p>Position: {experience.position}</p>

@@ -1,91 +1,89 @@
-import { faSdCard } from "@fortawesome/free-solid-svg-icons";
 import * as actionType from "../actions/actionType";
 
 const initialState = {
-  personal_info: {
+  personalInfo: {
     username: "John01",
-    first_name: "John",
-    last_name: "Doe",
-    middle_name: "Orion",
+    firstName: "John",
+    lastName: "Doe",
+    middleName: "Orion",
     email: "John.Doe@mail.com",
     gender: "Male",
     languages: "English, French", // MAX length 100
     location: "Lagos, Nigeria",
-    date_of_birth: "12/12/2019", // default null
+    dateOfBirth: "12/12/2019", // default null
     profession: "Accountant",
-    profile_pix: "",
+    profilePix: "",
     phone: "+2347458747777",
     // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
     bio:
       "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
-    resume: "",
   },
   subskill: [
-    { id: 1, name: "HTML", skill: 1 },
-    { id: 2, name: "CSS", skill: 1 },
-    { id: 3, name: "Javascript", skill: 1 },
-    { id: 4, name: "SCSS", skill: 1 },
-    { id: 5, name: "Django", skill: 1 },
-    { id: 6, name: "Spring Boot", skill: 1 },
-    { id: 7, name: "ICAN", skill: 2 },
+    { id: 1, title: "HTML", skill: 1 },
+    { id: 2, title: "CSS", skill: 1 },
+    { id: 3, title: "Javascript", skill: 1 },
+    { id: 4, title: "SCSS", skill: 1 },
+    { id: 5, title: "Django", skill: 1 },
+    { id: 6, title: "Spring Boot", skill: 1 },
+    { id: 7, title: "ICAN", skill: 2 },
     {
       id: 8,
-      name: "COMPTIA N+",
+      title: "COMPTIA N+",
       skill: 3,
     },
     {
       id: 9,
-      name: "CCNA",
+      title: "CCNA",
       skill: 3,
     },
     {
       id: 10,
-      name: "CCNP",
+      title: "CCNP",
       skill: 3,
     },
     {
       id: 11,
-      name: "SCRUM",
+      title: "SCRUM",
       skill: 4,
     },
     {
       id: 12,
-      name: "AGILE",
+      title: "AGILE",
       skill: 4,
     },
     {
       id: 13,
-      name: "SPSS",
+      title: "SPSS",
       skill: 4,
     },
     {
       id: 14,
-      name: "Apache Spark",
+      title: "Apache Spark",
       skill: 5,
     },
     {
       id: 15,
-      name: "Apache Kafka",
+      title: "Apache Kafka",
       skill: 5,
     },
     {
       id: 16,
-      name: "Postgres",
+      title: "Postgres",
       skill: 6,
     },
     {
       id: 17,
-      name: "Cassandra",
+      title: "Cassandra",
       skill: 6,
     },
     {
       id: 18,
-      name: "MYSQL",
+      title: "MYSQL",
       skill: 6,
     },
     {
       id: 19,
-      name: "MSSQL Server",
+      title: "MSSQL Server",
       skill: 6,
     },
   ],
@@ -119,24 +117,24 @@ const initialState = {
     {
       id: 1,
       institution: "Lautech",
-      start_year: "Aug. 2006",
-      end_year: "Dec. 2011",
+      startYear: "Aug. 2006",
+      endYear: "Dec. 2011",
       degree: "BSc",
       course: "Accounting",
     },
     {
       id: 2,
       institution: "Manchester University",
-      start_year: "Nov. 2012",
-      end_year: "Jan. 2017",
+      startYear: "Nov. 2012",
+      endYear: "Jan. 2017",
       degree: "MBA",
       course: "Accounting",
     },
     {
       id: 3,
       institution: "Doregos College",
-      start_year: "Oct. 2000",
-      end_year: "Oct. 2006",
+      startYear: "Oct. 2000",
+      endYear: "Oct. 2006",
       degree: "SSCE",
     },
   ],
@@ -146,16 +144,16 @@ const initialState = {
       organization: "Consolidate Insurance",
       description: "Worked as an account manager",
       position: "Accounting managment",
-      start_year: "Jun. 2016",
-      end_year: "Jun. 2018",
+      startYear: "Jun. 2016",
+      endYear: "Jun. 2018",
     },
     {
       id: 2,
       organization: "Access Bank",
       description: "Worked as an account manager",
       position: "Accounting managment",
-      start_year: "Oct. 2018",
-      end_year: "Dec. 2019",
+      startYear: "Oct. 2018",
+      endYear: "Dec. 2019",
     },
   ],
   project: [
@@ -164,63 +162,63 @@ const initialState = {
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 2,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 3,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 4,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 5,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 6,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 7,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 8,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
     {
       id: 9,
       title: "Fraud detection using transaction pattern",
       description:
         "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
+      projectUrl: "/",
     },
   ],
   social: [
@@ -239,10 +237,24 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionType.FETCH_PORTFOLIO:
+      return {
+        ...state,
+        skills: action.payload.skills,
+        personalInfo: action.payload.personalInfo,
+        subskill: action.payload.subskill.map(sub=> {
+          sub.skill = sub.skill.id
+          return sub
+        }),
+        education: action.payload.education,
+        experience: action.payload.experience,
+        project: action.payload.project,
+        social: action.payload.social,
+      };
     case actionType.PERSONAL_INFORMATION:
       return {
         ...state,
-        personal_info: { ...state.personal_info, ...action.detail },
+        personalInfo: { ...state.personalInfo, ...action.detail },
       };
     case actionType.EDUCATION:
       return {
@@ -264,7 +276,7 @@ const reducer = (state = initialState, action) => {
     case actionType.AVATAR_UPLOAD:
       return {
         ...state,
-        personal_info: { ...state.personal_info, profile_pix: action.imageURL },
+        personalInfo: { ...state.personalInfo, profile_pix: action.imageURL },
       };
     case actionType.AVATAR_UPLOAD_FAILED:
       return {
@@ -272,30 +284,30 @@ const reducer = (state = initialState, action) => {
       };
     case actionType.MESSAGES:
       return {
-        ...state
-    }
-    case actionType.ADD_SOCIAL_LINK:
-    return{
-      ...state,
-      social: [...state.social, action.payload]
-    }
-    case actionType.EDIT_SOCIAL_LINK:
-    let newSocial = state.social.map((socialLink) => {
-      if (socialLink.id === action.payload.id){
-        socialLink.label = action.payload.label;
-        socialLink.url = action.payload.url;
-      }
-      return socialLink
-    });
-      return{
         ...state,
-        social: newSocial
-      }
-    case actionType.DELETE_SOCIAL_LINK:
-        return{
-          ...state,
-          social: [...state.social.filter( link => link.id !== action.id)]
+      };
+    case actionType.ADD_SOCIAL_LINK:
+      return {
+        ...state,
+        social: [...state.social, action.payload],
+      };
+    case actionType.EDIT_SOCIAL_LINK:
+      let newSocial = state.social.map((socialLink) => {
+        if (socialLink.id === action.payload.id) {
+          socialLink.label = action.payload.label;
+          socialLink.url = action.payload.url;
         }
+        return socialLink;
+      });
+      return {
+        ...state,
+        social: newSocial,
+      };
+    case actionType.DELETE_SOCIAL_LINK:
+      return {
+        ...state,
+        social: [...state.social.filter((link) => link.id !== action.id)],
+      };
     case actionType.ADD_EDUCATION:
       return {
         ...state,
@@ -372,7 +384,7 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        project
+        project,
       };
 
     case actionType.EDIT_SKILL:
@@ -385,7 +397,7 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        skills
+        skills,
       };
 
     case actionType.DELETE_SKILL:

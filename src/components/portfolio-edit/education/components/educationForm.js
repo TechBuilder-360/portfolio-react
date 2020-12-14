@@ -12,8 +12,8 @@ const EducationForm = ({ education, closeForm }) => {
   const content = {
     id: education.id ||  "",
     institution: education.institution || "",
-    start_year: education.start_year || "",
-    end_year: education.end_year || "",
+    startYear: education.startYear || "",
+    endYear: education.endYear || "",
     degree: education.degree || "",
     course: education.course || "",
   }
@@ -66,17 +66,17 @@ const EducationForm = ({ education, closeForm }) => {
           </Col>
          <Col xs={12} md={3} className={classes.Mb_5}>
             <MonthPicker
-              name="start_year"
+              name="startYear"
               changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.start_year}
+              value={value.startYear}
               label="Start Year"
             />
           </Col>
           <Col xs={12} md={3} className={classes.Mb_5}>
             <MonthPicker
-              name="end_year"
+              name="endYear"
               changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.end_year}
+              value={value.endYear}
               label="End Year"
             />
           </Col>

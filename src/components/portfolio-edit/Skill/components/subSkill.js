@@ -8,11 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SubSkill = ({ skillId }) => {
   const dispatch = useDispatch();
-  const subskill = useSelector( state => state.portfolio.subskill.filter(sub=> sub.skill == skillId))
+  const subskill = useSelector( state => state.portfolio.subskill.filter(sub=> sub.skill === skillId ))
 
   const children = subskill.map((sub, i) => (
     <li className={classes.li} key={i}>
-      {sub.name}
+      {sub.title}
       <FontAwesomeIcon
         size="lg"
         className={classes.icon}

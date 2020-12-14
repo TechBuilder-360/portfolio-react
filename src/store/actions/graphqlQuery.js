@@ -28,9 +28,9 @@ export const edit_personalinfo = (detail) => {
     query: `mutation personal_info_change {
       personalInfo(
           email: "${detail.email}",
-          firstName: "${detail.first_name}",
-          lastName: "${detail.last_name}",
-          middleName: "${detail.middle_name}",
+          firstName: "${detail.firstName}",
+          lastName: "${detail.lastName}",
+          middleName: "${detail.middleName}",
           profession: "${detail.profession}",
           bio: "${detail.bio}",
           gender: "${detail.gender}",
@@ -52,8 +52,8 @@ export const education = (detail) => {
         id: "${detail.id}",
         course: "${detail.course}", 
         degree: "${detail.degree}", 
-        startYear: "${detail.start_year}", 
-        endYear: "${detail.end_year}", 
+        startYear: "${detail.startYear}", 
+        endYear: "${detail.endYear}", 
         institution: "${detail.institution}"){
         education{
           id
@@ -72,8 +72,8 @@ export const experience = (detail) => {
         id: "${detail.id}",
         position: "${detail.position}",
         description: "${detail.description}",
-        startYear: "${detail.start_year}",
-        endYear: "${detail.end_year}",
+        startYear: "${detail.startYear}",
+        endYear: "${detail.endYear}",
         organization: "${detail.organization}"
       ){
         experience{
@@ -227,3 +227,74 @@ export const remove_social = (id) => {
       `,
   });
 };
+
+
+export const portfolio = (username) => {
+  return JSON.stringify({
+    query: `query fetchPortfolio($username: String){
+      skills(username: $username){
+        id
+        title
+      }
+      project(username: $username){
+        id
+        projectUrl
+        title
+        description
+      }
+      education(username: $username){
+        id
+        institution
+        startYear
+        endYear
+        degree
+        course
+      }
+      subskill(username: $username){
+        id
+        skill{
+          id
+        }
+        title
+      }
+      experience(username: $username){
+        id
+        organization
+        position
+        description
+        startYear
+        endYear
+      }
+      education(username: $username){
+        id
+        institution
+        startYear
+        endYear
+        degree
+        course
+      }
+      social(username: $username){
+        id
+        label
+        url
+      }
+      personalInfo(username: $username){
+        username
+        middleName
+        firstName
+        lastName
+        dateOfBirth
+        email
+        gender
+        phone
+        bio
+        languages
+        location
+        profession
+        profilePix
+      }
+    }
+    `,
+    variables: {"username": `${username}`}
+  })
+}

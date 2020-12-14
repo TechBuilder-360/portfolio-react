@@ -6,6 +6,34 @@ import cookie from "react-cookies";
 const userCookie = cookie.load("userData");
 const headerToken = userCookie ? `JWT ${userCookie.token}` : null;
 
+
+const fetch_portfolio = (response) => {
+  return {
+    type: actionType.FETCH_PORTFOLIO,
+    payload: response
+  }
+}
+
+
+export const fetchPortfolio = (username) => {
+  return dispatch => {
+    instanceAxios({
+      data: query.portfolio(username),
+      headers: {
+        Authorization: headerToken,
+      },
+    })
+      .then((response) => {
+        let res = response.data.data;
+        dispatch(fetch_portfolio(res));
+      })
+      .catch(err => {
+        console.error(err);
+        // dispatch(messages([]));
+      });
+  }
+}
+
 const Personal_Information = (detail) => {
   return {
     type: actionType.PERSONAL_INFORMATION,
@@ -15,7 +43,7 @@ const Personal_Information = (detail) => {
 
 const messages = (msg) => {
   return {
-    type: actionType.PERSONAL_INFORMATION,
+    type: actionType.MESSAGES,
     detail: msg, // Array of messages
   };
 };
@@ -464,10 +492,10 @@ const add_subskill = req => {
   };
 };
 
-export const subskillAction = (skill, name) => {
+export const subskillAction = (skill, title) => {
   return (dispatch) => {
     instanceAxios({
-      data: query.subSkill(skill, name),
+      data: query.subSkill(skill, title),
       headers: {
         Authorization: headerToken,
       }
@@ -476,7 +504,7 @@ export const subskillAction = (skill, name) => {
         if (!responce.data.errors) {
           let res = responce.data.data.subSkill;
           if (res.created) {
-            dispatch(add_subskill({skill, name, id: res.subSkill.id }));
+            dispatch(add_subskill({skill, title, id: res.subSkill.id }));
           }
         } else {
           console.log(responce.data.errors);

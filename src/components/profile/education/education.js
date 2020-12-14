@@ -12,8 +12,8 @@ const Education = (props) => {
         educationTypeContent = (
           <div className={classes.content}>
             <h2>
-              {education.end_year
-                ? `${education.start_year} - ${education.end_year}`
+              {education.endYear
+                ? `${education.startYear} - ${education.endYear}`
                 : "Till Date"}
             </h2>
             <p>Institution: {education.institution}</p>
@@ -28,9 +28,9 @@ const Education = (props) => {
         educationTypeContent = (
           <div className={classes.content}>
             <h2>
-              {education.end_year
-                ? `${education.start_year} - ${education.end_year}`
-                : `${education.start_year} - Till Date`}
+              {education.endYear
+                ? `${education.startYear} - ${education.endYear}`
+                : `${education.startYear} - Till Date`}
             </h2>
             <p>Institution: {education.institution}</p>
             <p>Degree Obtained: {education.degree}</p>
@@ -46,7 +46,7 @@ const Education = (props) => {
   };
 
   const sortedEducationHistory = [...props.educationHistory].sort(
-    (a, b) => b.start_year - a.start_year
+    (a, b) => b.startYear - a.startYear
   );
 
   return (
