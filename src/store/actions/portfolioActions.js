@@ -87,9 +87,30 @@ export const Projects = () => {
   };
 };
 
-export const Social_Link = () => {
+export const Skill = () => {
   return {
-    type: actionType.SOCIAL_LINK,
+    type: actionType.SKILL,
+  };
+};
+
+export const addSocialLink = (data) => {
+  return {
+    type: actionType.ADD_SOCIAL_LINK,
+    payload : data
+  };
+};
+
+export const editSocialLink = (data) => {
+  return {
+    type: actionType.EDIT_SOCIAL_LINK,
+    payload : data
+  };
+};
+
+export const deleteSocialLink = (id) => {
+  return {
+    type: actionType.DELETE_SOCIAL_LINK,
+    id : id
   };
 };
 

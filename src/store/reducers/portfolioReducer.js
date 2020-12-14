@@ -226,12 +226,12 @@ const initialState = {
   social: [
     {
       id: 1,
-      label: "facebook",
+      label: "Facebook",
       url: "https://facebook.com",
     },
     {
       id: 2,
-      label: "twitter",
+      label: "Twitter",
       url: "https://twitter.com",
     },
   ],
@@ -261,11 +261,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         skills: [...state.skills, action.skill],
       };
-    case actionType.SOCIAL_LINK:
-      return {
-        ...state,
-      };
-
     case actionType.AVATAR_UPLOAD:
       return {
         ...state,
@@ -277,8 +272,30 @@ const reducer = (state = initialState, action) => {
       };
     case actionType.MESSAGES:
       return {
+        ...state
+    }
+    case actionType.ADD_SOCIAL_LINK:
+    return{
+      ...state,
+      social: [...state.social, action.payload]
+    }
+    case actionType.EDIT_SOCIAL_LINK:
+    let newSocial = state.social.map((socialLink) => {
+      if (socialLink.id === action.payload.id){
+        socialLink.label = action.payload.label;
+        socialLink.url = action.payload.url;
+      }
+      return socialLink
+    });
+      return{
         ...state,
-      };
+        social: newSocial
+      }
+    case actionType.DELETE_SOCIAL_LINK:
+        return{
+          ...state,
+          social: [...state.social.filter( link => link.id !== action.id)]
+        }
     case actionType.ADD_EDUCATION:
       return {
         ...state,
