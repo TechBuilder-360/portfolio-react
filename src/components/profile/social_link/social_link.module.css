@@ -2,6 +2,10 @@
     margin-bottom: 15px;
     display: block;
     text-align: inherit;
+    color: black;
+}
+.lo{
+    display: inline-block;
 }
 
 .icon {

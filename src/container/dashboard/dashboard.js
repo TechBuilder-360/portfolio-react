@@ -45,13 +45,8 @@ const Dashboard = () => {
             <PersonalInfo />
 
             <SocialLinks />
-
-            <Button variant="danger">
-              <NavLink style={{ color: "white" }} to={"/logout"}>
-                <FontAwesomeIcon icon={faPowerOff} /> Logout
-              </NavLink>
-            </Button>
-            <br />
+<br/>
+           
             <button className={classes.Butt}>
               Download Resume
             </button>

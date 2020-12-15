@@ -46,10 +46,10 @@ const SocialLinks = (props) => {
   return (
     <Container>
       {props.social.map((social, index) => (
-        <div key={index}>{display(social, index)}</div>
+        <div className={classes.lo} key={index}>{display(social, index)}</div>
       ))}
     </Container>
-  );
+  )
 };
 
 const mapStateToProps = (state) => {

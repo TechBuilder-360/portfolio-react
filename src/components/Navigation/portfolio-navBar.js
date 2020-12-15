@@ -11,13 +11,14 @@ const Portfolio_navBar = () => {
 
 <Link to='/'>
 <img src={logo} className={classes.Logo} alt="xPortfolio"/>
-
 </Link>
+<div className={classes.auth}>
 
 
-            <NavLink to={`/${auth.username}`}> Dashboard </NavLink> | {" "}
-            { auth.token ? <NavLink to={"/edit"}> Edit Profile </NavLink> : null} | {" "}
-            { auth.token ? <NavLink to={"/logout"}>Logout</NavLink> : <NavLink to={"/login"}>Login</NavLink>}
+<NavLink to={`/${auth.username}`}> Dashboard </NavLink>
+{ auth.token ? <NavLink to={"/edit"}> Edit Profile </NavLink> : null} 
+{ auth.token ? <NavLink to={"/logout"}>Logout</NavLink> : <NavLink to={"/login"}>Login</NavLink>}
+</div>
         </nav>
     );
 };

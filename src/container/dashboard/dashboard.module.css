@@ -43,7 +43,7 @@ height: auto;
     font-weight: bold;
     padding: 1%;
     display: inline-block;
-    overflow-y: auto;
+    
 }
 
 .Main_Content{
@@ -56,26 +56,17 @@ height: auto;
 
 
 /* Desktop view */
-/*@media (min-width: 760px){
-    .Wrapper{
-        padding: 1%;
-    }
-
+@media (min-width: 760px){
     
-
-    .Aside {
-        width:30%;
-        vertical-align: top;
-        margin: 0 1%;
-        text-align: center;
-    }
-
     .Main {
         width: 80%;
-        height: auto;
-        
+        height: 620px;
+        overflow: scroll;
         text-align: left;
     }
-
+::-webkit-scrollbar{
+width: 0px;
+    background: transparent;
+}
     
-}*/
+}
