@@ -46,7 +46,7 @@ const Images = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    avatar: state.portfolio.personal_info.profile_pix,
+    avatar: state.portfolio.personalInfo.profilePix,
   };
 };
 

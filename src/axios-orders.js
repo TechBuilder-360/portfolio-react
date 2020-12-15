@@ -6,7 +6,7 @@ const url = "https://xportfolio.herokuapp.com"
 
 export const instanceAxios = axios.create({
     baseURL: `${url}/graphql/`, 
-    timeout: 3000,
+    timeout: 30000,
     headers: {
         "Content-Type": "application/json",
     },
@@ -16,7 +16,7 @@ export const instanceAxios = axios.create({
 
 export const imageAxios = axios.create({
     baseURL: `${url}/accounts/upload/`,
-    timeout: 3000,
+    timeout: 30000,
     headers: {
         'Content-Type': 'multipart/form-data'
     },

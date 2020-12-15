@@ -4,59 +4,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
-import EducationForm from "./components/educationForm"
-import { delete_education } from "../../../store/actions/portfolioActions";
-
+import EducationForm from "./components/educationForm";
 
 const Education = (props) => {
-
-  const dispatch = useDispatch()
-  const [form, setForm] = useState(null)
-  const [formVisible, setFormVisible] = useState(false)
-
+  const limit = process.env.REACT_APP_EDUCATION_LIMIT;
+  const [form, setForm] = useState(null);
+  const [formVisible, setFormVisible] = useState(false);
 
   const handleCloseForm = () => {
-    setFormVisible(false)
-  }
-  
+    setFormVisible(false);
+  };
 
   useEffect(() => {
-    if(formVisible){
-      setForm(<EducationForm index={null} education={{}} closeForm={()=>handleCloseForm()}/>)
-    }else{
-      setForm(null)
+    if (formVisible) {
+      setForm(
+        <EducationForm education={{}} closeForm={() => handleCloseForm()} />
+      );
+    } else {
+      setForm(null);
     }
   }, [formVisible]);
-
-  function handleDelete(index) {
-      dispatch(delete_education(index))
-  }
 
   // Populate accordion children with existing record
   const children = props.education.map((edu, i) => (
     <Child
       education={edu}
-      delete={(i)=> handleDelete(i) }
-      closeForm={()=>setFormVisible(false)}
-      i={i+1}
-      index={i}
+      closeForm={() => setFormVisible(false)}
+      index={i + 1}
       key={i}
     />
-  ))
+  ));
 
   return (
     <div className={style.SubSection}>
       <p className="title">Education</p>
       <hr />
-      <Accordion className={classes.Accordion_Parent}>
-        {children}
-        </Accordion>
-        {form}
-      <span style={{marginTop: "2%"}} onClick={()=>setFormVisible(true)}>
-        <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
-      </span>
+      <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
+      {form}
+      {props.education.length < limit ? (
+        <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>
+          <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
+        </span>
+      ) : null}
     </div>
   );
 };

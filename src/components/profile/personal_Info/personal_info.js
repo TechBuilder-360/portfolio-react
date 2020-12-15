@@ -14,7 +14,7 @@ const PersonalInfo = (props) => {
       
         <img 
           className={classes.Avatar}
-          src={props.personalInfo.profile_pix?props.personalInfo.profile_pix: avatar}
+          src={props.personalInfo.profilePix ? props.personalInfo.profilePix: avatar}
           alt={props.personalInfo.username}
         />
       </div>
@@ -32,7 +32,7 @@ const PersonalInfo = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    personalInfo: state.portfolio.personal_info,
+    personalInfo: state.portfolio.personalInfo,
   };
 };
 

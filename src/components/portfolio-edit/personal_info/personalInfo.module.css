@@ -13,11 +13,14 @@
   display:inline-block;
   border-radius: 20px;
 }
-.form{
+
+form{
 margin-top:20px;
+margin-bottom: 20px;
 padding: 7px;
-box-shadow:0px 0px 4px rgba(35, 52, 77, 0.2);
+box-shadow:0px 4px 8px rgba(35, 52, 77, 0.2);
 }
+
 .icon{
   color:rgb(235, 194, 194);
   margin-left: 10px;
@@ -104,9 +107,20 @@ form label {
   /* z-index: 5 !important; */
 }
 
-.Accordion_Child span {
+.Accordion_Child  .Span {
   position: relative; 
-  top: 8px; 
+  top: 5px; 
+  color: inherit;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 60%;
+}
+
+.Accordion_Child .Button{
+  text-align: left;
+  width: 60%;
   color: inherit;
 }
 
@@ -115,6 +129,10 @@ form label {
   top: 0;
   overflow: auto !important;
   z-index: 12 !important;
+}
+
+.Accordion_Child .Card_Action{
+  float: right;
 }
 
 
@@ -152,5 +170,10 @@ form label {
     background-color: rgb(224, 234, 245);
     border-radius: 5px;
     border: 0px;
+  }
+
+  .Accordion_Child  .Span {
+    top: 8px;
+    width: 80%;
   }
 }

@@ -4,8 +4,11 @@ import { Link, NavLink } from "react-router-dom"
 import logo from "../../images/logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFontAwesomeLogoFull, faLandmark, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from "react-router-dom";
+import { useSelector, shallowEqual } from "react-redux";
 
 const Portfolio_navBar = () => {
+    const auth = useSelector((state) => state.auth, shallowEqual);
     return (
         <nav className={classes.Nav}>
 
@@ -15,6 +18,9 @@ const Portfolio_navBar = () => {
 </Link>
 
 
+            <NavLink to={`/${auth.username}`}> Dashboard </NavLink> | {" "}
+            { auth.token ? <NavLink to={"/edit"}> Edit Profile </NavLink> : null} | {" "}
+            { auth.token ? <NavLink to={"/logout"}>Logout</NavLink> : <NavLink to={"/login"}>Login</NavLink>}
         </nav>
     );
 };

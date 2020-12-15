@@ -8,23 +8,24 @@ import { set_personalInfo } from "../../../../store/actions/portfolioActions"
 
 const PersonalDetails = ({information}) => {
 
-
   const info = {
-    first_name: "" || information.first_name,
-    last_name: "" || information.last_name,
-    middle_name: "" || information.middle_name,
-    email: "" || information.email,
-    phone: "" || information.phone,
-    profession: "" || information.profession,
-    languages: "" || information.languages,
-    location: "" || information.location,
-    gender: "" || information.gender,
-    date_of_birth: information.date_of_birth,
-    bio: "" || information.bio,
+    firstName: information.firstName  || "",
+    lastName: information.lastName  || "",
+    middleName: information.middleName  || "",
+    email: information.email  || "",
+    phone: information.phone || "",
+    profession: information.profession  || "",
+    languages: information.languages  || "",
+    location: information.location  || "",
+    gender: information.gender  || "",
+    dateOfBirth: information.dateOfBirth  || "",
+    bio: information.bio  || "",
   }
 
   const dispatch = useDispatch()
   const [detail, onDetail] = useState(info)
+  console.log(detail);
+
 
   const onChangeHandler = (e) => {
     onDetail({...detail, [e.target.name]: e.target.value}) 
@@ -45,19 +46,19 @@ const PersonalDetails = ({information}) => {
         <Col xs={12} md={6} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>First Name</Form.Label>
-            <Form.Control placeholder="First name" required name="first_name" onChange={onChangeHandler} value={detail.first_name} />
+            <Form.Control placeholder="First name" required name="firstName" onChange={onChangeHandler} value={detail.firstName} />
           </Form.Group>
         </Col>
         <Col xs={12} md={6} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Last Name</Form.Label>
-            <Form.Control placeholder="Last name" required name="last_name" onChange={onChangeHandler} value={detail.last_name} />
+            <Form.Control placeholder="Last name" required name="lastName" onChange={onChangeHandler} value={detail.lastName} />
           </Form.Group>
         </Col>
         <Col xs={12} md={6} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Middle Name</Form.Label>
-            <Form.Control placeholder="Middle name" onChange={onChangeHandler} name="middle_name" value={detail.middle_name} />
+            <Form.Control placeholder="Middle name" onChange={onChangeHandler} name="middleName" value={detail.middleName} />
           </Form.Group>
         </Col>
         <Col xs={12} md={6} className={classes.Mb_5}>
@@ -105,7 +106,7 @@ const PersonalDetails = ({information}) => {
         </Col>
       
         <Col xs={12} md={3} className={classes.Mb_5}>
-          <InputDate name="date_of_birth" changed={componentChange} value={detail.date_of_birth} label="Date of Birth"/>
+          <InputDate name="dateOfBirth" changed={componentChange} value={detail.dateOfBirth} label="Date of Birth"/>
         </Col>
 
         <Col xs={12} md={12} className={classes.Mb_5}>
@@ -118,7 +119,7 @@ const PersonalDetails = ({information}) => {
         <Col xs={12} md={12} className={classes.Mb_5}>
         <Button
           type="submit"
-          variant="outline-dark"
+          variant="light"
         >
           Save
         </Button>
