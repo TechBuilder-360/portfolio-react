@@ -325,7 +325,7 @@ const reducer = (state = initialState, action) => {
     case actionType.EDIT_EDUCATION:
       const oldEdu = [...state.education];
       const education = oldEdu.map((edu) => {
-        if (edu.id == action.payload.id) {
+        if (edu.id === action.payload.id) {
           edu = action.payload;
         }
         return edu;
@@ -352,7 +352,7 @@ const reducer = (state = initialState, action) => {
     case actionType.EDIT_EXPERIENCE:
       const oldExp = [...state.experience];
       const experience = oldExp.map((exp) => {
-        if (exp.id == action.payload.id) {
+        if (exp.id === action.payload.id) {
           exp = action.payload;
         }
         return exp;
@@ -377,7 +377,7 @@ const reducer = (state = initialState, action) => {
     case actionType.EDIT_PROJECT:
       const oldProject = [...state.project];
       const project = oldProject.map((proj) => {
-        if (proj.id == action.payload.id) {
+        if (proj.id === action.payload.id) {
           proj = action.payload;
         }
         return proj;
@@ -390,7 +390,7 @@ const reducer = (state = initialState, action) => {
     case actionType.EDIT_SKILL:
       const oldSkill = [...state.skills];
       const skills = oldSkill.map((skill) => {
-        if (skill.id == action.payload.id) {
+        if (skill.id === action.payload.id) {
           skill = action.payload;
         }
         return skill;
