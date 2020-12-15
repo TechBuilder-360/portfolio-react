@@ -9,22 +9,23 @@ import { set_personalInfo } from "../../../../store/actions/portfolioActions"
 const PersonalDetails = ({information}) => {
 
   const info = {
-    firstName: "" || information.firstName,
-    lastName: "" || information.lastName,
-    middleName: "" || information.middleName,
-    email: "" || information.email,
-    phone: "" || information.phone,
-    profession: "" || information.profession,
-    languages: "" || information.languages,
-    location: "" || information.location,
-    gender: "" || information.gender,
-    dateOfBirth: information.dateOfBirth,
-    bio: "" || information.bio,
+    firstName: information.firstName  || "",
+    lastName: information.lastName  || "",
+    middleName: information.middleName  || "",
+    email: information.email  || "",
+    phone: information.phone || "",
+    profession: information.profession  || "",
+    languages: information.languages  || "",
+    location: information.location  || "",
+    gender: information.gender  || "",
+    dateOfBirth: information.dateOfBirth  || "",
+    bio: information.bio  || "",
   }
 
   const dispatch = useDispatch()
   const [detail, onDetail] = useState(info)
-  console.log(detail.lastName);
+  console.log(detail);
+
 
   const onChangeHandler = (e) => {
     onDetail({...detail, [e.target.name]: e.target.value}) 

@@ -4,9 +4,14 @@ import Propstypes from 'prop-types'
 
 const TextArea = (props) => {
   const character = 200
-  const [textAreaValue, setTextAreaValue] = useState(props.value.substr(0,character) || "");
-  const [textCount, setTextCount] = useState(props.value.length <= character ? character - props.value.length: 0);
-  const [countColor, setCountColor] = useState((character - props.value.length) <= 10 ? "red":"green" );
+  let value = ''
+  if(props.value){
+    value = props.value.substr(0,character)
+  }
+
+  const [textAreaValue, setTextAreaValue] = useState();
+  const [textCount, setTextCount] = useState(value.length <= character ? character - value.length: 0);
+  const [countColor, setCountColor] = useState((character - value.length) <= 10 ? "red":"green" );
   
   let onChange = (e) => {
     setTextAreaValue(e.target.value);
