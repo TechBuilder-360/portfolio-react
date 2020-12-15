@@ -1,6 +1,6 @@
-import React from 'react';
-import classes from './portfolio-navBar.module.css';
-import { Link, NavLink } from "react-router-dom"
+import React from "react";
+import classes from "./portfolio-navBar.module.css";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { useSelector, shallowEqual } from "react-redux";
 

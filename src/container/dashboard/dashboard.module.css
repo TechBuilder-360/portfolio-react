@@ -10,12 +10,13 @@ padding: 20px;
 color: black;
 height: auto;
 }
+
 .Butt{
     background-color: rgb(212, 164, 6);
     color: black;
     border-width: 0px;
     padding: 10px;
-    font-size: 20pt;
+    /* font-size: 15pt; */
     font-weight: bold;
     margin-top: 20px;
 }
@@ -32,6 +33,7 @@ height: auto;
     margin-bottom: 8px;
     background-color: rgb(241, 241, 245);
     height: auto;
+    text-align: center;
 }
 
 .Main{
@@ -40,8 +42,8 @@ height: auto;
     color: white;
     font-weight: bold;
     padding: 1%;
-    
-   
+    display: inline-block;
+    overflow-y: auto;
 }
 
 .Main_Content{
@@ -49,7 +51,7 @@ height: auto;
     width: 100%;
     box-sizing: border-box;
     border-width: 0px;
-    padding:8px;
+    padding:0 4% 0 2%;
 }
 
 

@@ -12,7 +12,6 @@ import { ProjectTitle } from "../../static";
 import DashboardNavBar from "../../components/Navigation/portfolio-navBar";
 import Container from "../Container";
 
-
 // import { useParams } from "react-router-dom"
 import { useSelector, shallowEqual } from "react-redux";
 import { Button, Col, Row } from "react-bootstrap";
@@ -31,50 +30,61 @@ const Dashboard = () => {
     // if (username!='') {
     //   history.push("/pageNotFound");
     // }
-  }, [authState.username])
+      
+      // if(this.props.authUser != this.props.portfolioUser){
+      //     this.props.fetch_portfolio(this.props.authUser)
+      // }
+  }, [authState.username]);
 
   return (
     <Container>
       <DashboardNavBar />
-    
-        <Row className={classes.Wrapper}>
-        
-<Col md='4' className={classes.Aside}>
-        <div>
-          <PersonalInfo />
-          
-          <SocialLinks />
-          
-          <Button variant="danger" >
-        <NavLink style={{color:'white'}} to={"/logout"}><FontAwesomeIcon icon={faPowerOff}/> Logout</NavLink> 
-           
-          </Button>  
-          <br/>
-<button className={classes.Butt} size="lg">Download Resume</button>
 
-          </div>
-        
-</Col>
-        
-       <Col md='8' className={classes.Main}>
-         
-      
-          {/* <CoverImag title="This is the cover image component" /> */}
+      <Row className={classes.Wrapper}>
+        <Col md="3" className={classes.Aside}>
+            <PersonalInfo />
+
+            <SocialLinks />
+
+            <Button variant="danger">
+              <NavLink style={{ color: "white" }} to={"/logout"}>
+                <FontAwesomeIcon icon={faPowerOff} /> Logout
+              </NavLink>
+            </Button>
+            <br />
+            <button className={classes.Butt}>
+              Download Resume
+            </button>
+        </Col>
+
+        <Col md="9" className={classes.Main}>
           <ProfessionalSummary
-          div={classes.div}
+            div={classes.div}
             wrapper={classes.Main_Content}
             title="Professional Summary"
           />
-          <Education timeline={classes.timeline} wrapper={classes.Main_Content} title="Education" />
-          <Experience timeline={classes.timeline} wrapper={classes.Main_Content} title="Experience" />
-          <Skills div={classes.div} wrapper={classes.Main_Content} title="Skills" />
-          <Projects div={classes.div} wrapper={classes.Main_Content} title="Project" />
-          
-       </Col>
-       
-      
+          <Education
+            timeline={classes.timeline}
+            wrapper={classes.Main_Content}
+            title="Education"
+          />
+          <Experience
+            timeline={classes.timeline}
+            wrapper={classes.Main_Content}
+            title="Experience"
+          />
+          <Skills
+            div={classes.div}
+            wrapper={classes.Main_Content}
+            title="Skills"
+          />
+          <Projects
+            div={classes.div}
+            wrapper={classes.Main_Content}
+            title="Project"
+          />
+        </Col>
       </Row>
-    
     </Container>
   );
 };
