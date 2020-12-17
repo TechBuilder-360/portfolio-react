@@ -8,6 +8,8 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import {findFlagUrlByCountryName} from 'country-flags-svg'
 
 const PersonalInfo = (props) => {
+  let str=props.personalInfo.location
+let country=str.substring(str.lastIndexOf(',')+1)
 
   return (
     <Container>
@@ -34,7 +36,7 @@ const PersonalInfo = (props) => {
       <p>
         {" "}
         <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
-        <img src={findFlagUrlByCountryName(props.personalInfo.location)} width='30' height="30" />  {props.personalInfo.location ? props.personalInfo.location : "Unknown"}
+        <img src={findFlagUrlByCountryName(country)} width='30' height="30" />  {props.personalInfo.location ? props.personalInfo.location : "Unknown"}
       </p>
     </Container>
   );
