@@ -1,4 +1,4 @@
-import * as actionType from "../actions/actionType";
+import * as actionType from "../actions/actionType"
 
 const initialState = {
   personalInfo: {
@@ -9,7 +9,7 @@ const initialState = {
     email: "John.Doe@mail.com",
     gender: "Male",
     languages: "English, French", // MAX length 100
-    location: "Lagos, Nigeria",
+    location: "Nigeria",
     dateOfBirth: "12/12/2019", // default null
     profession: "Accountant",
     profilePix: "",
