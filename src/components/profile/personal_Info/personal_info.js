@@ -22,7 +22,11 @@ const PersonalInfo = (props) => {
       </div>
       <p>Welcome Back,</p>
       <p style={{ fontWeight: "bold" }}>
-        {props.personalInfo.last_name} {props.personalInfo.first_name}
+        {props.personalInfo.lastName} {props.personalInfo.firstName}
+      </p>
+
+      <p>
+      {props.personalInfo.profession}
       </p>
 
       <p>
