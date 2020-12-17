@@ -16,7 +16,6 @@ height: auto;
     color: black;
     border-width: 0px;
     padding: 10px;
-    /* font-size: 15pt; */
     font-weight: bold;
     margin-top: 20px;
 }
@@ -30,9 +29,9 @@ height: auto;
    
     
 .Aside{
-    margin-bottom: 8px;
     background-color: rgb(241, 241, 245);
-    height: auto;
+    height: 100%;
+    padding-bottom: 2%;
     text-align: center;
 }
 
@@ -43,7 +42,7 @@ height: auto;
     font-weight: bold;
     padding: 1%;
     display: inline-block;
-    
+    height: 80vh;
 }
 
 .Main_Content{
@@ -63,10 +62,12 @@ height: auto;
         height: 620px;
         overflow: scroll;
         text-align: left;
+        height: 90vh;
     }
-::-webkit-scrollbar{
-width: 0px;
-    background: transparent;
-}
+
+    ::-webkit-scrollbar{
+    width: 0px;
+        background: transparent;
+    }
     
 }

@@ -233,6 +233,11 @@ const initialState = {
       label: "Twitter",
       url: "https://twitter.com",
     },
+    {
+      id: 3,
+      label: "Instagram",
+      url: "https://instagram.com",
+    }
   ],
 };
 

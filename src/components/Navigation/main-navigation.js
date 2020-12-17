@@ -24,7 +24,6 @@ const HomeNavBar = () => {
         </div>
       </nav>
     </div>
-    
   );
 };
 

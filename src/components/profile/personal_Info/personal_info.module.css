@@ -4,10 +4,10 @@
 }
 
 .Avatar {
-    width: 100%;
+    width: 200px;
+    height: 200px;
     box-sizing: border-box;
     padding: 0;
-    height: inherit;
     border-radius: 100%;
 }
 

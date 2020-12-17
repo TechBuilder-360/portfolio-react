@@ -45,7 +45,7 @@ class Projects extends Component {
           </p>
           <div className={this.props.div}>
           <div className={classes.container}>
-            {this.props.projects.map((project, index) => (
+            {this.props.projects.length != 0 ? this.props.projects.map((project, index) => (
               <div key={index} className={classes.card}>
                 <div className={classes.head}>{project.title}</div>
                 <div className={classes.body}>
@@ -58,7 +58,9 @@ class Projects extends Component {
                   </Button>
                 </div>
               </div>
-            ))}
+            )): 
+            <p>There are no project availabe at the moment</p>
+            }
           </div>
         </div>
         </div>
