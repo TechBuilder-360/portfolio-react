@@ -3,9 +3,9 @@ import {instanceAxios} from '../../axios-orders';
 import * as query from './graphqlQuery';
 import cookie from 'react-cookies';
 
-export const authStart = () => {
+export const loadingStart = () => {
   return {
-    type: actionTypes.GOOGLE_AUTH_START,
+    type: actionTypes.LOADING_START,
   };
 };
 
@@ -33,17 +33,27 @@ export const googleAuthSuccess = (token) =>  (dispatch) => {
       });
     })
     .catch((err) => {
-      dispatch(sessionTokenFail(err));
+      dispatch(loadingFailed(err));
     });
+};
 
+export const loadingFailed = (error) => {
   return {
-    type: actionTypes.GOOGLE_AUTH_SUCCESS,
+    type: actionTypes.LOADING_FAILED,
+    error: error,
   };
 };
 
-export const googleAuthFail = (error) => {
+export const logError = (error) => {
   return {
-    type: actionTypes.GOOGLE_AUTH_FAIL,
+    type: actionTypes.LOG_ERROR,
+    error: error,
+  };
+};
+
+export const loadingStop = (error) => {
+  return {
+    type: actionTypes.LOADING_STOP,
     error: error,
   };
 };
@@ -52,13 +62,6 @@ export const sessionTokenSuccess = (userData) => {
   return {
     type: actionTypes.SESSION_TOKEN_SUCCESS,
     action: userData,
-  };
-};
-
-export const sessionTokenFail = (error) => {
-  return {
-    type: actionTypes.SESSION_TOKEN_FAIL,
-    error: error,
   };
 };
 
@@ -92,9 +95,9 @@ export const setAuthRedirectPath = (path) => {
   };
 };
 
-export const resetError = () => {
+export const clearError = () => {
   return {
-    type: actionTypes.RESET_ERROR,
+    type: actionTypes.CLEAR_ERROR,
   };
 };
 

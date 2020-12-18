@@ -14,7 +14,7 @@ const SocialButton = (props) => {
     };
 
     const handleSocialLoginFailure = (err) => {
-        dispatch(actions.googleAuthFail(err));
+        dispatch(actions.loadingFailed(err));
     };
 
     return (

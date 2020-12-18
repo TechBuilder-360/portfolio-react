@@ -12,14 +12,14 @@ const personalInfo = (props) => {
       <p className='title'> Personal Information </p>
       <hr />
       <PersonalDetails information={props.detail}/>
-      <Images avartar={props.detail.profile_pix}/>
+      <Images avartar={props.detail.profilePix}/>
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    detail: state.portfolio.personal_info
+    detail: state.portfolio.personalInfo
   }
 }
 

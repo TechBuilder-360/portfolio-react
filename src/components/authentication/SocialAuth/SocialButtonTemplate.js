@@ -3,13 +3,13 @@ import SocialLogin from 'react-social-login';
 import classes from "./SocialButton.module.css";
 import { Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
-import { authStart } from "../../../store/actions/auth" 
+import { loadingStart } from "../../../store/actions/auth" 
  
 class SocialButtonTemplate extends React.Component {
 
     initiateLogin(props) {
         const { dispatch } = this.props; 
-        dispatch(authStart());
+        dispatch(loadingStart());
         this.setState({loading : true})
         props.triggerLogin();
     }

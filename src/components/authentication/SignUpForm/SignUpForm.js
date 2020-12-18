@@ -19,7 +19,7 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (authState.token){
-      history.push(`/${authState.username}`)
+      history.push(`/${authState.username}/`)
     }
   });
 

@@ -18,7 +18,7 @@ const InputDate = (props) => {
     return (
         <Container>
             <label className={classes.block}>{props.label}</label>
-            <DatePicker onChange={onChange} className={classes.datePicker} value={value} clearIcon={null} />
+            <DatePicker required={true} onChange={onChange} className={classes.datePicker} value={value} clearIcon={null} />
         </Container>
     );
 };

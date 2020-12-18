@@ -1,13 +1,13 @@
 .Avatar_Wrapper {
-    width: 35%;
-    margin: 1% 1%;
+    width: 60%;
+    margin: 5% auto ;
 }
 
 .Avatar {
-    width: 100%;
+    width: 200px;
+    height: 200px;
     box-sizing: border-box;
     padding: 0;
-    height: inherit;
     border-radius: 100%;
 }
 

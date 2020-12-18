@@ -11,3 +11,9 @@ nMight need to add dependency, if using post request doesn't workout well
 if valid show dashboard else try using refresh token to obtain new auth token, then retry else display login page.
 
 4. Use react-tag-input for adding skill
+
+
+
+Edit Page State
+1. Education add, delete, and edit redux works. All that remains is sending action to backend.
+2. Experience not working

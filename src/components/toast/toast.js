@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Toast from 'react-bootstrap/Toast';
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
-import {resetError} from "../../store/actions/auth"
+import {clearError} from "../../store/actions/auth"
 
 const ToastMessgage = (props) => {
     const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const ToastMessgage = (props) => {
   
     const toggleShowA = () => {
         setShowA(!showA);
-        dispatch(resetError())
+        dispatch(clearError())
     }
 
     return (

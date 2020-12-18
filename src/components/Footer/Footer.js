@@ -5,11 +5,9 @@ import logo from "../../images/logo.png";
 
 const Footer = () => {
   return (
-    <Navbar sticky="bottom" expand="lg" variant="light" bg="light">
-      <Container>
+      <Container fluid style={{backgroundColor: "#73838a"}}>
         <Navbar.Brand><img src={logo} alt="xPortfolio" /></Navbar.Brand>
       </Container>
-    </Navbar>
   );
 };
 
