@@ -9,7 +9,7 @@ const initialState = {
     email: "John.Doe@mail.com",
     gender: "Male",
     languages: "English, French", // MAX length 100
-    location: "Lagos,Nigeria",
+    location: "Lagos, United States",
     dateOfBirth: "12/12/2019", // default null
     profession: "Accountant",
     profilePix: "",
@@ -282,7 +282,7 @@ const reducer = (state = initialState, action) => {
     case actionType.AVATAR_UPLOAD:
       return {
         ...state,
-        personalInfo: { ...state.personalInfo, profile_pix: action.imageURL },
+        personalInfo: { ...state.personalInfo, profilePix: action.imageURL },
       };
     case actionType.AVATAR_UPLOAD_FAILED:
       return {

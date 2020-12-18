@@ -24,8 +24,6 @@ const PersonalDetails = ({information}) => {
 
   const dispatch = useDispatch()
   const [detail, onDetail] = useState(info)
-  console.log(detail);
-
 
   const onChangeHandler = (e) => {
     onDetail({...detail, [e.target.name]: e.target.value}) 
@@ -101,6 +99,7 @@ const PersonalDetails = ({information}) => {
               <option value="">---</option>
               <option value="Female">Female</option>
               <option value="Male">Male</option>
+              <option value="Others">Others</option>
             </Form.Control>
           </Form.Group>
         </Col>

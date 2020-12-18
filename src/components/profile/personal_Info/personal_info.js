@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import Container from "../../../container/Container";
 import classes from "./personal_info.module.css";
 import avatar from "../../../images/avatar.webp";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import {findFlagUrlByCountryName} from 'country-flags-svg'
+import flag from "../../../images/flag.png";
+import { findFlagUrlByCountryName } from "country-flags-svg";
+
 
 const PersonalInfo = (props) => {
-  let str=props.personalInfo.location
-let country=str.substring(str.lastIndexOf(',')+1)
+  let str = props.personalInfo.location;
+  let country = str.substring(str.indexOf(" ") + 1) || "Nigeria";
 
   return (
     <Container>
@@ -26,17 +26,14 @@ let country=str.substring(str.lastIndexOf(',')+1)
       </div>
       <p>Welcome Back,</p>
       <p style={{ fontWeight: "bold" }}>
-{props.personalInfo.lastName} {props.personalInfo.firstName}
+        {props.personalInfo.lastName} {props.personalInfo.firstName }
       </p>
 
-      <p>
-      {props.personalInfo.profession}
-      </p>
+      <p>{props.personalInfo.profession}</p>
 
       <p>
-        {" "}
-        <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
-        <img src={findFlagUrlByCountryName(country)} width='30' height="30" />  {props.personalInfo.location ? props.personalInfo.location : "Unknown"}
+        <img src={findFlagUrlByCountryName(country) || flag} width="25" height="25" />{" "}
+        {props.personalInfo.location ? props.personalInfo.location : "Nigeria"}
       </p>
     </Container>
   );

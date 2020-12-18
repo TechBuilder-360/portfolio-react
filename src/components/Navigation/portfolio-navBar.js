@@ -3,10 +3,13 @@ import classes from "./main-navigation.module.css";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { useSelector, shallowEqual } from "react-redux";
+import Container from "../../container/Container";
+import Message from "../message";
 
 const Portfolio_navBar = () => {
   const auth = useSelector((state) => state.auth, shallowEqual);
   return (
+    <Container>
     <nav className={classes.Nav}>
       <Link to="/">
         <img src={logo} className={classes.Logo} alt="xPortfolio" />
@@ -21,6 +24,8 @@ const Portfolio_navBar = () => {
         )}
       </div>
     </nav>
+    <Message />
+    </Container>
   );
 };
 

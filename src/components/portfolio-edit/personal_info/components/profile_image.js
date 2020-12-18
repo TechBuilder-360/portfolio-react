@@ -1,12 +1,14 @@
 import React from "react";
 import { Button, Image } from "react-bootstrap";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import Container from "../../../../container/Container";
 import defaultImage from "../../../../images/avatar.webp";
 import classes from "../personalInfo.module.css";
-import { avatar} from "../../../../store/actions/portfolioActions";
+import { avatar } from "../../../../store/actions/portfolioActions";
 
 const Images = (props) => {
+  const dispatch = useDispatch();
+
   const hiddenFileInput = React.useRef(null);
 
   const handleClick = (event) => {
@@ -15,16 +17,14 @@ const Images = (props) => {
 
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
-    props.handleFile(fileUploaded);
+    dispatch(avatar(fileUploaded));
+    
   };
+
 
   return (
     <Container>
-      <Image
-        className={classes.Img}
-        src={props.avatar || defaultImage}
-        rounded
-      />
+      <Image className={classes.Img} src={props.url || defaultImage} rounded />
       <Button
         onClick={handleClick}
         variant="success"
@@ -44,16 +44,10 @@ const Images = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStatesToProps = (state) => {
   return {
-    avatar: state.portfolio.personalInfo.profilePix,
+    url: state.portfolio.personalInfo.profilePix,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleFile: (photo) => dispatch(avatar(photo)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Images);
+export default connect(mapStatesToProps)(Images);

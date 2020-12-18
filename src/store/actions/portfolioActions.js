@@ -2,37 +2,36 @@ import { instanceAxios, imageAxios } from "../../axios-orders";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
+import { loadingStart, loadingStop, logError } from "../actions/auth";
 
 const userCookie = cookie.load("userData");
 const headerToken = userCookie ? `JWT ${userCookie.token}` : null;
 
-
 const fetch_portfolio = (response) => {
   return {
     type: actionType.FETCH_PORTFOLIO,
-    payload: response
-  }
-}
-
+    payload: response,
+  };
+};
 
 export const fetchPortfolio = (username) => {
-  return dispatch => {
+  return (dispatch) => {
+    dispatch(loadingStart());
     instanceAxios({
       data: query.portfolio(username),
-      headers: {
-        Authorization: headerToken,
-      },
     })
       .then((response) => {
         let res = response.data.data;
-        dispatch(fetch_portfolio(res));
+          dispatch(fetch_portfolio(res));
+          dispatch(loadingStop());
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
+        dispatch(loadingStop());
         // dispatch(messages([]));
       });
-  }
-}
+  };
+};
 
 const Personal_Information = (detail) => {
   return {
@@ -85,14 +84,16 @@ export const avatar = (photo) => {
     imageAxios({
       data: formData,
       headers: {
-        Authorization: headerToken,
+        // Authorization: headerToken,
       },
     })
       .then((response) => {
         dispatch(setAvatar(response.data.url));
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err.response);
         dispatch(AvatarUploadFailed());
+        dispatch(logError(["An error occured"]))
       });
   };
 };
@@ -124,51 +125,51 @@ export const Skill = () => {
 const addSocialLink = (data) => {
   return {
     type: actionType.ADD_SOCIAL_LINK,
-    payload : data
+    payload: data,
   };
 };
 
 const editSocialLink = (data) => {
   return {
     type: actionType.EDIT_SOCIAL_LINK,
-    payload : data
+    payload: data,
   };
 };
 
 export const socialAction = (req) => {
-  return dispatch => {
+  return (dispatch) => {
     instanceAxios({
       data: query.social(req),
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.social;
-        if (res.created) {
-          req.id = res.social.id;
-          dispatch(addSocialLink(req));
-        } else {
-          dispatch(editSocialLink(req));
-        }
-      } else {
-        console.log(response.data.errors);
-        // Dispatch Login required message or goto login page
-      }
     })
-    .catch(err=>{
-      console.log(err);
-    });
-  }
-}
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.social;
+          if (res.created) {
+            req.id = res.social.id;
+            dispatch(addSocialLink(req));
+          } else {
+            dispatch(editSocialLink(req));
+          }
+        } else {
+          console.log(response.data.errors);
+          // Dispatch Login required message or goto login page
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 const deleteSocialLink = (id) => {
   return {
     type: actionType.DELETE_SOCIAL_LINK,
-    id : id
+    id: id,
   };
 };
-
 
 export const delete_social = (index) => {
   return (dispatch) => {
@@ -194,8 +195,6 @@ export const delete_social = (index) => {
   };
 };
 
-
-
 const add_education = (content) => {
   return {
     type: actionType.ADD_EDUCATION,
@@ -206,7 +205,7 @@ const add_education = (content) => {
 const edit_education = (content) => {
   return {
     type: actionType.EDIT_EDUCATION,
-    payload:  content
+    payload: content,
   };
 };
 
@@ -224,23 +223,24 @@ export const educationAction = (edu) => {
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.education;
-        if (res.created) {
-          edu.id = res.education.id;
-          dispatch(add_education(edu));
-        } else {
-          dispatch(edit_education(edu));
-        }
-      } else {
-        console.log(response.data.errors);
-        // Dispatch Login required message or goto login page
-      }
     })
-    .catch(err=>{
-      console.log(err);
-    });
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.education;
+          if (res.created) {
+            edu.id = res.education.id;
+            dispatch(add_education(edu));
+          } else {
+            dispatch(edit_education(edu));
+          }
+        } else {
+          console.log(response.data.errors);
+          // Dispatch Login required message or goto login page
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
@@ -283,23 +283,24 @@ export const experienceAction = (exp) => {
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.experience;
-        if (res.created) {
-          exp.id = res.experience.id;
-          dispatch(add_experience(exp));
-        } else {
-          dispatch(edit_experience(exp));
-        }
-      } else {
-        console.log(response.data.errors);
-        // Dispatch Login required message or goto login page
-      }
     })
-    .catch(err=>{
-      console.error(err);
-    });
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.experience;
+          if (res.created) {
+            exp.id = res.experience.id;
+            dispatch(add_experience(exp));
+          } else {
+            dispatch(edit_experience(exp));
+          }
+        } else {
+          console.log(response.data.errors);
+          // Dispatch Login required message or goto login page
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 };
 
@@ -434,9 +435,8 @@ const delete_skill = (index) => {
   };
 };
 
-export const skillAction = request => {
+export const skillAction = (request) => {
   return (dispatch) => {
-
     instanceAxios({
       data: query.mutate_skill(request),
       headers: {
@@ -468,24 +468,26 @@ export const removeSkill = (id) => {
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.removeSkill;
-        if (res.ok) {
-          dispatch(delete_skill(id));
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.removeSkill;
+          if (res.ok) {
+            dispatch(delete_skill(id));
+          } else {
+            console.log(res.warning);
+          }
         } else {
-          console.log(res.warning);
+          console.log("Error: " + response.data.errors);
         }
-      } else {
-        console.log("Error: " + response.data.errors);
-      }
-    }).catch(err=>{
-      console.error(err);
-    });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 };
 
-const add_subskill = req => {
+const add_subskill = (req) => {
   return {
     type: actionType.SUBSKILL,
     payload: req,
@@ -498,13 +500,13 @@ export const subskillAction = (skill, title) => {
       data: query.subSkill(skill, title),
       headers: {
         Authorization: headerToken,
-      }
+      },
     })
       .then((response) => {
         if (!response.data.errors) {
           let res = response.data.data.subSkill;
           if (res.created) {
-            dispatch(add_subskill({skill, title, id: res.subSkill.id }));
+            dispatch(add_subskill({ skill, title, id: res.subSkill.id }));
           }
         } else {
           console.log(response.data.errors);
@@ -516,33 +518,35 @@ export const subskillAction = (skill, title) => {
   };
 };
 
-const delete_subskill = id => {
+const delete_subskill = (id) => {
   return {
     type: actionType.DELETE_SUBSKILL,
-    payload: id ,
+    payload: id,
   };
 };
 
-export const deleteSubskillAction = id => {
+export const deleteSubskillAction = (id) => {
   return (dispatch) => {
     instanceAxios({
       data: query.remove_subskill(id),
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.removeSubskill;
-        if (res.ok) {
-          dispatch(delete_subskill(id));
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.removeSubskill;
+          if (res.ok) {
+            dispatch(delete_subskill(id));
+          } else {
+            console.log(res.warning);
+          }
         } else {
-          console.log(res.warning);
+          console.log("Error: " + response.data.errors);
         }
-      } else {
-        console.log("Error: " + response.data.errors);
-      }
-    }).catch(err=>{
-      console.error(err);
-    });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 };
