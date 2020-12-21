@@ -24,7 +24,7 @@ const Portfolio_navBar = () => {
         )}
       </div>
     </nav>
-    <Message />
+    {/* <Message /> */}
     </Container>
   );
 };

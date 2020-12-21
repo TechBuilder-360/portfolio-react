@@ -4,20 +4,21 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { clearError } from "../store/actions/auth";
 
 const Message = () => {
-  const dispatch = useDispatch();
-  const messages = useSelector((state) => state.auth.error);
-  useEffect(() => {
-    setTimeout(() => {
-      // dispatch(clearError());
-      clearTimeout();
-    }, 10000);
-  },[]);
+  // const dispatch = useDispatch();
+  // const messages = useSelector((state) => state.auth.error);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     // dispatch(clearError());
+  //     clearTimeout();
+  //   }, 10000);
+  // },[]);
 
-  const alert = messages.map((msg, index) => (
-    <Alert key={index} variant={"danger"}>
-      {msg}
-    </Alert>
-  ));
+  const alert = null
+  // messages.map((msg, index) => (
+  //   <Alert key={index} variant={"danger"}>
+  //     {msg}
+  //   </Alert>
+  // ));
 
   return <Container fluid>{alert}</Container>;
 };

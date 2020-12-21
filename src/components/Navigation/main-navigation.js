@@ -20,7 +20,7 @@ const HomeNavBar = () => {
           <NavLink to={"/contact"}>Contact us</NavLink>
         </div>
       </nav>
-      <Message/>
+      {/* <Message/> */}
     </Container>
   );
 };
