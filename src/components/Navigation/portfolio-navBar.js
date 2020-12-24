@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { useSelector, shallowEqual } from "react-redux";
 import Container from "../../container/Container";
-import Message from "../message";
 
 const Portfolio_navBar = () => {
   const auth = useSelector((state) => state.auth, shallowEqual);

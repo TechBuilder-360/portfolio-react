@@ -16,10 +16,10 @@ import Footer from "../Footer/Footer";
 
 
 class Profile_Edit extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     document.title = `${ProjectTitle} Profile`;
 
-    if (this.props.auth.username != this.props.portfolioUser) {
+    if (this.props.auth.username !== this.props.portfolioUser) {
       this.props.fetch_portfolio(this.props.auth.username);
     }
   }
@@ -52,7 +52,11 @@ class Profile_Edit extends Component {
         <div className={classes.Wrapper}>
           {children}
         </div>
-        <Footer/>
+        {/* End Body */}
+
+        {/* Footer */}
+        {this.props.auth.loading ? null : <Footer/>}
+        {/* End Footer */}
       </Container>
     );
   }

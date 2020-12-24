@@ -26,7 +26,9 @@ const Social = () => {
   }, [formVisible]);
 
   let remove = (id) => {
+    
     dispatch(delete_social(id))
+    alert('done')
   };
 
   // Populate accordion children with existing record

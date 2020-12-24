@@ -30,10 +30,10 @@ const Dashboard = () => {
   useEffect(() => {
     document.title = `${ProjectTitle} Dashboard`;
     if(portfolio){
-      if (username != portfolio.username)
+      if (username !== portfolio.username)
         dispatch(fetchPortfolio(username));
-    }
-  }, []);
+    }  
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const dashboard = (
     <Wrapper>

@@ -29,7 +29,7 @@ const Experience = (props) => {
     } else {
       setForm(null);
     }
-  }, [formVisible]);
+  }, [formVisible]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Populate accordion children with existing record
   const children = props.experience.map((exp, i) => (

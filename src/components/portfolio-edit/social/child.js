@@ -40,7 +40,6 @@ const Child = ({ label, link, id, eventKey, ...props }) => {
               document.getElementById(`close-social-${props.index}`).click()
             }
           />
-          {label}
         </Card.Body>
       </Accordion.Collapse>
     </Card>

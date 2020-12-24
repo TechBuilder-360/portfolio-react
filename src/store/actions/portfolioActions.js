@@ -26,7 +26,7 @@ export const fetchPortfolio = (username) => {
           dispatch(loadingStop());
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         dispatch(loadingStop());
         // dispatch(messages([]));
       });
@@ -91,7 +91,7 @@ export const avatar = (photo) => {
         dispatch(setAvatar(response.data.url));
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
         dispatch(AvatarUploadFailed());
         dispatch(logError(["An error occured"]))
       });
@@ -154,12 +154,12 @@ export const socialAction = (req) => {
             dispatch(editSocialLink(req));
           }
         } else {
-          console.log(response.data.errors);
+          // console.log(response.data.errors);
           // Dispatch Login required message or goto login page
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -234,12 +234,12 @@ export const educationAction = (edu) => {
             dispatch(edit_education(edu));
           }
         } else {
-          console.log(response.data.errors);
+          // console.log(response.data.errors);
           // Dispatch Login required message or goto login page
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -257,12 +257,12 @@ export const delete_education = (index) => {
         if (res.ok) {
           dispatch(deleteEducation(index));
         } else {
-          console.log("Failed");
+          // console.log("Failed");
           // DISPATCH Message action
           // dispatch(deleteExperience_failed())
         }
       } else {
-        console.log(response.data.errors);
+        // console.log(response.data.errors);
         // Dispatch Login required message or goto login page
       }
     });
@@ -294,12 +294,12 @@ export const experienceAction = (exp) => {
             dispatch(edit_experience(exp));
           }
         } else {
-          console.log(response.data.errors);
+          // console.log(response.data.errors);
           // Dispatch Login required message or goto login page
         }
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
       });
   };
 };
@@ -324,12 +324,12 @@ export const delete_experience = (index) => {
         if (res.ok) {
           dispatch(deleteExperience(index));
         } else {
-          console.log(res.warning);
+          // console.log(res.warning);
           // DISPATCH Message action
           // dispatch(deleteExperience_failed())
         }
       } else {
-        console.log(response.data.errors);
+        // console.log(response.data.errors);
         // Dispatch Login required message or goto login page
       }
     });
@@ -384,10 +384,10 @@ export const projectAction = (request) => {
             dispatch(edit_project(request));
           }
         }
-        console.log(response.data.errors);
+        // console.log(response.data.errors);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -405,10 +405,10 @@ export const deleteProject = (index) => {
         if (res.ok) {
           dispatch(delete_project(index));
         } else {
-          console.log(res.warning);
+          // console.log(res.warning);
         }
       } else {
-        console.log(response.data.errors);
+        // console.log(response.data.errors);
       }
     });
   };
@@ -452,11 +452,11 @@ export const skillAction = (request) => {
             dispatch(edit_skill(request));
           }
         } else {
-          console.log(response.data.errors);
+          // console.log(response.data.errors);
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -475,14 +475,14 @@ export const removeSkill = (id) => {
           if (res.ok) {
             dispatch(delete_skill(id));
           } else {
-            console.log(res.warning);
+            // console.log(res.warning);
           }
         } else {
-          console.log("Error: " + response.data.errors);
+          // console.log("Error: " + response.data.errors);
         }
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
       });
   };
 };
@@ -509,11 +509,11 @@ export const subskillAction = (skill, title) => {
             dispatch(add_subskill({ skill, title, id: res.subSkill.id }));
           }
         } else {
-          console.log(response.data.errors);
+          // console.log(response.data.errors);
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -539,14 +539,14 @@ export const deleteSubskillAction = (id) => {
           if (res.ok) {
             dispatch(delete_subskill(id));
           } else {
-            console.log(res.warning);
+            // console.log(res.warning);
           }
         } else {
-          console.log("Error: " + response.data.errors);
+          // console.log("Error: " + response.data.errors);
         }
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
       });
   };
 };
