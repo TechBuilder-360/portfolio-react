@@ -25,7 +25,7 @@ const SignUpForm = () => {
 
   const onSignupHandler = (event) => {
     event.preventDefault();
-    console.log(firstName.current.value);
+    // console.log(firstName.current.value);
   };
 
   return (

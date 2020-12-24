@@ -32,7 +32,7 @@ const PersonalInfo = (props) => {
       <p>{props.personalInfo.profession}</p>
 
       <p>
-        <img src={findFlagUrlByCountryName(country) || flag} width="25" height="25" />{" "}
+        <img alt="country" src={findFlagUrlByCountryName(country) || flag} width="25" height="25" />{" "}
         {props.personalInfo.location ? props.personalInfo.location : "Nigeria"}
       </p>
     </Container>

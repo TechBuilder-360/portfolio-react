@@ -6,7 +6,7 @@ const Contact = () => {
 
   const onSubmitHandler = (evt) =>{
       evt.preventDefault()
-      console.log("Form Submitted");
+      // console.log("Form Submitted");
   }
 
   return (
