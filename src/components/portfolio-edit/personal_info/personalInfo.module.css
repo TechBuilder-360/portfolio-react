@@ -2,8 +2,9 @@
   width: 80px;
   text-align: center;
   margin: 5% 0;
-  height: 80px;
+  height: 65px;
   vertical-align: middle;
+  border-radius: 8px;
 }
 
 .span{
@@ -13,13 +14,6 @@
   display:inline-block;
   border-radius: 20px;
 }
-
-/* form{
-margin-top:20px;
-margin-bottom: 20px;
-padding: 7px;
-box-shadow:0px 4px 8px rgba(35, 52, 77, 0.2);
-} */
 
 .icon{
   color:rgb(235, 194, 194);
@@ -77,51 +71,30 @@ form label {
   color: rgb(148, 147, 147);
 }
 
-.delete:hover{
-  cursor: pointer;
-}
-
-.drop {
-  display: inline-block;
-  padding: 2%;
-  width: 94%;
-  margin-bottom: 20px;
-  margin-right: 2%;
-  background-color: rgb(253, 247, 247);
-}
-
-.drop:hover {
-    cursor: pointer;
-    
-  }
 
 .Accordion_Parent {
   margin-bottom: 2%;
   overflow: visible !important;
-  /* z-index: 2 !important; */
 }
 
 
 .Accordion_Child{
   overflow: visible !important;
-  /* z-index: 5 !important; */
+  width: 100%;
 }
 
-.Accordion_Child  .Span {
-  position: relative; 
-  top: 5px; 
-  color: inherit;
+.Label {
+  position: relative;
+  top: 5px;
+  width: 60%;
   display: inline-block;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-  width: 60%;
+  overflow: hidden;
 }
 
-.Accordion_Child .Button{
-  text-align: left;
-  width: 60%;
-  color: inherit;
+.Accordion_Child .Span {
+  float: right;
 }
 
 .Accordion_Body {
@@ -131,25 +104,12 @@ form label {
   z-index: 12 !important;
 }
 
-.Accordion_Child .Card_Action{
-  float: right;
-}
-
-
 /* Desktop view */
 @media (min-width: 760px) {
 .Img {
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
 }
-
-  .delete {
-    display: none;
-  }
-
-  .container:hover > .delete{
-      display: inline-block;
-  }
 
   .Accordion_Child {
     margin-bottom: 1%;
@@ -172,8 +132,7 @@ form label {
     border: 0px;
   }
 
-  .Accordion_Child  .Span {
+  .Label{
     top: 8px;
-    width: 80%;
   }
 }

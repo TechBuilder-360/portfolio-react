@@ -94,13 +94,6 @@ const EducationForm = ({ education, closeForm }) => {
           </Col>
 
           <Col xs={12} md={12} style={{textAlign: "right"}}>
-            <Button
-              type="button"
-              onClick={closeForm}
-              className="btn btn-info mt-15 mr-2"
-            >
-              Cancel
-            </Button>
             <Button type="submit" className="btn btn-primary mt-15"> Save </Button>
           </Col>
         </Row>
