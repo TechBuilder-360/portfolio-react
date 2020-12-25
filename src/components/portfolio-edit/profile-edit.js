@@ -20,7 +20,7 @@ class Profile_Edit extends Component {
     document.title = `${ProjectTitle} Profile`;
 
     if (this.props.auth.username !== this.props.portfolioUser) {
-      this.props.fetch_portfolio(this.props.auth.username);
+      // this.props.fetch_portfolio(this.props.auth.username);
     }
   }
 

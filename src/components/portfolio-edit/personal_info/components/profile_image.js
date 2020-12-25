@@ -24,13 +24,14 @@ const Images = (props) => {
 
   return (
     <Container>
-      <Image className={classes.Img} src={props.url || defaultImage} rounded />
+      <Image className={classes.Img} src={props.url || defaultImage} />
       <Button
         onClick={handleClick}
         variant="success"
-        style={{ marginLeft: "10px" }}
+        size="sm"
+        style={{ marginLeft: "10px", backgroundColor: "#196DB6" }}
       >
-        Upload
+        Upload Photo
       </Button>
 
       <input

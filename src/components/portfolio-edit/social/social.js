@@ -3,7 +3,7 @@ import style from "../profile-edit.module.css";
 import classes from "../personal_info/personalInfo.module.css";
 import Child from "./child";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import SocialForm from "./socialForm";
 import { Accordion } from "react-bootstrap";
@@ -52,7 +52,7 @@ const Social = () => {
       {form}
       {socialLinks.length < limit ? 
       <span onClick={() => setFormVisible(true)}>
-      <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more social
+      <FontAwesomeIcon icon={faPlus} /> Add Social Contact
       contact
     </span>
       : null}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
 import { connect } from "react-redux";
@@ -45,7 +45,7 @@ const Education = (props) => {
       {form}
       {props.education.length < limit ? (
         <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>
-          <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Education
+          <FontAwesomeIcon icon={faPlus} /> Add Education
         </span>
       ) : null}
     </div>
