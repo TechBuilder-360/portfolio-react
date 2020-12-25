@@ -12,7 +12,7 @@
     box-sizing: border-box;
     padding: 2%;
     margin-top: 5px;
-    border: 1px solid rgb(231, 233, 232);
+    border: 0; /*1px solid rgb(231, 233, 232);*/
     box-shadow: 2px 4px 14px rgba(35, 52, 77, 0.2);
 }
 

@@ -1,4 +1,4 @@
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import style from "../profile-edit.module.css";
@@ -46,7 +46,7 @@ const Skill = (props) => {
       {form}
       {props.skill.length < limit ? 
       <span onClick={() => setFormVisible(true)}>
-      <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add Skill
+      <FontAwesomeIcon icon={faPlus} /> Add Skills
     </span>
       : null}
     </div>

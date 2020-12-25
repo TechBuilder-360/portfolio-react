@@ -11,7 +11,7 @@ const TextArea = (props) => {
 
   const [textAreaValue, setTextAreaValue] = useState();
   const [textCount, setTextCount] = useState(value.length <= character ? character - value.length: 0);
-  const [countColor, setCountColor] = useState((character - value.length) <= 10 ? "red":"green" );
+  const [countColor, setCountColor] = useState((character - value.length) <= 10 ? "red":'black' );
   
   let onChange = (e) => {
     setTextAreaValue(e.target.value);
@@ -21,7 +21,7 @@ const TextArea = (props) => {
     if ((character - e.target.value.length) <= 10) {
         setCountColor("red");
     } else {
-        setCountColor("green");
+        setCountColor("black");
     }
   };
   
@@ -32,7 +32,7 @@ const TextArea = (props) => {
         value={textAreaValue}
         name={props.name}
         {...props}></textarea>
-        <span style={{ color: countColor }}>({textCount})</span>
+        <span className={classes.Span} style={{ color: countColor }}>({textCount})</span>
     </div>
   );
 };
