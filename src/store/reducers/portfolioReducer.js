@@ -1,6 +1,16 @@
 import * as actionType from "../actions/actionType"
 
-const initialState = {
+let initialState = null
+const prodInitialState = {
+  personalInfo: [],
+  subskill: [],
+  skills: [],
+  education: [],
+  experience: [],
+  project: [],
+  social: []
+}
+const devInitialState = {
   personalInfo: {
     username: "John01",
     firstName: "John",
@@ -240,6 +250,12 @@ const initialState = {
     }
   ],
 };
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  initialState = devInitialState;
+} else {
+  initialState = prodInitialState;
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

@@ -9,7 +9,7 @@ import { findFlagUrlByCountryName } from "country-flags-svg";
 
 const PersonalInfo = (props) => {
   let str = props.personalInfo.location;
-  let country = str.substring(str.indexOf(" ") + 1) || "Nigeria";
+  let country = str ? str.substring(str.indexOf(" ") + 1) : "Nigeria";
 
   return (
     <Container>
