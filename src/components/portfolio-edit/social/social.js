@@ -53,7 +53,6 @@ const Social = () => {
       {socialLinks.length < limit ? 
       <span onClick={() => setFormVisible(true)}>
       <FontAwesomeIcon icon={faPlus} /> Add Social Contact
-      contact
     </span>
       : null}
     </div>
