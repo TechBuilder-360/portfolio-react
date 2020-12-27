@@ -69,6 +69,7 @@ const SocialForm = ({link, label, id, ...props}) => {
             </Form.Group>
           </Col>
           <Col xs={12} md={12} style={{ textAlign: "right" }}>
+          {value.id ? null: <Button style={{marginRight: "6px"}} onClick={props.closeForm}>Cancel</Button> }
             <Button
               type="submit"
               className="btn btn-primary mt-15"

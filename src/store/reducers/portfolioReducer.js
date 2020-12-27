@@ -1,256 +1,44 @@
-import * as actionType from "../actions/actionType"
+import * as actionType from "../actions/actionType";
 
 const initialState = {
-  personalInfo: {
-    username: "John01",
-    firstName: "John",
-    lastName: "Doe",
-    middleName: "Orion",
-    email: "John.Doe@mail.com",
-    gender: "Male",
-    languages: "English, French", // MAX length 100
-    location: "Lagos, United States",
-    dateOfBirth: "12/12/2019", // default null
-    profession: "Accountant",
-    profilePix: "",
-    phone: "+2347458747777",
-    // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
-    bio:
-      "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
+  personalInfo: null,
+  subskill: [],
+  education: [],
+  experience: [],
+  project: [],
+  social: [],
+  message: {
+    messages: [],
+    alert: "",
   },
-  subskill: [
-    { id: 1, title: "HTML", skill: 1 },
-    { id: 2, title: "CSS", skill: 1 },
-    { id: 3, title: "Javascript", skill: 1 },
-    { id: 4, title: "SCSS", skill: 1 },
-    { id: 5, title: "Django", skill: 1 },
-    { id: 6, title: "Spring Boot", skill: 1 },
-    { id: 7, title: "ICAN", skill: 2 },
-    {
-      id: 8,
-      title: "COMPTIA N+",
-      skill: 3,
-    },
-    {
-      id: 9,
-      title: "CCNA",
-      skill: 3,
-    },
-    {
-      id: 10,
-      title: "CCNP",
-      skill: 3,
-    },
-    {
-      id: 11,
-      title: "SCRUM",
-      skill: 4,
-    },
-    {
-      id: 12,
-      title: "AGILE",
-      skill: 4,
-    },
-    {
-      id: 13,
-      title: "SPSS",
-      skill: 4,
-    },
-    {
-      id: 14,
-      title: "Apache Spark",
-      skill: 5,
-    },
-    {
-      id: 15,
-      title: "Apache Kafka",
-      skill: 5,
-    },
-    {
-      id: 16,
-      title: "Postgres",
-      skill: 6,
-    },
-    {
-      id: 17,
-      title: "Cassandra",
-      skill: 6,
-    },
-    {
-      id: 18,
-      title: "MYSQL",
-      skill: 6,
-    },
-    {
-      id: 19,
-      title: "MSSQL Server",
-      skill: 6,
-    },
-  ],
-  skills: [
-    {
-      id: 1,
-      title: "Web development",
-    },
-    {
-      id: 2,
-      title: "Accounting",
-    },
-    {
-      id: 3,
-      title: "Networking",
-    },
-    {
-      id: 4,
-      title: "Project Management",
-    },
-    {
-      id: 5,
-      title: "Big Data",
-    },
-    {
-      id: 6,
-      title: "Database Management",
-    },
-  ],
-  education: [
-    {
-      id: 1,
-      institution: "Lautech",
-      startYear: "Aug. 2006",
-      endYear: "Dec. 2011",
-      degree: "BSc",
-      course: "Accounting",
-    },
-    {
-      id: 2,
-      institution: "Manchester University",
-      startYear: "Nov. 2012",
-      endYear: "Jan. 2017",
-      degree: "MBA",
-      course: "Accounting",
-    },
-    {
-      id: 3,
-      institution: "Doregos College",
-      startYear: "Oct. 2000",
-      endYear: "Oct. 2006",
-      degree: "SSCE",
-    },
-  ],
-  experience: [
-    {
-      id: 1,
-      organization: "Consolidate Insurance",
-      description: "Worked as an account manager",
-      position: "Accounting managment",
-      startYear: "Jun. 2016",
-      endYear: "Jun. 2018",
-    },
-    {
-      id: 2,
-      organization: "Access Bank",
-      description: "Worked as an account manager",
-      position: "Accounting managment",
-      startYear: "Oct. 2018",
-      endYear: "Dec. 2019",
-    },
-    
-  ],
-  project: [
-    {
-      id: 2,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 2,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 3,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 4,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 5,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 6,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 7,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 8,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-    {
-      id: 9,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      projectUrl: "/",
-    },
-  ],
-  social: [
-    {
-      id: 1,
-      label: "Facebook",
-      url: "https://facebook.com",
-    },
-    {
-      id: 2,
-      label: "Twitter",
-      url: "https://twitter.com",
-    },
-    {
-      id: 3,
-      label: "Instagram",
-      url: "https://instagram.com",
-    }
-  ],
+  redirect: false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionType.MESSAGES:
+      return {
+        ...state,
+        message: action.detail,
+      };
+    case actionType.REDIRECT:
+      return{
+        ...state,
+        redirect: true
+      }
+    case actionType.CLEAR_REDIRECT:
+      return{
+        ...state,
+        redirect: false
+      }
     case actionType.FETCH_PORTFOLIO:
       return {
         ...state,
         skills: action.payload.skills,
         personalInfo: action.payload.personalInfo,
-        subskill: action.payload.subskill.map(sub=> {
-          sub.skill = sub.skill.id
-          return sub
+        subskill: action.payload.subskill.map((sub) => {
+          sub.skill = sub.skill.id;
+          return sub;
         }),
         education: action.payload.education,
         experience: action.payload.experience,
@@ -262,18 +50,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         personalInfo: { ...state.personalInfo, ...action.detail },
       };
-    case actionType.EDUCATION:
-      return {
-        ...state,
-      };
-    case actionType.EXPERIENCE:
-      return {
-        ...state,
-      };
-    case actionType.PROJECTS:
-      return {
-        ...state,
-      };
     case actionType.SKILL:
       return {
         ...state,
@@ -283,14 +59,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         personalInfo: { ...state.personalInfo, profilePix: action.imageURL },
-      };
-    case actionType.AVATAR_UPLOAD_FAILED:
-      return {
-        ...state,
-      };
-    case actionType.MESSAGES:
-      return {
-        ...state,
       };
     case actionType.ADD_SOCIAL_LINK:
       return {

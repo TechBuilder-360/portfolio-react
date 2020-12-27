@@ -24,7 +24,7 @@ const PersonalInfo = (props) => {
           alt={props.personalInfo.username}
         />
       </div>
-      <p>Welcome Back,</p>
+      { props.isOwner ? <p>Welcome Back,</p> : null }
       <p style={{ fontWeight: "bold" }}>
         {props.personalInfo.lastName} {props.personalInfo.firstName }
       </p>
@@ -32,7 +32,7 @@ const PersonalInfo = (props) => {
       <p>{props.personalInfo.profession}</p>
 
       <p>
-        <img alt="country" src={findFlagUrlByCountryName(country) || flag} width="25" height="25" />{" "}
+        <img alt="" src={findFlagUrlByCountryName(country) || flag} width="20" height="20"/>{" "}
         {props.personalInfo.location ? props.personalInfo.location : "Nigeria"}
       </p>
     </Container>

@@ -17,6 +17,7 @@ import { fetchPortfolio } from "../../store/actions/portfolioActions";
 import Wrapper from "../../container/Container";
 import SpinnerElement from "../../components/spinner/spinner";
 import NotFound from '../../components/Special Page/NotFound'
+import BrokenConnection from "../../components/Special Page/brokenConnection";
 
 const Dashboard = () => {
   const { username } = useParams();
@@ -24,67 +25,80 @@ const Dashboard = () => {
     (state) => state.portfolio.personalInfo,
     shallowEqual
   );
-  const authState = useSelector((state) => state.auth.loading, shallowEqual);
+  const redirect = useSelector(state => state.portfolio.redirect);
+  const auth = useSelector((state) => state.auth, shallowEqual);
   const dispatch = useDispatch();
+
+  let children = null
 
   useEffect(() => {
     document.title = `${ProjectTitle} Dashboard`;
     if(portfolio){
       if (username !== portfolio.username)
         dispatch(fetchPortfolio(username));
-    }  
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    } else {
+      dispatch(fetchPortfolio(username));
+    }
+  }, [dispatch, portfolio, username]); 
 
-  const dashboard = (
-    <Wrapper>
-      <Col sm="12" md="3" className={classes.Aside}>
-        <PersonalInfo />
 
-        <SocialLinks />
-        <br />
-        <button className={classes.Butt}>Download Resume</button>
-      </Col>
+  if(auth.loading){ // Loading...
+    children = <SpinnerElement />
+  }
+  else if(portfolio){ // Personal Info not null
+    children = (
+        <Wrapper>
+          <Col sm="12" md="3" className={classes.Aside}>
+            <PersonalInfo isOwner={username === auth.username} />
+            <SocialLinks />
+            <br />
+            <button className={classes.Butt}>Download Resume</button>
+          </Col>
 
-      <Col sm="12" md="9" className={classes.Main}>
-        <ProfessionalSummary
-          div={classes.div}
-          wrapper={classes.Main_Content}
-          title="Professional Summary"
-        />
-        <Education
-          timeline={classes.timeline}
-          wrapper={classes.Main_Content}
-          title="Education"
-        />
-        <Experience
-          timeline={classes.timeline}
-          wrapper={classes.Main_Content}
-          title="Experience"
-        />
-        <Skills
-          div={classes.div}
-          wrapper={classes.Main_Content}
-          title="Skills"
-        />
-        <Projects
-          div={classes.div}
-          wrapper={classes.Main_Content}
-          title="Project"
-        />
-      </Col>
-      <Footer />
-    </Wrapper>
-  );
-
-  const loading = (
-    <SpinnerElement />
-  );
+          <Col sm="12" md="9" className={classes.Main}>
+            <ProfessionalSummary
+              div={classes.div}
+              wrapper={classes.Main_Content}
+              title="Professional Summary"
+            />
+            <Education
+              timeline={classes.timeline}
+              wrapper={classes.Main_Content}
+              title="Education"
+            />
+            <Experience
+              timeline={classes.timeline}
+              wrapper={classes.Main_Content}
+              title="Experience"
+            />
+            <Skills
+              div={classes.div}
+              wrapper={classes.Main_Content}
+              title="Skills"
+            />
+            <Projects
+              div={classes.div}
+              wrapper={classes.Main_Content}
+              title="Project"
+            />
+            <Footer />
+          </Col>
+        </Wrapper>
+      );
+  }
+  else if(redirect){
+    children = <BrokenConnection/>
+  }
+  else{
+    children = <NotFound/>
+  }
 
   return (
     <Container fluid>
       <DashboardNavBar />
       <Row>
-        {portfolio ? (authState ? loading : dashboard): <NotFound/>}</Row>
+        {children}
+      </Row>
     </Container>
   );
 };

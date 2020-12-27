@@ -2,10 +2,42 @@ import { instanceAxios, imageAxios } from "../../axios-orders";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
-import { loadingStart, loadingStop, logError } from "../actions/auth";
+import { loadingStart, loadingStop } from "../actions/auth";
 
 const userCookie = cookie.load("userData");
 const headerToken = userCookie ? `JWT ${userCookie.token}` : null;
+
+export const messages = (msg, status) => {
+  return {
+    type: actionType.MESSAGES,
+    detail: {
+      messages: typeof msg == "string" ? [msg] : msg,
+      alert: status,
+    },
+  };
+};
+
+export const clearMessages = () => {
+  return {
+    type: actionType.MESSAGES,
+    detail: {
+      messages: [],
+      alert: "",
+    },
+  };
+};
+
+export const redirect = () => {
+  return {
+    type: actionType.REDIRECT
+  }
+}
+
+export const clearRedirect = () => {
+  return {
+    type: actionType.CLEAR_REDIRECT
+  }
+}
 
 const fetch_portfolio = (response) => {
   return {
@@ -22,13 +54,13 @@ export const fetchPortfolio = (username) => {
     })
       .then((response) => {
         let res = response.data.data;
-          dispatch(fetch_portfolio(res));
-          dispatch(loadingStop());
+        dispatch(fetch_portfolio(res));
+        dispatch(clearRedirect())
+        dispatch(loadingStop());
       })
       .catch((err) => {
-        // console.error(err);
+        dispatch(redirect())
         dispatch(loadingStop());
-        // dispatch(messages([]));
       });
   };
 };
@@ -37,13 +69,6 @@ const Personal_Information = (detail) => {
   return {
     type: actionType.PERSONAL_INFORMATION,
     detail: detail,
-  };
-};
-
-const messages = (msg) => {
-  return {
-    type: actionType.MESSAGES,
-    detail: msg, // Array of messages
   };
 };
 
@@ -56,10 +81,15 @@ export const set_personalInfo = (detail) => {
       },
     })
       .then((response) => {
-        dispatch(Personal_Information(detail));
+        if (!response.data.errors) {
+          dispatch(Personal_Information(detail));
+          dispatch(messages("Profile was updated successfully", "success"))
+        } else {
+          dispatch(messages(response.data.errors, "danger"));
+        }
       })
-      .catch(() => {
-        dispatch(messages([]));
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -71,12 +101,6 @@ const setAvatar = (url) => {
   };
 };
 
-const AvatarUploadFailed = () => {
-  return {
-    type: actionType.AVATAR_UPLOAD_FAILED,
-  };
-};
-
 export const avatar = (photo) => {
   return (dispatch) => {
     const formData = new FormData();
@@ -84,35 +108,20 @@ export const avatar = (photo) => {
     imageAxios({
       data: formData,
       headers: {
-        // Authorization: headerToken,
+        Authorization: headerToken,
       },
     })
       .then((response) => {
-        dispatch(setAvatar(response.data.url));
+        if (!response.data.errors) {
+          dispatch(setAvatar(response.data.url));
+          dispatch(messages("Image was updated successfully", "success"))
+        } else {
+          dispatch(messages(response.data.errors, "danger"));
+        }
       })
       .catch((err) => {
-        // console.log(err.response);
-        dispatch(AvatarUploadFailed());
-        dispatch(logError(["An error occured"]))
+        dispatch(messages(err.message, "danger"));
       });
-  };
-};
-
-export const Experience = () => {
-  return {
-    type: actionType.EXPERIENCE,
-  };
-};
-
-export const Education = () => {
-  return {
-    type: actionType.EDUCATION,
-  };
-};
-
-export const Projects = () => {
-  return {
-    type: actionType.PROJECTS,
   };
 };
 
@@ -154,12 +163,11 @@ export const socialAction = (req) => {
             dispatch(editSocialLink(req));
           }
         } else {
-          // console.log(response.data.errors);
-          // Dispatch Login required message or goto login page
+          dispatch(messages(response.data.errors, "danger"));
         }
       })
       .catch((err) => {
-        // console.log(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -178,20 +186,23 @@ export const delete_social = (index) => {
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.removeSocial;
-        if (res.ok) {
-          dispatch(deleteSocialLink(index));
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.removeSocial;
+          if (res.ok) {
+            dispatch(deleteSocialLink(index));
+          } else {
+            dispatch(messages(res.warning, "warning"));
+          }
         } else {
-          console.log(res.warning);
-          // DISPATCH Message action
+          dispatch(messages(response.data.errors, "danger"));
         }
-      } else {
-        console.log(response.data.errors);
-        // Dispatch Login required message or goto login page
-      }
-    });
+      })
+      .catch((err) => {
+        console.error(err.message);
+        dispatch(messages(err.message, "danger"));
+      });
   };
 };
 
@@ -234,12 +245,11 @@ export const educationAction = (edu) => {
             dispatch(edit_education(edu));
           }
         } else {
-          // console.log(response.data.errors);
-          // Dispatch Login required message or goto login page
+          dispatch(messages(response.data.errors, "danger"));
         }
       })
       .catch((err) => {
-        // console.log(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -251,21 +261,22 @@ export const delete_education = (index) => {
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.removeEducation;
-        if (res.ok) {
-          dispatch(deleteEducation(index));
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.removeEducation;
+          if (res.ok) {
+            dispatch(deleteEducation(index));
+          } else {
+            dispatch(messages(res.message, "warning"));
+          }
         } else {
-          // console.log("Failed");
-          // DISPATCH Message action
-          // dispatch(deleteExperience_failed())
+          dispatch(messages(response.data.errors, "danger"));
         }
-      } else {
-        // console.log(response.data.errors);
-        // Dispatch Login required message or goto login page
-      }
-    });
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
   };
 };
 
@@ -294,12 +305,11 @@ export const experienceAction = (exp) => {
             dispatch(edit_experience(exp));
           }
         } else {
-          // console.log(response.data.errors);
-          // Dispatch Login required message or goto login page
+          dispatch(messages(response.data.errors, "danger"));
         }
       })
       .catch((err) => {
-        // console.error(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -318,21 +328,22 @@ export const delete_experience = (index) => {
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.removeExperience;
-        if (res.ok) {
-          dispatch(deleteExperience(index));
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.removeExperience;
+          if (res.ok) {
+            dispatch(deleteExperience(index));
+          } else {
+            dispatch(messages(res.message, "warning"));
+          }
         } else {
-          // console.log(res.warning);
-          // DISPATCH Message action
-          // dispatch(deleteExperience_failed())
+          dispatch(messages(response.data.errors, "danger"));
         }
-      } else {
-        // console.log(response.data.errors);
-        // Dispatch Login required message or goto login page
-      }
-    });
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
   };
 };
 
@@ -383,11 +394,12 @@ export const projectAction = (request) => {
           } else {
             dispatch(edit_project(request));
           }
+        } else {
+          dispatch(messages(response.data.errors, "danger"));
         }
-        // console.log(response.data.errors);
       })
       .catch((err) => {
-        // console.log(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -399,18 +411,22 @@ export const deleteProject = (index) => {
       headers: {
         Authorization: headerToken,
       },
-    }).then((response) => {
-      if (!response.data.errors) {
-        let res = response.data.data.removeProject;
-        if (res.ok) {
-          dispatch(delete_project(index));
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.removeProject;
+          if (res.ok) {
+            dispatch(delete_project(index));
+          } else {
+            dispatch(messages(res.message, "warning"));
+          }
         } else {
-          // console.log(res.warning);
+          dispatch(messages(response.data.errors, "danger"));
         }
-      } else {
-        // console.log(response.data.errors);
-      }
-    });
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
   };
 };
 
@@ -452,11 +468,11 @@ export const skillAction = (request) => {
             dispatch(edit_skill(request));
           }
         } else {
-          // console.log(response.data.errors);
+          dispatch(messages(response.data.errors, "danger"));
         }
       })
       .catch((err) => {
-        // console.log(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -475,14 +491,14 @@ export const removeSkill = (id) => {
           if (res.ok) {
             dispatch(delete_skill(id));
           } else {
-            // console.log(res.warning);
+            dispatch(messages(res.message, "warning"));
           }
         } else {
-          // console.log("Error: " + response.data.errors);
+          dispatch(messages(response.data.errors, "danger"));
         }
       })
       .catch((err) => {
-        // console.error(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -509,11 +525,11 @@ export const subskillAction = (skill, title) => {
             dispatch(add_subskill({ skill, title, id: res.subSkill.id }));
           }
         } else {
-          // console.log(response.data.errors);
+          dispatch(messages(response.data.errors, "danger"));
         }
       })
       .catch((err) => {
-        // console.log(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
@@ -539,14 +555,14 @@ export const deleteSubskillAction = (id) => {
           if (res.ok) {
             dispatch(delete_subskill(id));
           } else {
-            // console.log(res.warning);
+            dispatch(messages(res.warning, 'warning'));
           }
         } else {
-          // console.log("Error: " + response.data.errors);
+          dispatch(messages(response.data.errors, "danger"));
         }
       })
       .catch((err) => {
-        // console.error(err);
+        dispatch(messages(err.message, "danger"));
       });
   };
 };
