@@ -14,12 +14,6 @@ const initialState = {
   redirect: false
 };
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  initialState = devInitialState;
-} else {
-  initialState = prodInitialState;
-}
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.MESSAGES:
