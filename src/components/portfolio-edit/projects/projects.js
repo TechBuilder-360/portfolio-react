@@ -27,7 +27,7 @@ const Project = (props) => {
     }else{
       setForm(null)
     }
-  }, [formVisible]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [formVisible]); 
 
 
   // Populate accordion children with existing record

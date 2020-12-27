@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const url = "https://xportfolio.herokuapp.com"
+const url = "https://xportfolio.herokuapp.com" 
 // const url = "http://127.0.0.1:8000"
 
 export const instanceAxios = axios.create({

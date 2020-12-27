@@ -113,7 +113,6 @@ form label {
 
   .Accordion_Child {
     margin-bottom: 1%;
-    position: absolute;
     z-index: 1;
   }
 

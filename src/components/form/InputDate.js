@@ -13,7 +13,7 @@ const InputDate = ({changed, name, value, label }) => {
         if(changed){
             changed(name, initValue)
         }
-      }, [initValue]); // eslint-disable-line react-hooks/exhaustive-deps
+      }, [initValue]); 
     
     return (
         <Container>
