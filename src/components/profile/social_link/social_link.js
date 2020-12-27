@@ -8,8 +8,8 @@ const SocialLinks = (props) => {
   return (
     <Container>
       {props.social.map((social, index) => (
-        <Container>
-          <div className={classes.lo} key={index}>
+        <Container key={index}>
+          <div className={classes.lo}>
             <div className={classes.container}>
               <div className={classes.icon} title={social.label}>
                 <SocialIcon
