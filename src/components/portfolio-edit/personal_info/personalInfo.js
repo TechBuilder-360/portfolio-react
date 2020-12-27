@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../profile-edit.module.css";
-import Images from "./components/profile_image";
+import PortfolioImage from "./components/profile_image";
 import PersonalDetails from "./components/personalDetails";
 import { connect } from "react-redux";
 
@@ -12,7 +12,7 @@ const personalInfo = (props) => {
       <p className='title'> Personal Information </p>
       <hr />
       <PersonalDetails information={props.detail}/>
-      <Images avartar={props.detail.profilePix}/>
+      <PortfolioImage avartar={props.detail.profilePix}/>
     </div>
   );
 };

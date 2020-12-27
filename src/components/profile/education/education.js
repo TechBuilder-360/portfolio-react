@@ -1,15 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import { sortMonthYear } from "../../../shared/utility";
 import classes from "./education.module.css";
 
 const Education = (props) => {
+  
   let direction = classes.left;
-
-  /* This logic also needs to be re-evaluated */
-  const sortedEducationHistory = [...props.educationHistory].sort(
-    (a, b) => b.startYear - a.startYear 
-  );
-
+  const sortedEducation = sortMonthYear(props.education)
+  
   return (
     <div className={`${props.wrapper}`}>
       <p className="title" style={{ textAlign: "left" }}>
@@ -17,7 +15,7 @@ const Education = (props) => {
       </p>
       <div className={props.timeline}>
         <div className={classes.timeline}>
-          {sortedEducationHistory.map((education, index) => (
+          {sortedEducation.map((education, index) => (
             <div className={`${classes.container}  ${direction}`} key={index}>
               <div className={classes.content}>
                 <h5>
@@ -46,7 +44,7 @@ const Education = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    educationHistory: state.portfolio.education,
+    education: state.portfolio.education,
   };
 };
 

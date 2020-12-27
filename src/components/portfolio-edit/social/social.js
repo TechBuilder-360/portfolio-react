@@ -4,13 +4,11 @@ import classes from "../personal_info/personalInfo.module.css";
 import Child from "./child";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import SocialForm from "./socialForm";
 import { Accordion } from "react-bootstrap";
-import {delete_social} from "../../../store/actions/portfolioActions";
 
 const Social = () => {
-  const dispatch = useDispatch();
   const limit = process.env.REACT_APP_SOCIAL_LINKS_LIMIT
   const socialLinks = useSelector((state) => state.portfolio.social);
 
@@ -25,19 +23,12 @@ const Social = () => {
     }
   }, [formVisible]);
 
-  let remove = (id) => {
-    
-    dispatch(delete_social(id))
-    alert('done')
-  };
-
   // Populate accordion children with existing record
   const children = socialLinks.map((item, i) => (
     <Child
       label={item.label}
       link={item.url}
       id={item.id}
-      removeMore={remove}
       closeForm={() => setFormVisible(false)}
       index={i + 1}
       key={i}
