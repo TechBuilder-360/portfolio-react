@@ -8,6 +8,8 @@ import Message from "../Flash message/message";
 
 const Portfolio_navBar = () => {
   const auth = useSelector((state) => state.auth, shallowEqual);
+  const msg = useSelector((state) => state.portfolio.message.messages, shallowEqual);
+
   return (
     <Container fluid>
     <nav className={classes.Nav}>
@@ -24,7 +26,7 @@ const Portfolio_navBar = () => {
         )}
       </div>
     </nav>
-    <Message />
+    {msg.length > 0 ? <Message /> : null}
     </Container>
   );
 };

@@ -27,7 +27,7 @@ const Project = (props) => {
     }else{
       setForm(null)
     }
-  }, [formVisible]); 
+  }, [formVisible, setForm, props.project]); 
 
 
   // Populate accordion children with existing record

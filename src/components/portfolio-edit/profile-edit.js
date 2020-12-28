@@ -29,11 +29,11 @@ const Profile_Edit = () => {
       if (auth.username !== portfolio.personalInfo.username)
         dispatch(fetchPortfolio(auth.username));
     } else dispatch(fetchPortfolio(auth.username));
-  }, []);
+  },[]);
 
   let children = <SpinnerElement />;
 
-  if (!auth.loading && portfolio.personalInfo && auth.username == portfolio.personalInfo.username) {
+  if (!auth.loading && portfolio.personalInfo && auth.username === portfolio.personalInfo.username) {
     children = (
       <section>
         <PersonalInfo />

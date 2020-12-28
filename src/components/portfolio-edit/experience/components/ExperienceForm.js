@@ -33,7 +33,7 @@ const ExperienceForm = ({ experience, closeForm }) => {
     evt.preventDefault()
 
     dispatch(experienceAction(value));
-    closeForm();
+    if(!value.id){closeForm();}
   };
 
   return (

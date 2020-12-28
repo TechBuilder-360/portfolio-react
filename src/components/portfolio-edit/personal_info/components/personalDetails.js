@@ -31,7 +31,7 @@ const PersonalDetails = ({ information }) => {
     if (isLoading) {
         setLoading(false);
     }
-  },[message]);
+  },[message, isLoading]);
 
   const onChangeHandler = (e) => {
     onDetail({ ...detail, [e.target.name]: e.target.value });

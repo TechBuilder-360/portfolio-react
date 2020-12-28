@@ -4,15 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/Child";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import ExperienceForm from "./components/ExperienceForm";
 
 const Experience = (props) => {
-
   const limit = process.env.REACT_APP_EXPERIENCE_LIMIT;
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
+  const experience = useSelector((state) => state.portfolio.experience);
 
   const handleCloseForm = () => {
     setFormVisible(false);
@@ -21,22 +21,19 @@ const Experience = (props) => {
   useEffect(() => {
     if (formVisible) {
       setForm(
-        <ExperienceForm
-          experience={props.experience}
-          closeForm={() => handleCloseForm()}
-        />
+        <ExperienceForm experience={{}} closeForm={() => handleCloseForm()} />
       );
     } else {
       setForm(null);
     }
-  }, [formVisible]); 
+  }, [formVisible]);
 
   // Populate accordion children with existing record
-  const children = props.experience.map((exp, i) => (
+  const children = experience.map((exp, i) => (
     <Child
       experience={exp}
       closeForm={() => setFormVisible(false)}
-      index={i+1}
+      index={i + 1}
       key={i}
     />
   ));
@@ -47,19 +44,13 @@ const Experience = (props) => {
       <hr />
       <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
       {form}
-      {props.experience.length < limit ? (
-        <span onClick={() => setFormVisible(true)}>
-        <FontAwesomeIcon icon={faPlus} /> Add Experience
-      </span>
+      {experience.length < limit ? (
+        <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>
+          <FontAwesomeIcon icon={faPlus} /> Add Experience
+        </span>
       ) : null}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    experience: state.portfolio.experience,
-  };
-};
-
-export default connect(mapStateToProps)(Experience);
+export default Experience;
