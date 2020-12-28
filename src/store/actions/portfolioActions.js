@@ -85,7 +85,8 @@ export const set_personalInfo = (detail) => {
           dispatch(Personal_Information(detail));
           dispatch(messages("Profile was updated successfully", "success"))
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -116,18 +117,13 @@ export const avatar = (photo) => {
           dispatch(setAvatar(response.data.url));
           dispatch(messages("Image was updated successfully", "success"))
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
         dispatch(messages(err.message, "danger"));
       });
-  };
-};
-
-export const Skill = () => {
-  return {
-    type: actionType.SKILL,
   };
 };
 
@@ -159,11 +155,14 @@ export const socialAction = (req) => {
           if (res.created) {
             req.id = res.social.id;
             dispatch(addSocialLink(req));
+            dispatch(messages(`${req.label} has been added successfully`, "success"));
           } else {
             dispatch(editSocialLink(req));
+            dispatch(messages(`${req.label} has been updated successfully`, "success"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -192,15 +191,16 @@ export const delete_social = (index) => {
           let res = response.data.data.removeSocial;
           if (res.ok) {
             dispatch(deleteSocialLink(index));
+            dispatch(messages(`Social Contact has been removed`, "success"));
           } else {
             dispatch(messages(res.warning, "warning"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
-        console.error(err.message);
         dispatch(messages(err.message, "danger"));
       });
   };
@@ -241,11 +241,14 @@ export const educationAction = (edu) => {
           if (res.created) {
             edu.id = res.education.id;
             dispatch(add_education(edu));
+            dispatch(messages(`${edu.institution} has been added successfully`, "success"));
           } else {
             dispatch(edit_education(edu));
+            dispatch(messages(`${edu.institution} has been updated successfully`, "success"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -267,11 +270,13 @@ export const delete_education = (index) => {
           let res = response.data.data.removeEducation;
           if (res.ok) {
             dispatch(deleteEducation(index));
+            dispatch(messages(`Education has been removed`, "success"));
           } else {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -301,11 +306,14 @@ export const experienceAction = (exp) => {
           if (res.created) {
             exp.id = res.experience.id;
             dispatch(add_experience(exp));
+            dispatch(messages(`${exp.organization} has been added successfully`, "success"));
           } else {
             dispatch(edit_experience(exp));
+            dispatch(messages(`${exp.organization} has been updated successfully`, "success"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -334,11 +342,13 @@ export const delete_experience = (index) => {
           let res = response.data.data.removeExperience;
           if (res.ok) {
             dispatch(deleteExperience(index));
+            dispatch(messages(`Experience has been removed`, "success"));
           } else {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -367,7 +377,7 @@ const add_project = (content) => {
 const edit_project = (content) => {
   return {
     type: actionType.EDIT_PROJECT,
-    content: content,
+    payload: content,
   };
 };
 
@@ -391,14 +401,18 @@ export const projectAction = (request) => {
           let res = response.data.data.project;
           if (res.created) {
             dispatch(add_project({ ...request, id: res.project.id }));
+            dispatch(messages(`${request.title} has been added successfully`, "success"));
           } else {
             dispatch(edit_project(request));
+            dispatch(messages(`${request.title} has been updated successfully`, "success"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
+        console.log(err);
         dispatch(messages(err.message, "danger"));
       });
   };
@@ -417,11 +431,13 @@ export const deleteProject = (index) => {
           let res = response.data.data.removeProject;
           if (res.ok) {
             dispatch(delete_project(index));
+            dispatch(messages(`Project has been removed`, "success"));
           } else {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -464,11 +480,14 @@ export const skillAction = (request) => {
           let res = response.data.data.skill;
           if (res.created) {
             dispatch(add_skill(res.skill.id, request.title));
+            dispatch(messages(`${request.title} has been added successfully`, "success"));
           } else {
             dispatch(edit_skill(request));
+            dispatch(messages(`${request.title} has been updated successfully`, "success"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -490,11 +509,13 @@ export const removeSkill = (id) => {
           let res = response.data.data.removeSkill;
           if (res.ok) {
             dispatch(delete_skill(id));
+            dispatch(messages(`Skill has been removed`, "success"));
           } else {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -523,9 +544,11 @@ export const subskillAction = (skill, title) => {
           let res = response.data.data.subSkill;
           if (res.created) {
             dispatch(add_subskill({ skill, title, id: res.subSkill.id }));
+            dispatch(messages(`${title} has been added successfully`, "success"));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {
@@ -554,11 +577,13 @@ export const deleteSubskillAction = (id) => {
           let res = response.data.data.removeSubskill;
           if (res.ok) {
             dispatch(delete_subskill(id));
+            dispatch(messages(`Sub-skill has been removed`, "success"));
           } else {
             dispatch(messages(res.warning, 'warning'));
           }
         } else {
-          dispatch(messages(response.data.errors, "danger"));
+          const error = response.data.errors.map(err => err.message)
+          dispatch(messages(error, "danger"));
         }
       })
       .catch((err) => {

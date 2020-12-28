@@ -28,7 +28,9 @@ const AddProjects = ({ project, closeForm }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(projectAction(value));
-    closeForm();
+    if(!value.id){
+      closeForm();
+    }
   }
 
   return (
@@ -53,7 +55,7 @@ const AddProjects = ({ project, closeForm }) => {
               type="url"
               name="url"
               onChange={handleChange}
-              value={value.projectUrl}
+              value={value.url}
               required={true}
             />
           </Form.Group>

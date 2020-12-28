@@ -7,7 +7,7 @@ import {
   socialAction
 } from "../../../store/actions/portfolioActions";
 
-const SocialForm = ({link, label, id, ...props}) => {
+const SocialForm = ({link, label, id, closeForm}) => {
 
   const dispatch = useDispatch();
   const socialNetworks = [
@@ -33,7 +33,9 @@ const SocialForm = ({link, label, id, ...props}) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(socialAction(value))
-    props.closeForm();
+    if(!value.id){
+      closeForm();
+    }
   };
 
   return (
@@ -69,7 +71,7 @@ const SocialForm = ({link, label, id, ...props}) => {
             </Form.Group>
           </Col>
           <Col xs={12} md={12} style={{ textAlign: "right" }}>
-          {value.id ? null: <Button style={{marginRight: "6px"}} onClick={props.closeForm}>Cancel</Button> }
+          {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button> }
             <Button
               type="submit"
               className="btn btn-primary mt-15"

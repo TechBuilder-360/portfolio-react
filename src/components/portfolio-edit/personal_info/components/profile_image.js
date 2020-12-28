@@ -18,7 +18,7 @@ const PortfolioImage = (props) => {
     if (isLoading) {
         setLoading(false);
     }
-  },[message]);
+  });
 
   const handleClick = (event) => {
     hiddenFileInput.current.click();

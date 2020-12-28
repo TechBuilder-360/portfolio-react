@@ -32,7 +32,9 @@ const EducationForm = ({ education, closeForm }) => {
     evt.preventDefault()
 
     dispatch(educationAction(value));
-    closeForm();
+    if(!value.id){
+      closeForm();
+    }
   };
 
   return (
