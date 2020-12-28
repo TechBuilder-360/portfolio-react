@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/child";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import EducationForm from "./components/educationForm";
 
@@ -12,6 +12,7 @@ const Education = (props) => {
   const limit = process.env.REACT_APP_EDUCATION_LIMIT;
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
+  const education = useSelector(state => state.portfolio.education)
 
   const handleCloseForm = () => {
     setFormVisible(false);
@@ -28,7 +29,7 @@ const Education = (props) => {
   }, [formVisible]);
 
   // Populate accordion children with existing record
-  const children = props.education.map((edu, i) => (
+  const children = education.map((edu, i) => (
     <Child
       education={edu}
       closeForm={() => setFormVisible(false)}
@@ -43,7 +44,7 @@ const Education = (props) => {
       <hr />
       <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
       {form}
-      {props.education.length < limit ? (
+      {education.length < limit ? (
         <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>
           <FontAwesomeIcon icon={faPlus} /> Add Education
         </span>
@@ -52,10 +53,4 @@ const Education = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    education: state.portfolio.education,
-  };
-};
-
-export default connect(mapStateToProps)(Education);
+export default Education;

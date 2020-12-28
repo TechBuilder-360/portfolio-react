@@ -4,6 +4,17 @@
     background-image: url(../../images/errorbg.jpg);
 }
 
+.Broken {
+    height: 80vh;
+    text-align: center;
+}
+
+.Img {
+    width: 60%;
+    height: 120px;
+    margin-bottom: 4%;
+}
+
 .Status{
     margin:auto;
     color: rgb(226, 101, 51);
@@ -25,5 +36,9 @@
 
     .Status{
         font-size: 100px;
+    }
+
+    .Img {
+        height: 170px;
     }
 }

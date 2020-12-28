@@ -32,7 +32,9 @@ const EducationForm = ({ education, closeForm }) => {
     evt.preventDefault()
 
     dispatch(educationAction(value));
-    closeForm();
+    if(!value.id){
+      closeForm();
+    }
   };
 
   return (
@@ -94,6 +96,7 @@ const EducationForm = ({ education, closeForm }) => {
           </Col>
 
           <Col xs={12} md={12} style={{textAlign: "right"}}>
+            {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button> }
             <Button type="submit" className="btn btn-primary mt-15"> Save </Button>
           </Col>
         </Row>

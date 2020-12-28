@@ -21,11 +21,11 @@ export const googleAuthSuccess = (token) =>  (dispatch) => {
         username: response.data.data.socialAuth.social.user.username,
       };
       dispatch(sessionTokenSuccess(userData));
-      // const expires = new Date();
-      // expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14);
+      const nextDay = new Date();
+      nextDay.setHours(new Date().getHours() + 24)
       cookie.save("userData", userData, {
         path: "/",
-        // expires,
+        nextDay,
         // maxAge: 1000,
         // domain: 'https://*.yourdomain.com',
         // secure: true, //only accessible over https if true

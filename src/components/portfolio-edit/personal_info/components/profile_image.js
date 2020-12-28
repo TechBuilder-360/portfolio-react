@@ -1,15 +1,24 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Button, Image } from "react-bootstrap";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import Container from "../../../../container/Container";
 import defaultImage from "../../../../images/avatar.webp";
 import classes from "../personalInfo.module.css";
 import { avatar } from "../../../../store/actions/portfolioActions";
 
-const Images = (props) => {
+const PortfolioImage = (props) => {
   const dispatch = useDispatch();
 
   const hiddenFileInput = React.useRef(null);
+
+  // const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+        setLoading(false);
+    }
+  });
 
   const handleClick = (event) => {
     hiddenFileInput.current.click();
@@ -17,8 +26,8 @@ const Images = (props) => {
 
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
+    setLoading(true);
     dispatch(avatar(fileUploaded));
-    
   };
 
 
@@ -29,9 +38,10 @@ const Images = (props) => {
         onClick={handleClick}
         variant="success"
         size="sm"
+        disabled={isLoading}
         style={{ marginLeft: "10px", backgroundColor: "#196DB6" }}
       >
-        Upload Photo
+        {isLoading ? "Uploading Photo..." : "Upload Photo"}
       </Button>
 
       <input
@@ -51,4 +61,4 @@ const mapStatesToProps = (state) => {
   };
 };
 
-export default connect(mapStatesToProps)(Images);
+export default connect(mapStatesToProps)(PortfolioImage);

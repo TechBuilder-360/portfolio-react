@@ -24,6 +24,7 @@
     "react-cookies": "^0.1.1",
     "react-date-picker": "^8.0.3",
     "react-dom": "^16.13.1",
+    "react-flash-message": "^1.0.5",
     "react-month-picker": "^2.2.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
