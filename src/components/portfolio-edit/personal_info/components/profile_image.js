@@ -11,7 +11,7 @@ const PortfolioImage = (props) => {
 
   const hiddenFileInput = React.useRef(null);
 
-  const message = useSelector(state => state.portfolio.message)
+  // const message = useSelector(state => state.portfolio.message)
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
