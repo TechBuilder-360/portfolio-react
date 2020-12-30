@@ -40,7 +40,9 @@ const loadingFail = (state, action) => {
 };
 
 const authLogout = (state) => {
-  return updateObject(state, { token: null, username: null, authRedirectPath: null});
+  return updateObject(state, 
+    { token: null, username: null, error: [], loading: false, authRedirectPath: null }
+    );
 };
 
 const setAuthRedirectPath = (state, action) => {
@@ -69,6 +71,10 @@ const reducer = (state = initialState, action) => {
       return authLogout(state);
     case actionTypes.SET_AUTH_REDIRECT_PATH:
       return setAuthRedirectPath(state, action);
+    case actionTypes.LOGIN:
+      return updateObject(state, {})
+    case actionTypes.REGISTRATION:
+      return updateObject(state, {})
     case actionTypes.LOG_ERROR:
       return logError(state, action);
     case actionTypes.CLEAR_ERROR:

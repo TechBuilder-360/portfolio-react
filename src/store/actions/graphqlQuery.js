@@ -13,6 +13,37 @@ export const googleSignin = (token) => {
   });
 };
 
+export const registration = user => {
+  return JSON.stringify({
+    query: `mutation registration {
+      register(
+        email: "${user.email}", 
+        password: "${user.password}", 
+        firstName: "${user.firstName}", 
+        lastName: "${user.lastName}"){
+        ok
+        error
+      }
+    }`
+  })
+}
+
+export const login = user => {
+  return JSON.stringify({
+    query: `mutation TokenAuth {
+      tokenAuth(
+        email: "${user.email.toLowerCase()}", 
+        password: "${user.password}"){
+        token
+        success
+        user{
+          username
+        }
+      }
+    }`
+  })
+}
+
 export const uploadAvatar = (file) => {
   return JSON.stringify({
     query: `mutation avatar {

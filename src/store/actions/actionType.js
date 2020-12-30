@@ -9,6 +9,7 @@ export const DELETE_SOCIAL_LINK='DELETE_SOCIAL_LINK';
 export const AVATAR_UPLOAD='AVATAR_UPLOAD';
 
 export const MESSAGES='MESSAGES';
+export const CLEAR_MESSAGES='CLEAR_MESSAGES';
 export const CLEAR_REDIRECT='CLEAR_REDIRECT';
 export const REDIRECT='REDIRECT';
 
@@ -46,3 +47,5 @@ export const DELETE_SKILL='DELETE_SKILL'
 export const SUBSKILL='SUBSKILL'
 export const DELETE_SUBSKILL='DELETE_SUBSKILL'
 
+export const LOGIN = 'LOGIN'
+export const REGISTRATION = 'REGISTRTION'

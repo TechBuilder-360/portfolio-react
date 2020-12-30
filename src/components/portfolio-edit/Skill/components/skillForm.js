@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { skillAction } from "../../../../store/actions/portfolioActions";
 import classes from "../../personal_info/personalInfo.module.css";
 
@@ -12,10 +12,19 @@ const AddForm = ({ skill, closeForm, hide }) => {
   }
   const dispatch = useDispatch();
   const [value, setValue] = useState(content);
+  const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
   
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setLoading(true)
     dispatch(skillAction(value));
     if(!hide){
       closeForm()
@@ -39,12 +48,19 @@ const AddForm = ({ skill, closeForm, hide }) => {
             </Form.Group>
           </Col>
           <Col sm={12} md={4} className={classes.Mb_5} style={{marginTop: '35px'}}>
-            <Button type="submit" variant="success">
-              Add
+          <Button
+              type="submit"
+              variant="primary"
+              className="mt-15"
+              size="sm"
+              disabled={isLoading}
+            >
+              {isLoading ? "Saving..." : "Save"}
             </Button>
             {hide ? null : (
               <Button
                 variant="danger"
+                size="sm"
                 style={{ marginLeft: "2%" }}
                 onClick={() => closeForm()}
               >

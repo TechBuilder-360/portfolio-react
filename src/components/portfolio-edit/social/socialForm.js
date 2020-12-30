@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Container from "../../../container/Container";
 import classes from "../personal_info/personalInfo.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   socialAction
 } from "../../../store/actions/portfolioActions";
 
 const SocialForm = ({link, label, id, closeForm}) => {
+
+  const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const dispatch = useDispatch();
   const socialNetworks = [
@@ -32,6 +41,7 @@ const SocialForm = ({link, label, id, closeForm}) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    setLoading(true);
     dispatch(socialAction(value))
     if(!value.id){
       closeForm();
@@ -71,12 +81,15 @@ const SocialForm = ({link, label, id, closeForm}) => {
             </Form.Group>
           </Col>
           <Col xs={12} md={12} style={{ textAlign: "right" }}>
-          {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button> }
+            {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button> }
             <Button
               type="submit"
-              className="btn btn-primary mt-15"
+              variant="primary"
+              className="mt-15"
+              size="sm"
+              disabled={isLoading}
             >
-              Save
+              {isLoading ? "Saving..." : "Save"}
             </Button>
           </Col>
         </Row>

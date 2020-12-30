@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import MonthYear from "../../../form/monthYearPicker/month_year_picker";
 import TextArea from "../../../form/TextArea";
@@ -19,6 +19,14 @@ const ExperienceForm = ({ experience, closeForm }) => {
 
   const dispatch = useDispatch();
   const [value, setValue] = useState(content);
+  const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const handleChange = (e) => {
@@ -32,6 +40,7 @@ const ExperienceForm = ({ experience, closeForm }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
+    setLoading(true)
     dispatch(experienceAction(value));
     if(!value.id){closeForm();}
   };
@@ -93,8 +102,16 @@ const ExperienceForm = ({ experience, closeForm }) => {
             </Form.Group>
           </Col>
           <Col xs={12} md={12} style={{ textAlign: "right" }}>
-          {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button> }
-            <Button type="submit" className="btn btn-primary mt-15"> Save </Button>
+            {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button>}
+            <Button
+              type="submit"
+              variant="primary"
+              className="mt-15"
+              size="sm"
+              disabled={isLoading}
+            >
+              {isLoading ? "Saving..." : "Save"}
+            </Button>
           </Col>
         </Row>
       </Form>

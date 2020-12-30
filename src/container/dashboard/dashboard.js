@@ -52,7 +52,7 @@ const Dashboard = () => {
             <PersonalInfo isOwner={username === auth.username} />
             <SocialLinks />
             <br />
-            <button className={classes.Butt}>Download Resume</button>
+            <button disabled={true} className={classes.Butt}>Download Resume</button>
           </Col>
 
           <Col sm="12" md="9" className={classes.Main}>
