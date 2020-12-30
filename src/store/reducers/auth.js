@@ -40,7 +40,9 @@ const loadingFail = (state, action) => {
 };
 
 const authLogout = (state) => {
-  return updateObject(state, { token: null, username: null, authRedirectPath: null});
+  return updateObject(state, 
+    { token: null, username: null, error: [], loading: false, authRedirectPath: null }
+    );
 };
 
 const setAuthRedirectPath = (state, action) => {
