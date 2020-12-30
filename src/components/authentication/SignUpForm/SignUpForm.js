@@ -39,7 +39,7 @@ const SignUpForm = () => {
         clearTimeout()
       },10000)
     }
-  }, [msg]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [authState, msg]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onSignupHandler = (event) => {
     event.preventDefault();
