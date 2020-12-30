@@ -37,6 +37,15 @@
   line-height: 25px;
 }
 
+.alert ul {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.alert ul li{
+  padding: 0;
+}
+
 @media (min-width: 760px) {
   * {
     font-size: 15px;

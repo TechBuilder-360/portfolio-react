@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "../../../../container/Container";
 import classes from "../../personal_info/personalInfo.module.css";
 import PropTypes from "prop-types";
@@ -17,6 +17,14 @@ const AddProjects = ({ project, closeForm }) => {
 
   const dispatch = useDispatch();
   const [value, setValue] = useState(content);
+  const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -27,6 +35,7 @@ const AddProjects = ({ project, closeForm }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    setLoading(true)
     dispatch(projectAction(value));
     if(!value.id){
       closeForm();
@@ -75,9 +84,12 @@ const AddProjects = ({ project, closeForm }) => {
         {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button> }
           <Button
             type="submit"
-            className="btn btn-primary mt-15"
+            variant="primary"
+            className="mt-15"
+            size="sm"
+            disabled={isLoading}
           >
-            Save
+            {isLoading ? "Saving..." : "Save"}
           </Button>
         </Col>
         </Row>

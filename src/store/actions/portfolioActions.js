@@ -19,11 +19,7 @@ export const messages = (msg, status) => {
 
 export const clearMessages = () => {
   return {
-    type: actionType.MESSAGES,
-    detail: {
-      messages: [],
-      alert: "",
-    },
+    type: actionType.CLEAR_MESSAGES
   };
 };
 

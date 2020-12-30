@@ -29,7 +29,7 @@ const Profile_Edit = () => {
       if (auth.username !== portfolio.personalInfo.username)
         dispatch(fetchPortfolio(auth.username));
     } else dispatch(fetchPortfolio(auth.username));
-  },[]);
+  },[]);  // eslint-disable-line react-hooks/exhaustive-deps
 
   let children = <SpinnerElement />;
 

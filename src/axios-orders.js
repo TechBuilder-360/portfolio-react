@@ -16,7 +16,6 @@ export const instanceAxios = axios.create({
 
 export const imageAxios = axios.create({
     baseURL: `${url}/accounts/upload/`,
-    timeout: 30000,
     headers: {
         'Content-Type': 'multipart/form-data'
     },

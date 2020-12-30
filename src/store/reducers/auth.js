@@ -69,6 +69,10 @@ const reducer = (state = initialState, action) => {
       return authLogout(state);
     case actionTypes.SET_AUTH_REDIRECT_PATH:
       return setAuthRedirectPath(state, action);
+    case actionTypes.LOGIN:
+      return updateObject(state, {})
+    case actionTypes.REGISTRATION:
+      return updateObject(state, {})
     case actionTypes.LOG_ERROR:
       return logError(state, action);
     case actionTypes.CLEAR_ERROR:
