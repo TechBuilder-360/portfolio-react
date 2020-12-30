@@ -4,8 +4,10 @@ import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
 import { loadingStart, loadingStop } from "../actions/auth";
 
-const userCookie = cookie.load("userData");
-const headerToken = userCookie ? `JWT ${userCookie.token}` : null;
+const headerToken = () => {
+  const userCookie = cookie.load("userData");
+  return `JWT ${userCookie.token}`;
+}
 
 export const messages = (msg, status) => {
   return {
@@ -73,7 +75,7 @@ export const set_personalInfo = (detail) => {
     instanceAxios({
       data: query.edit_personalinfo(detail),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -105,7 +107,7 @@ export const avatar = (photo) => {
     imageAxios({
       data: formData,
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -142,7 +144,7 @@ export const socialAction = (req) => {
     instanceAxios({
       data: query.social(req),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -179,7 +181,7 @@ export const delete_social = (index) => {
     instanceAxios({
       data: query.remove_social(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -228,7 +230,7 @@ export const educationAction = (edu) => {
     instanceAxios({
       data: query.education(edu),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -258,7 +260,7 @@ export const delete_education = (index) => {
     instanceAxios({
       data: query.delete_education(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -293,7 +295,7 @@ export const experienceAction = (exp) => {
     instanceAxios({
       data: query.experience(exp),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -330,7 +332,7 @@ export const delete_experience = (index) => {
     instanceAxios({
       data: query.delete_experience(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -389,7 +391,7 @@ export const projectAction = (request) => {
     instanceAxios({
       data: query.mutate_project(request),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -419,7 +421,7 @@ export const deleteProject = (index) => {
     instanceAxios({
       data: query.remove_project(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -468,7 +470,7 @@ export const skillAction = (request) => {
     instanceAxios({
       data: query.mutate_skill(request),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -497,7 +499,7 @@ export const removeSkill = (id) => {
     instanceAxios({
       data: query.delete_skill(id),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -532,7 +534,7 @@ export const subskillAction = (skill, title) => {
     instanceAxios({
       data: query.subSkill(skill, title),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -565,7 +567,7 @@ export const deleteSubskillAction = (id) => {
     instanceAxios({
       data: query.remove_subskill(id),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
