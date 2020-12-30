@@ -54,7 +54,7 @@ height: auto;
 
 
 /* Desktop view */
-@media (min-width: 760px){
+@media (min-width: 800px){
     
     .Main {
         height: 620px;
