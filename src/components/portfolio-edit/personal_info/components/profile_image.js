@@ -11,14 +11,14 @@ const PortfolioImage = (props) => {
 
   const hiddenFileInput = React.useRef(null);
 
-  // const message = useSelector(state => state.portfolio.message)
+  const message = useSelector(state => state.portfolio.message)
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
         setLoading(false);
     }
-  });
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClick = (event) => {
     hiddenFileInput.current.click();

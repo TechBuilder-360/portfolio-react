@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "../../../../container/Container";
 import MonthPicker from "../../../form/monthYearPicker/month_year_picker";
 import classes from "../../personal_info/personalInfo.module.css";
@@ -18,7 +18,16 @@ const EducationForm = ({ education, closeForm }) => {
     course: education.course || "",
   }
   const dispatch = useDispatch();
+  const message = useSelector(state => state.portfolio.message)
   const [value, setValue] = useState(content);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
+  
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -31,6 +40,7 @@ const EducationForm = ({ education, closeForm }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
+    setLoading(true)
     dispatch(educationAction(value));
     if(!value.id){
       closeForm();
@@ -97,7 +107,15 @@ const EducationForm = ({ education, closeForm }) => {
 
           <Col xs={12} md={12} style={{textAlign: "right"}}>
             {value.id ? null: <Button style={{marginRight: "6px"}} onClick={closeForm}>Cancel</Button> }
-            <Button type="submit" className="btn btn-primary mt-15"> Save </Button>
+            <Button
+              type="submit"
+              variant="primary"
+              className="mt-15"
+              size="sm"
+              disabled={isLoading}
+            >
+              {isLoading ? "Saving..." : "Save"}
+            </Button>
           </Col>
         </Row>
       </Form>

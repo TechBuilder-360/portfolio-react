@@ -1,7 +1,17 @@
 import * as actionTypes from "../actions/actionType";
-import {instanceAxios} from '../../axios-orders';
-import * as query from './graphqlQuery';
-import cookie from 'react-cookies';
+import { instanceAxios } from "../../axios-orders";
+import * as query from "./graphqlQuery";
+import cookie from "react-cookies";
+import { clearMessages, messages } from "./portfolioActions"
+
+
+const CookiesOptions = {
+  path: "/",
+  maxAge: 60 * 60 * 24,
+  // domain: 'https://*.yourdomain.com',
+  // secure: true, //only accessible over https if true
+  // httpOnly: true
+}
 
 export const loadingStart = () => {
   return {
@@ -9,7 +19,7 @@ export const loadingStart = () => {
   };
 };
 
-export const googleAuthSuccess = (token) =>  (dispatch) => {
+export const googleAuthSuccess = (token) => (dispatch) => {
   var config = {
     data: query.googleSignin(token),
   };
@@ -21,20 +31,70 @@ export const googleAuthSuccess = (token) =>  (dispatch) => {
         username: response.data.data.socialAuth.social.user.username,
       };
       dispatch(sessionTokenSuccess(userData));
-      const nextDay = new Date();
-      nextDay.setHours(new Date().getHours() + 24)
-      cookie.save("userData", userData, {
-        path: "/",
-        nextDay,
-        // maxAge: 1000,
-        // domain: 'https://*.yourdomain.com',
-        // secure: true, //only accessible over https if true
-        // httpOnly: true
-      });
+      cookie.save("userData", userData, CookiesOptions);
     })
     .catch((err) => {
       dispatch(loadingFailed(err));
     });
+};
+
+const login = () => {
+  return {
+    type: actionTypes.LOGIN
+  }
+}
+
+export const loginAction = (req) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.login(req),
+    })
+      .then((response) => {
+        const res = response.data.data.tokenAuth;
+        if(res.success){
+          const userData = {
+            token: res.token,
+            username: res.user.username
+          }
+          dispatch(sessionTokenSuccess(userData));
+          cookie.save("userData", userData, CookiesOptions);
+          dispatch(login())
+          dispatch(clearMessages())
+        } else {
+          dispatch(messages("Please, enter valid credentials.", "danger"));
+        }
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  };
+};
+
+const register = () => {
+  return {
+    type: actionTypes.REGISTRATION
+  }
+}
+
+export const registrationAction = (req) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.registration(req),
+    })
+      .then((response) => {
+        const res = response.data.data.register;
+        if(res.ok){
+          dispatch(register())
+          dispatch(messages("Registration Successful", "success"));
+          dispatch(loginAction({email: req.email, password: req.password}))
+        } else {
+          dispatch(messages(res.error, "danger"));
+        }
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  };
 };
 
 export const loadingFailed = (error) => {
@@ -100,4 +160,3 @@ export const clearError = () => {
     type: actionTypes.CLEAR_ERROR,
   };
 };
-

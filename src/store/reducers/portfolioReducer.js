@@ -21,6 +21,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         message: action.detail,
       };
+    case actionType.CLEAR_MESSAGES:
+      return {
+        ...state,
+        message: {
+          messages: [],
+          alert: ""
+        }
+      };
     case actionType.REDIRECT:
       return{
         ...state,

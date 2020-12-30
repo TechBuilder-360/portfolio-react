@@ -1,17 +1,23 @@
-import React, { useRef, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import classes from "../LoginForm/LoginForm.module.css";
-import { Form, Col } from "react-bootstrap";
+import { Alert, Col, Form } from "react-bootstrap";
 import Layout from "../../../container/Layout/Layout";
 import { useHistory } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import SocialButton from "../SocialAuth/SocialButton";
+import { loginAction } from "../../../store/actions/auth";
+import { clearMessages } from "../../../store/actions/portfolioActions";
 
 const LoginForm = () => {
-  const email = useRef(null);
-  const password = useRef(null);
+  const content ={ email: "", password: ""}
+
+  const dispatch = useDispatch()
+  const msg = useSelector((state) => state.portfolio.message);
   const authState = useSelector((state) => state.auth, shallowEqual);
+  const [value, setValue] = useState(content);
+  const [isLoading, setLoading] = useState(false);
   let history = useHistory();
 
   useEffect(() => {
@@ -25,11 +31,25 @@ const LoginForm = () => {
       } else {
         history.push(`/${authState.username}`);
       }
+    } else if(isLoading) {
+      setLoading(false);
     }
-  });
+    if(msg.messages.length > 0){
+      setTimeout(()=>{
+        dispatch(clearMessages())
+        clearTimeout()
+      },10000)
+    }
+  },[msg]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loginHandler = (event) => {
     event.preventDefault();
+    setLoading(true)
+    dispatch(loginAction(value))
+  };
+
+  const handleChange = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   return (
@@ -38,13 +58,23 @@ const LoginForm = () => {
         <p className="title">Sign in</p>
 
         <Form onSubmit={loginHandler}>
+        {msg.messages.length > 0 ? 
+          <Alert variant="danger">
+            <ul>
+            {msg.messages.map((m, i) => (
+            <div key={i}>{m}</div>
+          ))}
+            </ul>
+          </Alert> : null
+        }
           <Form.Row className={classes.Mb}>
             <Col>
               <Form.Control
                 type="email"
                 placeholder="Email Address"
                 required
-                ref={email}
+                name="email"
+                onChange={handleChange}
               />
             </Col>
           </Form.Row>
@@ -55,14 +85,16 @@ const LoginForm = () => {
                 type="password"
                 required
                 placeholder="Password"
-                ref={password}
+                name="password"
+                autoComplete="on"
+                onChange={handleChange}
               />
             </Col>
           </Form.Row>
           <Form.Row>
             <Col>
-              <Button type="submit" variant="primary">
-                Login
+            <Button variant="primary" type="submit" disabled={isLoading}>
+                {isLoading ? "Loading..." : "Login"}
               </Button>
             </Col>
             <Col>

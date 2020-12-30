@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import classes from "../../personal_info/personalInfo.module.css";
 import { subskillAction } from "../../../../store/actions/portfolioActions";
@@ -7,9 +7,18 @@ import { subskillAction } from "../../../../store/actions/portfolioActions";
 const SkillForms = ({ skillId }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState();
+  const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true)
     dispatch(subskillAction(skillId, title));
     setTitle("");
   };
@@ -32,11 +41,14 @@ const SkillForms = ({ skillId }) => {
           </Col>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Button
-              variant="success"
               type="submit"
+              variant="primary"
+              className="mt-15"
+              size="sm"
               style={{ display: "block", position: "relative", top: "35px" }}
+              disabled={isLoading}
             >
-              Enter
+              {isLoading ? "Adding..." : "Add"}
             </Button>
           </Col>
         </Row>
