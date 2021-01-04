@@ -46,7 +46,6 @@ const Dashboard = () => {
   }, [dispatch, portfolio, username]);
 
   const handleDownload = (last_name) => {
-    console.log("Download resume");
     dispatch(downloadResume(last_name));
   };
 
@@ -63,7 +62,7 @@ const Dashboard = () => {
             onClick={() => handleDownload(portfolio.lastName)}
             className={classes.Butt}
           >
-            Resume <FontAwesomeIcon icon={faDownload}/>
+          Download Resume <FontAwesomeIcon icon={faDownload}/>
           </button>
         </Col>
 
