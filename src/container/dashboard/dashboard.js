@@ -13,10 +13,10 @@ import SocialLinks from "../../components/profile/social_link/social_link";
 import { ProjectTitle } from "../../static";
 import DashboardNavBar from "../../components/Navigation/portfolio-navBar";
 import Footer from "../../components/Footer/Footer";
-import { fetchPortfolio } from "../../store/actions/portfolioActions";
+import { fetchPortfolio, downloadResume } from "../../store/actions/portfolioActions";
 import Wrapper from "../../container/Container";
 import SpinnerElement from "../../components/spinner/spinner";
-import NotFound from '../../components/Special Page/NotFound'
+import NotFound from "../../components/Special Page/NotFound";
 import BrokenConnection from "../../components/Special Page/brokenConnection";
 
 const Dashboard = () => {
@@ -25,80 +25,78 @@ const Dashboard = () => {
     (state) => state.portfolio.personalInfo,
     shallowEqual
   );
-  const redirect = useSelector(state => state.portfolio.redirect);
+  const redirect = useSelector((state) => state.portfolio.redirect);
   const auth = useSelector((state) => state.auth, shallowEqual);
   const dispatch = useDispatch();
 
-  let children = null
+  let children = null;
 
   useEffect(() => {
     document.title = `${ProjectTitle} Dashboard`;
-    if(portfolio){
-      if (username !== portfolio.username)
-        dispatch(fetchPortfolio(username));
+    if (portfolio) {
+      if (username !== portfolio.username) dispatch(fetchPortfolio(username));
     } else {
       dispatch(fetchPortfolio(username));
     }
-  }, [dispatch, portfolio, username]); 
+  }, [dispatch, portfolio, username]);
 
-
-  if(auth.loading){ // Loading...
-    children = <SpinnerElement />
+  const handleDownload = (last_name) => {
+    console.log("Download resume");
+    dispatch(downloadResume(last_name))
   }
-  else if(portfolio){ // Personal Info not null
+
+  if (auth.loading) {
+    children = <SpinnerElement />;
+  } else if (portfolio) {
     children = (
-        <Wrapper>
-          <Col sm="12" md="3" className={classes.Aside}>
-            <PersonalInfo isOwner={username === auth.username} />
-            <SocialLinks />
-            <br />
-            <button disabled={true} className={classes.Butt}>Download Resume</button>
-          </Col>
+      <Wrapper>
+        <Col sm="12" md="3" className={classes.Aside}>
+          <PersonalInfo isOwner={username === auth.username} />
+          <SocialLinks />
+          <br />
+          <button onClick={()=>handleDownload(portfolio.lastName)} className={classes.Butt}>Download Resume</button>
+        </Col>
 
-          <Col sm="12" md="9" className={classes.Main}>
-            <ProfessionalSummary
-              div={classes.div}
-              wrapper={classes.Main_Content}
-              title="Professional Summary"
-            />
-            <Education
-              timeline={classes.timeline}
-              wrapper={classes.Main_Content}
-              title="Education"
-            />
-            <Experience
-              timeline={classes.timeline}
-              wrapper={classes.Main_Content}
-              title="Experience"
-            />
-            <Skills
-              div={classes.div}
-              wrapper={classes.Main_Content}
-              title="Skills"
-            />
-            <Projects
-              div={classes.div}
-              wrapper={classes.Main_Content}
-              title="Project"
-            />
-            <Footer />
-          </Col>
-        </Wrapper>
-      );
-  }
-  else if(redirect){
-    children = <BrokenConnection/>
-  }
-  else{
-    children = <NotFound/>
+        <Col sm="12" md="9" className={classes.Main}>
+          <ProfessionalSummary
+            div={classes.div}
+            wrapper={classes.Main_Content}
+            title="Professional Summary"
+          />
+          <Education
+            timeline={classes.timeline}
+            wrapper={classes.Main_Content}
+            title="Education"
+          />
+          <Experience
+            timeline={classes.timeline}
+            wrapper={classes.Main_Content}
+            title="Experience"
+          />
+          <Skills
+            div={classes.div}
+            wrapper={classes.Main_Content}
+            title="Skills"
+          />
+          <Projects
+            div={classes.div}
+            wrapper={classes.Main_Content}
+            title="Project"
+          />
+          <Footer />
+        </Col>
+      </Wrapper>
+    );
+  } else if (redirect) {
+    children = <BrokenConnection />;
+  } else {
+    children = <NotFound />;
   }
 
   return (
     <Container fluid>
       <DashboardNavBar />
-      <Row>
-        {children}
-      </Row>
+      <Row>{children}</Row>
     </Container>
   );
 };

@@ -15,6 +15,7 @@ const Portfolio_navBar = () => {
 
   return (
     <Container fluid>
+      {msg.length > 0 ? <Message /> : null}
       <nav className={classes.Nav}>
         <Link to="/">
           <img src={logo} className={classes.Logo} alt="xPortfolio" />
@@ -34,7 +35,6 @@ const Portfolio_navBar = () => {
           )}
         </div>
       </nav>
-      {msg.length > 0 ? <Message /> : null}
     </Container>
   );
 };
