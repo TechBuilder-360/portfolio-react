@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import classes from "./projects.module.css";
 import Container from "../../../container/Container";
-import ProjectModal from "./project-modal";
+import ProjectModal from "./modal";
 import { text_truncate } from "../../../shared/utility";
 
 class Projects extends Component {
