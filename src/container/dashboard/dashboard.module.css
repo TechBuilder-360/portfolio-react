@@ -18,7 +18,13 @@ height: auto;
     padding: 10px;
     font-weight: bold;
     margin-top: 20px;
+    outline: none;
 }
+
+.Butt:focus{
+    outline: none;
+}
+
 .timeline{
     background-color: white;
     border-radius: 10px;

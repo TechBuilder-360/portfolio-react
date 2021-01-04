@@ -49,3 +49,5 @@ export const DELETE_SUBSKILL='DELETE_SUBSKILL'
 
 export const LOGIN = 'LOGIN'
 export const REGISTRATION = 'REGISTRTION'
+
+export const DOWNLOAD_RESUME = 'DOWNLOAD_RESUME'
