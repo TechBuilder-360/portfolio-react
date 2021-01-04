@@ -1,7 +1,13 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import classes from "./skills.module.css";
 
 const ProjectModal = (props) => {
+  const children = props.subskills.map((sub, i) => (
+    <li className={classes.li} key={i}>
+      {sub.title}
+    </li>
+  ));
     return (
         <Modal
         size = "lg"
@@ -10,11 +16,11 @@ const ProjectModal = (props) => {
         centered={true}
          show={props.show} onHide={()=>props.handleClose()}>
         <Modal.Header closeButton>
-          <Modal.Title>{props.project.title}</Modal.Title>
+          <Modal.Title>{props.skill}</Modal.Title>
         </Modal.Header>
-    <Modal.Body>
-        {props.project.description}
-    </Modal.Body>
+        <Modal.Body>
+            {children}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={()=>props.handleClose()}>
             Close

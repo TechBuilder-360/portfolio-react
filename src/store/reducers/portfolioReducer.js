@@ -2,6 +2,7 @@ import * as actionType from "../actions/actionType";
 
 const initialState = {
   personalInfo: null,
+  skills: [],
   subskill: [],
   education: [],
   experience: [],
