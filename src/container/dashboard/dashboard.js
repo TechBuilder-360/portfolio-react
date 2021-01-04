@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import classes from "./dashboard.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import PersonalInfo from "../../components/profile/personal_Info/personal_info";
 import ProfessionalSummary from "../../components/profile/professional_summary/professional_summary";
 import Education from "../../components/profile/education/education";
@@ -13,7 +15,10 @@ import SocialLinks from "../../components/profile/social_link/social_link";
 import { ProjectTitle } from "../../static";
 import DashboardNavBar from "../../components/Navigation/portfolio-navBar";
 import Footer from "../../components/Footer/Footer";
-import { fetchPortfolio, downloadResume } from "../../store/actions/portfolioActions";
+import {
+  fetchPortfolio,
+  downloadResume,
+} from "../../store/actions/portfolioActions";
 import Wrapper from "../../container/Container";
 import SpinnerElement from "../../components/spinner/spinner";
 import NotFound from "../../components/Special Page/NotFound";
@@ -42,8 +47,8 @@ const Dashboard = () => {
 
   const handleDownload = (last_name) => {
     console.log("Download resume");
-    dispatch(downloadResume(last_name))
-  }
+    dispatch(downloadResume(last_name));
+  };
 
   if (auth.loading) {
     children = <SpinnerElement />;
@@ -54,7 +59,12 @@ const Dashboard = () => {
           <PersonalInfo isOwner={username === auth.username} />
           <SocialLinks />
           <br />
-          <button onClick={()=>handleDownload(portfolio.lastName)} className={classes.Butt}>Download Resume</button>
+          <button
+            onClick={() => handleDownload(portfolio.lastName)}
+            className={classes.Butt}
+          >
+            Resume <FontAwesomeIcon icon={faDownload}/>
+          </button>
         </Col>
 
         <Col sm="12" md="9" className={classes.Main}>
