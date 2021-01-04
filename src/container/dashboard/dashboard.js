@@ -46,7 +46,7 @@ const Dashboard = () => {
   }, [dispatch, portfolio, username]);
 
   const handleDownload = (last_name) => {
-    dispatch(downloadResume(last_name));
+    dispatch(downloadResume(username, last_name));
   };
 
   if (auth.loading) {

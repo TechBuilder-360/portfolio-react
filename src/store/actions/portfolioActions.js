@@ -644,7 +644,7 @@ const download_resume = () => {
   };
 };
 
-export const downloadResume = (username) => {
+export const downloadResume = (username, lastname) => {
   return (dispatch) => {
     Axios({
       url: `${url}/resume/download/${username}/`,
@@ -652,7 +652,7 @@ export const downloadResume = (username) => {
       responseType: "blob", // Important
     })
       .then((response) => {
-        FileDownload(response.data, `${username}'s resume.pdf`);
+        FileDownload(response.data, `${lastname}'s resume.pdf`);
         dispatch(download_resume());
       })
       .catch((err) => {
