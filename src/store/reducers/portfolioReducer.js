@@ -2,6 +2,7 @@ import * as actionType from "../actions/actionType";
 
 const initialState = {
   personalInfo: null,
+  skills: [],
   subskill: [],
   education: [],
   experience: [],
@@ -11,11 +12,15 @@ const initialState = {
     messages: [],
     alert: "",
   },
-  redirect: false
+  redirect: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionType.DOWNLOAD_RESUME:
+      return {
+        ...state,
+      };
     case actionType.MESSAGES:
       return {
         ...state,
@@ -26,19 +31,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         message: {
           messages: [],
-          alert: ""
-        }
+          alert: "",
+        },
       };
     case actionType.REDIRECT:
-      return{
+      return {
         ...state,
-        redirect: true
-      }
+        redirect: true,
+      };
     case actionType.CLEAR_REDIRECT:
-      return{
+      return {
         ...state,
-        redirect: false
-      }
+        redirect: false,
+      };
     case actionType.FETCH_PORTFOLIO:
       return {
         ...state,

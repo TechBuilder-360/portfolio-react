@@ -1,11 +1,15 @@
-import { instanceAxios, imageAxios } from "../../axios-orders";
+import { instanceAxios, imageAxios, url } from "../../axios-orders";
+import Axios from "axios";
 import * as actionType from "./actionType";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
+import FileDownload from "js-file-download";
 import { loadingStart, loadingStop } from "../actions/auth";
 
-const userCookie = cookie.load("userData");
-const headerToken = userCookie ? `JWT ${userCookie.token}` : null;
+const headerToken = () => {
+  const userCookie = cookie.load("userData");
+  return `JWT ${userCookie.token}`;
+};
 
 export const messages = (msg, status) => {
   return {
@@ -19,21 +23,21 @@ export const messages = (msg, status) => {
 
 export const clearMessages = () => {
   return {
-    type: actionType.CLEAR_MESSAGES
+    type: actionType.CLEAR_MESSAGES,
   };
 };
 
 export const redirect = () => {
   return {
-    type: actionType.REDIRECT
-  }
-}
+    type: actionType.REDIRECT,
+  };
+};
 
 export const clearRedirect = () => {
   return {
-    type: actionType.CLEAR_REDIRECT
-  }
-}
+    type: actionType.CLEAR_REDIRECT,
+  };
+};
 
 const fetch_portfolio = (response) => {
   return {
@@ -51,11 +55,11 @@ export const fetchPortfolio = (username) => {
       .then((response) => {
         let res = response.data.data;
         dispatch(fetch_portfolio(res));
-        dispatch(clearRedirect())
+        dispatch(clearRedirect());
         dispatch(loadingStop());
       })
       .catch((err) => {
-        dispatch(redirect())
+        dispatch(redirect());
         dispatch(loadingStop());
       });
   };
@@ -73,15 +77,15 @@ export const set_personalInfo = (detail) => {
     instanceAxios({
       data: query.edit_personalinfo(detail),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
         if (!response.data.errors) {
           dispatch(Personal_Information(detail));
-          dispatch(messages("Profile was updated successfully", "success"))
+          dispatch(messages("Profile was updated successfully", "success"));
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -105,15 +109,15 @@ export const avatar = (photo) => {
     imageAxios({
       data: formData,
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
         if (!response.data.errors) {
           dispatch(setAvatar(response.data.url));
-          dispatch(messages("Image was updated successfully", "success"))
+          dispatch(messages("Image was updated successfully", "success"));
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -142,7 +146,7 @@ export const socialAction = (req) => {
     instanceAxios({
       data: query.social(req),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -151,13 +155,17 @@ export const socialAction = (req) => {
           if (res.created) {
             req.id = res.social.id;
             dispatch(addSocialLink(req));
-            dispatch(messages(`${req.label} has been added successfully`, "success"));
+            dispatch(
+              messages(`${req.label} has been added successfully`, "success")
+            );
           } else {
             dispatch(editSocialLink(req));
-            dispatch(messages(`${req.label} has been updated successfully`, "success"));
+            dispatch(
+              messages(`${req.label} has been updated successfully`, "success")
+            );
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -179,7 +187,7 @@ export const delete_social = (index) => {
     instanceAxios({
       data: query.remove_social(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -192,7 +200,7 @@ export const delete_social = (index) => {
             dispatch(messages(res.warning, "warning"));
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -228,7 +236,7 @@ export const educationAction = (edu) => {
     instanceAxios({
       data: query.education(edu),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -237,13 +245,23 @@ export const educationAction = (edu) => {
           if (res.created) {
             edu.id = res.education.id;
             dispatch(add_education(edu));
-            dispatch(messages(`${edu.institution} has been added successfully`, "success"));
+            dispatch(
+              messages(
+                `${edu.institution} has been added successfully`,
+                "success"
+              )
+            );
           } else {
             dispatch(edit_education(edu));
-            dispatch(messages(`${edu.institution} has been updated successfully`, "success"));
+            dispatch(
+              messages(
+                `${edu.institution} has been updated successfully`,
+                "success"
+              )
+            );
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -258,7 +276,7 @@ export const delete_education = (index) => {
     instanceAxios({
       data: query.delete_education(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -271,7 +289,7 @@ export const delete_education = (index) => {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -293,7 +311,7 @@ export const experienceAction = (exp) => {
     instanceAxios({
       data: query.experience(exp),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -302,13 +320,23 @@ export const experienceAction = (exp) => {
           if (res.created) {
             exp.id = res.experience.id;
             dispatch(add_experience(exp));
-            dispatch(messages(`${exp.organization} has been added successfully`, "success"));
+            dispatch(
+              messages(
+                `${exp.organization} has been added successfully`,
+                "success"
+              )
+            );
           } else {
             dispatch(edit_experience(exp));
-            dispatch(messages(`${exp.organization} has been updated successfully`, "success"));
+            dispatch(
+              messages(
+                `${exp.organization} has been updated successfully`,
+                "success"
+              )
+            );
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -330,7 +358,7 @@ export const delete_experience = (index) => {
     instanceAxios({
       data: query.delete_experience(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -343,7 +371,7 @@ export const delete_experience = (index) => {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -389,7 +417,7 @@ export const projectAction = (request) => {
     instanceAxios({
       data: query.mutate_project(request),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -397,13 +425,23 @@ export const projectAction = (request) => {
           let res = response.data.data.project;
           if (res.created) {
             dispatch(add_project({ ...request, id: res.project.id }));
-            dispatch(messages(`${request.title} has been added successfully`, "success"));
+            dispatch(
+              messages(
+                `${request.title} has been added successfully`,
+                "success"
+              )
+            );
           } else {
             dispatch(edit_project(request));
-            dispatch(messages(`${request.title} has been updated successfully`, "success"));
+            dispatch(
+              messages(
+                `${request.title} has been updated successfully`,
+                "success"
+              )
+            );
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -419,7 +457,7 @@ export const deleteProject = (index) => {
     instanceAxios({
       data: query.remove_project(index),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -432,7 +470,7 @@ export const deleteProject = (index) => {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -468,7 +506,7 @@ export const skillAction = (request) => {
     instanceAxios({
       data: query.mutate_skill(request),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -476,13 +514,23 @@ export const skillAction = (request) => {
           let res = response.data.data.skill;
           if (res.created) {
             dispatch(add_skill(res.skill.id, request.title));
-            dispatch(messages(`${request.title} has been added successfully`, "success"));
+            dispatch(
+              messages(
+                `${request.title} has been added successfully`,
+                "success"
+              )
+            );
           } else {
             dispatch(edit_skill(request));
-            dispatch(messages(`${request.title} has been updated successfully`, "success"));
+            dispatch(
+              messages(
+                `${request.title} has been updated successfully`,
+                "success"
+              )
+            );
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -497,7 +545,7 @@ export const removeSkill = (id) => {
     instanceAxios({
       data: query.delete_skill(id),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -510,7 +558,7 @@ export const removeSkill = (id) => {
             dispatch(messages(res.message, "warning"));
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -532,7 +580,7 @@ export const subskillAction = (skill, title) => {
     instanceAxios({
       data: query.subSkill(skill, title),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -540,10 +588,12 @@ export const subskillAction = (skill, title) => {
           let res = response.data.data.subSkill;
           if (res.created) {
             dispatch(add_subskill({ skill, title, id: res.subSkill.id }));
-            dispatch(messages(`${title} has been added successfully`, "success"));
+            dispatch(
+              messages(`${title} has been added successfully`, "success")
+            );
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
       })
@@ -565,7 +615,7 @@ export const deleteSubskillAction = (id) => {
     instanceAxios({
       data: query.remove_subskill(id),
       headers: {
-        Authorization: headerToken,
+        Authorization: headerToken(),
       },
     })
       .then((response) => {
@@ -575,12 +625,35 @@ export const deleteSubskillAction = (id) => {
             dispatch(delete_subskill(id));
             dispatch(messages(`Sub-skill has been removed`, "success"));
           } else {
-            dispatch(messages(res.warning, 'warning'));
+            dispatch(messages(res.warning, "warning"));
           }
         } else {
-          const error = response.data.errors.map(err => err.message)
+          const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));
         }
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  };
+};
+
+const download_resume = () => {
+  return {
+    type: actionType.DOWNLOAD_RESUME,
+  };
+};
+
+export const downloadResume = (username, lastname) => {
+  return (dispatch) => {
+    Axios({
+      url: `${url}/resume/download/${username}/`,
+      method: "GET",
+      responseType: "blob", // Important
+    })
+      .then((response) => {
+        FileDownload(response.data, `${lastname}'s resume.pdf`);
+        dispatch(download_resume());
       })
       .catch((err) => {
         dispatch(messages(err.message, "danger"));

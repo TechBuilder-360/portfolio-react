@@ -18,7 +18,13 @@ height: auto;
     padding: 10px;
     font-weight: bold;
     margin-top: 20px;
+    outline: none;
 }
+
+.Butt:focus{
+    outline: none;
+}
+
 .timeline{
     background-color: white;
     border-radius: 10px;
@@ -31,7 +37,7 @@ height: auto;
 .Aside{
     background-color: rgb(241, 241, 245);
     height: 100%;
-    padding-bottom: 2%;
+    padding-bottom: 11.2%;
     text-align: center;
 }
 
@@ -54,7 +60,7 @@ height: auto;
 
 
 /* Desktop view */
-@media (min-width: 760px){
+@media (min-width: 800px){
     
     .Main {
         height: 620px;

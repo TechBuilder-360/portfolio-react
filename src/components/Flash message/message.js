@@ -29,6 +29,7 @@ const Message = () => {
           dismissible
           style={{
             position: "fixed",
+            top: "3%",
             zIndex: "20",
             width: "80%",
             marginLeft: "10%",
