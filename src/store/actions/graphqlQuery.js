@@ -309,6 +309,12 @@ export const portfolio = (username) => {
         label
         url
       }
+      accomplishment(username: $username){
+        certificate
+        course
+        id
+        issuer
+      }
       personalInfo(username: $username){
         username
         middleName
@@ -327,5 +333,33 @@ export const portfolio = (username) => {
     }
     `,
     variables: {"username": `${username}`}
+  })
+}
+
+export const mutate_accomplishment = (detail) => {
+  return JSON.stringify({
+    query: `mutation accomplishment{
+      accomplishment(
+        certificate: "${detail.certificate}"
+        course: "${detail.course}"
+        issuer: "${detail.issuer}"
+        id: "${detail.id}"
+      ){
+        id
+        created
+      }
+    }
+    `
+  })
+}
+
+export const remove_accomplishment = (id) => {
+  return JSON.stringify({
+    query: `mutation remove_accomplishment {
+      removeAccomplishment(id: ${id}){
+        warning
+        ok
+      }
+    }`
   })
 }

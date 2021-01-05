@@ -26,7 +26,7 @@ const PersonalInfo = (props) => {
       </div>
       { props.isOwner ? <p>Welcome Back,</p> : null }
       <p style={{ fontWeight: "bold" }}>
-        {props.personalInfo.lastName} {props.personalInfo.firstName }
+        {props.personalInfo.lastName},{props.personalInfo.middleName? ` ${props.personalInfo.middleName}`: ',' } {props.personalInfo.firstName }
       </p>
 
       <p>{props.personalInfo.profession}</p>

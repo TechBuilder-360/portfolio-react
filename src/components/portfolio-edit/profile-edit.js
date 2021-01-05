@@ -14,6 +14,7 @@ import { fetchPortfolio } from "../../store/actions/portfolioActions";
 import SpinnerElement from "../spinner/spinner";
 import Footer from "../Footer/Footer";
 import BrokenConnection from '../Special Page/brokenConnection'
+import Accomplishment from "./accomplishment/accomplishment";
 
 
 const Profile_Edit = () => {
@@ -37,6 +38,7 @@ const Profile_Edit = () => {
     children = (
       <section>
         <PersonalInfo />
+        <Accomplishment/>
         <Social />
         <Education />
         <Experience />

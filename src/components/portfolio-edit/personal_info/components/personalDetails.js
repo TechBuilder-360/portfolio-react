@@ -148,7 +148,7 @@ const PersonalDetails = ({ information }) => {
             />
           </Form.Group>
         </Col>
-        <Col xs={12} md={6} className={classes.Mb_5}>
+        <Col xs={12} md={3} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Gender</Form.Label>
             <Form.Control
@@ -189,7 +189,7 @@ const PersonalDetails = ({ information }) => {
         <Col xs={12} md={12} className={classes.Mb_5}>
           {/* Setup Loading... */}
           <Button
-            variant="primary"
+            variant="outline-primary"
             type="submit"
             disabled={isLoading}
           >
