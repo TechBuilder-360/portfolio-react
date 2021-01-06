@@ -336,7 +336,6 @@ export const portfolio = (username) => {
   })
 }
 
-<<<<<<< HEAD
 export const mutate_accomplishment = (detail) => {
   return JSON.stringify({
     query: `mutation accomplishment{
