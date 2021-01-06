@@ -329,3 +329,17 @@ export const portfolio = (username) => {
     variables: {"username": `${username}`}
   })
 }
+
+export const contact = (detail) => {
+  return JSON.stringify({
+    query: `mutation contactform{
+      contact(
+        fullName: "${detail.fullName}",
+        email: "${detail.email}"
+        message: "${detail.message}"
+      ){
+        ok
+      }
+    }`
+  })
+}
