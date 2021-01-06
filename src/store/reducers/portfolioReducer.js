@@ -8,6 +8,7 @@ const initialState = {
   experience: [],
   project: [],
   social: [],
+  accomplishment: [],
   message: {
     messages: [],
     alert: "",
@@ -53,6 +54,7 @@ const reducer = (state = initialState, action) => {
           sub.skill = sub.skill.id;
           return sub;
         }),
+        accomplishment: action.payload.accomplishment,
         education: action.payload.education,
         experience: action.payload.experience,
         project: action.payload.project,
@@ -173,6 +175,31 @@ const reducer = (state = initialState, action) => {
         ...state,
         project,
       };
+
+      case actionType.ADD_ACCOMPLISHMENT:
+        return {
+          ...state,
+          accomplishment: [...state.accomplishment, action.payload],
+        };
+      case actionType.DELETE_ACCOMPLISHMENT:
+        return {
+          ...state,
+          accomplishment: [
+            ...state.accomplishment.filter((acc) => acc.id !== action.payload),
+          ],
+        };
+      case actionType.EDIT_ACCOMPLISHMENT:
+        const oldACC = [...state.accomplishment];
+        const accomplishment = oldACC.map((acc) => {
+          if (acc.id === action.payload.id) {
+            acc = action.payload;
+          }
+          return acc;
+        });
+        return {
+          ...state,
+          accomplishment,
+        };
 
     case actionType.EDIT_SKILL:
       const oldSkill = [...state.skills];

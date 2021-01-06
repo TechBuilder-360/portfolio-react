@@ -50,7 +50,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
           <Col sm={12} md={4} className={classes.Mb_5} style={{marginTop: '35px'}}>
           <Button
               type="submit"
-              variant="primary"
+              variant="outline-primary"
               className="mt-15"
               size="sm"
               disabled={isLoading}

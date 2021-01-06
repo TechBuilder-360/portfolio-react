@@ -446,7 +446,6 @@ export const projectAction = (request) => {
         }
       })
       .catch((err) => {
-        console.log(err);
         dispatch(messages(err.message, "danger"));
       });
   };
@@ -654,6 +653,94 @@ export const downloadResume = (username, lastname) => {
       .then((response) => {
         FileDownload(response.data, `${lastname}'s resume.pdf`);
         dispatch(download_resume());
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  };
+};
+
+const add_accomplishment = (content) => {
+  return {
+    type: actionType.ADD_ACCOMPLISHMENT,
+    payload: content,
+  };
+};
+
+const edit_accomplishment = (content) => {
+  return {
+    type: actionType.EDIT_ACCOMPLISHMENT,
+    payload: content,
+  };
+};
+
+const delete_accomplishment = (index) => {
+  return {
+    type: actionType.DELETE_ACCOMPLISHMENT,
+    payload: index,
+  };
+};
+
+export const accomplishmentAction = (request) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.mutate_accomplishment(request),
+      headers: {
+        Authorization: headerToken(),
+      },
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.accomplishment;
+          if (res.created) {
+            dispatch(add_accomplishment({ ...request, id: res.id }));
+            dispatch(
+              messages(
+                `${request.course} has been added successfully`,
+                "success"
+              )
+            );
+          } else {
+            dispatch(edit_accomplishment(request));
+            dispatch(
+              messages(
+                `${request.course} has been updated successfully`,
+                "success"
+              )
+            );
+          }
+        } else {
+          const error = response.data.errors.map((err) => err.message);
+          dispatch(messages(error, "danger"));
+        }
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  };
+};
+
+export const deleteAccomplishment = (index) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.remove_accomplishment(index),
+      headers: {
+        Authorization: headerToken(),
+      },
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.removeAccomplishment;
+          if (res.ok) {
+            dispatch(delete_accomplishment(index));
+            dispatch(messages(`Accomplishment has been removed`, "success"));
+          } else {
+            dispatch(messages(res.message, "warning"));
+          }
+        } else {
+          const error = response.data.errors.map((err) => err.message);
+          dispatch(messages(error, "danger"));
+        }
       })
       .catch((err) => {
         dispatch(messages(err.message, "danger"));
