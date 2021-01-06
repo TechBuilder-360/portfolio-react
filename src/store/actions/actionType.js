@@ -55,3 +55,5 @@ export const LOGIN = 'LOGIN'
 export const REGISTRATION = 'REGISTRTION'
 
 export const DOWNLOAD_RESUME = 'DOWNLOAD_RESUME'
+
+export const FEEDBACK = 'FEEDBACK'

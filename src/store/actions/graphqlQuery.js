@@ -336,6 +336,7 @@ export const portfolio = (username) => {
   })
 }
 
+<<<<<<< HEAD
 export const mutate_accomplishment = (detail) => {
   return JSON.stringify({
     query: `mutation accomplishment{
@@ -359,6 +360,20 @@ export const remove_accomplishment = (id) => {
     query: `mutation remove_accomplishment {
       removeAccomplishment(id: ${id}){
         warning
+        ok
+      }
+    }`
+  })
+}
+
+export const contact = (detail) => {
+  return JSON.stringify({
+    query: `mutation contactform{
+      contact(
+        fullName: "${detail.fullName}",
+        email: "${detail.email}"
+        message: "${detail.message}"
+      ){
         ok
       }
     }`
