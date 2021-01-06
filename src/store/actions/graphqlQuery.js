@@ -342,6 +342,7 @@ export const mutate_accomplishment = (detail) => {
       accomplishment(
         certificate: "${detail.certificate}"
         course: "${detail.course}"
+        description: "${detail.description}"
         issuer: "${detail.issuer}"
         id: "${detail.id}"
       ){

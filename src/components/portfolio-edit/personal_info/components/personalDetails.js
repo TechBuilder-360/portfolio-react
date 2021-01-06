@@ -179,6 +179,8 @@ const PersonalDetails = ({ information }) => {
           <Form.Group>
             <Form.Label>Professional Summary</Form.Label>
             <TextArea
+              maxLength={500}
+              row={5}
               name="bio"
               changed={(name, value) => componentChange(name, value)}
               value={detail.bio}

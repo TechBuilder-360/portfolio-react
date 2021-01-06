@@ -7,7 +7,7 @@ import AccompForm from "./accompForm";
 
 const Child = ({ accomplishment, ...props }) => {
   const dispatch = useDispatch();
-  const label = `Studied ${accomplishment.course} at ${accomplishment.issuer}`
+  const label = `${accomplishment.course} at ${accomplishment.issuer}`
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>

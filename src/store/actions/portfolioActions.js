@@ -446,7 +446,6 @@ export const projectAction = (request) => {
         }
       })
       .catch((err) => {
-        console.log(err);
         dispatch(messages(err.message, "danger"));
       });
   };
@@ -684,7 +683,6 @@ const delete_accomplishment = (index) => {
 
 export const accomplishmentAction = (request) => {
   return (dispatch) => {
-    console.log(query.mutate_accomplishment(request));
     instanceAxios({
       data: query.mutate_accomplishment(request),
       headers: {
@@ -717,7 +715,6 @@ export const accomplishmentAction = (request) => {
         }
       })
       .catch((err) => {
-        console.log(err);
         dispatch(messages(err.message, "danger"));
       });
   };
