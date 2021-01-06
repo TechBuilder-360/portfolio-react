@@ -3,7 +3,8 @@ import classes from './form.module.css';
 import Propstypes from 'prop-types'
 
 const TextArea = (props) => {
-  const character = 200
+  const character = props.maxLength || 200
+  const row = props.row || 2
   let value = ''
   if(props.value){
     value = props.value.substr(0,character)
@@ -27,7 +28,7 @@ const TextArea = (props) => {
   
   return (
     <div className={classes.textarea}>
-        <textarea rows='2' maxLength={character} 
+        <textarea rows={row} maxLength={character} 
         className={classes.multiText} onChange={onChange}
         value={textAreaValue}
         name={props.name}

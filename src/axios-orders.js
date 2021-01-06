@@ -22,12 +22,3 @@ export const imageAxios = axios.create({
     responseType: 'json',
     method: 'post'
 })
-
-export const downloadAxios = axios.create({
-    baseURL: `${url}/resume/download`,
-    headers: {
-        'Content-Type': 'multipart/form-data'
-    },
-    responseType: 'json',
-    method: 'post'
-})

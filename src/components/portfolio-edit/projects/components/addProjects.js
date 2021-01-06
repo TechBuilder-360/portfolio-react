@@ -81,10 +81,10 @@ const AddProjects = ({ project, closeForm }) => {
           </Form.Group>
         </Col>
         <Col xs={12} md={12} style={{ textAlign: "right" }}>
-        {value.id ? null: <Button style={{marginRight: "6px"}} size="sm" onClick={closeForm}>Cancel</Button> }
+        {value.id ? null: <Button style={{marginRight: "6px"}} variant="outline-danger" size="sm" onClick={closeForm}>Cancel</Button> }
           <Button
             type="submit"
-            variant="primary"
+            variant="outline-primary"
             className="mt-15"
             size="sm"
             disabled={isLoading}

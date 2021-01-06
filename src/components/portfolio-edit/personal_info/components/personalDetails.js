@@ -148,7 +148,7 @@ const PersonalDetails = ({ information }) => {
             />
           </Form.Group>
         </Col>
-        <Col xs={12} md={6} className={classes.Mb_5}>
+        <Col xs={12} md={3} className={classes.Mb_5}>
           <Form.Group>
             <Form.Label>Gender</Form.Label>
             <Form.Control
@@ -179,6 +179,8 @@ const PersonalDetails = ({ information }) => {
           <Form.Group>
             <Form.Label>Professional Summary</Form.Label>
             <TextArea
+              maxLength={500}
+              row={5}
               name="bio"
               changed={(name, value) => componentChange(name, value)}
               value={detail.bio}
@@ -189,7 +191,7 @@ const PersonalDetails = ({ information }) => {
         <Col xs={12} md={12} className={classes.Mb_5}>
           {/* Setup Loading... */}
           <Button
-            variant="primary"
+            variant="outline-primary"
             type="submit"
             disabled={isLoading}
           >

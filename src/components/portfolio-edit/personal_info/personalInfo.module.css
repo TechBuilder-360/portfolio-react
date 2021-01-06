@@ -44,9 +44,9 @@
 
 .Mb_5 input, .Mb_5 select{
   height: 35px;
-  background-color: rgb(224, 234, 245);
+  background-color:#F9F9F9;
   border-radius: 5px;
-  border: 0px;
+  /* border: 0px; */
 }
 
 ::placeholder,
@@ -55,9 +55,9 @@
   padding: 20px;
 }
 
-.Mb_5 input:hover, .Mb_5 select:hover {
+/* .Mb_5 input:hover, .Mb_5 select:hover {
   background-color: rgb(214, 233, 236);
-}
+} */
 
 span {
   color: rgba(5, 81, 194, 0.8);
@@ -126,9 +126,14 @@ form label {
 
   .Mb_5 input, .Mb_5 select{
     height: 45px;
-    background-color: rgb(224, 234, 245);
+    background-color: #F9F9F9;
     border-radius: 5px;
-    border: 0px;
+    outline: none;
+
+  }
+
+  .Mb_5 input:focus, .Mb_5 select:focus{
+    outline: none;
   }
 
   .Label{

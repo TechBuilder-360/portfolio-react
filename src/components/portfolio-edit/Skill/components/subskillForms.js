@@ -42,7 +42,7 @@ const SkillForms = ({ skillId }) => {
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Button
               type="submit"
-              variant="primary"
+              variant="outline-primary"
               className="mt-15"
               size="sm"
               style={{ display: "block", position: "relative", top: "35px" }}

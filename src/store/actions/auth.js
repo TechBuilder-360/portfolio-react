@@ -160,3 +160,24 @@ export const clearError = () => {
     type: actionTypes.CLEAR_ERROR,
   };
 };
+
+export const feedback = () => {
+  return {
+    type: actionTypes.FEEDBACK,
+  };
+};
+
+export const feedbackAction = (request) =>{
+  return dispatch => {
+    instanceAxios({
+      data: query.contact(request),
+    })
+      .then(() => {
+        dispatch(feedback())  
+        dispatch(messages("Message has been sent!", "success"));
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  }
+}
