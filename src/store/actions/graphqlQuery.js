@@ -311,6 +311,7 @@ export const portfolio = (username) => {
       }
       accomplishment(username: $username){
         certificate
+        description
         course
         id
         issuer
