@@ -9,6 +9,7 @@ import Experience from "./experience/Experience";
 import Projects from "./projects/projects";
 import Social from "./social/social";
 import Skill from "./Skill/skill";
+import Configurations from "./configuration/configuration"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPortfolio } from "../../store/actions/portfolioActions";
 import SpinnerElement from "../spinner/spinner";
@@ -44,6 +45,7 @@ const Profile_Edit = () => {
         <Experience />
         <Skill />
         <Projects />
+        <Configurations />
       </section>
     );
   } else if(portfolio.redirect){
