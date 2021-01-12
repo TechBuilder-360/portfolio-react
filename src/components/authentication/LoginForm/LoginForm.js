@@ -9,6 +9,7 @@ import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import SocialButton from "../SocialAuth/SocialButton";
 import { loginAction } from "../../../store/actions/auth";
 import { clearMessages } from "../../../store/actions/portfolioActions";
+import ToastMessage from "../../Flash message/toast";
 
 const LoginForm = () => {
   const content ={ email: "", password: ""}
@@ -54,6 +55,7 @@ const LoginForm = () => {
 
   return (
     <Layout>
+      {authState.error.length > 0 ? <ToastMessage bodyText="Error Occured"/> : null}
       <div className={classes.Container}>
         <p className="title">Sign in</p>
 

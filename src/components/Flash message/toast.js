@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import Toast from 'react-bootstrap/Toast';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import {clearError} from "../../store/actions/auth"
+import classes from './toast.module.css';
 
 const ToastMessgage = (props) => {
     const dispatch = useDispatch();
@@ -13,8 +14,12 @@ const ToastMessgage = (props) => {
         dispatch(clearError())
     }
 
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
     return (
-        <div style={{position: "absolute"}}>
+        <div className={classes.toast}>
             <Row>
                 <Col sm={12}>
                     <Toast show={showA} onClose={toggleShowA}>
@@ -22,6 +27,7 @@ const ToastMessgage = (props) => {
                         <strong className="mr-auto">{props.headerText}</strong>
                     </Toast.Header>
                     <Toast.Body>{props.bodyText}</Toast.Body>
+                    <Button onClick={refreshPage} className={classes.button}>Reload</Button>
                     </Toast>
                 </Col>
             </Row>
