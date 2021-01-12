@@ -19,6 +19,7 @@ height: auto;
     font-weight: bold;
     margin-top: 20px;
     outline: none;
+    display: inline-block;
 }
 
 .Butt:focus{
@@ -58,6 +59,11 @@ height: auto;
     padding:0 4% 0 2%;
 }
 
+.Share {
+    position: absolute;
+    bottom: 0;
+    padding: 2%;
+}
 
 /* Desktop view */
 @media (min-width: 800px){

@@ -12,9 +12,8 @@ import Experience from "../../components/profile/experience/experience";
 import Skills from "../../components/profile/skills/skills";
 import Projects from "../../components/profile/projects/projects";
 import SocialLinks from "../../components/profile/social_link/social_link";
-import { ProjectTitle } from "../../static";
+import { ProjectTitle, ShareButton } from "../../static";
 import DashboardNavBar from "../../components/Navigation/portfolio-navBar";
-import Footer from "../../components/Footer/Footer";
 import {
   fetchPortfolio,
   downloadResume,
@@ -23,6 +22,12 @@ import Wrapper from "../../container/Container";
 import SpinnerElement from "../../components/spinner/spinner";
 import NotFound from "../../components/Special Page/NotFound";
 import BrokenConnection from "../../components/Special Page/brokenConnection";
+import {
+  TwitterShareButton,
+  TwitterIcon,
+  FacebookShareButton,
+  FacebookIcon,
+} from "react-share";
 
 const Dashboard = () => {
   const { username } = useParams();
@@ -62,8 +67,25 @@ const Dashboard = () => {
             onClick={() => handleDownload(portfolio.lastName)}
             className={classes.Butt}
           >
-          Download Resume <FontAwesomeIcon icon={faDownload}/>
+            Download Resume <FontAwesomeIcon icon={faDownload} />
           </button>
+          {username === auth.username ? (
+            <div className={classes.Share}>
+              Share{" "}
+              <TwitterShareButton
+                title={ShareButton.title}
+                url={ShareButton.url}
+              >
+                <TwitterIcon size={32} round={true} />
+              </TwitterShareButton>
+              <FacebookShareButton
+                title={ShareButton.title}
+                url={ShareButton.url}
+              >
+                <FacebookIcon size={32} round={true} />
+              </FacebookShareButton>
+            </div>
+          ) : null}
         </Col>
 
         <Col sm="12" md="9" className={classes.Main}>
@@ -92,7 +114,6 @@ const Dashboard = () => {
             wrapper={classes.Main_Content}
             title="Project"
           />
-          <Footer />
         </Col>
       </Wrapper>
     );
