@@ -18,9 +18,9 @@ const Configuration = () =>  {
         <option key={i} value={item}>{item}</option>
       ));
 
-    useEffect(() => {
-        console.log(downloadTemplate)
-    }, [downloadTemplate])
+    // useEffect(() => {
+    //     console.log(downloadTemplate)
+    // }, [downloadTemplate])
     
     return (
         <div className={style.SubSection}>
