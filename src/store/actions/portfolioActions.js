@@ -82,8 +82,13 @@ export const set_personalInfo = (detail) => {
     })
       .then((response) => {
         if (!response.data.errors) {
-          dispatch(Personal_Information(detail));
-          dispatch(messages("Profile was updated successfully", "success"));
+          let res = response.data.data.personalInfo;
+          if(res.ok){
+            dispatch(Personal_Information(detail));
+            dispatch(messages("Profile was updated successfully", "success"));
+          }else {
+            dispatch(messages(res.warning, "danger"));
+          }
         } else {
           const error = response.data.errors.map((err) => err.message);
           dispatch(messages(error, "danger"));

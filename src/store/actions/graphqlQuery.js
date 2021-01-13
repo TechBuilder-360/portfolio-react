@@ -71,6 +71,7 @@ export const edit_personalinfo = (detail) => {
           phone: "${detail.phone}"
         ) {
         ok
+        warning
       }
     }`,
   });
