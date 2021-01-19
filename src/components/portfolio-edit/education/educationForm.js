@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Container from "../../../../container/Container";
-import MonthPicker from "../../../form/monthYearPicker/month_year_picker";
-import classes from "../../personal_info/personalInfo.module.css";
-import { educationAction } from "../../../../store/actions/portfolioActions";
+import Container from "../../../container/Container";
+import classes from "../personal_info/personalInfo.module.css";
+import { delete_education, educationAction } from "../../../store/actions/portfolioActions";
 import PropTypes from "prop-types";
+import MonthYear from "../../form/month-year";
 
 const EducationForm = ({ education, closeForm }) => {
-
   const content = {
-    id: education.id ||  "",
+    id: education.id || "",
     institution: education.institution || "",
     startYear: education.startYear || "",
     endYear: education.endYear || "",
     degree: education.degree || "",
     course: education.course || "",
-  }
+  };
   const dispatch = useDispatch();
-  const message = useSelector(state => state.portfolio.message)
+  const message = useSelector((state) => state.portfolio.message);
   const [value, setValue] = useState(content);
   const [isLoading, setLoading] = useState(false);
 
@@ -26,23 +25,22 @@ const EducationForm = ({ education, closeForm }) => {
     if (isLoading) {
       setLoading(false);
     }
-  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
-  
+  }, [message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const onChangeHandler = (name, date) => {
-    setValue({ ...value, [name]: date })
+    setValue({ ...value, [name]: date });
   };
 
   const handleSubmit = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
 
-    setLoading(true)
+    setLoading(true);
     dispatch(educationAction(value));
-    if(!value.id){
+    if (!value.id) {
       closeForm();
     }
   };
@@ -76,20 +74,20 @@ const EducationForm = ({ education, closeForm }) => {
               />
             </Form.Group>
           </Col>
-         <Col xs={12} md={3} className={classes.Mb_5}>
-            <MonthPicker
-              name="startYear"
-              changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.startYear}
+          <Col xs={12} md={3} className={classes.Mb_5}>
+            <MonthYear
               label="Start Year"
+              name="startYear"
+              value={value.startYear}
+              changed={onChangeHandler}
             />
           </Col>
           <Col xs={12} md={3} className={classes.Mb_5}>
-            <MonthPicker
-              name="endYear"
-              changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.endYear}
+            <MonthYear
               label="End Year"
+              name="endYear"
+              value={value.endYear}
+              changed={onChangeHandler}
             />
           </Col>
           <Col xs={12} md={6} className={classes.Mb_5}>
@@ -105,8 +103,17 @@ const EducationForm = ({ education, closeForm }) => {
             </Form.Group>
           </Col>
 
-          <Col xs={12} md={12} style={{textAlign: "right"}}>
-            {value.id ? null: <Button style={{marginRight: "6px"}} variant="outline-danger" size="sm" onClick={closeForm}>Cancel</Button> }
+          <Col xs={12} md={12} style={{ textAlign: "right" }}>
+            {value.id ? null : (
+              <Button
+                style={{ marginRight: "6px" }}
+                variant="outline-danger"
+                size="sm"
+                onClick={closeForm}
+              >
+                Cancel
+              </Button>
+            )}
             <Button
               type="submit"
               variant="outline-primary"
@@ -116,6 +123,16 @@ const EducationForm = ({ education, closeForm }) => {
             >
               {isLoading ? "Saving..." : "Save"}
             </Button>
+            {value.id ? (
+              <Button
+                variant="outline-danger"
+                className="mt-15 ml-1"
+                size="sm"
+                onClick={() => dispatch(delete_education(education.id))}
+              >
+                Delete
+              </Button>
+            ) : null}
           </Col>
         </Row>
       </Form>
