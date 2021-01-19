@@ -6,7 +6,7 @@ import logo from "../../images/logo.png";
 const Footer = () => {
   return (
       <Container fluid className={classes.Footer}>
-        <Navbar.Brand><img src={logo} alt="xPortfolio" /></Navbar.Brand>
+        <Navbar.Brand><img src={logo} alt="xPortfolio" style={{height: "70px"}}/></Navbar.Brand>
       </Container>
   );
 };

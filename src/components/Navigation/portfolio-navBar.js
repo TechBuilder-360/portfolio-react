@@ -25,6 +25,7 @@ const Portfolio_navBar = () => {
             <Container>
               <NavLink to={`/${auth.username}`}> Dashboard </NavLink>
               <NavLink to={"/edit"}> Edit Profile </NavLink>
+              {/* <NavLink to={"/configuration"}> Configuration </NavLink> */}
               <NavLink to={"/logout"}>Logout</NavLink>
             </Container>
           ) : (

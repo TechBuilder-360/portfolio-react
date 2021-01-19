@@ -15,6 +15,7 @@ import PasswordChange from "./components/authentication/Password/PasswordChange"
 import Container from "./container/Container";
 import Logout from "./components/authentication/Logout/Logout";
 import ProtectedRoute from './components/authentication/ProtectedRoutes'
+import Configuration from "./components/configuration/configuration";
 
 
 const App = () => {
@@ -35,6 +36,11 @@ const App = () => {
         path="/edit"
         exact
         component={ProfileEdit}
+      />
+      <ProtectedRoute
+        path="/configuration"
+        exact
+        component={Configuration}
       />
       <Route path="/logout" exact component={Logout} />
       <Route path="/:username" exact component={Dashboard} />

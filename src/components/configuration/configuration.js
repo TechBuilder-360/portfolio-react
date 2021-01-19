@@ -1,30 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import style from "../profile-edit.module.css";
-import ToggleSwitch from "../../ToggleSwitch/toggleSwitch";
+import React, { useState, useEffect } from "react";
+import classes from "../portfolio-edit/profile-edit.module.css";
+import ToggleSwitch from "../ToggleSwitch/toggleSwitch";
 import { Col, Row, Form } from "react-bootstrap";
+import Container from "../../container/Container";
 
-const Configuration = () =>  {
-    const [downloadTemplate, setDownloadTemplate] = useState(false)
+const Configuration = () => {
+  const [downloadTemplate, setDownloadTemplate] = useState(false);
 
-    const onChange = newValue => {
-        setDownloadTemplate(newValue);
-    }
+  const onChange = (newValue) => {
+    setDownloadTemplate(newValue);
+  };
 
-    const templatesList = [
-        "Default","Template 1","Template 2","Template 3","Template 4",
-    ];
+  const templatesList = [
+    "Default",
+    "Template 1",
+    "Template 2",
+    "Template 3",
+    "Template 4",
+  ];
 
-    const templatesOptions = templatesList.map((item, i) => (
-        <option key={i} value={item}>{item}</option>
-      ));
+  const templatesOptions = templatesList.map((item, i) => (
+    <option key={i} value={item}>
+      {item}
+    </option>
+  ));
 
-    // useEffect(() => {
-    //     console.log(downloadTemplate)
-    // }, [downloadTemplate])
-    
-    return (
-        <div className={style.SubSection}>
-            <p className="title">Configurations</p>
+  // useEffect(() => {
+  //     console.log(downloadTemplate)
+  // }, [downloadTemplate])
+
+  return (
+    <Container>
+      <div className={classes.Wrapper}>
+          <section>
+          <p className="title">Configurations</p>
             <hr />         
             <Row>
                 <Col sm={6}>
@@ -57,8 +66,10 @@ const Configuration = () =>  {
                     </div> 
                 </Col>
             </Row>
-        </div>
-    )
-}
+          </section>
+      </div>
+    </Container>
+  );
+};
 
-export default Configuration
+export default Configuration;
