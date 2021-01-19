@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Accordion } from "react-bootstrap";
-import Child from "./components/child";
 import { useSelector } from "react-redux";
-import classes from "../personal_info/personalInfo.module.css";
-import EducationForm from "./components/educationForm";
+import { Collapse } from "antd";
+import EducationForm from "./educationForm";
 
 const Education = (props) => {
   const limit = process.env.REACT_APP_EDUCATION_LIMIT;
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
-  const education = useSelector(state => state.portfolio.education)
+  const education = useSelector((state) => state.portfolio.education);
+  const { Panel } = Collapse;
 
   const handleCloseForm = () => {
     setFormVisible(false);
@@ -29,20 +28,21 @@ const Education = (props) => {
   }, [formVisible]);
 
   // Populate accordion children with existing record
-  const children = education.map((edu, i) => (
-    <Child
-      education={edu}
-      closeForm={() => setFormVisible(false)}
-      index={i + 1}
-      key={i}
-    />
-  ));
+  const panels = education.map((edu, i) => {
+    const label = `Studied ${edu.course} at ${edu.institution} from ${edu.startYear} to ${edu.endYear}`;
+    return (
+      <Panel header={label} showArrow={false} key={i}>
+        <EducationForm education={edu} />
+      </Panel>
+    );
+  });
 
   return (
     <div className={style.SubSection}>
       <p className="title">Education</p>
       <hr />
-      <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
+      <Collapse accordion>{panels}</Collapse>
+      <hr />
       {form}
       {education.length < limit ? (
         <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>

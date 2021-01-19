@@ -35,6 +35,7 @@ const PersonalDetails = ({ information }) => {
 
   const onChangeHandler = (e) => {
     onDetail({ ...detail, [e.target.name]: e.target.value });
+    console.log(detail);
   };
 
   const componentChange = (name, value) => {
@@ -156,7 +157,6 @@ const PersonalDetails = ({ information }) => {
               name="gender"
               onChange={onChangeHandler}
               value={detail.gender}
-              custom
             >
               <option value="">---</option>
               <option value="Female">Female</option>

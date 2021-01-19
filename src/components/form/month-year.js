@@ -6,34 +6,33 @@ import {DatePicker} from 'antd'
 import Proptypes from 'prop-types'
 
 
-const InputDate = ({changed, name, value, label }) => {
+const MonthYear = ({changed, name, value, label }) => {
     let init = value || null
-    const [initValue, onChange] = useState(new Date(init));
 
-    useEffect(() => {
-        if(changed){
-            changed(name, initValue)
-        }
-      },[initValue]); // eslint-disable-line react-hooks/exhaustive-deps
+    const onChangeHandler = ( _, dateString) =>{
+       changed(name, dateString)
+    }
     
     return (
         <Container>
             <label className={classes.block}>{label}</label>
-            <DatePicker className={classes.datePicker} 
-                name={name} 
-                onChange={onChange} 
-                value={moment(initValue)}
-                format={"DD - MM - YYYY"}
-            />
+            <DatePicker
+                className={classes.datePicker}
+                picker="month"
+                name={name}
+                onChange={onChangeHandler} 
+                value={moment(init)}
+                format={"MMM. YYYY"}
+              />
         </Container>
     );
 };
 
-InputDate.prototype = {
+MonthYear.prototype = {
     label: Proptypes.string.isRequired,
     value: Proptypes.string.isRequired,
     name: Proptypes.string.isRequired,
     changed: Proptypes.func.isRequired
 }
 
-export default InputDate;
+export default MonthYear;
