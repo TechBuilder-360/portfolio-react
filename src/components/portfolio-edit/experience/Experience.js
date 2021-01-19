@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Accordion } from "react-bootstrap";
-import Child from "./components/Child";
 import { useSelector } from "react-redux";
-import classes from "../personal_info/personalInfo.module.css";
 import ExperienceForm from "./ExperienceForm";
 import { Collapse } from "antd";
 
