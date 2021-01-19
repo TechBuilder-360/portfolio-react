@@ -7,7 +7,7 @@ import Proptypes from 'prop-types'
 
 
 const MonthYear = ({changed, name, value, label }) => {
-    let init = value || null
+    let init = value || new Date()
 
     const onChangeHandler = ( _, dateString) =>{
        changed(name, dateString)
@@ -20,6 +20,7 @@ const MonthYear = ({changed, name, value, label }) => {
                 className={classes.datePicker}
                 picker="month"
                 name={name}
+                allowClear={false}
                 onChange={onChangeHandler} 
                 value={moment(init)}
                 format={"MMM. YYYY"}
