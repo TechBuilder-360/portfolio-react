@@ -20,7 +20,7 @@ import {
 } from "../../store/actions/portfolioActions";
 import Wrapper from "../../container/Container";
 import SpinnerElement from "../../components/spinner/spinner";
-import NotFound from "../../components/Special Page/NotFound";
+import NotFound from "../../components/Special Page/Error404";
 import BrokenConnection from "../../components/Special Page/brokenConnection";
 import {
   TwitterShareButton,
