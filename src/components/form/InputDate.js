@@ -22,6 +22,7 @@ const InputDate = ({changed, name, value, label }) => {
             <DatePicker className={classes.datePicker} 
                 name={name} 
                 onChange={onChange} 
+                allowClear={false}
                 value={moment(initValue)}
                 format={"DD - MM - YYYY"}
             />
