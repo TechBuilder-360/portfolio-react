@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { skillAction } from "../../../../store/actions/portfolioActions";
+import { skillAction, removeSkill } from "../../../../store/actions/portfolioActions";
 import classes from "../../personal_info/personalInfo.module.css";
 
 const AddForm = ({ skill, closeForm, hide }) => {
@@ -41,8 +41,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
               <Form.Control
                 name="title"
                 onChange={(e)=> setValue({...value, title: e.target.value})}
-                placeholder="Accounting"
-                value={value.title}
+                placeholder="Enter skill name"
                 required={true}
               />
             </Form.Group>
@@ -57,7 +56,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
             >
               {isLoading ? "Saving..." : "Save"}
             </Button>
-            {hide ? null : (
+            {value.id ? null : (
               <Button
                 variant="danger"
                 size="sm"
@@ -67,6 +66,17 @@ const AddForm = ({ skill, closeForm, hide }) => {
                 Cancel
               </Button>
             )}
+            {value.id ?
+            <Button
+              variant="outline-danger"
+              className="mt-15 ml-1"
+              size="sm"
+              onClick={() => dispatch(removeSkill(value.id))}
+            >
+              Delete
+            </Button> : null
+            }
+            
           </Col>
         </Row>
       </Form>

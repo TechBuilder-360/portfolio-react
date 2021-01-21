@@ -33,8 +33,7 @@ const SkillForms = ({ skillId }) => {
               <Form.Control
                 name="title"
                 onChange={(e) => setTitle(e.target.value)}
-                value={title}
-                placeholder=""
+                placeholder="Enter a sub-skill"
                 required={true}
               />
             </Form.Group>

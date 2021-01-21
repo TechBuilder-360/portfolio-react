@@ -2,18 +2,22 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import style from "../profile-edit.module.css";
-import classes from "../personal_info/personalInfo.module.css";
-import { connect } from "react-redux";
-import Child from "./components/Child";
-import { Accordion } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import SkillForm from './components/skillForm';
+import { Collapse } from 'antd';
+import SubSkills from "./components/subSkill";
+import SubSkillForm from "./components/subskillForms";
 
-
-const Skill = (props) => {
+const Skill = () => {
 
   const limit = process.env.REACT_APP_SKILL_LIMIT
+  const subskillLimit = process.env.REACT_APP_SUBSKILL_LIMIT
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
+  const skills = useSelector((state) => state.portfolio.skills);
+  const subSkills = useSelector((state) => state.portfolio.subskill);
+  
+  const { Panel } = Collapse;
 
   useEffect(() => {
     if (formVisible) {
@@ -28,23 +32,32 @@ const Skill = (props) => {
     }
   }, [formVisible]);
 
-  const children = props.skill.map((sk, i) => (
-    <Child
-      skill={sk}
-      closeForm={() => setFormVisible(false)}
-      index={i+1}
+  // Populate accordion children with existing record
+  const panels = skills.map((sk, i) => (
+    <Panel
+      header={sk.title}
+      showArrow={false}
       key={i}
-    />
+    >
+      <SkillForm skill={sk}/>
+      <hr/>
+      <SubSkills skillId={sk.id} />
+      <hr/>
+      {/* {subSkills.length < limit ? <SubSkillForm skillId={sk.id} /> : null} */}
+      <SubSkillForm skillId={sk.id} />
+    </Panel>
   ));
 
   return (
     <div className={style.SubSection}>
       <p className="title">Skills</p>
       <hr />
-      <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
-      <br />
+      <Collapse accordion >
+        {panels}
+      </Collapse>
+      <hr/>
       {form}
-      {props.skill.length < limit ? 
+      {skills.length < limit ? 
       <span onClick={() => setFormVisible(true)}>
       <FontAwesomeIcon icon={faPlus} /> Add Skills
     </span>
@@ -53,10 +66,5 @@ const Skill = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    skill: state.portfolio.skills,
-  };
-};
 
-export default connect(mapStateToProps)(Skill);
+export default Skill;

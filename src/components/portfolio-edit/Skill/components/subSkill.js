@@ -23,7 +23,7 @@ const SubSkill = ({ skillId }) => {
   ));
   return (
     <Container>
-      <ul>{children}</ul>
+      {children.length > 0 ? <ul>{children}</ul> : <p>No subskill available</p>}
     </Container>
   );
 };
