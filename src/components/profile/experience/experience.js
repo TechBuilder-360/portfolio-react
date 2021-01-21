@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sortMonthYear } from "../../../shared/utility";
+import { sortMonthYear, text_truncate } from "../../../shared/utility";
+import { Tooltip } from 'antd';
 import classes from "../education/education.module.css";
 
 const Experience = (props) => {
@@ -17,15 +18,20 @@ const Experience = (props) => {
           {sortedExperience.map((experience, index) => (
             <div className={`${classes.container}  ${direction}`} key={index}>
               <div className={classes.content}>
-                <h5>
-                  {experience.endYear
-                    ? `${experience.startYear} - ${experience.endYear}`
-                    : `${experience.startYear} - Till Date`} 
-                    {/* Calculating Till Date logic has to change because End year cannot be empty */}
-                </h5>
-                <p>Organization: {experience.organization}</p>
-                <p>Position: {experience.position}</p>
-                <p>Role:{experience.description}</p>
+                <p>
+                  <span style={{float: "right"}}>
+                  {experience.inProgress
+                    ? `${experience.startYear} - Till Date`
+                    : `${experience.startYear} - ${experience.endYear}`
+                  }
+                </span>
+                <strong>{experience.organization}</strong>
+                </p>
+                <p> {experience.position}<br/>
+                <Tooltip style={{color: "red"}} placement="topLeft" title={experience.description} arrowPointAtCenter>
+                  {text_truncate(experience.description, 40)}
+                </Tooltip>
+                </p>
                 <p hidden>
                   {direction === classes.left
                     ? (direction = classes.right)

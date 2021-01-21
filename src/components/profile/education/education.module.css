@@ -19,7 +19,7 @@
     content: '';
     position: absolute;
     width: 3px;
-    background-color: rgb(30, 80, 190);
+    background-color: rgba(0, 0, 0, 0.185);
     top: 0;
     bottom: 0;
     left: 50%;
@@ -39,14 +39,15 @@
   .container::after {
     content: '';
     position: absolute;
-    width: 18px;
-    height: 18px;
-    right: -8px;
-    background-color: rgb(37, 25, 199);
-    border: 4px solid #FF9F55;
+    width: 16px;
+    height: 16px;
+    right: -7px;
+    background-color: rgba(63, 63, 78, 0.875);
+    border: none;
     top: 22px;
     border-radius: 50%;
     z-index: 1;
+    box-sizing: border-box;
   }
   
   /* Place the container to the left */
@@ -68,9 +69,9 @@
     width: 0;
     z-index: 1;
     right: 30px;
-    border: medium solid rgb(72, 63, 194);
+    border: medium solid rgba(0, 0, 0, 0.185);
     border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent rgb(72, 63, 194);
+    border-color: transparent transparent transparent  rgba(0, 0, 0, 0.185);
   }
   
   /* Add arrows to the right container (pointing left) */
@@ -82,23 +83,24 @@
     width: 0;
     z-index: 1;
     left: 30px;
-    border: medium solid rgb(72, 63, 194);
+    border: medium solid rgba(0, 0, 0, 0.185);
     border-width: 10px 10px 10px 0;
-    border-color: transparent rgb(37, 25, 199) transparent transparent;
+    border-color: transparent rgba(0, 0, 0, 0.185) transparent transparent;
   }
   
   /* Fix the circle for containers on the right side */
   .right::after {
-    left: -11px;
+    left: -9px;
   }
   
   /* The actual content */
   .content {
     padding: 20px 30px;
-    background-color: rgb(72, 63, 194);
+    background-color:transparent;
     position: relative;
     border-radius: 6px;
-    color: white;
+    color: #000000;
+    border: 1px solid rgba(0, 0, 0, 0.185);
   }
   
   /* Media queries - Responsive timeline on screens less than 600px wide */
@@ -119,9 +121,9 @@
     /* Make sure that all arrows are pointing leftwards */
     .container::before {
     left: 7%;
-    border: medium solid rgb(37, 25, 199);
+    border: medium solid rgba(0, 0, 0, 0.185);
     border-width: 10px 10px 10px 0;
-    border-color: transparent rgb(37, 25, 199) transparent transparent;
+    border-color: transparent rgba(0, 0, 0, 0.185) transparent transparent;
     }
   
     /* Make sure all circles are at the same spot */

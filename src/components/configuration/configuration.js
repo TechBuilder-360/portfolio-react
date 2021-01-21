@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classes from "../portfolio-edit/profile-edit.module.css";
 import ToggleSwitch from "../ToggleSwitch/toggleSwitch";
 import { Col, Row, Form } from "react-bootstrap";

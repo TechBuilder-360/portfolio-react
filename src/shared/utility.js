@@ -65,7 +65,7 @@ const pickerLang = [
   ];
 
 export const sortMonthYear = (arr) => {
-    arr.sort((a, b)=> pickerLang.indexOf(a.startYear.substring(0,3)) - pickerLang.indexOf(b.startYear.substring(0,3)))
-    arr.sort((a, b)=> a.startYear.substring(a.startYear.length - 4) - b.startYear.substring(a.startYear.length - 4))
+    arr.sort((a, b)=>  pickerLang.indexOf(b.startYear.substring(0,3)) - pickerLang.indexOf(a.startYear.substring(0,3)))
+    arr.sort((a, b)=> b.startYear.substring(a.startYear.length - 4) - a.startYear.substring(a.startYear.length - 4))
     return arr
 }

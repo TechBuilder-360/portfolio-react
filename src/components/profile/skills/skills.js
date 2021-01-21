@@ -38,7 +38,7 @@ const Skills = (props) => {
       <div className={props.div}>
       <ul className={classes.Skill}>
         
-        {props.skills.map((skill, index) => (
+        {props.skills.map( skill => (
           <li key={skill.id} title={skill.title} onClick={() => openModal(skill)} >
             <FontAwesomeIcon icon={faCircle} className={classes.circle} size='sm'/>  {skill.title} 
           </li>

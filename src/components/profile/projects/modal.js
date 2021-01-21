@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 const ProjectModal = (props) => {
+
+  console.log(props);
     return (
         <Modal
         size = "lg"
@@ -13,13 +15,9 @@ const ProjectModal = (props) => {
           <Modal.Title>{props.project.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            {props.project.description}
+          <p>{props.project.description}</p>
+          <p><a target="blank" href={props.project.projectUrl}>{props.project.projectUrl}</a></p>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={()=>props.handleClose()}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     );
 };
