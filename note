@@ -15,3 +15,5 @@ if valid show dashboard else try using refresh token to obtain new auth token, t
 
 5. Infinite loading when internet connection is not available edit page
 6. 404 page returned when internet connection is not available dashboard
+7. Profile image is stretched. Fixed
+8. Reference section

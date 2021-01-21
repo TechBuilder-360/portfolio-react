@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import classes from "./projects.module.css";
 import Container from "../../../container/Container";
 import ProjectModal from "./modal";
 import { text_truncate } from "../../../shared/utility";
+import { Card } from "antd";
 
 class Projects extends Component {
-  constructor(props){
-    super(props)
-  this.state = {
-    show: false,
-    project: null,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+      project: null,
+    };
   }
+
   showModal = (id) => {
     this.setState({
       show: true,
@@ -44,25 +44,29 @@ class Projects extends Component {
             {this.props.title}
           </p>
           <div className={this.props.div}>
-          <div className={classes.container}>
-            {this.props.projects.length !== 0 ? this.props.projects.map((project, index) => (
-              <div key={index} className={classes.card}>
-                <div className={classes.head}>{project.title}</div>
-                <div className={classes.body}>
-                  <div>{text_truncate(project.description, 50)}</div>
-                  <Button
-                    onClick={() => this.showModal(index)}
-                    className="btn btn-info btn-outline"
-                  >
-                    Details
-                  </Button>
-                </div>
-              </div>
-            )): 
-            <p>There are no project availabe at the moment</p>
-            }
+            <div className={classes.container}>
+              {/* <Space direction="vertical"> */}
+                {this.props.projects.length !== 0 ? (
+                  this.props.projects.map((project, id) => (
+                    <Card
+                      size="small"
+                      title={project.title}
+                      extra={
+                        <a onClick={() => this.showModal(id)}>
+                          More
+                        </a>
+                      }
+                      style={{ width: 300 }}
+                    >
+                      <div>{text_truncate(project.description, 50)}</div>
+                    </Card>
+                  ))
+                ) : (
+                  <p>There are no project availabe at the moment</p>
+                )}
+              {/* </Space> */}
+            </div>
           </div>
-        </div>
         </div>
         {this.state.show ? modal : null}
       </Container>

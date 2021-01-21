@@ -58,9 +58,9 @@
   background-color: rgb(214, 233, 236);
 } */
 
-span {
+/* span {
   color: rgba(5, 81, 194, 0.8);
-}
+} */
 
 span:hover {
   cursor: pointer;

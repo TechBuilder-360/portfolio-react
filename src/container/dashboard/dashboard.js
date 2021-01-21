@@ -71,13 +71,13 @@ const Dashboard = () => {
           </button>
           {username === auth.username ? (
             <div className={classes.Share}>
-              Share{" "}
-              <TwitterShareButton
+              Share <TwitterShareButton
                 title={ShareButton.title}
                 url={ShareButton.url}
               >
                 <TwitterIcon size={32} round={true} />
               </TwitterShareButton>
+              {" "}
               <FacebookShareButton
                 title={ShareButton.title}
                 url={ShareButton.url}
