@@ -1,73 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import classes from "../portfolio-edit/profile-edit.module.css";
-import ToggleSwitch from "../ToggleSwitch/toggleSwitch";
-import { Col, Row, Form } from "react-bootstrap";
 import Container from "../../container/Container";
+import { ProjectTitle } from "../../static";
+import UserNavigation from "../Navigation/portfolio-navBar";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPortfolio } from "../../store/actions/portfolioActions";
+import SpinnerElement from "../spinner/spinner";
+import Footer from "../Footer/Footer";
+import BrokenConnection from '../Special Page/brokenConnection'
+import DownloadSwitch from "./downloadSwitch";
+import Template from "./template";
+import PasswordChange from "./password";
+
 
 const Configuration = () => {
-  const [downloadTemplate, setDownloadTemplate] = useState(false);
+  
+  const dispatch = useDispatch();
+  const portfolio = useSelector( state => state.portfolio);
+  const auth = useSelector(state => state.auth);
 
-  const onChange = (newValue) => {
-    setDownloadTemplate(newValue);
-  };
+  useEffect(() => {
+    document.title = `${ProjectTitle} Profile`;
+    
+    if(portfolio.personalInfo){
+      if (auth.username !== portfolio.personalInfo.username)
+        dispatch(fetchPortfolio(auth.username));
+    } else dispatch(fetchPortfolio(auth.username));
+  },[]);  // eslint-disable-line react-hooks/exhaustive-deps
 
-  const templatesList = [
-    "Default",
-    "Template 1",
-    "Template 2",
-    "Template 3",
-    "Template 4",
-  ];
+  let children = <SpinnerElement />;
 
-  const templatesOptions = templatesList.map((item, i) => (
-    <option key={i} value={item}>
-      {item}
-    </option>
-  ));
-
-  // useEffect(() => {
-  //     console.log(downloadTemplate)
-  // }, [downloadTemplate])
+  if (!auth.loading && portfolio.personalInfo && auth.username === portfolio.personalInfo.username) {
+    children = (
+      <div className={classes.Wrapper}>
+        <section>
+          <p className="title">Configurations</p>
+          <hr />
+          <DownloadSwitch/> 
+          <hr/>
+          <Template/>
+          <hr/>
+          <PasswordChange/>
+        </section>
+      </div>
+    );
+  } else if(portfolio.redirect){
+    children = <BrokenConnection/>
+  }
 
   return (
     <Container>
-      <div className={classes.Wrapper}>
-          <section>
-          <p className="title">Configurations</p>
-            <hr />         
-            <Row>
-                <Col sm={6}>
-                    <label>Show Download Button</label>
-                </Col>
-                <Col sm={6} >
-                    <div className="float-right">
-                    <ToggleSwitch id="toggleSwitch" checked={downloadTemplate} onChange={onChange} />
-                    </div> 
-                </Col>
-            </Row>
-            <Row>
-                <Col sm={6}>
-                    <label>Resume Template</label>
-                </Col>
-                <Col sm={6} >
-                    <div className="float-right">
-                    <Form.Group>
-                        <Form.Control
-                            as="select"
-                            name="label"
-                            // value={value.label}
-                            // required={true}
-                            // onChange={e=>setValue({ ...value, [e.target.name]: e.target.value })}
-                            custom
-                        >
-                            {templatesOptions}
-                        </Form.Control>
-                    </Form.Group>
-                    </div> 
-                </Col>
-            </Row>
-          </section>
-      </div>
+      <UserNavigation />
+      <div className={classes.Wrapper}>{children}</div>
+      {(auth.loading || portfolio.redirect) ? null : <Footer />}
     </Container>
   );
 };

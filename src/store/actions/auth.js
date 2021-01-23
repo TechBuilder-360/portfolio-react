@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionType";
 import { instanceAxios } from "../../axios-orders";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
-import { clearMessages, messages } from "./portfolioActions"
+import { alertDuration, clearMessages, messages, headerToken } from "./portfolioActions"
+import {message} from 'antd'
 
 
 const CookiesOptions = {
@@ -180,4 +181,44 @@ export const feedbackAction = (request) =>{
         dispatch(messages(err.message, "danger"));
       });
   }
+}
+
+const change_password = () => {
+  return {
+    type: actionTypes.CHANGE_PASSWORD,
+  };
+};
+
+export const changePassword = (detail) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.passwordChange(detail),
+      headers: {
+        Authorization: headerToken(),
+      }
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.passwordChange;
+          if(res.success){
+            dispatch(change_password(detail));
+            dispatch(logout())
+            message.success("Password has been changed", alertDuration)
+          } else {
+            for(let x in res.errors){
+              for(let y in res.errors[x]){
+                message.error(`${x}: ${res.errors[x][y].message}`, alertDuration)
+              }
+           }
+          }
+        } else {
+          response.data.errors.map((err) =>
+            message.error(err.message, alertDuration)
+          );
+        }
+      })
+      .catch((err) => {
+        message.error(err.message, alertDuration);
+      });
+  };
 }
