@@ -35,7 +35,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
     <Container>
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col sm={12} md={8} className={classes.Mb_5}>
+          <Col sm={12} md={6} className={classes.Mb_5}>
             <Form.Group>
               <Form.Label>Skill</Form.Label>
               <Form.Control
@@ -46,8 +46,8 @@ const AddForm = ({ skill, closeForm, hide }) => {
               />
             </Form.Group>
           </Col>
-          <Col sm={12} md={4} className={classes.Mb_5} style={{marginTop: '35px'}}>
-          <Button
+          <Col sm={12} md={6} className={classes.Mb_5} style={{marginTop: '35px'}}>
+            <Button
               type="submit"
               variant="outline-primary"
               className="mt-15"

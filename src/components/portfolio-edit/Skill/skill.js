@@ -32,6 +32,11 @@ const Skill = () => {
     }
   }, [formVisible]);
 
+  const numberOfskillSubSkills = (skillId) => {
+    const subskill = subSkills.filter(sub=> sub.skill === skillId)
+    return subskill.length
+  }
+
   // Populate accordion children with existing record
   const panels = skills.map((sk, i) => (
     <Panel
@@ -43,8 +48,7 @@ const Skill = () => {
       <hr/>
       <SubSkills skillId={sk.id} />
       <hr/>
-      {/* {subSkills.length < limit ? <SubSkillForm skillId={sk.id} /> : null} */}
-      <SubSkillForm skillId={sk.id} />
+      {numberOfskillSubSkills(sk.id) < subskillLimit ? <SubSkillForm skillId={sk.id} /> : null}
     </Panel>
   ));
 

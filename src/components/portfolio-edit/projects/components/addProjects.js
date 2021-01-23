@@ -5,7 +5,7 @@ import Container from "../../../../container/Container";
 import classes from "../../personal_info/personalInfo.module.css";
 import PropTypes from "prop-types";
 import TextArea from "../../../form/TextArea";
-import { projectAction } from "../../../../store/actions/portfolioActions";
+import { projectAction, deleteProject } from "../../../../store/actions/portfolioActions";
 
 const AddProjects = ({ project, closeForm }) => {
   const content = {
@@ -66,6 +66,7 @@ const AddProjects = ({ project, closeForm }) => {
               onChange={handleChange}
               value={value.url}
               required={true}
+              placeholder="https://<your_url>"
             />
           </Form.Group>
         </Col>
@@ -91,6 +92,14 @@ const AddProjects = ({ project, closeForm }) => {
           >
             {isLoading ? "Saving..." : "Save"}
           </Button>
+          {value.id ? <Button
+              variant="outline-danger"
+              className="mt-15 ml-1"
+              size="sm"
+              onClick={() => dispatch(deleteProject(project.id))}
+            >
+              Delete
+            </Button> : null }
         </Col>
         </Row>
       </Form>
