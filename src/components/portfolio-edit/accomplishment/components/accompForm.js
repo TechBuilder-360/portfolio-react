@@ -3,7 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "../../../../container/Container";
 import classes from "../../personal_info/personalInfo.module.css";
-import { accomplishmentAction } from "../../../../store/actions/portfolioActions";
+import { accomplishmentAction, deleteAccomplishment } from "../../../../store/actions/portfolioActions";
 import TextArea from "../../../form/TextArea";
 import PropTypes from "prop-types";
 
@@ -82,7 +82,7 @@ const AccompForm = ({ accomplishment, closeForm }) => {
                 name="certificate"
                 onChange={handleChange}
                 value={value.certificate}
-                placeholder="https://issersite.com/mba"
+                placeholder="https://<your_url>"
                 required={true}
               />
             </Form.Group>
@@ -120,6 +120,16 @@ const AccompForm = ({ accomplishment, closeForm }) => {
             >
               {isLoading ? "Saving..." : "Save"}
             </Button>
+            {value.id ?
+            <Button
+              variant="outline-danger"
+              className="mt-15 ml-1"
+              size="sm"
+              onClick={() => dispatch(deleteAccomplishment(value.id))}
+            >
+              Delete
+            </Button>
+            : null }
           </Col>
         </Row>
       </Form>
