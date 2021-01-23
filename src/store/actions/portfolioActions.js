@@ -7,19 +7,20 @@ import FileDownload from "js-file-download";
 import { loadingStart, loadingStop } from "../actions/auth";
 import { message } from "antd";
 
-const headerToken = () => {
+export const headerToken = () => {
   const userCookie = cookie.load("userData");
   return `JWT ${userCookie.token}`;
 };
 
-const alertDuration = 10; //seconds
+export const alertDuration = 10; //seconds
 
 export const messages = (msg, status) => {
+  msg = msg || ""
   return {
     type: actionType.MESSAGES,
     detail: {
       messages: typeof msg == "string" ? [msg] : msg,
-      alert: status,
+      alert: status || "",
     },
   };
 };
@@ -792,3 +793,100 @@ export const deleteAccomplishment = (index) => {
       });
   };
 };
+
+const fetch_template = (template) => {
+  return {
+    type: actionType.FETCH_TEMPLATE,
+    payload: template,
+  };
+};
+
+export const fetchTemplates = () => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.templateList(),
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.template;
+          dispatch(fetch_template(res));
+        } else {
+          response.data.errors.map((err) =>
+            message.error(err.message, alertDuration)
+          );
+        }
+      })
+      .catch((err) => {
+        message.error(err.message, alertDuration);
+      });
+  };
+}
+
+const set_template = (id) => {
+  return {
+    type: actionType.SET_TEMPLATE,
+    id
+  };
+};
+
+export const setTemplate = (id) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.setTemplate(id),
+      headers: {
+        Authorization: headerToken(),
+      }
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.template;
+          if(res.ok){
+            dispatch(set_template(id));
+          } else {
+            message.error(res.warning, alertDuration)
+          }
+        } else {
+          response.data.errors.map((err) =>
+            message.error(err.message, alertDuration)
+          );
+        }
+      })
+      .catch((err) => {
+        message.error(err.message, alertDuration);
+      });
+  };
+}
+
+
+const allow_download = (state) => {
+  return {
+    type: actionType.ALLOW_DOWNLOAD,
+    state
+  };
+};
+
+export const allowDownload = (state) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.download(state),
+      headers: {
+        Authorization: headerToken(),
+      }
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.allowDownload;
+          if(res.ok){
+            dispatch(allow_download(state));
+          }
+        } else {
+          response.data.errors.map((err) =>
+            message.error(err.message, alertDuration)
+          );
+        }
+      })
+      .catch((err) => {
+        message.error(err.message, alertDuration);
+      });
+  };
+}

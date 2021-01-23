@@ -13,7 +13,7 @@ export const googleSignin = (token) => {
   });
 };
 
-export const registration = user => {
+export const registration = (user) => {
   return JSON.stringify({
     query: `mutation registration {
       register(
@@ -24,11 +24,11 @@ export const registration = user => {
         ok
         error
       }
-    }`
-  })
-}
+    }`,
+  });
+};
 
-export const login = user => {
+export const login = (user) => {
   return JSON.stringify({
     query: `mutation TokenAuth {
       tokenAuth(
@@ -40,9 +40,9 @@ export const login = user => {
           username
         }
       }
-    }`
-  })
-}
+    }`,
+  });
+};
 
 export const uploadAvatar = (file) => {
   return JSON.stringify({
@@ -260,7 +260,6 @@ export const remove_social = (id) => {
   });
 };
 
-
 export const portfolio = (username) => {
   return JSON.stringify({
     query: `query fetchPortfolio($username: String){
@@ -294,12 +293,14 @@ export const portfolio = (username) => {
         organization
         position
         description
+        inProgress
         startYear
         endYear
       }
       education(username: $username){
         id
         institution
+        inProgress
         startYear
         endYear
         degree
@@ -331,12 +332,17 @@ export const portfolio = (username) => {
         location
         profession
         profilePix
+        template{
+          id
+          name
+        }
+        allowDownload
       }
     }
     `,
-    variables: {"username": `${username}`}
-  })
-}
+    variables: { username: `${username}` },
+  });
+};
 
 export const mutate_accomplishment = (detail) => {
   return JSON.stringify({
@@ -352,9 +358,9 @@ export const mutate_accomplishment = (detail) => {
         created
       }
     }
-    `
-  })
-}
+    `,
+  });
+};
 
 export const remove_accomplishment = (id) => {
   return JSON.stringify({
@@ -363,9 +369,9 @@ export const remove_accomplishment = (id) => {
         warning
         ok
       }
-    }`
-  })
-}
+    }`,
+  });
+};
 
 export const contact = (detail) => {
   return JSON.stringify({
@@ -377,6 +383,53 @@ export const contact = (detail) => {
       ){
         ok
       }
-    }`
-  })
-}
+    }`,
+  });
+};
+
+export const templateList = () => {
+  return JSON.stringify({
+    query: `query template {
+      template{
+        id
+        name
+      }
+    }`,
+  });
+};
+
+export const setTemplate = (id) => {
+  return JSON.stringify({
+    query: `mutation templateChange{
+      template(id: ${id}){
+        ok
+        warning
+      }
+    }`,
+  });
+};
+
+export const download = (state) => {
+  return JSON.stringify({
+    query: `mutation download{
+      allowDownload(state: ${state}){
+        ok
+      }
+    }`,
+  });
+};
+
+export const passwordChange = (detail) => {
+  return JSON.stringify({
+    query: `mutation passwordChange{
+      passwordChange(
+        oldPassword:  "${detail.password}"
+        newPassword1: "${detail.newPassword}"
+        newPassword2: "${detail.confirmPassword}"
+      ){
+        success
+        errors
+      }
+    }`,
+  });
+};

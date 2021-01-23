@@ -5,6 +5,14 @@ import Layout from "../../container/Layout/Layout";
 import { feedbackAction } from "../../store/actions/auth";
 import { Alert } from "react-bootstrap";
 import { clearMessages } from "../../store/actions/portfolioActions";
+import { Input } from "antd";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  ExclamationCircleOutlined,
+  MailOutlined,
+  UserOutlined
+} from "@ant-design/icons";
 
 const Contact = () => {
   const content = {
@@ -59,24 +67,25 @@ const Contact = () => {
       <Form onSubmit={onSubmitHandler}>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label title="Required Field">Name*</Form.Label>
-          <Form.Control
-            type="text"
+          <Input
             required={true}
             value={value.fullName}
             name="fullName"
             onChange={handleChange}
             placeholder="John Doe"
+            addonBefore={<UserOutlined/>}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label title="Required Field">Email address*</Form.Label>
-          <Form.Control
+          <Input
             type="email"
             name="email"
             value={value.email}
             required={true}
             placeholder="name@example.com"
             onChange={handleChange}
+            addonBefore={<MailOutlined/>}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">

@@ -63,12 +63,15 @@ const Dashboard = () => {
           <PersonalInfo isOwner={username === auth.username} />
           <SocialLinks />
           <br />
+          {portfolio.allowDownload? 
           <button
             onClick={() => handleDownload(portfolio.lastName)}
             className={classes.Butt}
           >
             Download Resume <FontAwesomeIcon icon={faDownload} />
-          </button>
+          </button>: null
+        }
+          
           {username === auth.username ? (
             <div className={classes.Share}>
               Share <TwitterShareButton

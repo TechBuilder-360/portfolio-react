@@ -8,7 +8,16 @@ import { useHistory } from "react-router-dom";
 import passwordStrength from "check-password-strength";
 import SocialButton from "../SocialAuth/SocialButton";
 import { registrationAction } from "../../../store/actions/auth";
-import { clearMessages, messages } from "../../../store/actions/portfolioActions";
+import { clearMessages } from "../../../store/actions/portfolioActions";
+import { Input, message } from "antd";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  ExclamationCircleOutlined,
+  MailOutlined,
+  UserOutlined
+} from "@ant-design/icons";
+
 
 const SignUpForm = () => {
   const content = {
@@ -17,7 +26,9 @@ const SignUpForm = () => {
     email: "",
     password: "",
     confirm_password: "",
-    accept_policy: ""
+    accept_policy: "",
+    passwordStrength: "",
+    confirm_passwordStrength: ""
   };
 
   const dispatch = useDispatch();
@@ -44,16 +55,37 @@ const SignUpForm = () => {
   const onSignupHandler = (event) => {
     event.preventDefault();
 
-    if (value.password === value.confirm_password) {
+    if (value.password !== value.confirm_password) {
+      return message.warning(
+        "Password and confirm password does not match!",
+        5
+      );
+    }
+    if(value.passwordStrength === 0){
+      return message.warning(
+        "Password is weak, try a mix of alphanumeric characters and symbols",
+        5
+      );
+    }
       setLoading(true);
       dispatch(registrationAction(value));
-    } else {
-      dispatch(messages("Password does not match!", 'danger'));
-    }
   };
 
   const handleChange = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    let strenght = "";
+    if (e.target.value !== "") {
+      strenght = passwordStrength(e.target.value).id;
+    }
+    setValue({ ...value, [e.target.name]: e.target.value,
+      [e.target.name + "Strength"]: strenght, });
+  };
+
+  const weak = {
+    color: "Red",
+  };
+
+  const strong = {
+    color: "green",
   };
 
   return (
@@ -79,65 +111,73 @@ const SignUpForm = () => {
           }
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input
                 placeholder="First name"
                 name="firstName"
                 required
                 onChange={handleChange}
+                addonBefore={<UserOutlined/>}
               />
             </Col>
             <Col>
-              <Form.Control
+              <Input
                 placeholder="Last name"
                 name="lastName"
                 required
                 onChange={handleChange}
+                addonBefore={<UserOutlined/>}
               />
             </Col>
           </Form.Row>
 
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input
                 type="email"
                 placeholder="Email Address"
                 required
                 onChange={handleChange}
                 name="email"
+                addonBefore={<MailOutlined/>}
               />
             </Col>
           </Form.Row>
 
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input.Password
                 type="password"
                 required
                 onChange={handleChange}
                 placeholder="Password"
                 name="password"
                 autoComplete="on"
+                addonBefore={<ExclamationCircleOutlined style={(value.passwordStrength !== "")? (value.passwordStrength === 1)? strong: weak: null} />}
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
               />
-              <span>
-                {value.password ? passwordStrength(value.password).value : null}
-              </span>
             </Col>
           </Form.Row>
 
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input.Password
                 type="password"
                 required
                 onChange={handleChange}
                 placeholder="Confirm Password"
                 name="confirm_password"
                 autoComplete="on"
+                addonBefore={<ExclamationCircleOutlined style={(value.confirm_passwordStrength !== "")? (value.confirm_passwordStrength === 1)? strong: weak: null} />}
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
               />
             </Col>
           </Form.Row>
 
-          <Form.Row className={classes.Mb}>
+          {/* <Form.Row className={classes.Mb}>
             <Col>
               <Form.Check
                 type="checkbox"
@@ -147,7 +187,7 @@ const SignUpForm = () => {
                 name="accept_policy"
               />
             </Col>
-          </Form.Row>
+          </Form.Row> */}
 
           <Form.Row>
             <Col>

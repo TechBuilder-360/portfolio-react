@@ -21,10 +21,8 @@ import Configuration from "./components/configuration/configuration";
 const App = () => {
   const routes = (
     <Switch style={{ paddingLeft: "0" }}>
-      {/* Remove url when authentication is ready */}
       <Route path="/password/reset" exact component={PasswordReset} />
       <Route path="/password/change" exact component={PasswordChange} />
-      {/* url pattern https://xportfolio.com/profile/user101 for dashboard*/}
       <Route path="/faqs" exact component={FAQs} />
       <Route path="/features" exact component={Features} />
       <Route path="/contact" exact component={Contact} />

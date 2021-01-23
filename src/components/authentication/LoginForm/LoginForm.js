@@ -10,6 +10,13 @@ import SocialButton from "../SocialAuth/SocialButton";
 import { loginAction } from "../../../store/actions/auth";
 import { clearMessages } from "../../../store/actions/portfolioActions";
 import ToastMessage from "../../Flash message/toast";
+import { Input } from "antd";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  ExclamationCircleOutlined,
+  MailOutlined
+} from "@ant-design/icons";
 
 const LoginForm = () => {
   const content ={ email: "", password: ""}
@@ -35,7 +42,7 @@ const LoginForm = () => {
     } else if(isLoading) {
       setLoading(false);
     }
-    if(msg.messages.length > 0){
+    if(msg.messages && msg.messages.length > 0){
       setTimeout(()=>{
         dispatch(clearMessages())
         clearTimeout()
@@ -71,25 +78,30 @@ const LoginForm = () => {
         }
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input
                 type="email"
                 placeholder="Email Address"
                 required
                 name="email"
                 onChange={handleChange}
+                addonBefore={<MailOutlined/>}
               />
             </Col>
           </Form.Row>
 
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input
                 type="password"
                 required
                 placeholder="Password"
                 name="password"
                 autoComplete="on"
                 onChange={handleChange}
+                addonBefore={<ExclamationCircleOutlined />}
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
               />
             </Col>
           </Form.Row>
