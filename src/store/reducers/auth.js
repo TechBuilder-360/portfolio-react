@@ -79,10 +79,6 @@ const reducer = (state = initialState, action) => {
       return logError(state, action);
     case actionTypes.CLEAR_ERROR:
       return clearError(state);
-    case actionTypes.FEEDBACK:
-      return {
-          ...state
-      }
     default:
       return state;
   }
