@@ -3,13 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import Layout from "../../container/Layout/Layout";
 import { feedbackAction } from "../../store/actions/auth";
-import { Alert } from "react-bootstrap";
 import { clearMessages } from "../../store/actions/portfolioActions";
 import { Input } from "antd";
 import {
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-  ExclamationCircleOutlined,
   MailOutlined,
   UserOutlined
 } from "@ant-design/icons";
@@ -55,15 +51,7 @@ const Contact = () => {
   return (
     <Layout>
       <p className="title">Contact Us</p>
-      {msg.messages.length > 0 ? (
-        <Alert variant={msg.alert}>
-          <ul>
-            {msg.messages.map((m, i) => (
-              <div key={i}>{m}</div>
-            ))}
-          </ul>
-        </Alert>
-      ) : null}
+      
       <Form onSubmit={onSubmitHandler}>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label title="Required Field">Name*</Form.Label>

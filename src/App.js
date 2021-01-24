@@ -5,7 +5,6 @@ import FAQs from "./components/pre-auth/FAQs";
 import About from "./components/pre-auth/About";
 import Contact from "./components/pre-auth/Contact";
 import Features from "./components/pre-auth/Features";
-import Home from "./components/pre-auth/Home";
 import Login from "./components/authentication/LoginForm/LoginForm";
 import Signup from "./components/authentication/SignUpForm/SignUpForm";
 import Error404 from "./components/Special Page/Error404";
@@ -29,7 +28,7 @@ const App = () => {
       <Route path="/about" exact component={About} />
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
-      <Route path="/" exact component={Home} />
+      <Route path="/" exact component={Login} />
       <ProtectedRoute
         path="/edit"
         exact

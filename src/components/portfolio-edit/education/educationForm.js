@@ -15,6 +15,7 @@ const EducationForm = ({ education, closeForm }) => {
     endYear: education.endYear || "",
     degree: education.degree || "",
     course: education.course || "",
+    inProgress: education.inProgress || false,
   };
   const dispatch = useDispatch();
   const message = useSelector((state) => state.portfolio.message);
@@ -29,6 +30,10 @@ const EducationForm = ({ education, closeForm }) => {
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckChange = (e) => {
+    setValue({ ...value, [e.target.name]: !value.inProgress });
   };
 
   const onChangeHandler = (name, date) => {
@@ -89,6 +94,15 @@ const EducationForm = ({ education, closeForm }) => {
               value={value.endYear}
               changed={onChangeHandler}
             />
+            <Form.Group>
+              <Form.Check
+                type="checkbox"
+                label="In Progress"
+                checked={value.inProgress}
+                onChange={handleCheckChange}
+                name="inProgress"
+              />
+            </Form.Group>
           </Col>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>

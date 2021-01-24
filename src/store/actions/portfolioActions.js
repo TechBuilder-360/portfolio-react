@@ -91,8 +91,7 @@ export const set_personalInfo = (detail) => {
             dispatch(Personal_Information(detail));
             message.success("Profile was updated successfully", alertDuration);
           } else {
-            // message.(res.warning, alertDuration));
-            message.error(res.warning, alertDuration);
+            message.warning(res.warning, alertDuration);
           }
         } else {
           const error = response.data.errors.map((err) => err.message);

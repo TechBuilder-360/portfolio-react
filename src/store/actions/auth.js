@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionType";
 import { instanceAxios } from "../../axios-orders";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
-import { alertDuration, clearMessages, messages, headerToken } from "./portfolioActions"
+import { alertDuration, headerToken } from "./portfolioActions"
 import {message} from 'antd'
 
 
@@ -60,13 +60,12 @@ export const loginAction = (req) => {
           dispatch(sessionTokenSuccess(userData));
           cookie.save("userData", userData, CookiesOptions);
           dispatch(login())
-          dispatch(clearMessages())
         } else {
-          dispatch(messages("Please, enter valid credentials.", "danger"));
+          message.error("Please, enter valid credentials.", alertDuration)
         }
       })
-      .catch((err) => {
-        dispatch(messages(err.message, "danger"));
+      .catch(() => {
+        message.error("Please, enter valid credentials.", alertDuration)
       });
   };
 };
@@ -86,14 +85,14 @@ export const registrationAction = (req) => {
         const res = response.data.data.register;
         if(res.ok){
           dispatch(register())
-          dispatch(messages("Registration Successful", "success"));
+          message.success("Registration Successful", alertDuration)
           dispatch(loginAction({email: req.email, password: req.password}))
         } else {
-          dispatch(messages(res.error, "danger"));
+          message.error(res.error, alertDuration)
         }
       })
       .catch((err) => {
-        dispatch(messages(err.message, "danger"));
+        message.error(err.message, alertDuration)
       });
   };
 };
@@ -140,14 +139,14 @@ export const checkAuthTimeout = (expirationTime) => {
   };
 };
 
-export const auth = (email, password, isSignUp) => {
-  return {
-    type: actionTypes.AUTH_USER,
-    email: email,
-    password: password,
-    isSignUp: isSignUp,
-  };
-};
+// export const auth = (email, password, isSignUp) => {
+//   return {
+//     type: actionTypes.AUTH_USER,
+//     email: email,
+//     password: password,
+//     isSignUp: isSignUp,
+//   };
+// };
 
 export const setAuthRedirectPath = (path) => {
   return {
@@ -174,11 +173,11 @@ export const feedbackAction = (request) =>{
       data: query.contact(request),
     })
       .then(() => {
-        dispatch(feedback())  
-        dispatch(messages("Message has been sent!", "success"));
+        dispatch(feedback())
+        message.success("Message has been sent!", alertDuration)
       })
       .catch((err) => {
-        dispatch(messages(err.message, "danger"));
+        message.error(err.message, alertDuration)
       });
   }
 }

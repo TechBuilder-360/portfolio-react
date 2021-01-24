@@ -20,7 +20,7 @@ const Configuration = () => {
   const auth = useSelector(state => state.auth);
 
   useEffect(() => {
-    document.title = `${ProjectTitle} Profile`;
+    document.title = `${ProjectTitle} Configurations`;
     
     if(portfolio.personalInfo){
       if (auth.username !== portfolio.personalInfo.username)

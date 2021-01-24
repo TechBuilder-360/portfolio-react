@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import classes from "./dashboard.module.css";
@@ -57,6 +57,7 @@ const Dashboard = () => {
   if (auth.loading) {
     children = <SpinnerElement />;
   } else if (portfolio) {
+    if(auth.username === username && portfolio.isNew) {return <Redirect to='/edit'/>}
     children = (
       <Wrapper>
         <Col sm="12" md="3" className={classes.Aside}>
