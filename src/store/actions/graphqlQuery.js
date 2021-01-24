@@ -86,7 +86,8 @@ export const education = (detail) => {
         degree: "${detail.degree}", 
         startYear: "${detail.startYear}", 
         endYear: "${detail.endYear}", 
-        institution: "${detail.institution}"){
+        institution: "${detail.institution}",
+        inProgress: ${detail.inProgress}){
         education{
           id
         }
@@ -106,7 +107,8 @@ export const experience = (detail) => {
         description: "${detail.description}",
         startYear: "${detail.startYear}",
         endYear: "${detail.endYear}",
-        organization: "${detail.organization}"
+        organization: "${detail.organization}",
+        inProgress: ${detail.inProgress}
       ){
         experience{
           id
@@ -337,6 +339,7 @@ export const portfolio = (username) => {
           name
         }
         allowDownload
+        isNew
       }
     }
     `,

@@ -20,7 +20,10 @@ const Education = (props) => {
               <div className={classes.content}>
                 <p>
                   <span style={{float: "right"}}>
-                  {education.startYear} - {education.endYear}
+                  {education.inProgress
+                    ? `${education.startYear} - Till Date`
+                    : `${education.startYear} - ${education.endYear}`
+                  }
                 </span>
                 <strong>{education.institution}</strong>
                 </p>

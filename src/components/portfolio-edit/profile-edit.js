@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Container from "../../container/Container";
-import { ProjectTitle } from "../../static";
+import { AppName, ProjectTitle } from "../../static";
 import UserNavigation from "../Navigation/portfolio-navBar";
 import PersonalInfo from "./personal_info/personalInfo";
 import classes from "./profile-edit.module.css";
@@ -15,6 +15,7 @@ import SpinnerElement from "../spinner/spinner";
 import Footer from "../Footer/Footer";
 import BrokenConnection from '../Special Page/brokenConnection'
 import Accomplishment from "./accomplishment/accomplishment";
+// import { notification } from "antd";
 
 
 const Profile_Edit = () => {
@@ -35,6 +36,14 @@ const Profile_Edit = () => {
   let children = <SpinnerElement />;
 
   if (!auth.loading && portfolio.personalInfo && auth.username === portfolio.personalInfo.username) {
+    // if(portfolio.personalInfo.isNew){
+    //   notification.success({
+    //     message: `Welcome to ${AppName}`,
+    //     description: "Hello, World!",
+    //     placement: "topLeft",
+    //     duration: 10
+    //   })
+    // }
     children = (
       <section>
         <PersonalInfo />

@@ -4,10 +4,12 @@ import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import TextArea from "../../form/TextArea";
 import classes from "../personal_info/personalInfo.module.css";
 import MonthYear from "../../form/month-year";
-import { experienceAction, delete_experience } from "../../../store/actions/portfolioActions";
+import {
+  experienceAction,
+  delete_experience,
+} from "../../../store/actions/portfolioActions";
 
 const ExperienceForm = ({ experience, closeForm }) => {
-  
   const content = {
     id: experience.id || "",
     organization: experience.organization || "",
@@ -15,22 +17,26 @@ const ExperienceForm = ({ experience, closeForm }) => {
     position: experience.position || "",
     startYear: experience.startYear || "",
     endYear: experience.endYear || "",
+    inProgress: experience.inProgress || false,
   };
 
   const dispatch = useDispatch();
   const [value, setValue] = useState(content);
-  const message = useSelector(state => state.portfolio.message)
+  const message = useSelector((state) => state.portfolio.message);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
       setLoading(false);
     }
-  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  }, [message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckChange = (e) => {
+    setValue({ ...value, [e.target.name]: !value.inProgress });
   };
 
   const onChangeHandler = (name, txt) => {
@@ -38,11 +44,13 @@ const ExperienceForm = ({ experience, closeForm }) => {
   };
 
   const handleSubmit = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
 
-    setLoading(true)
+    setLoading(true);
     dispatch(experienceAction(value));
-    if(!value.id){closeForm();}
+    if (!value.id) {
+      closeForm();
+    }
   };
 
   return (
@@ -89,6 +97,18 @@ const ExperienceForm = ({ experience, closeForm }) => {
               value={value.endYear}
               changed={onChangeHandler}
             />
+            <Form.Group>
+              <Form.Check
+                type="checkbox"
+                label="In Progress"
+                checked={value.inProgress}
+                onChange={handleCheckChange}
+                name="inProgress"
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={6} md={6} className={classes.Mb_5}>
+            
           </Col>
           <Col xs={12} md={12} className={classes.Mb_5}>
             <Form.Group>
@@ -102,7 +122,16 @@ const ExperienceForm = ({ experience, closeForm }) => {
             </Form.Group>
           </Col>
           <Col xs={12} md={12} style={{ textAlign: "right" }}>
-            {value.id ? null: <Button style={{marginRight: "6px"}} variant="outline-danger" size="sm" onClick={closeForm}>Cancel</Button>}
+            {value.id ? null : (
+              <Button
+                style={{ marginRight: "6px" }}
+                variant="outline-danger"
+                size="sm"
+                onClick={closeForm}
+              >
+                Cancel
+              </Button>
+            )}
             <Button
               type="submit"
               variant="outline-primary"
