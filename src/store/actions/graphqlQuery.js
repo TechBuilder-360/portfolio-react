@@ -376,20 +376,6 @@ export const remove_accomplishment = (id) => {
   });
 };
 
-export const contact = (detail) => {
-  return JSON.stringify({
-    query: `mutation contactform{
-      contact(
-        fullName: "${detail.fullName}",
-        email: "${detail.email}"
-        message: "${detail.message}"
-      ){
-        ok
-      }
-    }`,
-  });
-};
-
 export const templateList = () => {
   return JSON.stringify({
     query: `query template {
