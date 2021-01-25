@@ -91,7 +91,7 @@ const Contact = () => {
         </Form.Group>
         <Button
           type="submit"
-          variant="success"
+          variant="primary"
           className="mt-15"
           size="sm"
           disabled={isLoading}

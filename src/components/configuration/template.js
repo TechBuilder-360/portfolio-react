@@ -35,7 +35,6 @@ const templatesOptions = template.map((item, i) => (
             name="label"
             onChange={ (e) => dispatch(setTemplate(e.target.value)) }
             value={myTemplate?myTemplate.id: ""}>
-              <option value="">-----</option>
             {templatesOptions}
           </Form.Control>
         </Form.Group>
