@@ -74,6 +74,7 @@ const SocialForm = ({link, label, id, closeForm}) => {
                 name="url"
                 required={true}
                 value={value.url}
+                placeholder="https://<your_url>"
                 onChange={e=>setValue({ ...value, [e.target.name]: e.target.value })}
               />
             </Form.Group>
