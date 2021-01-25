@@ -5,15 +5,27 @@
     <link rel="icon" href="%PUBLIC_URL%/logox2.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="Xportfolio"
-      content="Create portfolio and resume builder"
-    />
+    <meta name="Xportfolio" content="Create portfolio and resume builder" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logox2.png" />
-   
+
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-   
+
     <title>Xportfolio</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-25XHFEPEML"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-25XHFEPEML");
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
