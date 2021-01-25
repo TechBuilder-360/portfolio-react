@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import Layout from "../../container/Layout/Layout";
-import { feedbackAction } from "../../store/actions/auth";
-import { clearMessages } from "../../store/actions/portfolioActions";
-import { Input } from "antd";
+import { Input, message } from "antd";
 import {
   MailOutlined,
   UserOutlined
@@ -12,30 +9,13 @@ import {
 
 const Contact = () => {
   const content = {
-    fullName: "",
+    fullname: "",
     email: "",
     message: "",
   };
 
-  const dispatch = useDispatch();
-  const msg = useSelector((state) => state.portfolio.message);
   const [value, setValue] = useState(content);
   const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (isLoading) {
-      setLoading(false);
-    }
-    if (msg.messages.length > 0) {
-      if(msg.alert === 'success'){
-        setValue(content);
-      }
-      setTimeout(() => {
-        dispatch(clearMessages());
-        clearTimeout();
-      }, 10000);
-    }
-  }, [msg]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -43,28 +23,48 @@ const Contact = () => {
 
   const onSubmitHandler = (evt) => {
     evt.preventDefault();
-
+    
     setLoading(true);
-    dispatch(feedbackAction(value));
-  };
+
+    const form = evt.target;
+    const data = new FormData(form);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open(form.method, form.action);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+      setLoading(false);
+      if (xhr.status === 200) {
+        setValue(content)
+        message.success("Thanks for your feedback", 5)
+      } else {
+        message.error("An error occured!", 5)
+      }
+    };
+    xhr.send(data);
+  }
 
   return (
     <Layout>
       <p className="title">Contact Us</p>
       
-      <Form onSubmit={onSubmitHandler}>
-        <Form.Group controlId="exampleForm.ControlInput1">
+      <Form 
+        onSubmit={onSubmitHandler}
+        action="https://formspree.io/f/mzbkokgw"
+        method="POST">
+        <Form.Group>
           <Form.Label title="Required Field">Name*</Form.Label>
           <Input
             required={true}
-            value={value.fullName}
-            name="fullName"
+            value={value.fullname}
+            name="fullname"
             onChange={handleChange}
             placeholder="John Doe"
             addonBefore={<UserOutlined/>}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Group>
           <Form.Label title="Required Field">Email address*</Form.Label>
           <Input
             type="email"
@@ -76,14 +76,14 @@ const Contact = () => {
             addonBefore={<MailOutlined/>}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Group>
           <Form.Label title="Required Field">Message*</Form.Label>
           <Form.Control
             as="textarea"
             name="message"
             placeholder="Message"
             value={value.message}
-            maxLength={255}
+            maxLength={300}
             required={true}
             rows="3"
             onChange={handleChange}

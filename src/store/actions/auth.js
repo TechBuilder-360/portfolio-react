@@ -161,27 +161,6 @@ export const clearError = () => {
   };
 };
 
-export const feedback = () => {
-  return {
-    type: actionTypes.FEEDBACK,
-  };
-};
-
-export const feedbackAction = (request) =>{
-  return dispatch => {
-    instanceAxios({
-      data: query.contact(request),
-    })
-      .then(() => {
-        dispatch(feedback())
-        message.success("Message has been sent!", alertDuration)
-      })
-      .catch((err) => {
-        message.error(err.message, alertDuration)
-      });
-  }
-}
-
 const change_password = () => {
   return {
     type: actionTypes.CHANGE_PASSWORD,
