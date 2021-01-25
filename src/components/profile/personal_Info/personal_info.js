@@ -35,7 +35,7 @@ const PersonalInfo = (props) => {
           <img alt="" src={findFlagUrlByCountryName(country) || flag} width="20" height="20"/>{" "}
           {props.personalInfo.location}
         </p> : 
-        "null"
+        null
       }
       
     </Container>

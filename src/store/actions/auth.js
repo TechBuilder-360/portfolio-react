@@ -139,15 +139,6 @@ export const checkAuthTimeout = (expirationTime) => {
   };
 };
 
-// export const auth = (email, password, isSignUp) => {
-//   return {
-//     type: actionTypes.AUTH_USER,
-//     email: email,
-//     password: password,
-//     isSignUp: isSignUp,
-//   };
-// };
-
 export const setAuthRedirectPath = (path) => {
   return {
     type: actionTypes.SET_AUTH_REDIRECT_PATH,
