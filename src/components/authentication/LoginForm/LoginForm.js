@@ -44,7 +44,7 @@ const LoginForm = () => {
 
   const loginHandler = (event) => {
     event.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     dispatch(loginAction(value));
   };
 
