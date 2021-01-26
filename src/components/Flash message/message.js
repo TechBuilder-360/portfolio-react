@@ -1,48 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Alert } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { clearMessages } from "../../store/actions/portfolioActions";
-import FlashMessage from "react-flash-message";
-import Container from "../../container/Container";
+import React from "react";
+import { notification, Button } from 'antd'
 
 const Message = () => {
-  const [show, setShow] = useState(true);
-  const msg = useSelector((state) => state.portfolio.message);
-  const dispatch = useDispatch()
-  let children = null;
-  const timout = 10000
 
-  useEffect(()=>{
-
-    if(msg.messages.length > 0){
-      setTimeout(()=>{
-        dispatch(clearMessages())
-        clearTimeout()
-      },timout)
-    }
-  },[dispatch, msg])
-
-    children = (
-      <FlashMessage duration={timout}>
-        { show ? <Alert
-          onClose={() => setShow(false)}
-          dismissible
-          style={{
-            position: "fixed",
-            top: "3%",
-            zIndex: "20",
-            width: "80%",
-            marginLeft: "10%",
-          }}
-          variant={msg.alert}
-        >
-          {msg.messages.map((m, i) => (
-            <div key={i}>{m}</div>
-          ))}
-        </Alert>: null}
-      </FlashMessage>
-    );
-  return <Container>{children}</Container>;
+  return (
+    <div>
+      {notification.error({
+        message: "Ooch!",
+        description: (
+          <div>
+            An error Occured!
+            <br />
+            Try again or reload page.
+            <br />
+            <br />
+            <Button onClick={() => window.location.reload()} size="sm">
+              Reload
+            </Button>
+          </div>
+        ),
+        closeIcon: true,
+        className: "custom-class",
+        placement: "topRight",
+        duration: 5,
+      })}
+    </div>
+  );
 };
 
 export default Message;

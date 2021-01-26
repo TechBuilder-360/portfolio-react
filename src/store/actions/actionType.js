@@ -55,5 +55,7 @@ export const LOGIN = 'LOGIN'
 export const REGISTRATION = 'REGISTRTION'
 
 export const DOWNLOAD_RESUME = 'DOWNLOAD_RESUME'
-
-export const FEEDBACK = 'FEEDBACK'
+export const FETCH_TEMPLATE = 'FETCH_TEMPLATE'
+export const SET_TEMPLATE = 'SET_TEMPLATE'
+export const ALLOW_DOWNLOAD = 'ALLOW_DOWNLOAD'
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD'

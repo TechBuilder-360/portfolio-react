@@ -14,7 +14,7 @@ const HomeNavBar = () => {
         <div className={classes.Nav_item}>
           <NavLink to={"/"}>Home</NavLink>
           <NavLink to={"/features"}>Features</NavLink>
-          <NavLink to={"/faqs"}>FAQs</NavLink>
+          {/* <NavLink to={"/faqs"}>FAQs</NavLink> */}
           <NavLink to={"/about"}>About us</NavLink>
           <NavLink to={"/contact"}>Contact us</NavLink>
         </div>

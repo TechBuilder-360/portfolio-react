@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Accordion } from "react-bootstrap";
-import Child from "./components/child";
 import { useSelector } from "react-redux";
-import classes from "../personal_info/personalInfo.module.css";
 import AccompForm from "./components/accompForm";
+import { Collapse } from 'antd';
 
 const Accomplishment = () => {
   const limit = process.env.REACT_APP_ACCOMPLISHMENT_LIMIT;
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
-  const accomplishment = useSelector(state => state.portfolio.accomplishment)
+  const accomplishment = useSelector(state => state.portfolio.accomplishment);
+  const { Panel } = Collapse;
 
   const handleCloseForm = () => {
     setFormVisible(false);
@@ -29,20 +28,24 @@ const Accomplishment = () => {
   }, [formVisible]);
 
   // Populate accordion children with existing record
-  const children = accomplishment.map((acc, i) => (
-    <Child
-    accomplishment={acc}
-      closeForm={() => setFormVisible(false)}
-      index={i + 1}
+  const panels = accomplishment.map((acc, i) => (
+    <Panel
+      header={`${acc.course} at ${acc.issuer}`}
+      showArrow={false}
       key={i}
-    />
+    >
+      <AccompForm accomplishment={acc} />
+    </Panel>
   ));
 
   return (
     <div className={style.SubSection}>
       <p className="title">Accomplishment</p>
       <hr />
-      <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
+      <Collapse accordion >
+        {panels}
+      </Collapse>
+      <hr />
       {form}
       {accomplishment.length < limit ? (
         <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>

@@ -20,7 +20,7 @@ import {
 } from "../../store/actions/portfolioActions";
 import Wrapper from "../../container/Container";
 import SpinnerElement from "../../components/spinner/spinner";
-import NotFound from "../../components/Special Page/NotFound";
+import NotFound from "../../components/Special Page/Error404";
 import BrokenConnection from "../../components/Special Page/brokenConnection";
 import {
   TwitterShareButton,
@@ -63,21 +63,24 @@ const Dashboard = () => {
           <PersonalInfo isOwner={username === auth.username} />
           <SocialLinks />
           <br />
+          {portfolio.allowDownload? 
           <button
             onClick={() => handleDownload(portfolio.lastName)}
             className={classes.Butt}
           >
             Download Resume <FontAwesomeIcon icon={faDownload} />
-          </button>
+          </button>: null
+        }
+          
           {username === auth.username ? (
             <div className={classes.Share}>
-              Share{" "}
-              <TwitterShareButton
+              Share <TwitterShareButton
                 title={ShareButton.title}
                 url={ShareButton.url}
               >
                 <TwitterIcon size={32} round={true} />
               </TwitterShareButton>
+              {" "}
               <FacebookShareButton
                 title={ShareButton.title}
                 url={ShareButton.url}

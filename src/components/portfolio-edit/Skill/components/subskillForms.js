@@ -33,8 +33,8 @@ const SkillForms = ({ skillId }) => {
               <Form.Control
                 name="title"
                 onChange={(e) => setTitle(e.target.value)}
-                value={title}
-                placeholder=""
+                placeholder="Enter a sub-skill"
+                value={message.alert === "success" ? "" : null}
                 required={true}
               />
             </Form.Group>
@@ -45,7 +45,7 @@ const SkillForms = ({ skillId }) => {
               variant="outline-primary"
               className="mt-15"
               size="sm"
-              style={{ display: "block", position: "relative", top: "35px" }}
+              style={{ display: "block", position: "relative", top: "42%" }}
               disabled={isLoading}
             >
               {isLoading ? "Adding..." : "Add"}

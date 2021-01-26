@@ -1,21 +1,26 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import classes from "../LoginForm/LoginForm.module.css";
-import { Alert, Col, Form } from "react-bootstrap";
+import { Col, Form } from "react-bootstrap";
 import Layout from "../../../container/Layout/Layout";
 import { useHistory } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import SocialButton from "../SocialAuth/SocialButton";
 import { loginAction } from "../../../store/actions/auth";
-import { clearMessages } from "../../../store/actions/portfolioActions";
-import ToastMessage from "../../Flash message/toast";
+import { Input } from "antd";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  ExclamationCircleOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
+import Message from "../../Flash message/message";
 
 const LoginForm = () => {
-  const content ={ email: "", password: ""}
+  const content = { email: "", password: "" };
 
-  const dispatch = useDispatch()
-  const msg = useSelector((state) => state.portfolio.message);
+  const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth, shallowEqual);
   const [value, setValue] = useState(content);
   const [isLoading, setLoading] = useState(false);
@@ -24,29 +29,23 @@ const LoginForm = () => {
   useEffect(() => {
     if (authState.token) {
       if (authState.authRedirectPath) {
-        if (authState.authRedirectPath === 'logout'){
+        if (authState.authRedirectPath === "logout") {
           history.push(`/${authState.username}`);
-        }else{
+        } else {
           history.push(authState.authRedirectPath);
-        }       
+        }
       } else {
         history.push(`/${authState.username}`);
       }
-    } else if(isLoading) {
+    } else if (isLoading) {
       setLoading(false);
     }
-    if(msg.messages.length > 0){
-      setTimeout(()=>{
-        dispatch(clearMessages())
-        clearTimeout()
-      },10000)
-    }
-  },[authState, msg]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [authState]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loginHandler = (event) => {
     event.preventDefault();
-    setLoading(true)
-    dispatch(loginAction(value))
+    // setLoading(true);
+    dispatch(loginAction(value));
   };
 
   const handleChange = (e) => {
@@ -55,47 +54,45 @@ const LoginForm = () => {
 
   return (
     <Layout>
-      {authState.error.length > 0 ? <ToastMessage bodyText="Error Occured"/> : null}
+      {authState.error.length > 0
+        ? <Message/>
+        : null}
       <div className={classes.Container}>
         <p className="title">Sign in</p>
 
         <Form onSubmit={loginHandler}>
-        {msg.messages.length > 0 ? 
-          <Alert variant="danger">
-            <ul>
-            {msg.messages.map((m, i) => (
-            <div key={i}>{m}</div>
-          ))}
-            </ul>
-          </Alert> : null
-        }
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input
                 type="email"
                 placeholder="Email Address"
                 required
                 name="email"
                 onChange={handleChange}
+                addonBefore={<MailOutlined />}
               />
             </Col>
           </Form.Row>
 
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control
+              <Input
                 type="password"
                 required
                 placeholder="Password"
                 name="password"
                 autoComplete="on"
                 onChange={handleChange}
+                addonBefore={<ExclamationCircleOutlined />}
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
               />
             </Col>
           </Form.Row>
           <Form.Row>
             <Col>
-            <Button variant="primary" type="submit" disabled={isLoading}>
+              <Button variant="primary" type="submit" disabled={isLoading}>
                 {isLoading ? "Loading..." : "Login"}
               </Button>
             </Col>
@@ -111,7 +108,7 @@ const LoginForm = () => {
           <hr className={classes.Hr} /> or <hr className={classes.Hr} />
         </div>
 
-        <SocialButton title="Login"/>
+        <SocialButton title="Login" />
 
         <div
           style={{

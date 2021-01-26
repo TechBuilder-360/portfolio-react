@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Container from '../../container/Container'
 import classes from './form.module.css';
-import DatePicker from 'react-date-picker';
+import moment from 'moment';
+import {DatePicker} from 'antd'
 import Proptypes from 'prop-types'
 
 
@@ -18,7 +19,13 @@ const InputDate = ({changed, name, value, label }) => {
     return (
         <Container>
             <label className={classes.block}>{label}</label>
-            <DatePicker required={true} onChange={onChange} className={classes.datePicker} value={value} clearIcon={null} />
+            <DatePicker className={classes.datePicker} 
+                name={name} 
+                onChange={onChange} 
+                allowClear={false}
+                value={moment(initValue)}
+                format={"DD - MM - YYYY"}
+            />
         </Container>
     );
 };

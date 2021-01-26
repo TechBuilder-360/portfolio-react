@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionType";
 import { instanceAxios } from "../../axios-orders";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
-import { clearMessages, messages } from "./portfolioActions"
+import { alertDuration, headerToken } from "./portfolioActions"
+import {message} from 'antd'
 
 
 const CookiesOptions = {
@@ -59,13 +60,12 @@ export const loginAction = (req) => {
           dispatch(sessionTokenSuccess(userData));
           cookie.save("userData", userData, CookiesOptions);
           dispatch(login())
-          dispatch(clearMessages())
         } else {
-          dispatch(messages("Please, enter valid credentials.", "danger"));
+          message.error("Please, enter valid credentials.", alertDuration)
         }
       })
-      .catch((err) => {
-        dispatch(messages(err.message, "danger"));
+      .catch(() => {
+        message.error("Please, enter valid credentials.", alertDuration)
       });
   };
 };
@@ -85,14 +85,14 @@ export const registrationAction = (req) => {
         const res = response.data.data.register;
         if(res.ok){
           dispatch(register())
-          dispatch(messages("Registration Successful", "success"));
+          message.success("Registration Successful", alertDuration)
           dispatch(loginAction({email: req.email, password: req.password}))
         } else {
-          dispatch(messages(res.error, "danger"));
+          message.error(res.error, alertDuration)
         }
       })
       .catch((err) => {
-        dispatch(messages(err.message, "danger"));
+        message.error(err.message, alertDuration)
       });
   };
 };
@@ -139,15 +139,6 @@ export const checkAuthTimeout = (expirationTime) => {
   };
 };
 
-export const auth = (email, password, isSignUp) => {
-  return {
-    type: actionTypes.AUTH_USER,
-    email: email,
-    password: password,
-    isSignUp: isSignUp,
-  };
-};
-
 export const setAuthRedirectPath = (path) => {
   return {
     type: actionTypes.SET_AUTH_REDIRECT_PATH,
@@ -161,23 +152,42 @@ export const clearError = () => {
   };
 };
 
-export const feedback = () => {
+const change_password = () => {
   return {
-    type: actionTypes.FEEDBACK,
+    type: actionTypes.CHANGE_PASSWORD,
   };
 };
 
-export const feedbackAction = (request) =>{
-  return dispatch => {
+export const changePassword = (detail) => {
+  return (dispatch) => {
     instanceAxios({
-      data: query.contact(request),
+      data: query.passwordChange(detail),
+      headers: {
+        Authorization: headerToken(),
+      }
     })
-      .then(() => {
-        dispatch(feedback())  
-        dispatch(messages("Message has been sent!", "success"));
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.passwordChange;
+          if(res.success){
+            dispatch(change_password(detail));
+            dispatch(logout())
+            message.success("Password has been changed", alertDuration)
+          } else {
+            for(let x in res.errors){
+              for(let y in res.errors[x]){
+                message.error(`${x}: ${res.errors[x][y].message}`, alertDuration)
+              }
+           }
+          }
+        } else {
+          response.data.errors.map((err) =>
+            message.error(err.message, alertDuration)
+          );
+        }
       })
       .catch((err) => {
-        dispatch(messages(err.message, "danger"));
+        message.error(err.message, alertDuration);
       });
-  }
+  };
 }

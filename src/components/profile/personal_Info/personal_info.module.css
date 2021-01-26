@@ -5,6 +5,7 @@
 
 .Avatar {
     width: 100%;
+    background-size: cover;
     min-width: 150px;
     max-width: 250px;
     height: 200px;

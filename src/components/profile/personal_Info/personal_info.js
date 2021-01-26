@@ -24,17 +24,20 @@ const PersonalInfo = (props) => {
           alt={props.personalInfo.username}
         />
       </div>
-      { props.isOwner ? <p>Welcome Back,</p> : null }
       <p style={{ fontWeight: "bold" }}>
         {props.personalInfo.lastName},{props.personalInfo.middleName? ` ${props.personalInfo.middleName}`: null } {props.personalInfo.firstName }
       </p>
 
       <p>{props.personalInfo.profession}</p>
 
-      <p>
-        <img alt="" src={findFlagUrlByCountryName(country) || flag} width="20" height="20"/>{" "}
-        {props.personalInfo.location ? props.personalInfo.location : "Nigeria"}
-      </p>
+      { props.personalInfo.location ? 
+        <p>
+          <img alt="" src={findFlagUrlByCountryName(country) || flag} width="20" height="20"/>{" "}
+          {props.personalInfo.location}
+        </p> : 
+        null
+      }
+      
     </Container>
   );
 };

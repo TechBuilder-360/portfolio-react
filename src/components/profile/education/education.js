@@ -18,15 +18,18 @@ const Education = (props) => {
           {sortedEducation.map((education, index) => (
             <div className={`${classes.container}  ${direction}`} key={index}>
               <div className={classes.content}>
-                <h5>
-                  {education.endYear
-                    ? `${education.startYear} - ${education.endYear}`
-                    : "Till Date"}
-                    {/* Calculating Till Date logic has to change because End year cannot be empty */}
-                </h5>
-                <p>Institution: {education.institution}</p>
-                <p>Course of study: {education.course}</p>
-                <p>Degree Obtained: {education.degree}</p>
+                <p>
+                  <span style={{float: "right"}}>
+                  {education.inProgress
+                    ? `${education.startYear} - Till Date`
+                    : `${education.startYear} - ${education.endYear}`
+                  }
+                </span>
+                <strong>{education.institution}</strong>
+                </p>
+                <p>{education.course} <br/>
+                   {education.degree}
+                </p>
 
                 <p hidden>
                   {direction === classes.left

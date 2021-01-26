@@ -1,27 +1,18 @@
 import React from "react";
-import { Container as Con } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import Container from "../../container/Container";
-import PortfolioNavbar from "../Navigation/portfolio-navBar";
-import HomeNavBar from "../Navigation/main-navigation";
-import classes from './special.module.css'
-
+import { Container } from "react-bootstrap";
+import { Result, Button } from "antd";
 
 const Error404 = () => {
-
-  const auth = useSelector(state => state.auth.username)
   return (
     <Container>
-      {auth ? <PortfolioNavbar/> : <HomeNavBar/>}
-      <Con fluid className={classes.Body}>
-          <p className={classes.Status}>404</p>
-          <p className={classes.Text}>
-              Page Not Found<br/>
-              <span>The URL may be misplaced or the page you are looking is no longer available.</span>
-          </p>
-      </Con>
+      <Result
+        status="404"
+        title="404"
+        subTitle="Sorry, the page you visited does not exist."
+        extra={<Button type="primary" onClick={()=>window.history.back()}>Back</Button>}
+      />
     </Container>
-);
+  );
 };
 
 export default Error404;

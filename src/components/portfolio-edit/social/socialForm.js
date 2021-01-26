@@ -3,9 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import Container from "../../../container/Container";
 import classes from "../personal_info/personalInfo.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  socialAction
-} from "../../../store/actions/portfolioActions";
+import { socialAction, delete_social } from "../../../store/actions/portfolioActions";
 
 const SocialForm = ({link, label, id, closeForm}) => {
 
@@ -76,6 +74,7 @@ const SocialForm = ({link, label, id, closeForm}) => {
                 name="url"
                 required={true}
                 value={value.url}
+                placeholder="https://<your_url>"
                 onChange={e=>setValue({ ...value, [e.target.name]: e.target.value })}
               />
             </Form.Group>
@@ -91,6 +90,16 @@ const SocialForm = ({link, label, id, closeForm}) => {
             >
               {isLoading ? "Saving..." : "Save"}
             </Button>
+            {value.id ?
+            <Button
+              variant="outline-danger"
+              className="mt-15 ml-1"
+              size="sm"
+              onClick={() => dispatch(delete_social(id))}
+            >
+              Delete
+            </Button>
+            : null }
           </Col>
         </Row>
       </Form>
