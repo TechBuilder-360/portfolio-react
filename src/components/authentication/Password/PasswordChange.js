@@ -12,8 +12,8 @@ const PasswordReset = () => {
 
   const passwordChangeHandler = (event) => {
     event.preventDefault();
-    console.log(password.current.value);
-    console.log(confirmPassword.current.value);
+    // console.log(password.current.value);
+    // console.log(confirmPassword.current.value);
 
     // Validate both password equality before setting setChangeSuccessful true
     setChangeSuccessful(true);

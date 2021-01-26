@@ -8,7 +8,7 @@ import Features from "./components/pre-auth/Features";
 import Home from "./components/pre-auth/Home";
 import Login from "./components/authentication/LoginForm/LoginForm";
 import Signup from "./components/authentication/SignUpForm/SignUpForm";
-import NotFound from "./components/NotFound";
+import Error404 from "./components/Special Page/Error404";
 import ProfileEdit from "./components/portfolio-edit/profile-edit";
 import PasswordReset from "./components/authentication/Password/PasswordReset";
 import PasswordChange from "./components/authentication/Password/PasswordChange";
@@ -31,14 +31,14 @@ const App = () => {
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/" exact component={Home} />
-      <Route
-        path="/:username/edit"
+      <ProtectedRoute
+        path="/edit"
         exact
         component={ProfileEdit}
       />
       <Route path="/logout" exact component={Logout} />
-      <ProtectedRoute path="/:username" exact component={Dashboard} />
-      <Route path="*" component={NotFound} />
+      <Route path="/:username" exact component={Dashboard} />
+      <Route path="*" component={Error404} />
     </Switch>
   );
   return <Container>{routes}</Container>;

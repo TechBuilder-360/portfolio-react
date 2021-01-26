@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/Child";
-import { connect, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import ExperienceForm from "./components/ExperienceForm";
-import { delete_experience } from "../../../store/actions/portfolioActions";
 
 const Experience = (props) => {
-  const dispatch = useDispatch();
+  const limit = process.env.REACT_APP_EXPERIENCE_LIMIT;
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
+  const experience = useSelector((state) => state.portfolio.experience);
 
   const handleCloseForm = () => {
     setFormVisible(false);
@@ -21,30 +21,20 @@ const Experience = (props) => {
   useEffect(() => {
     if (formVisible) {
       setForm(
-        <ExperienceForm
-          experience={props.experience}
-          closeForm={() => handleCloseForm()}
-        />
+        <ExperienceForm experience={{}} closeForm={() => handleCloseForm()} />
       );
     } else {
       setForm(null);
     }
   }, [formVisible]);
 
-  function handleDelete(index) {
-    dispatch(delete_experience(index));
-  }
-
   // Populate accordion children with existing record
-  const children = props.experience.map((expp, i) => (
+  const children = experience.map((exp, i) => (
     <Child
-      experience={expp}
-      delete={(i) => handleDelete(i)}
+      experience={exp}
       closeForm={() => setFormVisible(false)}
-      i={i + 1}
-      index={i}
+      index={i + 1}
       key={i}
-      onClick={(e) => props.delete_success(i)}
     />
   ));
 
@@ -54,17 +44,13 @@ const Experience = (props) => {
       <hr />
       <Accordion className={classes.Accordion_Parent}>{children}</Accordion>
       {form}
-      <span onClick={() => setFormVisible(true)}>
-        <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Experience
-      </span>
+      {experience.length < limit ? (
+        <span style={{ marginTop: "2%" }} onClick={() => setFormVisible(true)}>
+          <FontAwesomeIcon icon={faPlus} /> Add Experience
+        </span>
+      ) : null}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    experience: state.portfolio.experience,
-  };
-};
-
-export default connect(mapStateToProps)(Experience);
+export default Experience;

@@ -1,282 +1,101 @@
 import * as actionType from "../actions/actionType";
 
 const initialState = {
-  personal_info: {
-    username: "John01",
-    first_name: "John",
-    last_name: "Doe",
-    middle_name: "Orion",
-    email: "John.Doe@mail.com",
-    gender: "Male",
-    languages: "English, French", // MAX length 100
-    location: "Lagos, Nigeria",
-    date_of_birth: "12/12/2019", // default null
-    profession: "Accountant",
-    profile_pix: "",
-    phone: "+2347458747777",
-    // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
-    bio:
-      "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
-    resume: "",
+  personalInfo: null,
+  skills: [],
+  subskill: [],
+  education: [],
+  experience: [],
+  project: [],
+  social: [],
+  accomplishment: [],
+  message: {
+    messages: [],
+    alert: "",
   },
-  skills: [
-    {
-      id: 1,
-      title: "Web development",
-      subskill: [
-        { id: 1, name: "HTML" },
-        { id: 2, name: "CSS" },
-        { id: 3, name: "Javascript" },
-        { id: 4, name: "SCSS" },
-        { id: 5, name: "Django" },
-        { id: 6, name: "Spring Boot" },
-      ],
-    },
-    {
-      id: 2,
-      title: "Accounting",
-      subskill: [
-        {
-          id: 1,
-          name: "ICAN",
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: "Networking",
-      subskill: [
-        {
-          id: 1,
-          name: "COMPTIA N+",
-        },
-        {
-          id: 2,
-          name: "CCNA",
-        },
-        {
-          id: 3,
-          name: "CCNP",
-        },
-      ],
-    },
-    {
-      id: 4,
-      title: "Project Management",
-      subskill: [
-        {
-          id: 1,
-          name: "SCRUM",
-        },
-        {
-          id: 2,
-          name: "AGILE",
-        },
-        {
-          id: 1,
-          name: "SPSS",
-        },
-      ],
-    },
-    {
-      id: 5,
-      title: "Big Data",
-      subskill: [
-        {
-          id: 1,
-          name: "Apache Spark",
-        },
-        {
-          id: 2,
-          name: "Apache Kafka",
-        },
-      ],
-    },
-    {
-      id: 6,
-      title: "Database Management",
-      subskill: [
-        {
-          id: 1,
-          name: "Postgres",
-        },
-        {
-          id: 2,
-          name: "Cassandra",
-        },
-        {
-          id: 3,
-          name: "MYSQL",
-        },
-        {
-          id: 4,
-          name: "MSSQL Server",
-        },
-      ],
-    },
-  ],
-  education: [
-    {
-      id: 1,
-      institution: "Lautech",
-      start_year: "Aug. 2006",
-      end_year: "Dec. 2011",
-      degree: "BSc",
-      course: "Accounting",
-    },
-    {
-      id: 2,
-      institution: "Manchester University",
-      start_year: "Nov. 2012",
-      end_year: "Jan. 2017",
-      degree: "MBA",
-      course: "Accounting",
-    },
-    {
-      id: 3,
-      institution: "Doregos College",
-      start_year: "Oct. 2000",
-      end_year: "Oct. 2006",
-      degree: "SSCE",
-    },
-  ],
-  experience: [
-    {
-      id: 1,
-      organization: "Consolidate Insurance",
-      description: "Worked as an account manager",
-      position: "Accounting managment",
-      start_year: "Jun. 2016",
-      end_year: "Jun. 2018",
-    },
-    {
-      id: 2,
-      organization: "Access Bank",
-      description: "Worked as an account manager",
-      position: "Accounting managment",
-      start_year: "Oct. 2018",
-      end_year: "Dec. 2019",
-    },
-  ],
-  project: [
-    {
-      id: 2,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 2,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 3,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 4,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 5,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 6,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 7,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 8,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-    {
-      id: 9,
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-      url: "/",
-    },
-  ],
-  social: [
-    {
-      id: 1,
-      label: "facebook",
-      url: "https://facebook.com",
-    },
-    {
-      id: 2,
-      label: "twitter",
-      url: "https://twitter.com",
-    },
-  ],
+  redirect: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionType.DOWNLOAD_RESUME:
+      return {
+        ...state,
+      };
+    case actionType.MESSAGES:
+      return {
+        ...state,
+        message: action.detail,
+      };
+    case actionType.CLEAR_MESSAGES:
+      return {
+        ...state,
+        message: {
+          messages: [],
+          alert: "",
+        },
+      };
+    case actionType.REDIRECT:
+      return {
+        ...state,
+        redirect: true,
+      };
+    case actionType.CLEAR_REDIRECT:
+      return {
+        ...state,
+        redirect: false,
+      };
+    case actionType.FETCH_PORTFOLIO:
+      return {
+        ...state,
+        skills: action.payload.skills,
+        personalInfo: action.payload.personalInfo,
+        subskill: action.payload.subskill.map((sub) => {
+          sub.skill = sub.skill.id;
+          return sub;
+        }),
+        accomplishment: action.payload.accomplishment,
+        education: action.payload.education,
+        experience: action.payload.experience,
+        project: action.payload.project,
+        social: action.payload.social,
+      };
     case actionType.PERSONAL_INFORMATION:
       return {
         ...state,
-        personal_info: { ...state.personal_info, ...action.detail },
-      };
-    case actionType.EDUCATION:
-      return {
-        ...state,
-      };
-    case actionType.EXPERIENCE:
-      return {
-        ...state,
-      };
-    case actionType.PROJECTS:
-      return {
-        ...state,
+        personalInfo: { ...state.personalInfo, ...action.detail },
       };
     case actionType.SKILL:
       return {
         ...state,
+        skills: [...state.skills, action.skill],
       };
-    case actionType.SOCIAL_LINK:
-      return {
-        ...state,
-      };
-
     case actionType.AVATAR_UPLOAD:
       return {
         ...state,
-        personal_info: {...state.personal_info, profile_pix: action.imageURL}
-    }
-    case actionType.AVATAR_UPLOAD_FAILED:
-      return {
-        ...state
-    }
-    case actionType.MESSAGES:
+        personalInfo: { ...state.personalInfo, profilePix: action.imageURL },
+      };
+    case actionType.ADD_SOCIAL_LINK:
       return {
         ...state,
+        social: [...state.social, action.payload],
+      };
+    case actionType.EDIT_SOCIAL_LINK:
+      let newSocial = state.social.map((socialLink) => {
+        if (socialLink.id === action.payload.id) {
+          socialLink.label = action.payload.label;
+          socialLink.url = action.payload.url;
+        }
+        return socialLink;
+      });
+      return {
+        ...state,
+        social: newSocial,
+      };
+    case actionType.DELETE_SOCIAL_LINK:
+      return {
+        ...state,
+        social: [...state.social.filter((link) => link.id !== action.id)],
       };
     case actionType.ADD_EDUCATION:
       return {
@@ -293,11 +112,16 @@ const reducer = (state = initialState, action) => {
         ],
       };
     case actionType.EDIT_EDUCATION:
-      const newData = [...state.education];
-      newData[action.payload.index] = action.payload.content;
+      const oldEdu = [...state.education];
+      const education = oldEdu.map((edu) => {
+        if (edu.id === action.payload.id) {
+          edu = action.payload;
+        }
+        return edu;
+      });
       return {
         ...state,
-        education: newData,
+        education,
       };
 
     case actionType.ADD_EXPERIENCE:
@@ -315,11 +139,16 @@ const reducer = (state = initialState, action) => {
         ],
       };
     case actionType.EDIT_EXPERIENCE:
-      const newDataExp = [...state.experience];
-      newDataExp[action.payload.index] = action.payload.content;
+      const oldExp = [...state.experience];
+      const experience = oldExp.map((exp) => {
+        if (exp.id === action.payload.id) {
+          exp = action.payload;
+        }
+        return exp;
+      });
       return {
         ...state,
-        experience: newDataExp,
+        experience,
       };
 
     case actionType.ADD_PORJECT:
@@ -335,11 +164,76 @@ const reducer = (state = initialState, action) => {
         ],
       };
     case actionType.EDIT_PROJECT:
-      const newDataPro = [...state.project];
-      newDataPro[action.payload.index] = action.payload.content;
+      const oldProject = [...state.project];
+      const project = oldProject.map((proj) => {
+        if (proj.id === action.payload.id) {
+          proj = action.payload;
+        }
+        return proj;
+      });
       return {
         ...state,
-        project: newDataPro,
+        project,
+      };
+
+      case actionType.ADD_ACCOMPLISHMENT:
+        return {
+          ...state,
+          accomplishment: [...state.accomplishment, action.payload],
+        };
+      case actionType.DELETE_ACCOMPLISHMENT:
+        return {
+          ...state,
+          accomplishment: [
+            ...state.accomplishment.filter((acc) => acc.id !== action.payload),
+          ],
+        };
+      case actionType.EDIT_ACCOMPLISHMENT:
+        const oldACC = [...state.accomplishment];
+        const accomplishment = oldACC.map((acc) => {
+          if (acc.id === action.payload.id) {
+            acc = action.payload;
+          }
+          return acc;
+        });
+        return {
+          ...state,
+          accomplishment,
+        };
+
+    case actionType.EDIT_SKILL:
+      const oldSkill = [...state.skills];
+      const skills = oldSkill.map((skill) => {
+        if (skill.id === action.payload.id) {
+          skill = action.payload;
+        }
+        return skill;
+      });
+      return {
+        ...state,
+        skills,
+      };
+
+    case actionType.DELETE_SKILL:
+      return {
+        ...state,
+        skills: [
+          ...state.skills.filter((skill) => skill.id !== action.payload),
+        ],
+      };
+
+    case actionType.SUBSKILL:
+      return {
+        ...state,
+        subskill: [...state.subskill, action.payload],
+      };
+
+    case actionType.DELETE_SUBSKILL:
+      return {
+        ...state,
+        subskill: [
+          ...state.subskill.filter((skill) => skill.id !== action.payload),
+        ],
       };
     default:
       return state;

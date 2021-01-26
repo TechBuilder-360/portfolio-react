@@ -11,7 +11,7 @@ const PasswordReset = () => {
 
   const passwordResetHandler = (event) => {
     event.preventDefault();
-    console.log(email.current.value);
+    // console.log(email.current.value);
     setShowSent(true);
   };
 

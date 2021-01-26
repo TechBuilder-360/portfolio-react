@@ -1,42 +1,38 @@
 import React from "react";
 import SocialForm from "./socialForm";
-import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
-// import classes from "../../personal_info/personalInfo.module.css";
+import { Accordion, Card, Button } from "react-bootstrap";
 import classes from "../personal_info/personalInfo.module.css";
+import {delete_social} from "../../../store/actions/portfolioActions";
+import { useDispatch } from "react-redux";
 
-function CustomToggle({ children, eventKey }) {
-  const decoratedOnClick = useAccordionToggle(eventKey, null); // Add checker to see if form has been edited and needs saving before closing
 
-  return (
-    <a id={`close-social-${eventKey}`} onClick={decoratedOnClick}>
-      {" "}
-      {children}
-    </a>
-  );
-}
-
-const Child = ({ label, link, ...props }) => {
+const Child = ({ label, link, id, eventKey, ...props }) => {
+  const dispatch = useDispatch()
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        {label}
-        &nbsp;{"-"}&nbsp;
-        {link}
-        <span style={{ float: "Right" }}>
-          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |{" "}
-          <a type="button" onClick={() => props.removeMore(label, link)}>
+        <div className={classes.Label} title={label}>
+          {label}
+        </div>
+        <span className={classes.Span}>
+        <Accordion.Toggle as={Button} variant="link" style={{color: "#9BA4B7"}} eventKey={props.index}>
+            Edit
+          </Accordion.Toggle>
+          <button
+            type="button"
+            className="btn btn-primary-outline text-danger shadow-none"
+            onClick={() => dispatch(delete_social(id))}
+          >
             Delete
-          </a>
+          </button>
         </span>
       </Card.Header>
-      <Accordion.Collapse eventKey={props.i}>
+      <Accordion.Collapse eventKey={props.index}>
         <Card.Body className={classes.Accordion_Body}>
           <SocialForm
             link={link}
             label={label}
-            closeForm={() =>
-              document.getElementById(`close-social-${props.i}`).click()
-            }
+            id={id}
           />
         </Card.Body>
       </Accordion.Collapse>

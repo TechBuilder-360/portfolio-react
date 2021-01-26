@@ -1,13 +1,24 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Button, Image } from "react-bootstrap";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import Container from "../../../../container/Container";
 import defaultImage from "../../../../images/avatar.webp";
 import classes from "../personalInfo.module.css";
-import { avatar} from "../../../../store/actions/portfolioActions";
+import { avatar } from "../../../../store/actions/portfolioActions";
 
-const Images = (props) => {
+const PortfolioImage = (props) => {
+  const dispatch = useDispatch();
+
   const hiddenFileInput = React.useRef(null);
+
+  const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+        setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClick = (event) => {
     hiddenFileInput.current.click();
@@ -15,22 +26,22 @@ const Images = (props) => {
 
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
-    props.handleFile(fileUploaded);
+    setLoading(true);
+    dispatch(avatar(fileUploaded));
   };
+
 
   return (
     <Container>
-      <Image
-        className={classes.Img}
-        src={props.avatar || defaultImage}
-        rounded
-      />
+      <Image className={classes.Img} src={props.url || defaultImage} />
       <Button
         onClick={handleClick}
         variant="success"
-        style={{ marginLeft: "10px" }}
+        size="sm"
+        disabled={isLoading}
+        style={{ marginLeft: "10px", backgroundColor: "#196DB6" }}
       >
-        Upload
+        {isLoading ? "Uploading Photo..." : "Upload Photo"}
       </Button>
 
       <input
@@ -44,16 +55,10 @@ const Images = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStatesToProps = (state) => {
   return {
-    avatar: state.portfolio.personal_info.profile_pix,
+    url: state.portfolio.personalInfo.profilePix,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleFile: (photo) => dispatch(avatar(photo)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Images);
+export default connect(mapStatesToProps)(PortfolioImage);

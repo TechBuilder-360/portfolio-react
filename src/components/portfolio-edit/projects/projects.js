@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import style from "../profile-edit.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Accordion } from "react-bootstrap";
 import Child from "./components/Child";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import classes from "../personal_info/personalInfo.module.css";
 import AddProject from "./components/addProjects"
-import { delete_project } from "../../../store/actions/portfolioActions";
 
 
 const Project = (props) => {
 
-  const dispatch = useDispatch()
+  const limit = process.env.REACT_APP_PROJECT_LIMIT
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
 
@@ -28,22 +27,16 @@ const Project = (props) => {
     }else{
       setForm(null)
     }
-  }, [formVisible]);
+  }, [formVisible, setForm, props.project]); 
 
-  function handleDelete(index) {
-      dispatch(delete_project(index))
-  }
 
   // Populate accordion children with existing record
   const children = props.project.map((proj, i) => (
     <Child
       project={proj}
-      delete={(i)=> handleDelete(i) }
       closeForm={()=>setFormVisible(false)}
-      i={i+1}
-      index={i}
+      index={i+1}
       key={i}
-      onClick={(e)=>props.delete_success(i)}
     />
   ));
 
@@ -55,9 +48,11 @@ const Project = (props) => {
         {children}
         </Accordion>
         {form}
+        {props.project.length < limit ? 
       <span onClick={()=>setFormVisible(true)}>
-        <FontAwesomeIcon icon={faPlusCircle} size="lg" /> add more Project
-      </span>
+      <FontAwesomeIcon icon={faPlus} /> Add Project
+    </span>
+      : null}
     </div>
   );
 };

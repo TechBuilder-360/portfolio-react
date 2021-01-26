@@ -1,56 +1,35 @@
 import React from "react";
 import EducationForm from "./educationForm";
-import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
+import { Accordion, Card, Button } from "react-bootstrap";
 import classes from "../../personal_info/personalInfo.module.css";
-import { text_truncate } from "../../../../shared/utility";
 import { useDispatch } from "react-redux";
 import { delete_education } from "../../../../store/actions/portfolioActions";
 
-function CustomToggle({ children, eventKey }) {
-  const decoratedOnClick = useAccordionToggle(eventKey, null); // Add checker to see if form has been edited and needs saving before closing
-
-  return (
-    <button
-      id={`close-education-${eventKey}`}
-      onClick={decoratedOnClick}
-      type="button"
-      className="btn btn-primary-outline text-primary shadow-none"
-    >
-      {" "}
-      {children}
-    </button>
-  );
-}
-
 const Child = ({ education, ...props }) => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const label = `Studied ${education.course} at ${education.institution} from ${education.startYear} to ${education.endYear}`
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <span title={education.institution}>
-          {text_truncate(education.institution, 50)}
-        </span>
-        <div style={{ float: "Right" }}>
-          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
+        <div className={classes.Label} title={label}>
+          {label}
+        </div>
+        <span className={classes.Span}>
+          <Accordion.Toggle as={Button} variant="link" style={{color: "#9BA4B7"}} eventKey={props.index}>
+            Edit
+          </Accordion.Toggle>
           <button
             type="button"
-            className="btn btn-primary-outline text-primary shadow-none"
+            className="btn btn-primary-outline text-danger shadow-none"
             onClick={() => dispatch(delete_education(education.id))}
           >
             Delete
           </button>
-        </div>
+        </span>
       </Card.Header>
-      <Accordion.Collapse eventKey={props.i}>
+      <Accordion.Collapse eventKey={props.index}>
         <Card.Body className={classes.Accordion_Body}>
-          <EducationForm
-            index={props.index}
-            education={education}
-            closeForm={() =>
-              document.getElementById(`close-education-${props.i}`).click()
-            }
-          />
+          <EducationForm education={education} />
         </Card.Body>
       </Accordion.Collapse>
     </Card>

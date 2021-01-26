@@ -3,11 +3,16 @@ import classes from './form.module.css';
 import Propstypes from 'prop-types'
 
 const TextArea = (props) => {
-  console.log(props.value)
-  const character = 200
-  const [textAreaValue, setTextAreaValue] = useState(props.value.substr(0,character));
-  const [textCount, setTextCount] = useState(props.value.length <= character ? character - props.value.length: 0);
-  const [countColor, setCountColor] = useState((character - props.value.length) <= 10 ? "red":"green" );
+  const character = props.maxLength || 200
+  const row = props.row || 2
+  let value = ''
+  if(props.value){
+    value = props.value.substr(0,character)
+  }
+
+  const [textAreaValue, setTextAreaValue] = useState();
+  const [textCount, setTextCount] = useState(value.length <= character ? character - value.length: 0);
+  const [countColor, setCountColor] = useState((character - value.length) <= 10 ? "red":'black' );
   
   let onChange = (e) => {
     setTextAreaValue(e.target.value);
@@ -17,23 +22,25 @@ const TextArea = (props) => {
     if ((character - e.target.value.length) <= 10) {
         setCountColor("red");
     } else {
-        setCountColor("green");
+        setCountColor("black");
     }
   };
   
   return (
     <div className={classes.textarea}>
-        <textarea rows='2' maxLength={character} 
+        <textarea rows={row} maxLength={character} 
         className={classes.multiText} onChange={onChange}
         value={textAreaValue}
-        name={props.name}></textarea>
-        <span style={{ color: countColor }}>({textCount})</span>
+        name={props.name}
+        {...props}></textarea>
+        <span className={classes.Span} style={{ color: countColor }}>({textCount})</span>
     </div>
   );
 };
 
 TextArea.prototype = {
-  changed: Propstypes.func.isRequired
+  changed: Propstypes.func.isRequired,
+  value: Propstypes.string.isRequired
 }
 
 export default TextArea;

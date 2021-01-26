@@ -1,31 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./SignupForm.module.css";
 import { Link } from "react-router-dom";
-import { Button, Form, Col } from "react-bootstrap";
+import { Alert, Button, Col, Form } from "react-bootstrap";
 import Layout from "../../../container/Layout/Layout";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import passwordStrength from "check-password-strength";
 import SocialButton from "../SocialAuth/SocialButton";
+import { registrationAction } from "../../../store/actions/auth";
+import { clearMessages, messages } from "../../../store/actions/portfolioActions";
 
 const SignUpForm = () => {
-  let firstName = React.createRef();
-  let lastName = React.createRef();
-  let email = React.createRef();
-  let password = React.createRef();
-  let confirm_password = React.createRef();
-  let accept_policy = React.createRef();
+  const content = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+    accept_policy: ""
+  };
+
+  const dispatch = useDispatch();
+  const msg = useSelector((state) => state.portfolio.message);
   const authState = useSelector((state) => state.auth, shallowEqual);
-  let history = useHistory();
+  const [value, setValue] = useState(content);
+  const [isLoading, setLoading] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
-    if (authState.token){
-      history.push(`/${authState.username}/edit`)
+    if (authState.token) {
+      history.push(`/${authState.username}/`);
+    } else if(isLoading) {
+      setLoading(false);
     }
-  });
+    if(msg.messages.length > 0){
+      setTimeout(()=>{
+        dispatch(clearMessages())
+        clearTimeout()
+      },10000)
+    }
+  }, [authState, msg]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onSignupHandler = (event) => {
     event.preventDefault();
-    console.log(firstName.current.value);
+
+    if (value.password === value.confirm_password) {
+      setLoading(true);
+      dispatch(registrationAction(value));
+    } else {
+      dispatch(messages("Password does not match!", 'danger'));
+    }
+  };
+
+  const handleChange = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   return (
@@ -33,19 +61,38 @@ const SignUpForm = () => {
       <div className={classes.Container}>
         <p className="title">Sign up</p>
 
-        <SocialButton title="Sign up"/>
+        <SocialButton title="Sign up" />
 
         <div className={classes.Or}>
           <hr className={classes.Hr} /> or <hr className={classes.Hr} />
         </div>
 
         <Form onSubmit={onSignupHandler}>
+          {msg.messages.length > 0? 
+            <Alert variant="danger">
+              <ul>
+              {msg.messages.map((m, i) => (
+              <div key={i}>{m}</div>
+            ))}
+              </ul>
+            </Alert> : null
+          }
           <Form.Row className={classes.Mb}>
             <Col>
-              <Form.Control placeholder="First name" required ref={firstName} />
+              <Form.Control
+                placeholder="First name"
+                name="firstName"
+                required
+                onChange={handleChange}
+              />
             </Col>
             <Col>
-              <Form.Control placeholder="Last name" required ref={lastName} />
+              <Form.Control
+                placeholder="Last name"
+                name="lastName"
+                required
+                onChange={handleChange}
+              />
             </Col>
           </Form.Row>
 
@@ -55,7 +102,8 @@ const SignUpForm = () => {
                 type="email"
                 placeholder="Email Address"
                 required
-                ref={email}
+                onChange={handleChange}
+                name="email"
               />
             </Col>
           </Form.Row>
@@ -65,9 +113,14 @@ const SignUpForm = () => {
               <Form.Control
                 type="password"
                 required
+                onChange={handleChange}
                 placeholder="Password"
-                ref={password}
+                name="password"
+                autoComplete="on"
               />
+              <span>
+                {value.password ? passwordStrength(value.password).value : null}
+              </span>
             </Col>
           </Form.Row>
 
@@ -76,8 +129,10 @@ const SignUpForm = () => {
               <Form.Control
                 type="password"
                 required
+                onChange={handleChange}
                 placeholder="Confirm Password"
-                ref={confirm_password}
+                name="confirm_password"
+                autoComplete="on"
               />
             </Col>
           </Form.Row>
@@ -87,16 +142,17 @@ const SignUpForm = () => {
               <Form.Check
                 type="checkbox"
                 required
+                onChange={handleChange}
                 label="I agree to the Terms and Privacy Policy"
-                ref={accept_policy}
+                name="accept_policy"
               />
             </Col>
           </Form.Row>
 
           <Form.Row>
             <Col>
-              <Button type="submit" variant="primary">
-                Sign up
+              <Button variant="primary" type="submit" disabled={isLoading}>
+                {isLoading ? "Submitting..." : "Submit"}
               </Button>
             </Col>
             <Col>

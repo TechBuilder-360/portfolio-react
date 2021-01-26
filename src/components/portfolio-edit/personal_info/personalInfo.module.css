@@ -2,8 +2,35 @@
   width: 80px;
   text-align: center;
   margin: 5% 0;
-  height: 80px;
+  height: 65px;
   vertical-align: middle;
+  border-radius: 8px;
+}
+
+.span{
+  background-color: rgb(224, 222, 222);
+  padding: 10px;
+  margin:5px;
+  display:inline-block;
+  border-radius: 20px;
+}
+
+.icon{
+  color:rgb(235, 194, 194);
+  margin-left: 10px;
+}
+
+.li{
+  background-color: rgb(222, 230, 243);
+  list-style:none;
+  display:inline-block;
+  margin: 5px;
+  color:rgb(49, 108, 235);
+  padding: 7px;
+  border-radius:20px;
+}
+.icon:hover{
+  cursor: pointer;
 }
 
 .wrapper {
@@ -17,9 +44,9 @@
 
 .Mb_5 input, .Mb_5 select{
   height: 35px;
-  background-color: rgb(224, 234, 245);
+  background-color:#F9F9F9;
   border-radius: 5px;
-  border: 0px;
+  /* border: 0px; */
 }
 
 ::placeholder,
@@ -28,9 +55,9 @@
   padding: 20px;
 }
 
-.Mb_5 input:hover, .Mb_5 select:hover {
+/* .Mb_5 input:hover, .Mb_5 select:hover {
   background-color: rgb(214, 233, 236);
-}
+} */
 
 span {
   color: rgba(5, 81, 194, 0.8);
@@ -44,40 +71,30 @@ form label {
   color: rgb(148, 147, 147);
 }
 
-.delete:hover{
-  cursor: pointer;
-}
-
-.drop {
-  display: inline-block;
-  padding: 2%;
-  width: 94%;
-  margin-bottom: 20px;
-  margin-right: 2%;
-  background-color: rgb(253, 247, 247);
-}
-
-.drop:hover {
-    cursor: pointer;
-    
-  }
 
 .Accordion_Parent {
   margin-bottom: 2%;
   overflow: visible !important;
-  /* z-index: 2 !important; */
 }
 
 
 .Accordion_Child{
   overflow: visible !important;
-  /* z-index: 5 !important; */
+  width: 100%;
 }
 
-.Accordion_Child span {
-  position: relative; 
-  top: 8px; 
-  color: inherit;
+.Label {
+  position: relative;
+  top: 5px;
+  width: 60%;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.Accordion_Child .Span {
+  float: right;
 }
 
 .Accordion_Body {
@@ -87,25 +104,15 @@ form label {
   z-index: 12 !important;
 }
 
-
 /* Desktop view */
 @media (min-width: 760px) {
 .Img {
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
 }
-
-  .delete {
-    display: none;
-  }
-
-  .container:hover > .delete{
-      display: inline-block;
-  }
 
   .Accordion_Child {
     margin-bottom: 1%;
-    position: absolute;
     z-index: 1;
   }
 
@@ -119,8 +126,17 @@ form label {
 
   .Mb_5 input, .Mb_5 select{
     height: 45px;
-    background-color: rgb(224, 234, 245);
+    background-color: #F9F9F9;
     border-radius: 5px;
-    border: 0px;
+    outline: none;
+
+  }
+
+  .Mb_5 input:focus, .Mb_5 select:focus{
+    outline: none;
+  }
+
+  .Label{
+    top: 8px;
   }
 }

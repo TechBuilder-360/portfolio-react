@@ -1,13 +1,17 @@
-Might need to add dependency, if using post request doesn't workout well
+nMight need to add dependency, if using post request doesn't workout well
 "graphql": "^15.3.0",
 "apollo-boost": "^0.4.9",
 "react-apollo": "^3.1.5"
 
-1. Limit social to 3 per user
+1. Limit social to 3 per user. Resolved using env variable
 
-2. Generate Username from frontend, combine lastname + firstname + 8 uuid characters
+2. Generate Username from frontend, combine lastname + firstname + 8 uuid characters. Resolved username is generated in the backend.
 
 3. Store refresh and auth token in local storage for authntication purpose, and add retry for token, 
 if valid show dashboard else try using refresh token to obtain new auth token, then retry else display login page.
 
-4. Use react-tag-input for adding skill
+4. Use react-tag-input for adding skill. No won't work for our current structure
+
+
+5. Infinite loading when internet connection is not available edit page
+6. 404 page returned when internet connection is not available dashboard

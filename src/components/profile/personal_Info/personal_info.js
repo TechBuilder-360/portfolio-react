@@ -2,20 +2,38 @@ import React from "react";
 import { connect } from "react-redux";
 import Container from "../../../container/Container";
 import classes from "./personal_info.module.css";
-import avatar from '../../../images/avatar.webp'
+import avatar from "../../../images/avatar.webp";
+import flag from "../../../images/flag.png";
+import { findFlagUrlByCountryName } from "country-flags-svg";
+
 
 const PersonalInfo = (props) => {
+  let str = props.personalInfo.location;
+  let country = str ? str.substring(str.indexOf(" ") + 1) : "Nigeria";
+
   return (
     <Container>
       <div className={classes.Avatar_Wrapper}>
         <img
           className={classes.Avatar}
-          src={props.personalInfo.profile_pix?props.personalInfo.profile_pix: avatar}
+          src={
+            props.personalInfo.profilePix
+              ? props.personalInfo.profilePix
+              : avatar
+          }
           alt={props.personalInfo.username}
         />
       </div>
+      { props.isOwner ? <p>Welcome Back,</p> : null }
+      <p style={{ fontWeight: "bold" }}>
+        {props.personalInfo.lastName},{props.personalInfo.middleName? ` ${props.personalInfo.middleName}`: null } {props.personalInfo.firstName }
+      </p>
+
+      <p>{props.personalInfo.profession}</p>
+
       <p>
-        {props.personalInfo.last_name} {props.personalInfo.first_name}
+        <img alt="" src={findFlagUrlByCountryName(country) || flag} width="20" height="20"/>{" "}
+        {props.personalInfo.location ? props.personalInfo.location : "Nigeria"}
       </p>
     </Container>
   );
@@ -23,7 +41,7 @@ const PersonalInfo = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    personalInfo: state.portfolio.personal_info,
+    personalInfo: state.portfolio.personalInfo,
   };
 };
 

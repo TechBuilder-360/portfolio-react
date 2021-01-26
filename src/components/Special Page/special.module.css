@@ -1,0 +1,44 @@
+.Body {
+    height: 80vh;
+    text-align: center;
+    background-image: url(../../images/errorbg.jpg);
+}
+
+.Broken {
+    height: 80vh;
+    text-align: center;
+}
+
+.Img {
+    width: 60%;
+    height: 120px;
+    margin-bottom: 4%;
+}
+
+.Status{
+    margin:auto;
+    color: rgb(226, 101, 51);
+    font-size: 80px;
+}
+
+.Text {
+    font-size: 30px;
+    line-height: 28px;
+    color: black;
+}
+
+.Text span{
+    color: rgb(54, 53, 53);
+}
+
+/* Desktop view */
+@media (min-width: 760px){
+
+    .Status{
+        font-size: 100px;
+    }
+
+    .Img {
+        height: 170px;
+    }
+}

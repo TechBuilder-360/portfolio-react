@@ -1,51 +1,34 @@
 import React from "react";
-import { Accordion, Card, useAccordionToggle } from "react-bootstrap";
-import { text_truncate } from "../../../../shared/utility";
+import { Accordion, Card, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { deleteProject } from "../../../../store/actions/portfolioActions";
 import classes from "../../personal_info/personalInfo.module.css";
 import AddProjects from "./addProjects";
 
-function CustomToggle({ children, eventKey }) {
-  const decoratedOnClick = useAccordionToggle(eventKey, null); // Add checker to see if form has been edited and needs saving before closing
-
-  return (
-    <button
-      id={`close-project-${eventKey}`}
-      onClick={decoratedOnClick}
-      type="button"
-      className="btn btn-primary-outline text-primary shadow-none"
-    >
-      {" "}
-      {children}
-    </button>
-  );
-}
-
-const Child = ({ project, ...props }) => {
+const Child = ({ project, index }) => {
+  const dispatch = useDispatch();
   return (
     <Card className={classes.Accordion_Child}>
       <Card.Header>
-        <span title={project.title}>{text_truncate(project.title)}</span>
-        <div style={{ float: "Right" }}>
-          <CustomToggle eventKey={props.i}>Edit</CustomToggle> |
+        <div className={classes.Label} title={project.title}>
+          {project.title}
+        </div>
+        <span className={classes.Span}>
+          <Accordion.Toggle as={Button} variant="link" style={{color: "#9BA4B7"}} eventKey={index}>
+            Edit
+          </Accordion.Toggle>
           <button
             type="button"
-            className="btn btn-primary-outline text-primary shadow-none"
-            onClick={() => props.delete(project.id)}
+            className="btn btn-primary-outline text-danger shadow-none"
+            onClick={() => dispatch(deleteProject(project.id))}
           >
-            {" "}
             Delete
           </button>
-        </div>
+        </span>
       </Card.Header>
-      <Accordion.Collapse eventKey={props.i}>
+      <Accordion.Collapse eventKey={index}>
         <Card.Body className={classes.Accordion_Body}>
-          <AddProjects
-            index={props.index}
-            project={project}
-            closeForm={() =>
-              document.getElementById(`close-project-${props.i}`).click()
-            }
-          />
+          <AddProjects project={project} />
         </Card.Body>
       </Accordion.Collapse>
     </Card>

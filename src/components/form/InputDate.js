@@ -5,20 +5,20 @@ import DatePicker from 'react-date-picker';
 import Proptypes from 'prop-types'
 
 
-const InputDate = (props) => {
-    let init = props.value || null
-    const [value, onChange] = useState(new Date(init));
+const InputDate = ({changed, name, value, label }) => {
+    let init = value || null
+    const [initValue, onChange] = useState(new Date(init));
 
     useEffect(() => {
-        if(props.changed){
-            props.changed(props.name, value)
+        if(changed){
+            changed(name, initValue)
         }
-      }, [value]);
+      },[initValue]); // eslint-disable-line react-hooks/exhaustive-deps
     
     return (
         <Container>
-            <label className={classes.block}>{props.label}</label>
-            <DatePicker onChange={onChange} className={classes.datePicker} value={value} clearIcon={null} />
+            <label className={classes.block}>{label}</label>
+            <DatePicker required={true} onChange={onChange} className={classes.datePicker} value={value} clearIcon={null} />
         </Container>
     );
 };

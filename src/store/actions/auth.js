@@ -1,15 +1,25 @@
 import * as actionTypes from "../actions/actionType";
-import {instanceAxios} from '../../axios-orders'
-import * as query from './graphqlQuery'
-import cookie from 'react-cookies'
+import { instanceAxios } from "../../axios-orders";
+import * as query from "./graphqlQuery";
+import cookie from "react-cookies";
+import { clearMessages, messages } from "./portfolioActions"
 
-export const authStart = () => {
+
+const CookiesOptions = {
+  path: "/",
+  maxAge: 60 * 60 * 24,
+  // domain: 'https://*.yourdomain.com',
+  // secure: true, //only accessible over https if true
+  // httpOnly: true
+}
+
+export const loadingStart = () => {
   return {
-    type: actionTypes.GOOGLE_AUTH_START,
+    type: actionTypes.LOADING_START,
   };
 };
 
-export const googleAuthSuccess = (token) =>  (dispatch) => {
+export const googleAuthSuccess = (token) => (dispatch) => {
   var config = {
     data: query.googleSignin(token),
   };
@@ -21,29 +31,89 @@ export const googleAuthSuccess = (token) =>  (dispatch) => {
         username: response.data.data.socialAuth.social.user.username,
       };
       dispatch(sessionTokenSuccess(userData));
-      // const expires = new Date();
-      // expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14);
-      cookie.save("userData", userData, {
-        path: "/",
-        // expires,
-        // maxAge: 1000,
-        // domain: 'https://*.yourdomain.com',
-        // secure: true, //only accessible over https if true
-        // httpOnly: true
-      });
+      cookie.save("userData", userData, CookiesOptions);
     })
     .catch((err) => {
-      dispatch(sessionTokenFail(err));
+      dispatch(loadingFailed(err));
     });
+};
 
+const login = () => {
   return {
-    type: actionTypes.GOOGLE_AUTH_SUCCESS,
+    type: actionTypes.LOGIN
+  }
+}
+
+export const loginAction = (req) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.login(req),
+    })
+      .then((response) => {
+        const res = response.data.data.tokenAuth;
+        if(res.success){
+          const userData = {
+            token: res.token,
+            username: res.user.username
+          }
+          dispatch(sessionTokenSuccess(userData));
+          cookie.save("userData", userData, CookiesOptions);
+          dispatch(login())
+          dispatch(clearMessages())
+        } else {
+          dispatch(messages("Please, enter valid credentials.", "danger"));
+        }
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
   };
 };
 
-export const googleAuthFail = (error) => {
+const register = () => {
   return {
-    type: actionTypes.GOOGLE_AUTH_FAIL,
+    type: actionTypes.REGISTRATION
+  }
+}
+
+export const registrationAction = (req) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.registration(req),
+    })
+      .then((response) => {
+        const res = response.data.data.register;
+        if(res.ok){
+          dispatch(register())
+          dispatch(messages("Registration Successful", "success"));
+          dispatch(loginAction({email: req.email, password: req.password}))
+        } else {
+          dispatch(messages(res.error, "danger"));
+        }
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  };
+};
+
+export const loadingFailed = (error) => {
+  return {
+    type: actionTypes.LOADING_FAILED,
+    error: error,
+  };
+};
+
+export const logError = (error) => {
+  return {
+    type: actionTypes.LOG_ERROR,
+    error: error,
+  };
+};
+
+export const loadingStop = (error) => {
+  return {
+    type: actionTypes.LOADING_STOP,
     error: error,
   };
 };
@@ -52,13 +122,6 @@ export const sessionTokenSuccess = (userData) => {
   return {
     type: actionTypes.SESSION_TOKEN_SUCCESS,
     action: userData,
-  };
-};
-
-export const sessionTokenFail = (error) => {
-  return {
-    type: actionTypes.SESSION_TOKEN_FAIL,
-    error: error,
   };
 };
 
@@ -92,9 +155,29 @@ export const setAuthRedirectPath = (path) => {
   };
 };
 
-export const resetError = () => {
+export const clearError = () => {
   return {
-    type: actionTypes.RESET_ERROR,
+    type: actionTypes.CLEAR_ERROR,
   };
 };
 
+export const feedback = () => {
+  return {
+    type: actionTypes.FEEDBACK,
+  };
+};
+
+export const feedbackAction = (request) =>{
+  return dispatch => {
+    instanceAxios({
+      data: query.contact(request),
+    })
+      .then(() => {
+        dispatch(feedback())  
+        dispatch(messages("Message has been sent!", "success"));
+      })
+      .catch((err) => {
+        dispatch(messages(err.message, "danger"));
+      });
+  }
+}

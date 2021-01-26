@@ -1,23 +1,33 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import MonthYear from "../../../form/monthYearPicker/month_year_picker";
 import TextArea from "../../../form/TextArea";
 import classes from "../../personal_info/personalInfo.module.css";
 import { experienceAction } from "../../../../store/actions/portfolioActions";
 
-const ExperienceForm = ({ experience, closeForm, ...props }) => {
+const ExperienceForm = ({ experience, closeForm }) => {
+  
   const content = {
-    id: "" || experience.id,
-    organization: "" || experience.organization,
-    description: "" || experience.description,
-    position: "" || experience.position,
-    start_year: "" || experience.start_year,
-    end_year: "" || experience.end_year,
+    id: experience.id || "",
+    organization: experience.organization || "",
+    description: experience.description || "",
+    position: experience.position || "",
+    startYear: experience.startYear || "",
+    endYear: experience.endYear || "",
   };
 
   const dispatch = useDispatch();
   const [value, setValue] = useState(content);
+  const message = useSelector(state => state.portfolio.message)
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(false);
+    }
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -26,9 +36,18 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
   const onChangeHandler = (name, txt) => {
     setValue({ ...value, [name]: txt });
   };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+
+    setLoading(true)
+    dispatch(experienceAction(value));
+    if(!value.id){closeForm();}
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs={12} md={6} className={classes.Mb_5}>
             <Form.Group>
@@ -38,6 +57,7 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
                 onChange={handleChange}
                 placeholder="Monetary Assurance"
                 value={value.organization}
+                required={true}
               />
             </Form.Group>
           </Col>
@@ -50,22 +70,23 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
                 onChange={handleChange}
                 placeholder="Head of Sales"
                 value={value.position}
+                required={true}
               />
             </Form.Group>
           </Col>
           <Col xs={6} md={3} className={classes.Mb_5}>
             <MonthYear
-              name="start_year"
+              name="startYear"
               changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.start_year}
+              value={value.startYear}
               label="Start Year"
             />
           </Col>
           <Col xs={6} md={3} className={classes.Mb_5}>
             <MonthYear
-              name="end_year"
+              name="endYear"
               changeHandler={(name, value) => onChangeHandler(name, value)}
-              value={value.end_year}
+              value={value.endYear}
               label="End Year"
             />
           </Col>
@@ -76,28 +97,20 @@ const ExperienceForm = ({ experience, closeForm, ...props }) => {
                 value={value.description}
                 name="description"
                 changed={(name, value) => onChangeHandler(name, value)}
+                required={true}
               />
             </Form.Group>
           </Col>
           <Col xs={12} md={12} style={{ textAlign: "right" }}>
+            {value.id ? null: <Button style={{marginRight: "6px"}} variant="outline-danger" size="sm" onClick={closeForm}>Cancel</Button>}
             <Button
-              type="button"
-              onClick={closeForm}
-              className="btn btn-info mt-15 mr-2"
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={() => {
-                console.log(value);
-                dispatch(experienceAction(props.index, value));
-                closeForm();
-              }}
-              style={{ float: "right" }}
               type="submit"
-              className={classes.Mb_5}
+              variant="outline-primary"
+              className="mt-15"
+              size="sm"
+              disabled={isLoading}
             >
-              Save
+              {isLoading ? "Saving..." : "Save"}
             </Button>
           </Col>
         </Row>
