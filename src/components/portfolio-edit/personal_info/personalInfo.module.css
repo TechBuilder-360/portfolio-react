@@ -54,13 +54,11 @@
   padding: 20px;
 }
 
-/* .Mb_5 input:hover, .Mb_5 select:hover {
-  background-color: rgb(214, 233, 236);
-} */
-
-/* span {
-  color: rgba(5, 81, 194, 0.8);
-} */
+.check {
+  position: relative;
+  top: 9px;
+  font-size: 12px
+}
 
 span:hover {
   cursor: pointer;

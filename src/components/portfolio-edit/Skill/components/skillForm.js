@@ -41,6 +41,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
               <Form.Control
                 name="title"
                 onChange={(e)=> setValue({...value, title: e.target.value})}
+                value={value.title}
                 placeholder="Enter skill name"
                 required={true}
               />

@@ -100,7 +100,7 @@ const ExperienceForm = ({ experience, closeForm }) => {
             <Form.Group>
               <Form.Check
                 type="checkbox"
-                label="In Progress"
+                label={<span className={classes.check}>In Progress</span>}
                 checked={value.inProgress}
                 onChange={handleCheckChange}
                 name="inProgress"
