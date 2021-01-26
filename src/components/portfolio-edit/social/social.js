@@ -9,6 +9,7 @@ import { Collapse } from 'antd';
 const Social = () => {
   const limit = process.env.REACT_APP_SOCIAL_LINKS_LIMIT
   const socialLinks = useSelector((state) => state.portfolio.social);
+  const message = useSelector(state => state.portfolio.message)
   const { Panel } = Collapse;
 
   const [form, setForm] = useState(null);
@@ -16,11 +17,16 @@ const Social = () => {
 
   useEffect(() => {
     if (formVisible) {
-      setForm(<SocialForm closeForm={() => setFormVisible(false)} />);
+      console.log(message.alert, message.alert.length)
+      if (message.alert.length > 0){
+        setForm(<SocialForm closeForm={() => setFormVisible(true)} />);
+      }else{
+        setForm(<SocialForm closeForm={() => setFormVisible(false)} />);
+      }
     } else {
       setForm(null);
     }
-  }, [formVisible]);
+  }, [formVisible, message]);
   
   // Populate accordion children with existing record
   const panels = socialLinks.map((item, i) => (
