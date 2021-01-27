@@ -45,7 +45,6 @@ class Projects extends Component {
           </p>
           <div className={this.props.div}>
             <div className={classes.container}>
-              {/* <Space direction="vertical"> */}
                 {this.props.projects.length !== 0 ? (
                   this.props.projects.map((project, id) => (
                     <Card
@@ -56,7 +55,7 @@ class Projects extends Component {
                           More
                         </a>
                       }
-                      style={{ width: 300 }}
+                      style={{ width: 300, border: "1px solid rgba(0, 0, 0, 0.3)" }}
                     >
                       <div>{text_truncate(project.description, 50)}</div>
                     </Card>
@@ -64,7 +63,6 @@ class Projects extends Component {
                 ) : (
                   <p>There are no project availabe at the moment</p>
                 )}
-              {/* </Space> */}
             </div>
           </div>
         </div>
