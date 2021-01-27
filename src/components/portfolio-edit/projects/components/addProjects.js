@@ -62,7 +62,7 @@ const AddProjects = ({ project, closeForm }) => {
             <Form.Label>Project URL</Form.Label>
             <Form.Control
               type="url"
-              name="url"
+              name="projectUrl"
               onChange={handleChange}
               value={value.projectUrl}
               required={true}

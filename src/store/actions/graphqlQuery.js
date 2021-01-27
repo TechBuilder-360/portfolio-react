@@ -63,7 +63,7 @@ export const edit_personalinfo = (detail) => {
           lastName: "${detail.lastName}",
           middleName: "${detail.middleName}",
           profession: "${detail.profession}",
-          bio: "${detail.bio}",
+          bio: "${detail.bio.replace('\n', '\\n')}",
           gender: "${detail.gender}",
           languages: "${detail.languages}",
           location: "${detail.location}",
@@ -104,7 +104,7 @@ export const experience = (detail) => {
       experience(
         id: "${detail.id}",
         position: "${detail.position}",
-        description: "${detail.description}",
+        description: "${detail.description.replace('\n', '\\n')}",
         startYear: "${detail.startYear}",
         endYear: "${detail.endYear}",
         organization: "${detail.organization}",
@@ -176,8 +176,8 @@ export const mutate_project = (req) => {
   return JSON.stringify({
     query: `mutation project{
       project(
-        description: "${req.description}",
-        projectUrl: "${req.url}",
+        description: "${req.description.replace('\n', '\\n')}",
+        projectUrl: "${req.projectUrl}",
         title: "${req.title}",
         id: "${req.id}"){
         created
