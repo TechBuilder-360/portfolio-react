@@ -35,7 +35,7 @@ const Project = () => {
     <Panel
       header={proj.title}
       showArrow={false}
-      key={i}
+      key={proj.id}
     >
       <AddProjects project={proj} />
     </Panel>

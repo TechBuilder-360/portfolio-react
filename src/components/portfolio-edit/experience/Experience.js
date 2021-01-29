@@ -31,7 +31,7 @@ const Experience = (props) => {
   const panels = experience.map((exp, i) => {
     const label = `${exp.position} at ${exp.organization} from ${exp.startYear} to ${exp.endYear}`;
     return (
-      <Panel header={label} showArrow={false} key={i}>
+      <Panel header={label} showArrow={false} key={exp.id}>
         <ExperienceForm experience={exp} />
       </Panel>
     );

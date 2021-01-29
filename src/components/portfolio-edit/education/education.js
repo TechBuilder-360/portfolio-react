@@ -31,7 +31,7 @@ const Education = (props) => {
   const panels = education.map((edu, i) => {
     const label = `Studied ${edu.course} at ${edu.institution} from ${edu.startYear} to ${edu.endYear}`;
     return (
-      <Panel header={label} showArrow={false} key={i}>
+      <Panel header={label} showArrow={false} key={edu.id}>
         <EducationForm education={edu} />
       </Panel>
     );

@@ -16,7 +16,7 @@ const SocialLinks = (props) => {
                   network={social.label.toLowerCase()}
                   style={{ height: "25px", width: "25px" }}
                   url={social.url}
-                  bgColor={social.label.toLowerCase()=='github'? "#00000" :null}
+                  bgColor={social.label.toLowerCase()==='github'? "#00000" :null}
                 />
               </div>
             </div>

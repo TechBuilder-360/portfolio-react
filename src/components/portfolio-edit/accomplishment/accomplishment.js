@@ -32,7 +32,7 @@ const Accomplishment = () => {
     <Panel
       header={`${acc.course} at ${acc.issuer}`}
       showArrow={false}
-      key={i}
+      key={acc.id}
     >
       <AccompForm accomplishment={acc} />
     </Panel>

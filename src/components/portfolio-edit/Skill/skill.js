@@ -42,7 +42,7 @@ const Skill = () => {
     <Panel
       header={sk.title}
       showArrow={false}
-      key={i}
+      key={sk.id}
     >
       <SkillForm skill={sk}/>
       <hr/>

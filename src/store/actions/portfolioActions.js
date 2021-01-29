@@ -185,11 +185,11 @@ export const socialAction = (req) => {
             message.error(err.message, alertDuration)
           );
         }
-        dispatch(messages());
+        dispatch(messages("", "success"));
       })
       .catch((err) => {
         message.error(err.message, alertDuration);
-        dispatch(messages());
+        dispatch(messages("", "error"));
       });
   };
 };
@@ -629,11 +629,11 @@ export const subskillAction = (skill, title) => {
             message.error(err.message, alertDuration)
           );
         }
-        dispatch(messages())
+        dispatch(messages("", "success"))
       })
       .catch((err) => {
         message.error(err.message, alertDuration);
-        dispatch(messages())
+        dispatch(messages(err.message, "error"))
       });
   };
 };

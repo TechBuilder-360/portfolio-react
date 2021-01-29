@@ -17,12 +17,7 @@ const Social = () => {
 
   useEffect(() => {
     if (formVisible) {
-      console.log(message.alert, message.alert.length)
-      if (message.alert.length > 0){
-        setForm(<SocialForm closeForm={() => setFormVisible(true)} />);
-      }else{
-        setForm(<SocialForm closeForm={() => setFormVisible(false)} />);
-      }
+      setForm(<SocialForm closeForm={() => setFormVisible(false)} />);
     } else {
       setForm(null);
     }
@@ -33,7 +28,7 @@ const Social = () => {
     <Panel
       header={item.label}
       showArrow={false}
-      key={i}
+      key={item.id}
     >
       <SocialForm link={item.url} label={item.label} id={item.id}/>
     </Panel>

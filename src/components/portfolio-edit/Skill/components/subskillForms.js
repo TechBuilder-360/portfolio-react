@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import classes from "../../personal_info/personalInfo.module.css";
-import { subskillAction } from "../../../../store/actions/portfolioActions";
+import { subskillAction, clearMessages } from "../../../../store/actions/portfolioActions";
 
 const SkillForms = ({ skillId }) => {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const SkillForms = ({ skillId }) => {
   useEffect(() => {
     if (isLoading) {
       setLoading(false);
+      dispatch(clearMessages());
     }
   },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
