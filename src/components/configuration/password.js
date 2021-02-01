@@ -44,7 +44,7 @@ const Password = () => {
         5
       );
     }
-    if(value.newPasswordStrength === 0){
+    if (value.newPasswordStrength === 0) {
       return message.warning(
         "Password strenght is weak, try a mix of alphanumeric characters and symbols",
         5
@@ -63,70 +63,99 @@ const Password = () => {
 
   return (
     <Row>
-      <Col sm={6}>Password Change</Col>
-      <Col sm={6}>
+      <Col sm={6} md={8} style={{textAlign: "justify"}}>
         <Form onSubmit={passwordSubmitandler}>
-          <Form.Row className="mb-3">
-            <Col>
-              <Input.Password
-                type="password"
-                placeholder="Old Password"
-                minLength="6"
-                required
-                name="password"
-                value={value.password}
-                onChange={passwordChangeHandler}
-                addonBefore={<ExclamationCircleOutlined />}
-                iconRender={(visible) =>
-                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                }
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row className="mb-3">
-            <Col>
-              <Input.Password
-                type="password"
-                placeholder="New Password"
-                required
-                minLength="6"
-                name="newPassword"
-                value={value.newPassword}
-                onChange={passwordChangeHandler}
-                addonBefore={<ExclamationCircleOutlined style={(value.newPasswordStrength !== "")? (value.newPasswordStrength === 1)? strong: weak: null} />}
-                iconRender={(visible) =>
-                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                }
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row className="mb-3">
-            <Col>
-              <Input.Password
-                type="password"
-                placeholder="Confirm Password"
-                required
-                name="confirmPassword"
-                minLength="6"
-                value={value.confirmPassword}
-                onChange={passwordChangeHandler}
-                addonBefore={<ExclamationCircleOutlined style={(value.confirmPasswordStrength !== "")? (value.confirmPasswordStrength === 1)? strong: weak: null}/>}
-                iconRender={(visible) =>
-                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                }
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row className="text-left">
-            <Col>
-              <Button type="submit" variant="primary">
-                Change Password
-              </Button>
-            </Col>
-          </Form.Row>
+          <table className="table table-borderless">
+            <tbody>
+              <tr>
+                <td style={{ width: "30%" }}>Password Change</td>
+                <td>
+                  
+                    <Input.Password
+                      type="password"
+                      placeholder="Old Password"
+                      minLength="6"
+                      required
+                      name="password"
+                      value={value.password}
+                      onChange={passwordChangeHandler}
+                      addonBefore={<ExclamationCircleOutlined />}
+                      iconRender={(visible) =>
+                        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                      }
+                    />
+                  </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                    <Input.Password
+                      type="password"
+                      placeholder="New Password"
+                      required
+                      minLength="6"
+                      name="newPassword"
+                      value={value.newPassword}
+                      onChange={passwordChangeHandler}
+                      addonBefore={
+                        <ExclamationCircleOutlined
+                          style={
+                            value.newPasswordStrength !== ""
+                              ? value.newPasswordStrength === 1
+                                ? strong
+                                : weak
+                              : null
+                          }
+                        />
+                      }
+                      iconRender={(visible) =>
+                        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                      }
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                    <Input.Password
+                      type="password"
+                      placeholder="Confirm Password"
+                      required
+                      name="confirmPassword"
+                      minLength="6"
+                      value={value.confirmPassword}
+                      onChange={passwordChangeHandler}
+                      addonBefore={
+                        <ExclamationCircleOutlined
+                          style={
+                            value.confirmPasswordStrength !== ""
+                              ? value.confirmPasswordStrength === 1
+                                ? strong
+                                : weak
+                              : null
+                          }
+                        />
+                      }
+                      iconRender={(visible) =>
+                        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                      }
+                    />                              
+                  
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                <Button type="submit" variant="primary">
+                  Change Password
+                </Button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </Form>
-      </Col>
-    </Row>
+        </Col>
+        </Row>
   );
 };
 

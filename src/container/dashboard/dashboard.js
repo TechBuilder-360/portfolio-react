@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import classes from "./dashboard.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import PersonalInfo from "../../components/profile/personal_Info/personal_info";
 import ProfessionalSummary from "../../components/profile/professional_summary/professional_summary";
 import Education from "../../components/profile/education/education";
@@ -68,7 +66,7 @@ const Dashboard = () => {
             onClick={() => handleDownload(portfolio.lastName)}
             className={classes.Butt}
           >
-            Download Resume <FontAwesomeIcon icon={faDownload} />
+            Download Resume
           </button>: null
         }
           

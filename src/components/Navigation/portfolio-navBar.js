@@ -12,7 +12,7 @@ const Portfolio_navBar = () => {
     <Container fluid>
       <nav className={classes.Nav}>
         <Link to="/">
-          <img src={logo} className={classes.Logo} alt="xPortfolio" />
+          <img src={logo} className={classes.Logo} alt="Oris" />
         </Link>
         <div className={classes.Nav_item}>
           {auth.token ? (
