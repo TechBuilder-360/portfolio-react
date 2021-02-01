@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../container/Layout/Layout";
 import { Form, Col } from "react-bootstrap";
 import classes from "./Password.module.css";
@@ -16,10 +16,10 @@ const PasswordReset = () => {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    if (loading && auth == false) {
+    if (loading && auth === false) {
       setRedirect(true)
     }
-  }, [auth]);
+  }, [auth]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const passwordResetHandler = (event) => {
     event.preventDefault();

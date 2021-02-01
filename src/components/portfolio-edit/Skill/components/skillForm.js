@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { skillAction, removeSkill, clearMessages } from "../../../../store/actions/portfolioActions";
+import { skillAction, removeSkill } from "../../../../store/actions/portfolioActions";
 import classes from "../../personal_info/personalInfo.module.css";
 
 const AddForm = ({ skill, closeForm, hide }) => {

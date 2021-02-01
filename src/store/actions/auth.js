@@ -63,7 +63,7 @@ export const loginAction = (req) => {
           message.error("Please, enter valid credentials.", alertDuration);
         }
       })
-      .catch(() => {
+      .catch((err) => {
         message.error("Please, enter valid credentials.", alertDuration);
       });
   };
