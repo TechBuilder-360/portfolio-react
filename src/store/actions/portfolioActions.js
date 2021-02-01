@@ -541,12 +541,10 @@ export const skillAction = (request) => {
           let res = response.data.data.skill;
           if (res.created) {
             dispatch(add_skill(res.skill.id, request.title));
-            dispatch(
-              messages(
+            message.success(
                 `${request.title} has been added successfully`,
                 "success"
-              )
-            );
+              );
           } else {
             dispatch(edit_skill(request));
             message.success(

@@ -3,7 +3,6 @@ import { Modal } from 'react-bootstrap';
 
 const ProjectModal = (props) => {
 
-  console.log(props);
     return (
         <Modal
         size = "lg"

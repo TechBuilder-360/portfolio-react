@@ -75,6 +75,10 @@ const reducer = (state = initialState, action) => {
       return {...state}
     case actionTypes.REGISTRATION:
       return updateObject(state, {})
+    case actionTypes.RESET_PASSWORD:
+      return updateObject(state, {})
+    case actionTypes.RESET_PASSWORD_TOKEN:
+      return updateObject(state, {})
     case actionTypes.LOG_ERROR:
       return logError(state, action);
     case actionTypes.CLEAR_ERROR:
