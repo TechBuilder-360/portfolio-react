@@ -10,7 +10,7 @@ const HomeNavBar = () => {
     <Container>
       <nav className={classes.Nav}>
        <Link to='/'>
-         <img src={logo} className={classes.Logo} alt="xPortfolio"/></Link>
+         <img src={logo} className={classes.Logo} alt="Oris"/></Link>
         <div className={classes.Nav_item}>
           <NavLink to={"/"}>Home</NavLink>
           <NavLink to={"/features"}>Features</NavLink>
