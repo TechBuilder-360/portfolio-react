@@ -63,7 +63,7 @@ export const edit_personalinfo = (detail) => {
           lastName: "${detail.lastName}",
           middleName: "${detail.middleName}",
           profession: "${detail.profession}",
-          bio: "${detail.bio.replace('\n', '\\n')}",
+          bio: "${detail.bio.replaceAll('\n', '\\n')}",
           gender: "${detail.gender}",
           languages: "${detail.languages}",
           location: "${detail.location}",
@@ -104,7 +104,7 @@ export const experience = (detail) => {
       experience(
         id: "${detail.id}",
         position: "${detail.position}",
-        description: "${detail.description.replace('\n', '\\n')}",
+        description: "${detail.description.replaceAll('\n', '\\n')}",
         startYear: "${detail.startYear}",
         endYear: "${detail.endYear}",
         organization: "${detail.organization}",
@@ -176,7 +176,7 @@ export const mutate_project = (req) => {
   return JSON.stringify({
     query: `mutation project{
       project(
-        description: "${req.description.replace('\n', '\\n')}",
+        description: "${req.description.replaceAll('\n', '\\n')}",
         projectUrl: "${req.projectUrl}",
         title: "${req.title}",
         id: "${req.id}"){
@@ -422,3 +422,30 @@ export const passwordChange = (detail) => {
     }`,
   });
 };
+
+export const passwordReset = email => {
+  return JSON.stringify({
+    query: `mutation passwordResetEmail{
+      sendPasswordResetEmail(email: "${email.toLowerCase()}"){
+        errors
+        success
+      }
+    }`
+  })
+}
+
+export const password_reset_token = detail => {
+  return JSON.stringify({
+    query: `mutation passwordReset{
+      passwordReset(
+        token:"${detail.token}"
+        newPassword1: "${detail.password}"
+        newPassword2: "${detail.password}"
+      ){
+        success
+        errors
+      }
+    }
+    `
+  })
+}

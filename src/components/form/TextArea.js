@@ -14,7 +14,7 @@ const TextArea = (props) => {
   const [textCount, setTextCount] = useState(value.length <= character ? character - value.length: 0);
   const [countColor, setCountColor] = useState((character - value.length) <= 10 ? "red":'black' );
   
-  let onChange = (e) => {
+  let changeHandler = (e) => {
     setTextAreaValue(e.target.value);
     setTextCount(character - e.target.value.length);
     props.changed(props.name, e.target.value)
@@ -29,7 +29,7 @@ const TextArea = (props) => {
   return (
     <div className={classes.textarea}>
         <textarea rows={row} maxLength={character} 
-        className={classes.multiText} onChange={onChange}
+        className={classes.multiText} onChange={changeHandler}
         value={textAreaValue}
         name={props.name}
         {...props}></textarea>
@@ -39,7 +39,6 @@ const TextArea = (props) => {
 };
 
 TextArea.prototype = {
-  changed: Propstypes.func.isRequired,
   value: Propstypes.string.isRequired
 }
 

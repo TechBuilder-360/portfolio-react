@@ -14,7 +14,7 @@ const SubSkill = ({ skillId }) => {
     <li className={classes.li} key={i}>
       {sub.title}
       <FontAwesomeIcon
-        size="lg"
+        size="sm"
         className={classes.icon}
         icon={faTimes}
         onClick={() => dispatch(deleteSubskillAction(sub.id))}
@@ -23,7 +23,7 @@ const SubSkill = ({ skillId }) => {
   ));
   return (
     <Container>
-      {children.length > 0 ? <ul>{children}</ul> : <p>No subskill available</p>}
+      {children.length > 0 ? <ul className={classes.ul}>{children}</ul> : <p>No subskill available</p>}
     </Container>
   );
 };

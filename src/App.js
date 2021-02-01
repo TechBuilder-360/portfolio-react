@@ -20,8 +20,8 @@ import Configuration from "./components/configuration/configuration";
 const App = () => {
   const routes = (
     <Switch style={{ paddingLeft: "0" }}>
-      <Route path="/password/reset" exact component={PasswordReset} />
-      <Route path="/password/change" exact component={PasswordChange} />
+      <Route path="/password-reset" exact component={PasswordReset} />
+      <Route path="/password-reset/:token" exact component={PasswordChange} />
       <Route path="/faqs" exact component={FAQs} />
       <Route path="/features" exact component={Features} />
       <Route path="/contact" exact component={Contact} />

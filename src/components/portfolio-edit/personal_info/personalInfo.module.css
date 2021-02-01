@@ -20,12 +20,18 @@
   margin-left: 10px;
 }
 
+.ul{
+  background-color: #F2F5FA;
+  border-radius: 8px;
+  padding: 12px;
+}
+
 .li{
-  background-color: rgb(222, 230, 243);
+  background-color: rgba(196, 196, 196, 0.356);
   list-style:none;
   display:inline-block;
   margin: 5px;
-  color:rgb(49, 108, 235);
+  color:rgba(86, 86, 110, 0.973);
   padding: 7px;
   border-radius:20px;
 }

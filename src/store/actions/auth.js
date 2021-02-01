@@ -2,9 +2,8 @@ import * as actionTypes from "../actions/actionType";
 import { instanceAxios } from "../../axios-orders";
 import * as query from "./graphqlQuery";
 import cookie from "react-cookies";
-import { alertDuration, headerToken } from "./portfolioActions"
-import {message} from 'antd'
-
+import { alertDuration, headerToken } from "./portfolioActions";
+import { message, notification } from "antd";
 
 const CookiesOptions = {
   path: "/",
@@ -12,7 +11,7 @@ const CookiesOptions = {
   // domain: 'https://*.yourdomain.com',
   // secure: true, //only accessible over https if true
   // httpOnly: true
-}
+};
 
 export const loadingStart = () => {
   return {
@@ -41,9 +40,9 @@ export const googleAuthSuccess = (token) => (dispatch) => {
 
 const login = () => {
   return {
-    type: actionTypes.LOGIN
-  }
-}
+    type: actionTypes.LOGIN,
+  };
+};
 
 export const loginAction = (req) => {
   return (dispatch) => {
@@ -52,29 +51,29 @@ export const loginAction = (req) => {
     })
       .then((response) => {
         const res = response.data.data.tokenAuth;
-        if(res.success){
+        if (res.success) {
           const userData = {
             token: res.token,
-            username: res.user.username
-          }
+            username: res.user.username,
+          };
           dispatch(sessionTokenSuccess(userData));
           cookie.save("userData", userData, CookiesOptions);
-          dispatch(login())
+          dispatch(login());
         } else {
-          message.error("Please, enter valid credentials.", alertDuration)
+          message.error("Please, enter valid credentials.", alertDuration);
         }
       })
       .catch(() => {
-        message.error("Please, enter valid credentials.", alertDuration)
+        message.error("Please, enter valid credentials.", alertDuration);
       });
   };
 };
 
 const register = () => {
   return {
-    type: actionTypes.REGISTRATION
-  }
-}
+    type: actionTypes.REGISTRATION,
+  };
+};
 
 export const registrationAction = (req) => {
   return (dispatch) => {
@@ -83,16 +82,16 @@ export const registrationAction = (req) => {
     })
       .then((response) => {
         const res = response.data.data.register;
-        if(res.ok){
-          dispatch(register())
-          message.success("Registration Successful", alertDuration)
-          dispatch(loginAction({email: req.email, password: req.password}))
+        if (res.ok) {
+          dispatch(register());
+          message.success("Registration Successful", alertDuration);
+          dispatch(loginAction({ email: req.email, password: req.password }));
         } else {
-          message.error(res.error, alertDuration)
+          message.error(res.error, alertDuration);
         }
       })
       .catch((err) => {
-        message.error(err.message, alertDuration)
+        message.error(err.message, alertDuration);
       });
   };
 };
@@ -164,21 +163,24 @@ export const changePassword = (detail) => {
       data: query.passwordChange(detail),
       headers: {
         Authorization: headerToken(),
-      }
+      },
     })
       .then((response) => {
         if (!response.data.errors) {
           let res = response.data.data.passwordChange;
-          if(res.success){
+          if (res.success) {
             dispatch(change_password(detail));
-            dispatch(logout())
-            message.success("Password has been changed", alertDuration)
+            dispatch(logout());
+            message.success("Password has been changed", alertDuration);
           } else {
-            for(let x in res.errors){
-              for(let y in res.errors[x]){
-                message.error(`${x}: ${res.errors[x][y].message}`, alertDuration)
+            for (let x in res.errors) {
+              for (let y in res.errors[x]) {
+                message.error(
+                  `${x}: ${res.errors[x][y].message}`,
+                  alertDuration
+                );
               }
-           }
+            }
           }
         } else {
           response.data.errors.map((err) =>
@@ -190,4 +192,94 @@ export const changePassword = (detail) => {
         message.error(err.message, alertDuration);
       });
   };
-}
+};
+
+const reset_password = () => {
+  return {
+    type: actionTypes.RESET_PASSWORD,
+  };
+};
+
+export const resetPassword = (email) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.passwordReset(email),
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.sendPasswordResetEmail;
+          if (res.success) {
+            dispatch(reset_password());
+            notification.success({
+              message: "Password reset",
+              description: `Password reset email has been sent to ${email}`,
+              duration: alertDuration,
+            });
+          } else {
+            for (let x in res.errors) {
+              for (let y in res.errors[x]) {
+                message.error(
+                  `${x}: ${res.errors[x][y].message}`,
+                  alertDuration
+                );
+              }
+            }
+          }
+        } else {
+          response.data.errors.map((err) =>
+            message.error(err.message, alertDuration)
+          );
+        }
+        dispatch(loadingStop());
+      })
+      .catch((err) => {
+        dispatch(loadingStop());
+        message.error(err.message, alertDuration);
+      });
+  };
+};
+
+const reset_password_token = () => {
+  return {
+    type: actionTypes.RESET_PASSWORD_TOKEN,
+  };
+};
+
+export const resetPasswordToken = (detail) => {
+  return (dispatch) => {
+    instanceAxios({
+      data: query.password_reset_token(detail),
+    })
+      .then((response) => {
+        if (!response.data.errors) {
+          let res = response.data.data.passwordReset;
+          if (res.success) {
+            dispatch(reset_password_token());
+            notification.success({
+              message: "Password reset",
+              description: `Password reset was successful`,
+              duration: alertDuration,
+            });
+          } else {
+            for (let x in res.errors) {
+              for (let y in res.errors[x]) {
+                message.error(
+                  `${res.errors[x][y].message}`,
+                  alertDuration
+                );
+              }
+            }
+          }
+        } else {
+          response.data.errors.map((err) =>
+            message.error(err.message, alertDuration)
+          );
+        }
+        dispatch(loadingStop());
+      })
+      .catch((err) => {
+        dispatch(loadingStop());
+        message.error(err.message, alertDuration);
+      });
+  };
+};

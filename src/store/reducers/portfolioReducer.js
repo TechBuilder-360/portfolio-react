@@ -221,6 +221,9 @@ const reducer = (state = initialState, action) => {
         skills: [
           ...state.skills.filter((skill) => skill.id !== action.payload),
         ],
+        subskill: [
+          ...state.subskill.filter((skill) => skill.id !== action.payload),
+        ],
       };
 
     case actionType.SUBSKILL:
