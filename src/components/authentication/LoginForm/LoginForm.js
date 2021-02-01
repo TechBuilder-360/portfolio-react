@@ -76,8 +76,7 @@ const LoginForm = () => {
 
           <Form.Row className={classes.Mb}>
             <Col>
-              <Input
-                type="password"
+              <Input.Password
                 required
                 placeholder="Password"
                 name="password"
@@ -97,7 +96,7 @@ const LoginForm = () => {
               </Button>
             </Col>
             <Col>
-              <Link to="/passwordreset" className={classes.Link}>
+              <Link to="/password-reset" className={classes.Link}>
                 Forgot Password?
               </Link>
             </Col>

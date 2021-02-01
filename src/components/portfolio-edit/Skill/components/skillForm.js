@@ -19,7 +19,6 @@ const AddForm = ({ skill, closeForm, hide }) => {
     if (isLoading) {
       setLoading(false);
     }
-    dispatch(clearMessages());
   },[message]); // eslint-disable-line react-hooks/exhaustive-deps
   
   const handleSubmit = (e) => {
@@ -27,7 +26,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
 
     setLoading(true)
     dispatch(skillAction(value));
-    if(!hide){
+    if(hide){
       closeForm()
     }
   };

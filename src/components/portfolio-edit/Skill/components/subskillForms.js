@@ -35,7 +35,7 @@ const SkillForms = ({ skillId }) => {
                 name="title"
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter a sub-skill"
-                value={message.alert === "success" ? "" : null}
+                value={message.alert === "success" ? "" : title}
                 required={true}
               />
             </Form.Group>
