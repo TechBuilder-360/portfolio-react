@@ -10,15 +10,15 @@
 
 .Skill li{
     list-style: none;
-    background-color: rgb(255, 255, 255);
+    background-color: #CBC8C8;
+    color: #636363;
+    font-size: 15px;
     padding: 10px;
     margin: 0 5px 10px;
     border-radius: 5%;
     border: 1px solid rgba(0, 0, 0, 0.185);
     cursor: pointer;
 };
-
-
 
 /* Desktop view */
 @media (min-width: 760px){

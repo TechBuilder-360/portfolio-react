@@ -40,7 +40,8 @@ const Skills = (props) => {
         
         {props.skills.map( skill => (
           <li key={skill.id} title={skill.title} onClick={() => openModal(skill)} >
-            <FontAwesomeIcon icon={faCircle} className={classes.circle} size='sm'/>  {skill.title} 
+            {skill.title}
+            <span style={{marginLeft: "12px"}}><FontAwesomeIcon icon={faCircle} className={classes.circle} size='sm'/></span>
           </li>
         ))}
        
