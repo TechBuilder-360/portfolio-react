@@ -4,4 +4,6 @@
     position: relative;
     background-color: rgba(192, 188, 188, 0.416);
     color: white;
+    bottom: 0;
+    width: 100%;
 }

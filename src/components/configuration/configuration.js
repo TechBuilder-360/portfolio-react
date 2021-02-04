@@ -52,7 +52,7 @@ const Configuration = () => {
     <Container>
       <UserNavigation />
       {children}
-      {(auth.loading || portfolio.redirect) ? null : <div style={{position: "absolute", bottom: "0", width: "100%"}}><Footer /></div>}
+      {(auth.loading || portfolio.redirect) ? null : <Footer />}
     </Container>
   );
 };

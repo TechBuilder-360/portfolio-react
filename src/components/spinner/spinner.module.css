@@ -1,4 +1,6 @@
 .SpinnerBorder {
-    margin:auto;
     margin-top: 12%;
+    width:100%;
+    display: flex;
+    justify-content: center;
 }
