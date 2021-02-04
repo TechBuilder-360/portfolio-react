@@ -19,16 +19,15 @@ const Education = (props) => {
             <div className={`${classes.container}  ${direction}`} key={index}>
               <div className={classes.content}>
                 <p>
-                  <span style={{float: "right"}}>
-                  {education.inProgress
+                  <span style={{float: "right"}}>{education.inProgress
                     ? `${education.startYear} - Till Date`
                     : `${education.startYear} - ${education.endYear}`
-                  }
-                </span>
-                <strong>{education.institution}</strong>
-                </p>
-                <p>{education.course} <br/>
-                   {education.degree}
+                  }</span><br/>
+                {education.institution}
+                <br/>
+                {education.course} 
+                <br/>
+                {education.degree}
                 </p>
 
                 <p hidden>

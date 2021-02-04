@@ -25,6 +25,7 @@ const Skill = () => {
         <SkillForm
         skill={{}}
           closeForm={() => setFormVisible(false)}
+          hide={true}
         />
       );
     } else {

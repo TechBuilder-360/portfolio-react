@@ -34,7 +34,7 @@ const Configuration = () => {
     children = (
       <div className={classes.Wrapper}>
         <section>
-          <p className="title">Configurations</p>
+          <p className="title">Configuration</p>
           <hr />
           <DownloadSwitch/> 
           <hr/>
@@ -51,7 +51,7 @@ const Configuration = () => {
   return (
     <Container>
       <UserNavigation />
-      <div className={classes.Wrapper}>{children}</div>
+      {children}
       {(auth.loading || portfolio.redirect) ? null : <div style={{position: "absolute", bottom: "0", width: "100%"}}><Footer /></div>}
     </Container>
   );

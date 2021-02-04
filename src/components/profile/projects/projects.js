@@ -55,7 +55,8 @@ class Projects extends Component {
                           More
                         </a>
                       }
-                      style={{ width: 300, border: "1px solid rgba(0, 0, 0, 0.3)" }}
+                      style={{ width: 300, border: "1px solid rgba(0, 0, 0, 0.3)", backgroundColor: "#CBC8C8" }}
+                      key={project.id}
                     >
                       <div>{text_truncate(project.description, 50)}</div>
                     </Card>

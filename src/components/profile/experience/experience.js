@@ -25,10 +25,10 @@ const Experience = (props) => {
                     : `${experience.startYear} - ${experience.endYear}`
                   }
                 </span>
-                <strong>{experience.organization}</strong>
-                </p>
-                <p> {experience.position}<br/>
-                <Tooltip style={{color: "red"}} placement="topLeft" title={experience.description} arrowPointAtCenter>
+                <br/>{experience.organization}
+                <br/>
+                {experience.position}<br/>
+                <Tooltip placement="topLeft" title={experience.description} arrowPointAtCenter>
                   {text_truncate(experience.description, 40)}
                 </Tooltip>
                 </p>

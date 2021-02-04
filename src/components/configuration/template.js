@@ -25,19 +25,24 @@ const templatesOptions = template.map((item, i) => (
 ));
   return (
     <Row>
-      <Col sm={6}>
-        Resume Template
-      </Col>
-      <Col sm={6}>
-        <Form.Group>
-          <Form.Control 
-            as="select" 
-            name="label"
-            onChange={ (e) => dispatch(setTemplate(e.target.value)) }
-            value={myTemplate?myTemplate.id: ""}>
-            {templatesOptions}
-          </Form.Control>
-        </Form.Group>
+      <Col sm={6} md={8} style={{textAlign: "justify"}}>
+        <table className="table table-borderless">
+          <tbody>
+            <tr>
+              <td style={{width: "30%"}}> Resume Template </td>
+              <td>
+                <Form.Control 
+                  as="select" 
+                  name="label"
+                  className="float-right"
+                  onChange={ (e) => dispatch(setTemplate(e.target.value)) }
+                  value={myTemplate?myTemplate.id: ""}>
+                  {templatesOptions}
+                </Form.Control>
+              </td>
+            </tr>
+          </tbody>
+        </table>  
       </Col>
     </Row>
   );

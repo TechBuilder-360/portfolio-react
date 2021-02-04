@@ -31,11 +31,10 @@ const PersonalDetails = ({ information }) => {
     if (isLoading) {
         setLoading(false);
     }
-  },[message, isLoading]);
+  },[message]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onChangeHandler = (e) => {
     onDetail({ ...detail, [e.target.name]: e.target.value });
-    console.log(detail);
   };
 
   const componentChange = (name, value) => {
