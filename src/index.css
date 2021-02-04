@@ -50,6 +50,14 @@ p {
   padding: 0;
 }
 
+i.ant-spin-dot-item {
+  background-color: black;
+}
+
+.ant-spin-lg span.ant-spin-dot {
+  font-size: 45px;
+}
+
 @media (min-width: 760px) {
   * {
     font-size: 15px;

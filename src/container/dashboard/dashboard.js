@@ -26,6 +26,8 @@ import {
   FacebookShareButton,
   FacebookIcon,
 } from "react-share";
+import { message } from "antd";
+import { CopyOutlined } from '@ant-design/icons'
 
 const Dashboard = () => {
   const { username } = useParams();
@@ -51,6 +53,11 @@ const Dashboard = () => {
   const handleDownload = (last_name) => {
     dispatch(downloadResume(username, last_name));
   };
+  
+  const copyUserLink = () => {
+    navigator.clipboard.writeText(window.location.toString())
+    message.success('Link copied to clipboard!', 2);
+  };
 
   if (auth.loading) {
     children = <SpinnerElement />;
@@ -62,13 +69,22 @@ const Dashboard = () => {
           <SocialLinks />
           <br />
           {portfolio.allowDownload? 
+            <button
+              onClick={() => handleDownload(portfolio.lastName)}
+              className={classes.Butt}
+            >
+              Download Resume
+            </button>: null
+          }
+          <br />
           <button
-            onClick={() => handleDownload(portfolio.lastName)}
+            onClick={() => copyUserLink()}
             className={classes.Butt}
           >
-            Download Resume
-          </button>: null
-        }
+            Copy Link &nbsp;
+            <CopyOutlined/>
+          </button>
+
           
           {username === auth.username ? (
             <div className={classes.Share}>

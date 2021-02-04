@@ -1,13 +1,12 @@
 import React from 'react';
-import { Spinner } from "react-bootstrap";
-import classes from "./spinner.module.css"
+import classes from "./spinner.module.css";
+import { Spin } from 'antd';
+
 
 const SpinnerElement = () => {
     return (
         <div className={classes.SpinnerBorder}>
-            <Spinner animation="border" style={{width: "150px", height: "150px", borderWidth: "10px"}} role="status">
-                <span className="sr-only">Loading...</span>
-            </Spinner>
+            <Spin style={{width: "150px", height: "150px", borderWidth: "10px"}} size="large" />
         </div>
     )
 }
