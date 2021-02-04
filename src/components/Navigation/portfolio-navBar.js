@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./main-navigation.module.css";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../images/logo.png";
+import logo from "../../images/logoc.png";
 import { useSelector, shallowEqual } from "react-redux";
 import Container from "../../container/Container";
 

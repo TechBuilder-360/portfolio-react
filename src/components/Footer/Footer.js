@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Navbar } from "react-bootstrap";
 import classes from "./Footer.module.css";
-import logo from "../../images/logo.png";
+import logo from "../../images/logoc.png";
 
 const Footer = () => {
   return (
