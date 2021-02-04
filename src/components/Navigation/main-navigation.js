@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./main-navigation.module.css";
-import logo from "../../images/logo.png";
+import logo from "../../images/logoc.png";
 import { Link, NavLink } from "react-router-dom";
 import Container from "../../container/Container";
 
