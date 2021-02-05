@@ -1,0 +1,147 @@
+.carousel {
+    /* margin-left: 15%;
+    margin-right: 15%; */
+    /* -webkit-box-shadow: 3px 3px 5px 6px rgb(240, 16, 16);   */
+  /* -moz-box-shadow:    3px 3px 5px 6px rgb(240, 16, 16);  */
+  box-shadow: 15px 7px 10px rgba(142, 145, 144, 0.938); 
+  height: 600px;
+}
+
+ul.slides {
+    display: block;
+    position: relative;
+    height: 350px;
+    top: 5%;
+    margin-left: 9%;
+    margin-right: 9%;
+    /* padding: 0; */
+    overflow: hidden;
+    list-style: none;
+    
+}
+
+.slides * {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+ul.slides input {
+    display: none; 
+}
+
+
+.slide_container { 
+    display: block; 
+}
+
+.slide_image {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    transition: all .7s ease-in-out;
+}   
+
+.slide_image img {
+    width: auto;
+    min-width: 100%;
+    height: 100%;
+}
+
+.carousel_text {
+    text-align: center;
+    position: relative;
+    top: 60px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font: "Poppins";
+    font-weight: 300;
+    font-style: normal;
+    font-size: 13px;
+}
+
+/* .carousel_controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    font-size: 100px;
+    line-height: 600px;
+    color: #fff;
+} */
+
+/* .carousel_controls label {
+    display: none;
+    position: absolute;
+    padding: 0 20px;
+    opacity: 0;
+    transition: opacity .2s;
+    cursor: pointer;
+} */
+
+/* .slide_image:hover + .carousel_controls label{
+    opacity: 0.5;
+} */
+
+/* .carousel_controls label:hover {
+    opacity: 1;
+} */
+
+/* .carousel_controls .prev_slide {
+    width: 49%;
+    text-align: left;
+    left: 0;
+} */
+
+/* .carousel_controls .next_slide {
+    width: 49%;
+    text-align: right;
+    right: 0;
+} */
+
+.carousel_dots {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 90px;
+    bottom: 20px;
+    z-index: 999;
+    text-align: center;
+}
+
+.carousel_dots .carousel_dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(126, 121, 121, 0.877);
+    opacity: 0.5;
+    margin: 3px;
+    cursor: pointer;
+}
+
+input:checked + .slide_container .slide_image {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-in-out;
+}
+
+input:checked + .slide_container label {
+     display: block; 
+}
+
+input#img-1:checked ~ .carousel_dots label#img-dot-1,
+input#img-2:checked ~ .carousel_dots label#img-dot-2,
+input#img-3:checked ~ .carousel_dots label#img-dot-3 {
+    opacity: 1;
+}
+
+
+input:checked + .slide_container .nav label { display: block; }
