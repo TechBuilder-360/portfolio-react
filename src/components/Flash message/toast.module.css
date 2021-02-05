@@ -1,0 +1,13 @@
+.toast{
+    position: absolute; 
+    top: 0;
+    width: 10rem;
+    z-Index: 10;
+    margin-top: 5px;
+}
+
+.button {
+    margin-bottom: 5px;
+    margin-left: 5px;  
+    width: 93%;
+}

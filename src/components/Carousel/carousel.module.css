@@ -1,20 +1,16 @@
+
 .carousel {
-    /* margin-left: 15%;
-    margin-right: 15%; */
-    /* -webkit-box-shadow: 3px 3px 5px 6px rgb(240, 16, 16);   */
-  /* -moz-box-shadow:    3px 3px 5px 6px rgb(240, 16, 16);  */
   box-shadow: 15px 7px 10px rgba(142, 145, 144, 0.938); 
-  height: 600px;
+  height: 480px;
 }
 
 ul.slides {
     display: block;
     position: relative;
-    height: 350px;
+    height: 250px;
     top: 5%;
     margin-left: 9%;
     margin-right: 9%;
-    /* padding: 0; */
     overflow: hidden;
     list-style: none;
     

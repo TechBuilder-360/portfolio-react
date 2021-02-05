@@ -1,74 +1,148 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import Layout from "../../../container/Layout/Layout";
 import { Form, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import { Button, Input, message } from "antd";
 import classes from "./Password.module.css";
+import { Redirect } from "react-router-dom";
+import passwordStrength from "check-password-strength";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  ExclamationCircleOutlined,
+} from "@ant-design/icons";
+import { loadingStart, resetPasswordToken } from "../../../store/actions/auth";
 
 const PasswordReset = () => {
-  const password = useRef(null);
-  const confirmPassword = useRef(null);
-  const [changeSuccessful, setChangeSuccessful] = useState(false);
+  const { token } = useParams();
+  const auth = useSelector((state) => state.auth.loading, shallowEqual);
+  const dispatch = useDispatch();
+
+  const content = {
+    password: "",
+    confirm_password: "",
+    token: token,
+  };
+
+  const [value, setValue] = useState(content);
+  const [loading, setLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if (loading && auth === false) {
+      setRedirect(true)
+    }
+  }, [auth]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleChange = (e) => {
+    let strenght = "";
+    if (e.target.value !== "") {
+      strenght = passwordStrength(e.target.value).id;
+    }
+    setValue({
+      ...value,
+      [e.target.name]: e.target.value,
+      [e.target.name + "Strength"]: strenght,
+    });
+  };
+
+  const weak = {
+    color: "Red",
+  };
+
+  const strong = {
+    color: "green",
+  };
 
   const passwordChangeHandler = (event) => {
     event.preventDefault();
-    console.log(password.current.value);
-    console.log(confirmPassword.current.value);
 
-    // Validate both password equality before setting setChangeSuccessful true
-    setChangeSuccessful(true);
+    if (value.password !== value.confirm_password) {
+      return message.warning(
+        "Password and confirm password does not match!",
+        5
+      );
+    }
+    if (value.passwordStrength === 0) {
+      return message.warning(
+        "Password is weak, try a mix of alphanumeric characters and symbols",
+        5
+      );
+    }
+    setLoading(true)
+    dispatch(loadingStart());
+    dispatch(resetPasswordToken(value));
   };
 
   return (
     <Layout>
-      <Form.Row className="text-center">
-        <Col>
-          <Form.Label>Change Password</Form.Label>
-        </Col>
-      </Form.Row>
-      {changeSuccessful ? (
-        <div>
-          <Form.Row className="text-center">
-            <Form.Label>Your Password has been changed successfully</Form.Label>
-            <Link
-              to="/login"
-              className={[classes.Link, "btn btn-primary"].join(" ")}
-            >
-              Login
-            </Link>
-          </Form.Row>
-        </div>
-      ) : (
+      { redirect?<Redirect
+          to={{
+            pathname: "/",
+          }}
+        />: null}
+      <div className={classes.Container}>
+        <p className="title">Change Password</p>
+
         <Form onSubmit={passwordChangeHandler}>
-          <Form.Row className="mb-3">
-            <Col>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                required
-                ref={password}
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row className="mb-3">
-            <Col>
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                required
-                ref={confirmPassword}
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row className="text-center">
-            <Col>
-              <Button type="submit" variant="primary">
-                Change Password
-              </Button>
-            </Col>
-          </Form.Row>
+          <Col sm={12} md={12} className={classes.Mt_12}>
+            <Form.Label>Password</Form.Label>
+            <Input.Password
+              placeholder="Password"
+              name="password"
+              required
+              value={value.password}
+              onChange={handleChange}
+              autoComplete="on"
+              addonBefore={
+                <ExclamationCircleOutlined
+                  style={
+                    value.password !== ""
+                      ? value.passwordStrength === 1
+                        ? strong
+                        : weak
+                      : null
+                  }
+                />
+              }
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
+            />
+          </Col>
+          <Col sm={12} md={12} className={classes.Mt_12}>
+            <Form.Label>Confirm Password</Form.Label>
+            <Input.Password
+              placeholder="Confirm Password"
+              name="confirm_password"
+              required
+              value={value.confirm_password}
+              onChange={handleChange}
+              autoComplete="on"
+              addonBefore={
+                <ExclamationCircleOutlined
+                  style={
+                    value.confirm_password !== ""
+                      ? value.confirm_passwordStrength === 1
+                        ? strong
+                        : weak
+                      : null
+                  }
+                />
+              }
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
+            />
+          </Col>
+          <Col sm={12} md={6} className={classes.Mt_12}>
+            <Button type="primary" loading={loading} htmlType="submit">
+              Send
+            </Button>
+          </Col>
         </Form>
-      )}
+      </div>
     </Layout>
   );
 };

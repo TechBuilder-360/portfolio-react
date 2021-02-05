@@ -1,37 +1,46 @@
 import React from "react";
 import { connect } from "react-redux";
+import { sortMonthYear, text_truncate } from "../../../shared/utility";
+import { Tooltip } from 'antd';
 import classes from "../education/education.module.css";
 
 const Experience = (props) => {
+  
   let direction = classes.left;
-
-  const sortedExperienceHistory = [...props.experienceHistory].sort(
-    (a, b) => b.start_year - a.start_year
-  );
-
+  const sortedExperience = sortMonthYear(props.experience)
   return (
     <div className={props.wrapper}>
-      <p className='title' style={{textAlign: "left"}}>{props.title}</p>
-      <div className={classes.timeline}>
-        {sortedExperienceHistory.map((experience, index) => (
-          <div className={`${classes.container}  ${direction}`} key={index}>
-            <div className={classes.content}>
-              <h2>
-                {experience.end_year
-                  ? `${experience.start_year} - ${experience.end_year}`
-                  : `${experience.start_year} - Till Date`}
-              </h2>
-              <p>Organization: {experience.organization}</p>
-              <p>Position: {experience.position}</p>
-              <p>Role:{experience.description}</p>
-              <p hidden>
-                {direction === classes.left
-                  ? (direction = classes.right)
-                  : (direction = classes.left)}
-              </p>
+      <p className="title" style={{ textAlign: "left" }}>
+        {props.title}
+      </p>
+      <div className={props.timeline}>
+        <div className={classes.timeline}>
+          {sortedExperience.map((experience, index) => (
+            <div className={`${classes.container}  ${direction}`} key={index}>
+              <div className={classes.content}>
+                <p>
+                  <span style={{float: "right"}}>
+                  {experience.inProgress
+                    ? `${experience.startYear} - Till Date`
+                    : `${experience.startYear} - ${experience.endYear}`
+                  }
+                </span>
+                <br/>{experience.organization}
+                <br/>
+                {experience.position}<br/>
+                <Tooltip placement="topLeft" title={experience.description} arrowPointAtCenter>
+                  {text_truncate(experience.description, 40)}
+                </Tooltip>
+                </p>
+                <p hidden>
+                  {direction === classes.left
+                    ? (direction = classes.right)
+                    : (direction = classes.left)}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -39,7 +48,7 @@ const Experience = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    experienceHistory: state.experience,
+    experience: state.portfolio.experience,
   };
 };
 

@@ -1,178 +1,264 @@
 import * as actionType from "../actions/actionType";
 
 const initialState = {
-  personal_info: {
-    username: "John01",
-    first_name: "John",
-    last_name: "Doe",
-    middle_name: "Orion",
-    email: "John.Doe@mail.com",
-    gender: "Male",
-    languages: "English, French",
-    state_of_residence: "Lagos",
-    nationality: "Nigeria",
-    date_of_birth: "12th, December",
-    profession: "Accountant",
-    profile_pix: "",
-    // "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/440px-Lion_waiting_in_Namibia.jpg",
-    bio:
-      "A graduate of Accounting, Ladoke Akintola University of Technology, A passionate writter and a loving Dog owner",
+  personalInfo: null,
+  skills: [],
+  subskill: [],
+  education: [],
+  experience: [],
+  project: [],
+  social: [],
+  accomplishment: [],
+  template: [],
+  message: {
+    messages: [],
+    alert: "",
   },
-  skills: [
-    "ICAN",
-    "BSc",
-    "MBA",
-    "HTML",
-    "CSS",
-    "CCNA",
-    "AGILE",
-    "SCRUM",
-    "COMPTIA N+",
-    "COMPTIA A+",
-    "Python",
-    "Java",
-    "NodeJs",
-    "PHP",
-    "SPSS",
-    "Scala",
-    "Kafka",
-    "Cassandra",
-    "Postgres",
-    "Django",
-    "Spring Boot",
-    "Akka",
-  ],
-  education: [
-    {
-      education_type: "Tertiary",
-      institution: "Lautech",
-      start_year: 2006,
-      end_year: 2011,
-      degree: "BSc",
-      course: "Accounting",
-    },
-    {
-      education_type: "Tertiary",
-      institution: "Manchester University",
-      start_year: 2012,
-      end_year: null,
-      degree: "MBA",
-      course: "Accounting",
-      class_of_degree: 'First Class'
-    },
-    {
-      education_type: "College",
-      institution: "Doregos College",
-      start_year: 2000,
-      end_year: 2006,
-      degree: "SSCE"
-    },
-  ],
-  experience: [
-    {
-      organization: "Consolidate Insurance",
-      description: "Worked as an account manager",
-      position: "Accounting managment",
-      start_year: 2016,
-      end_year: 2018,
-    },
-    {
-      organization: "Access Bank",
-      description: "Worked as an account manager",
-      position: "Accounting managment",
-      start_year: 2018,
-      end_year: null,
-    },
-  ],
-  project: [
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-    {
-      title: "Fraud detection using transaction pattern",
-      description:
-        "Fraud detection using transaction pattern and previous account records.",
-    },
-  ],
-  social: [
-    {
-      label: "facebook",
-      url: "https://facebook.com",
-    },
-    {
-      label: "twitter",
-      url: "https://twitter.com",
-    },
-  ],
+  redirect: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionType.DOWNLOAD_RESUME:
+      return {
+        ...state,
+      };
+    case actionType.MESSAGES:
+      return {
+        ...state,
+        message: action.detail,
+      };
+    case actionType.CLEAR_MESSAGES:
+      return {
+        ...state,
+        message: {
+          messages: [],
+          alert: "",
+        },
+      };
+    case actionType.REDIRECT:
+      return {
+        ...state,
+        redirect: true,
+      };
+    case actionType.CLEAR_REDIRECT:
+      return {
+        ...state,
+        redirect: false,
+      };
+    case actionType.FETCH_PORTFOLIO:
+      return {
+        ...state,
+        skills: action.payload.skills,
+        personalInfo: action.payload.personalInfo,
+        subskill: action.payload.subskill.map((sub) => {
+          sub.skill = sub.skill.id;
+          return sub;
+        }),
+        accomplishment: action.payload.accomplishment,
+        education: action.payload.education,
+        experience: action.payload.experience,
+        project: action.payload.project,
+        social: action.payload.social,
+      };
     case actionType.PERSONAL_INFORMATION:
       return {
         ...state,
-      };
-    case actionType.EDUCATION:
-      return {
-        ...state,
-      };
-    case actionType.EXPERIENCE:
-      return {
-        ...state,
-      };
-    case actionType.PROFESSIONAL_SUMMARY:
-      return {
-        ...state,
-      };
-    case actionType.PROJECTS:
-      return {
-        ...state,
+        personalInfo: { ...state.personalInfo, ...action.detail },
       };
     case actionType.SKILL:
       return {
         ...state,
+        skills: [...state.skills, action.skill],
       };
-    case actionType.SOCIAL_LINK:
+    case actionType.AVATAR_UPLOAD:
       return {
         ...state,
+        personalInfo: { ...state.personalInfo, profilePix: action.imageURL },
       };
+    case actionType.ADD_SOCIAL_LINK:
+      return {
+        ...state,
+        social: [...state.social, action.payload],
+      };
+    case actionType.EDIT_SOCIAL_LINK:
+      let newSocial = state.social.map((socialLink) => {
+        if (socialLink.id === action.payload.id) {
+          socialLink.label = action.payload.label;
+          socialLink.url = action.payload.url;
+        }
+        return socialLink;
+      });
+      return {
+        ...state,
+        social: newSocial,
+      };
+    case actionType.DELETE_SOCIAL_LINK:
+      return {
+        ...state,
+        social: [...state.social.filter((link) => link.id !== action.id)],
+      };
+    case actionType.ADD_EDUCATION:
+      return {
+        ...state,
+        education: [...state.education, action.payload],
+      };
+    case actionType.DELETE_EDUCATION:
+      return {
+        ...state,
+        education: [
+          ...state.education.filter(
+            (education) => education.id !== action.payload
+          ),
+        ],
+      };
+    case actionType.EDIT_EDUCATION:
+      const oldEdu = [...state.education];
+      const education = oldEdu.map((edu) => {
+        if (edu.id === action.payload.id) {
+          edu = action.payload;
+        }
+        return edu;
+      });
+      return {
+        ...state,
+        education,
+      };
+
+    case actionType.ADD_EXPERIENCE:
+      return {
+        ...state,
+        experience: [...state.experience, action.payload],
+      };
+    case actionType.DELETE_EXPERIENCE:
+      return {
+        ...state,
+        experience: [
+          ...state.experience.filter(
+            (experience) => experience.id !== action.payload
+          ),
+        ],
+      };
+    case actionType.EDIT_EXPERIENCE:
+      const oldExp = [...state.experience];
+      const experience = oldExp.map((exp) => {
+        if (exp.id === action.payload.id) {
+          exp = action.payload;
+        }
+        return exp;
+      });
+      return {
+        ...state,
+        experience,
+      };
+
+    case actionType.ADD_PORJECT:
+      return {
+        ...state,
+        project: [...state.project, action.payload],
+      };
+    case actionType.DELETE_PROJECT:
+      return {
+        ...state,
+        project: [
+          ...state.project.filter((project) => project.id !== action.payload),
+        ],
+      };
+    case actionType.EDIT_PROJECT:
+      const oldProject = [...state.project];
+      const project = oldProject.map((proj) => {
+        if (proj.id === action.payload.id) {
+          proj = action.payload;
+        }
+        return proj;
+      });
+      return {
+        ...state,
+        project,
+      };
+
+    case actionType.ADD_ACCOMPLISHMENT:
+      return {
+        ...state,
+        accomplishment: [...state.accomplishment, action.payload],
+      };
+    case actionType.DELETE_ACCOMPLISHMENT:
+      return {
+        ...state,
+        accomplishment: [
+          ...state.accomplishment.filter((acc) => acc.id !== action.payload),
+        ],
+      };
+    case actionType.EDIT_ACCOMPLISHMENT:
+      const oldACC = [...state.accomplishment];
+      const accomplishment = oldACC.map((acc) => {
+        if (acc.id === action.payload.id) {
+          acc = action.payload;
+        }
+        return acc;
+      });
+      return {
+        ...state,
+        accomplishment,
+      };
+
+    case actionType.EDIT_SKILL:
+      const oldSkill = [...state.skills];
+      const skills = oldSkill.map((skill) => {
+        if (skill.id === action.payload.id) {
+          skill = action.payload;
+        }
+        return skill;
+      });
+      return {
+        ...state,
+        skills,
+      };
+
+    case actionType.DELETE_SKILL:
+      return {
+        ...state,
+        skills: [
+          ...state.skills.filter((skill) => skill.id !== action.payload),
+        ],
+        subskill: [
+          ...state.subskill.filter((skill) => skill.id !== action.payload),
+        ],
+      };
+
+    case actionType.SUBSKILL:
+      return {
+        ...state,
+        subskill: [...state.subskill, action.payload],
+      };
+
+    case actionType.DELETE_SUBSKILL:
+      return {
+        ...state,
+        subskill: [
+          ...state.subskill.filter((skill) => skill.id !== action.payload),
+        ],
+      };
+
+    case actionType.FETCH_TEMPLATE:
+      return {
+        ...state,
+        template: [...action.payload],
+      };
+
+    case actionType.SET_TEMPLATE:
+      const template = state.template.find(t=> t.id === action.id)
+      return {
+        ...state,
+        personalInfo: { ...state.personalInfo, template },
+      };
+
+    case actionType.ALLOW_DOWNLOAD:
+      return {
+        ...state,
+        personalInfo: { ...state.personalInfo, allowDownload: action.state },
+      };
+
     default:
       return state;
   }

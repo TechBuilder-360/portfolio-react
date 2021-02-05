@@ -1,13 +1,16 @@
 .Avatar_Wrapper {
-    width: 35%;
-    margin: 1% 1%;
+    width: 80%;
+    margin: 2% auto ;
 }
 
 .Avatar {
     width: 100%;
+    background-size: cover;
+    min-width: 150px;
+    max-width: 250px;
+    height: 200px;
     box-sizing: border-box;
     padding: 0;
-    height: inherit;
     border-radius: 100%;
 }
 
@@ -15,7 +18,23 @@
 /* Desktop view */
 @media (min-width: 760px){
     .Avatar_Wrapper {
+        width: 100%;
+        margin: 3% auto;
+    }
+
+    .Avatar {
         width: 60%;
-        margin: 5% auto;
+    }
+}
+
+
+@media (min-width: 850px){
+
+    .Avatar_Wrapper {
+        width: 70%;
+    }
+
+    .Avatar{
+        width: 100%;
     }
 }

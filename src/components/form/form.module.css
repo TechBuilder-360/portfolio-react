@@ -1,0 +1,55 @@
+.textarea, .multiText {
+    background-color: #F9F9F9;;
+    padding: 1%;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 100%;
+    text-align: right;
+}
+
+.textarea {
+    border: 1px solid rgba(0, 0, 0, 0.218);
+}
+
+.multiText{
+    text-align: left;
+    resize: none;
+    outline: none;
+    border: 0;
+}
+
+.textarea > .Span {
+    opacity: 0.45;
+    font-size: 10px;
+}
+
+.datePicker{
+    display: block;
+    width: 100%;
+    border:none;
+}
+
+.datePicker > div{
+    background-color: #F9F9F9;
+    border: none;
+    border-radius: 6px;
+    padding: 1%;
+    padding-left: 3%;
+}
+
+.datePicker input{
+    background-color: transparent;
+    outline: none;
+}
+
+.datePicker .Span{
+    color: black;
+}
+
+
+@media (min-width: 760px) {
+
+    .textarea > .Span {
+        font-size: inherit
+    }
+}

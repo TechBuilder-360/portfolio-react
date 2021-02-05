@@ -1,16 +1,14 @@
 .container{
     margin-bottom: 15px;
-    display: flex;
-    width: 50%;
-    margin-left: 30%;
+    display: block;
+    text-align: inherit;
+    color: black;
+}
+.lo{
+    display: inline-block;
 }
 
 .icon {
     height: 25px;
     width: 50px;
-}
-
-.text {
-    padding-top: 2px;
-    font-size: 15px;
 }

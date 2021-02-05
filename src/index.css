@@ -1,18 +1,38 @@
 @font-face {
-  font-family: 'Poppins';
-  src: url(./fonts/Poppins-Bold.ttf) format('truetype');
+  font-family: "Poppins";
+  src: url(./fonts/Poppins-Bold.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Poppins';
-  src: url(./fonts/Poppins-Regular.ttf) format('truetype');
+  font-family: "Poppins";
+  src: url(./fonts/Poppins-Regular.ttf) format("truetype");
 }
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 500;
+}
+
+p {
+  white-space: pre-wrap;
+}
+
+.carousel > .carousel-indicators > li {
+  width: 1px;
+  height: 0.1px;
+  border-radius: 50%;
+  background-color: grey;
+  margin: 5px;
+}
+
+.Layout_Aside__1H6uu > .slide {
+  box-shadow: 17px 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.carousel .carousel-indicators {
+  margin-bottom: -3px;
 }
 
 .title {
@@ -21,7 +41,27 @@
   line-height: 25px;
 }
 
-@media (min-width: 760px){
+.alert ul {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.alert ul li{
+  padding: 0;
+}
+
+i.ant-spin-dot-item {
+  background-color: black;
+}
+
+.ant-spin-lg span.ant-spin-dot {
+  font-size: 45px;
+}
+
+@media (min-width: 760px) {
+  * {
+    font-size: 15px;
+  }
 
   .title {
     text-align: center;

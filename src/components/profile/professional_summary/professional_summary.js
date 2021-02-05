@@ -5,14 +5,18 @@ const ProfessionalSummary = props => {
     return (
         <div className={props.wrapper}>
             <p className='title' style={{textAlign:'left'}}>{props.title}</p> {/* styling of title should be moved to dashboard.module.css to ensure consistent title styling for each section */}
+            <div className={props.div}>
             <p style={{textAlign: "left"}}>{props.summary}</p>
+
+            </div>
+            
         </div>
     )
 }
 
 const mapStateToProps = state =>{
     return{
-        summary: state.personal_info.bio
+        summary: state.portfolio.personalInfo.bio
     }
 }
 

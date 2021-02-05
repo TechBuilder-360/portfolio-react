@@ -1,4 +1,5 @@
 import React from "react";
+
 import classes from "./carousel.module.css"
 import img1 from "../../images/carousel-img1.jpg";
 import img2 from "../../images/carousel-img2.jpg";

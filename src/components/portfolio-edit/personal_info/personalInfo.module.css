@@ -1,14 +1,144 @@
 .Img {
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-    vertical-align: middle;
+  width: 80px;
+  text-align: center;
+  margin: 5% 0;
+  height: 65px;
+  vertical-align: middle;
+  border-radius: 8px;
 }
 
-.Mt_10 {
-    margin-top: 10px;
+.span{
+  background-color: rgb(224, 222, 222);
+  padding: 10px;
+  margin:5px;
+  display:inline-block;
+  border-radius: 20px;
+}
+
+.icon{
+  color:rgb(235, 194, 194);
+  margin-left: 10px;
+}
+
+.ul{
+  background-color: #F2F5FA;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.li{
+  background-color: rgba(196, 196, 196, 0.356);
+  list-style:none;
+  display:inline-block;
+  margin: 5px;
+  color:rgba(86, 86, 110, 0.973);
+  padding: 7px;
+  border-radius:20px;
+}
+.icon:hover{
+  cursor: pointer;
+}
+
+.wrapper {
+  margin-top: 30px;
+  border: 1px solid black;
 }
 
 .Mb_5 {
-    margin-bottom: 5px;
+  margin-bottom: 1%;
+}
+
+.Mb_5 input, .Mb_5 select{
+  height: 35px;
+  background-color:#F9F9F9;
+  border-radius: 5px;
+}
+
+::placeholder,
+:-ms-input-placeholder {
+  color: rgb(224, 9, 9);
+  padding: 20px;
+}
+
+.check {
+  position: relative;
+  top: 9px;
+  font-size: 12px
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+form label {
+  color: rgb(148, 147, 147);
+}
+
+
+.Accordion_Parent {
+  margin-bottom: 2%;
+  overflow: visible !important;
+}
+
+
+.Accordion_Child{
+  overflow: visible !important;
+  width: 100%;
+}
+
+.Label {
+  position: relative;
+  top: 5px;
+  width: 60%;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.Accordion_Child .Span {
+  float: right;
+}
+
+.Accordion_Body {
+  position: relative !important;
+  top: 0;
+  overflow: auto !important;
+  z-index: 12 !important;
+}
+
+/* Desktop view */
+@media (min-width: 760px) {
+.Img {
+  height: 120px;
+  width: 120px;
+}
+
+  .Accordion_Child {
+    margin-bottom: 1%;
+    z-index: 1;
+  }
+
+  .Accordion_Parent{
+    margin-bottom: 2%;
+  }
+
+  .Mb_5 {
+    margin-bottom: 10px;
+  }
+
+  .Mb_5 input, .Mb_5 select{
+    background-color: #F9F9F9;
+    border-radius: 5px;
+    outline: none;
+
+  }
+
+  .Mb_5 input:focus, .Mb_5 select:focus{
+    outline: none;
+  }
+
+  .Label{
+    top: 8px;
+  }
 }

@@ -4,29 +4,35 @@
     flex-wrap: wrap;
     text-align: justify;
 }
+.circle{
+    color: green;
+}
 
 .Skill li{
     list-style: none;
-    font-size: 9pt;
-    padding: 7px;
-    margin: 0 5px 5px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.35);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 200px;
+    background-color: #CBC8C8;
+    color: #636363;
+    font-size: 15px;
+    padding: 10px;
+    margin: 0 5px 10px;
+    border-radius: 5%;
+    border: 1px solid rgba(0, 0, 0, 0.185);
     cursor: pointer;
 };
 
-
-
-/* Desktop view not responding ??? */
+/* Desktop view */
 @media (min-width: 760px){
     .Skill li{
-        font-size: 12pt;
         padding: 8px;
         margin: 0 5px 8px;
     }
-   
 }
+@media (max-width: 565px) {
+   
+    .Skill li{
+        padding: 4px;
+        margin: 0 5px 5px;
+      
+    }
+    
+  }

@@ -1,61 +1,61 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../container/Layout/Layout";
 import { Form, Col } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import tick from "../../../images/Flat_tick_icon.svg.png";
 import classes from "./Password.module.css";
+import { Input, Button } from "antd";
+import { MailOutlined } from "@ant-design/icons";
+import { resetPassword, loadingStart } from "../../../store/actions/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const PasswordReset = () => {
-  const email = useRef(null);
-  const [showSent, setShowSent] = useState(false);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const auth = useSelector((state) => state.auth.loading);
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if (loading && auth === false) {
+      setRedirect(true)
+    }
+  }, [auth]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const passwordResetHandler = (event) => {
     event.preventDefault();
-    console.log(email.current.value);
-    setShowSent(true);
+    dispatch(loadingStart());
+    setLoading(true);
+    dispatch(resetPassword(email));
   };
 
   return (
     <Layout>
-      <Form.Row className="text-center">
-        <Col>
-          <Form.Label>Reset Password</Form.Label>
-        </Col>
-      </Form.Row>
-      {showSent ? (
-        <div>
-          <Form.Row className="text-center">
-            <Form.Label>
-              A password reset message has been sent to the email you entered
-            </Form.Label>
-          </Form.Row>
-          <img
-            className={[classes.Image, "img-responsive"].join(" ")}
-            src={tick}
-            alt="logo"
-          />
-        </div>
-      ) : (
+      { redirect?<Redirect
+          to={{
+            pathname: "/",
+          }}
+        />: null}
+      <div className={classes.Container}>
+        <p className="title">Reset Password</p>
         <Form onSubmit={passwordResetHandler}>
-          <Form.Row className="mb-3">
-            <Col>
-              <Form.Control
-                type="email"
-                placeholder="Email Address"
-                required
-                ref={email}
-              />
-            </Col>
-          </Form.Row>
-          <Form.Row className="text-center">
-            <Col>
-              <Button type="submit" variant="primary">
-                Reset Password
-              </Button>
-            </Col>
-          </Form.Row>
+          <Col>
+            <Form.Label>Reset Password</Form.Label>
+            <Input
+              type="email"
+              placeholder="Email Address"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              addonBefore={<MailOutlined />}
+            />
+          </Col>
+          <Col sm={12} md={6} className={classes.Mt_12}>
+            <Button type="primary" loading={loading} htmlType="submit">
+              Reset
+            </Button>
+          </Col>
         </Form>
-      )}
+      </div>
     </Layout>
   );
 };
