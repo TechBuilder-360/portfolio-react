@@ -62,46 +62,6 @@ ul.slides input {
     font-size: 13px;
 }
 
-/* .carousel_controls {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    font-size: 100px;
-    line-height: 600px;
-    color: #fff;
-} */
-
-/* .carousel_controls label {
-    display: none;
-    position: absolute;
-    padding: 0 20px;
-    opacity: 0;
-    transition: opacity .2s;
-    cursor: pointer;
-} */
-
-/* .slide_image:hover + .carousel_controls label{
-    opacity: 0.5;
-} */
-
-/* .carousel_controls label:hover {
-    opacity: 1;
-} */
-
-/* .carousel_controls .prev_slide {
-    width: 49%;
-    text-align: left;
-    left: 0;
-} */
-
-/* .carousel_controls .next_slide {
-    width: 49%;
-    text-align: right;
-    right: 0;
-} */
-
 .carousel_dots {
     position: relative;
     left: 0;
