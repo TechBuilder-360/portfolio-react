@@ -1,29 +1,29 @@
-.Carousel{
-    box-sizing: border-box;
-    box-shadow: 17px 8px 16px rgba(0, 0, 0, 0.25);
-    width: 80%;
-    height: 60vh;
+
+.carousel {
+  box-shadow: 15px 7px 10px rgba(142, 145, 144, 0.938); 
+  height: 480px;
 }
 
-.Carousel ol li{
-    background-color: grey; 
-    height: 2px;
-    width: 2px;
-    border-radius: 100%;
-}
+.carousel_slides {
+    display: block;
+    position: relative;
+    height: 350px;
+    top: 5%;
+    margin-left: 9%;
+    margin-right: 9%;
+    overflow: hidden;
+    list-style: none;
+    
+}  
 
-.Carousel ol li.active {
-    height: 18px;
-    width: 19px;
-    border-radius: 100%;
-}
-
-.Carousel img {
-    height: 248px;
-    width: 348px;
-}
-
-.Carousel p{
-    margin-top: 5%;
+.carousel_text {
     text-align: center;
+    position: relative;
+    top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font: "Poppins";
+    font-weight: 300;
+    font-style: normal;
+    font-size: 13px;
 }

@@ -52,6 +52,7 @@ color: black;
 }
 
 .Main_Content{
+    margin-top: 8px;
     margin-bottom: 8px;
     width: 100%;
     box-sizing: border-box;
@@ -75,6 +76,10 @@ color: black;
         overflow: scroll;
         text-align: left;
         height: 90vh;
+    }
+
+    .Main_Content {
+        margin-top: 10px;
     }
 
     ::-webkit-scrollbar{

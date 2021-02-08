@@ -1,48 +1,44 @@
 import React from "react";
-import classes from "./carousel.module.css";
-import "bootstrap/dist/css/bootstrap.css";
-import { Carousel } from "react-bootstrap";
-import image1 from "./Carousel Image/1.jpeg";
-import image2 from "./Carousel Image/2.jpg";
-import image3 from "./Carousel Image/3.jpg";
-import image4 from "./Carousel Image/4.jpeg";
+import Carousel from 'react-bootstrap/Carousel'
+import classes from "./carousel.module.css"
+import img1 from "../../images/carousel-img1.jpg";
+import img2 from "../../images/images2.jpeg";
+import img3 from "../../images/carousel-img3.jpg";
+
 
 const CarouselImage = () => {
   return (
-    <Carousel className={classes.Carousel} controls={false}>
-      <Carousel.Item>
-        <img
-          src={image1}
-          alt="First slide"
-          className="d-block w-100"
-        />
-        <p>First Slide</p>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          src={image2}
-          alt="First slide"
-          className="d-block w-100"
-        />
-        <p>Second Slide</p>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          src={image3}
-          alt="First slide"
-          className="d-block w-100"
-        />
-        <p>Third Slide</p>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          src={image4}
-          alt="First slide"
-          className="d-block w-100"
-        />
-         <p>Fourth Slide</p>
-      </Carousel.Item>
-    </Carousel>
-  );
-};
+    <div className={classes.carousel}>
+      <div className={classes.carousel_slides}>
+      <Carousel>
+        <Carousel.Item interval={1000}>
+          <img
+            className="d-block w-100"
+            src={img1}
+            alt="First slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item interval={500}>
+          <img
+            className="d-block w-100"
+            src={img2}
+            alt="Third slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={img3}
+            alt="Third slide"
+          />
+        </Carousel.Item>
+      </Carousel>
+      </div>   
+      <div className={classes.carousel_text}>
+        <p>"The world won't care about your self-esteem. The world will expect you to accomplish something BEFORE you feel good about yourself." - Bill Gates</p>
+      </div>
+    </div>
+  )
+}
+
 export default CarouselImage;
