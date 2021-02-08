@@ -1,6 +1,5 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel'
-
 import classes from "./carousel.module.css"
 import img1 from "../../images/carousel-img1.jpg";
 import img2 from "../../images/images2.jpeg";
@@ -8,7 +7,6 @@ import img3 from "../../images/carousel-img3.jpg";
 
 
 const CarouselImage = () => {
-
   return (
     <div className={classes.carousel}>
       <div className={classes.carousel_slides}>
@@ -35,8 +33,7 @@ const CarouselImage = () => {
           />
         </Carousel.Item>
       </Carousel>
-      </div>
-      
+      </div>   
       <div className={classes.carousel_text}>
         <p>"The world won't care about your self-esteem. The world will expect you to accomplish something BEFORE you feel good about yourself." - Bill Gates</p>
       </div>
