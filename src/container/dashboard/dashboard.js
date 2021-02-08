@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Dropdown } from "react-bootstrap";
 import classes from "./dashboard.module.css";
 import PersonalInfo from "../../components/profile/personal_Info/personal_info";
 import ProfessionalSummary from "../../components/profile/professional_summary/professional_summary";
@@ -27,7 +27,7 @@ import {
   FacebookIcon,
 } from "react-share";
 import { message } from "antd";
-import { CopyOutlined } from '@ant-design/icons'
+import { CopyOutlined, DownloadOutlined } from "@ant-design/icons";
 
 const Dashboard = () => {
   const { username } = useParams();
@@ -53,10 +53,10 @@ const Dashboard = () => {
   const handleDownload = (last_name) => {
     dispatch(downloadResume(username, last_name));
   };
-  
+
   const copyUserLink = () => {
-    navigator.clipboard.writeText(window.location.toString())
-    message.success('Link copied to clipboard!', 2);
+    navigator.clipboard.writeText(window.location.toString());
+    message.success("Link copied to clipboard!", 2);
   };
 
   if (auth.loading) {
@@ -68,41 +68,49 @@ const Dashboard = () => {
           <PersonalInfo isOwner={username === auth.username} />
           <SocialLinks />
           <br />
-          {portfolio.allowDownload? 
-            <button
-              onClick={() => handleDownload(portfolio.lastName)}
-              className={classes.Butt}
-            >
-              Download Resume
-            </button>: null
-          }
-          <br />
-          <button
-            onClick={() => copyUserLink()}
-            className={classes.Butt}
-          >
-            Copy Link &nbsp;
-            <CopyOutlined/>
-          </button>
 
-          
-          {username === auth.username ? (
-            <div className={classes.Share}>
-              Share <TwitterShareButton
-                title={ShareButton.title}
-                url={ShareButton.url}
-              >
-                <TwitterIcon size={32} round={true} />
-              </TwitterShareButton>
-              {" "}
-              <FacebookShareButton
-                title={ShareButton.title}
-                url={ShareButton.url}
-              >
-                <FacebookIcon size={32} round={true} />
-              </FacebookShareButton>
-            </div>
-          ) : null}
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              More
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {portfolio.allowDownload ? (
+                <Dropdown.Item
+                  onClick={() => handleDownload(portfolio.lastName)}
+                >
+                  <DownloadOutlined />{" "}
+                  <span style={{ paddingLeft: "10px" }}>Download Resume</span>
+                </Dropdown.Item>
+              ) : null}
+              <Dropdown.Item onClick={() => copyUserLink()}>
+                <CopyOutlined />{" "}
+                <span style={{ paddingLeft: "10px" }}>Copy Link</span>
+              </Dropdown.Item>
+              {username === auth.username ? (
+                <>
+                  <Dropdown.Divider />
+                  <Dropdown.Header>Share</Dropdown.Header>
+                  <Dropdown.Item>
+                    <>
+                      <TwitterShareButton
+                        title={ShareButton.title}
+                        url={ShareButton.url}
+                      >
+                        <TwitterIcon size={32} round={true} />
+                      </TwitterShareButton>
+                      <FacebookShareButton
+                        title={ShareButton.title}
+                        url={ShareButton.url}
+                      >
+                        <FacebookIcon size={32} round={true} />
+                      </FacebookShareButton>
+                    </>
+                  </Dropdown.Item>
+                </>
+              ) : null}
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
 
         <Col sm="12" md="9" className={classes.Main}>
