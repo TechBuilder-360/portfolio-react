@@ -1,27 +1,28 @@
 
 .carousel {
   box-shadow: 15px 7px 10px rgba(142, 145, 144, 0.938); 
-  height: 480px;
+  height: 70vh;
+  margin-top: 0;
 }
 
 .carousel_slides {
     display: block;
-    position: relative;
-    height: 350px;
-    top: 5%;
     margin-left: 9%;
     margin-right: 9%;
     overflow: hidden;
     list-style: none;
-    
+    padding-top: 5%;
 }  
+
+.carousel img {
+  height: 250px;
+}
 
 .carousel_text {
     text-align: center;
-    position: relative;
-    top: 20px;
-    margin-left: 10%;
-    margin-right: 10%;
+    height: 120px;
+    margin: 5%;
+    margin-bottom: 14%;
     font: "Poppins";
     font-weight: 300;
     font-style: normal;
