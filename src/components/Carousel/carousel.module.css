@@ -3,6 +3,7 @@
   box-shadow: 15px 7px 10px rgba(142, 145, 144, 0.938); 
   height: 70vh;
   margin-top: 0;
+  border-radius: 10px;
 }
 
 .carousel_slides {
@@ -22,9 +23,10 @@
     text-align: center;
     height: 120px;
     margin: 5%;
-    margin-bottom: 14%;
+    margin-bottom: 8%;
     font: "Poppins";
     font-weight: 300;
     font-style: normal;
     font-size: 13px;
+    color: gray;
 }

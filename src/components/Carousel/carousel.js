@@ -1,9 +1,9 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel'
 import classes from "./carousel.module.css"
-import img1 from "../../images/carousel-img1.jpg";
-import img2 from "../../images/images2.jpeg";
-import img3 from "../../images/carousel-img3.jpg";
+import img1 from "../../images/creativity.jpg";
+import img2 from "../../images/connectivity.jpg";
+import img3 from "../../images/achievement.jpg";
 
 
 const CarouselImage = () => {
@@ -20,7 +20,7 @@ const CarouselImage = () => {
             alt="First slide"
           />
           <div className={classes.carousel_text}>
-        <p>"The world won't care about your self-esteem. The world will expect you to accomplish something BEFORE you feel good about yourself." - Bill Gates</p>
+        <p><cite>The best way to create value in the 21st century is to connect Creativity with Technology.</cite> <br/><br/>- Steve Jobs</p>
       </div>
         </Carousel.Item>
         <Carousel.Item interval={interval}>
@@ -30,7 +30,7 @@ const CarouselImage = () => {
             alt="Third slide"
           />
           <div className={classes.carousel_text}>
-        <p>Stylish portfolio to suit your profession</p>
+        <p><cite>Technology is best when it brings people together.</cite> <br/><br/>- Matt Mullenweg</p>
       </div>
         </Carousel.Item>
         <Carousel.Item interval={interval}>
@@ -40,7 +40,8 @@ const CarouselImage = () => {
             alt="Third slide"
           />
           <div className={classes.carousel_text}>
-        <p>"The world won't care about your self-esteem. The world will expect you to accomplish something BEFORE you feel good about yourself." - Bill Gates</p>
+        <p><cite>The world won't care about your self-esteem. The world will expect 
+          you to accomplish something BEFORE you feel good about yourself.</cite> <br/><br/>- Bill Gates</p>
       </div>
         </Carousel.Item>
       </Carousel>

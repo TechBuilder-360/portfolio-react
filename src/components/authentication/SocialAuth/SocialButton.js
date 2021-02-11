@@ -42,7 +42,7 @@ const SocialButton = (props) => {
               size="sm"
               role="status"
               aria-hidden="true"
-              />
+              />&nbsp; Loading...
           </span>
           : <div>{props.title} with Google</div> }   
       </GoogleLogin>
