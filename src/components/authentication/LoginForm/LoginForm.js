@@ -15,7 +15,6 @@ import {
   ExclamationCircleOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import Message from "../../Flash message/message";
 
 const LoginForm = () => {
   const content = { email: "", password: "" };
@@ -54,9 +53,6 @@ const LoginForm = () => {
 
   return (
     <Layout>
-      {authState.error.length > 0
-        ? <Message/>
-        : null}
       <div className={classes.Container}>
         <p className="title">Sign in</p>
 

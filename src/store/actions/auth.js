@@ -32,6 +32,7 @@ export const googleAuthSuccess = (token) => (dispatch) => {
       };
       dispatch(sessionTokenSuccess(userData));
       cookie.save("userData", userData, CookiesOptions);
+      dispatch(loadingStop());
     })
     .catch((err) => {
       dispatch(loadingFailed(err));

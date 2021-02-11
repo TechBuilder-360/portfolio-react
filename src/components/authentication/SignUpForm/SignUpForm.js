@@ -16,7 +16,6 @@ import {
   MailOutlined,
   UserOutlined
 } from "@ant-design/icons";
-import Message from "../../Flash message/message";
 
 
 const SignUpForm = () => {
@@ -83,9 +82,6 @@ const SignUpForm = () => {
 
   return (
     <Layout>
-      {authState.error.length > 0
-        ? <Message/>
-        : null}
       <div className={classes.Container}>
         <p className="title">Sign up</p>
 

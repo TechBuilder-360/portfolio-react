@@ -1,7 +1,7 @@
 import React from "react";
 import Dashboard from "./container/dashboard/dashboard";
 import { Route, Switch } from "react-router-dom";
-import FAQs from "./components/pre-auth/FAQs";
+// import FAQs from "./components/pre-auth/FAQs";
 import About from "./components/pre-auth/About";
 import Contact from "./components/pre-auth/Contact";
 import Features from "./components/pre-auth/Features";
@@ -22,7 +22,7 @@ const App = () => {
     <Switch style={{ paddingLeft: "0" }}>
       <Route path="/password-reset" exact component={PasswordReset} />
       <Route path="/password-reset/:token" exact component={PasswordChange} />
-      <Route path="/faqs" exact component={FAQs} />
+      {/* <Route path="/faqs" exact component={FAQs} /> */}
       <Route path="/features" exact component={Features} />
       <Route path="/contact" exact component={Contact} />
       <Route path="/about" exact component={About} />
