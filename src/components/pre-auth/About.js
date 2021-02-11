@@ -26,7 +26,7 @@ const About = () => {
             <p>To build a community of developers that would build a better future.</p>
             <br/>
             <p className="title">WANT TO JOIN US?</p>
-            <p>Send your Request to our Email highlighting your point of interest.</p>
+            <p>Send your request to our email highlighting your point of interest.</p>
             <p>
                 <FontAwesomeIcon icon={faEnvelope} /> 
                 <a target='blank' href="mailto:Tech.Builder.circle@gmail.com" className={classes.Link}> Tech.Builder.circle@gmail.com </a>

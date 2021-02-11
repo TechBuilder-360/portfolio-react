@@ -1,9 +1,9 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel'
 import classes from "./carousel.module.css"
-import img1 from "../../images/creativity.jpg";
-import img2 from "../../images/connectivity.jpg";
-import img3 from "../../images/achievement.jpg";
+import img1 from "../../images/carousel-img1.jpg";
+import img2 from "../../images/carousel-img2.jpg";
+import img3 from "../../images/carousel-img3.jpg";
 
 
 const CarouselImage = () => {
@@ -20,7 +20,7 @@ const CarouselImage = () => {
             alt="First slide"
           />
           <div className={classes.carousel_text}>
-        <p><cite>The best way to create value in the 21st century is to connect Creativity with Technology.</cite> <br/><br/>- Steve Jobs</p>
+        <p><cite>The best way to get started is to quit talking and begin doing.</cite> <br/><br/>- Walt Disney</p>
       </div>
         </Carousel.Item>
         <Carousel.Item interval={interval}>
@@ -30,7 +30,7 @@ const CarouselImage = () => {
             alt="Third slide"
           />
           <div className={classes.carousel_text}>
-        <p><cite>Technology is best when it brings people together.</cite> <br/><br/>- Matt Mullenweg</p>
+        <p><cite>It's not what you achieve, it's what you overcome. That's what defines your career.</cite> <br/><br/>- Carlton Fisk </p>
       </div>
         </Carousel.Item>
         <Carousel.Item interval={interval}>

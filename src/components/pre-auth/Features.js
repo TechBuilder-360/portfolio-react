@@ -9,7 +9,7 @@ const Features = () => {
             <ul>
                 <li>Create a portfolio.</li>
                 <li>Generate custom link to share portfolio.</li>
-                <li>Choose a preferred template for resume download or upload yours</li>
+                <li>Choose a preferred template for resume download or upload yours.</li>
                 <li>Blogging system <span style={{color:'red'}}>Coming Soon!!</span></li>
             </ul>
         </Layout>
