@@ -20,7 +20,7 @@ const CarouselImage = () => {
             alt="First slide"
           />
           <div className={classes.carousel_text}>
-        <p><cite>The best way to get started is to quit talking and begin doing.</cite> <br/><br/>- Walt Disney</p>
+        <p>"The best way to get started is to quit talking and begin doing." <br/><br/><cite>- Walt Disney</cite></p>
       </div>
         </Carousel.Item>
         <Carousel.Item interval={interval}>
@@ -30,7 +30,7 @@ const CarouselImage = () => {
             alt="Third slide"
           />
           <div className={classes.carousel_text}>
-        <p><cite>It's not what you achieve, it's what you overcome. That's what defines your career.</cite> <br/><br/>- Carlton Fisk </p>
+        <p>"It's not what you achieve, it's what you overcome. That's what defines your career." <br/><br/><cite>- Carlton Fisk</cite> </p>
       </div>
         </Carousel.Item>
         <Carousel.Item interval={interval}>
@@ -40,8 +40,8 @@ const CarouselImage = () => {
             alt="Third slide"
           />
           <div className={classes.carousel_text}>
-        <p><cite>The world won't care about your self-esteem. The world will expect 
-          you to accomplish something BEFORE you feel good about yourself.</cite> <br/><br/>- Bill Gates</p>
+        <p>"The world won't care about your self-esteem. The world will expect 
+          you to accomplish something BEFORE you feel good about yourself." <br/><br/><cite>- Bill Gates</cite></p>
       </div>
         </Carousel.Item>
       </Carousel>

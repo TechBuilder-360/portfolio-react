@@ -92,9 +92,9 @@ const LoginForm = () => {
               </Button>
             </Col>
             <Col>
-              <Link to="/password-reset" className={classes.Link}>
+              {/* <Link to="/password-reset"  className={classes.Link}>
                 Forgot Password?
-              </Link>
+              </Link> */}
             </Col>
           </Form.Row>
         </Form>
