@@ -41,7 +41,7 @@ const CarouselImage = () => {
           />
           <div className={classes.carousel_text}>
         <p>"The world won't care about your self-esteem. The world will expect 
-          you to accomplish something BEFORE you feel good about yourself." <br/><br/><cite>- Bill Gates</cite></p>
+          you to accomplish something <b>BEFORE</b> you feel good about yourself." <br/><br/><cite>- Bill Gates</cite></p>
       </div>
         </Carousel.Item>
       </Carousel>
