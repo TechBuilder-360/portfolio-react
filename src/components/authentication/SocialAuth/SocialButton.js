@@ -20,7 +20,9 @@ const SocialButton = (props) => {
 
     const handleSocialLoginFailure = (err) => {
         dispatch(loadingStop());
-        message.error(err.error.replaceAll('_', ' '))
+        if (err.error){
+          message.error(err.error.replaceAll('_', ' '))
+        }
         dispatch(actions.loadingFailed(err.error));
 
     };
