@@ -13,6 +13,7 @@ import portfolioReducer from './store/reducers/portfolioReducer';
 import authReducer from './store/reducers/auth';
 import thunk from 'redux-thunk';
 import 'antd/dist/antd.css';
+import HttpsRedirect from 'react-https-redirect';
 
 const rootReducer = combineReducers({
   portfolio: portfolioReducer,
@@ -24,7 +25,9 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App/>
+      <HttpsRedirect>
+        <App/>
+      </HttpsRedirect>
    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
