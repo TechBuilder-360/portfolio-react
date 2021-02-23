@@ -37,7 +37,6 @@ color: black;
     
 .Aside{
     background-color: rgb(241, 241, 245);
-    height: 90vh;
     padding-bottom: 11.2%;
     text-align: center;
 }
@@ -85,5 +84,9 @@ color: black;
     ::-webkit-scrollbar{
     width: 0px;
         background: transparent;
+    }
+
+    .Aside{
+        height: 90vh;
     }
 }

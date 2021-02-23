@@ -15,6 +15,11 @@
   font-weight: 500;
 }
 
+nav .active {
+  background-color: lavender;
+  color: blue !important;
+}
+
 p {
   white-space: pre-wrap;
 }

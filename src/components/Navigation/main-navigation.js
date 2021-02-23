@@ -9,10 +9,11 @@ const HomeNavBar = () => {
   return (
     <Container>
       <nav className={classes.Nav}>
-       <Link to='/'>
-         <img src={logo} className={classes.Logo} alt="Oris"/></Link>
+        <Link to='/'>
+         <img src={logo} className={classes.Logo} alt="Oris"/>
+        </Link>
         <div className={classes.Nav_item}>
-          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/home"}>Home</NavLink>
           <NavLink to={"/features"}>Features</NavLink>
           {/* <NavLink to={"/faqs"}>FAQs</NavLink> */}
           <NavLink to={"/about"}>About us</NavLink>

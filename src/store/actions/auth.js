@@ -35,6 +35,7 @@ export const googleAuthSuccess = (token) => (dispatch) => {
       dispatch(loadingStop());
     })
     .catch((err) => {
+      message.error(err, alertDuration)
       dispatch(loadingFailed(err));
     });
 };

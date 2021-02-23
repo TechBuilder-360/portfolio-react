@@ -20,7 +20,7 @@ const SocialButton = (props) => {
 
     const handleSocialLoginFailure = (err) => {
         dispatch(loadingStop());
-        if (err.error){
+        if (err.error !== 'idpiframe_initialization_failed'){
           message.error(err.error.replaceAll('_', ' '))
         }
         dispatch(actions.loadingFailed(err.error));
