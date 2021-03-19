@@ -14,17 +14,18 @@ const PersonalInfo = (props) => {
   return (
     <Container>
       <div className={classes.Avatar_Wrapper}>
-        <img
+        {
+          props.personalInfo.profilePix ?  <img
           className={classes.Avatar}
           src={
             props.personalInfo.profilePix
-              ? props.personalInfo.profilePix
-              : avatar
           }
           alt={props.personalInfo.username}
-        />
+        /> : <div className={classes.initials}><h3 style={{fontSize: 25, fontWeight: 600}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</h3></div>
+        }
+       
       </div>
-      <p style={{ fontWeight: "bold" }}>
+      <p style={{ fontSize: 15, fontWeight: "bold", textTransform: "capitalize" }}>
         {props.personalInfo.lastName},{props.personalInfo.middleName? ` ${props.personalInfo.middleName}`: null } {props.personalInfo.firstName }
       </p>
 
