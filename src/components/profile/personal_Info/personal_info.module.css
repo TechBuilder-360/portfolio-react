@@ -1,27 +1,17 @@
 .Avatar_Wrapper {
-    width: 80%;
+    border-radius: 50%;
     margin: 40px auto 20px ;
 }
 
-.Avatar, .initials {
+.Avatar {
     width: 100%;
     background-size: cover;
-    min-width: 150px;
-    max-width: 200px;
-    height: auto;
+    width: 150px;
+    height: 150px;
     box-sizing: border-box;
     padding: 0;
     border-radius: 100%;
 }
-
-.initials {
-    background-color: #a3a3ff;
-    margin: auto;
-    padding: 70px;
-    display: flex;
-    justify-content: center;
-}
-
 
 /* Desktop view */
 @media (min-width: 760px){

@@ -2,9 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import Container from "../../../container/Container";
 import classes from "./personal_info.module.css";
-import avatar from "../../../images/avatar.webp";
 import flag from "../../../images/flag.png";
 import { findFlagUrlByCountryName } from "country-flags-svg";
+import { Avatar, Image } from 'antd';
+
+
 
 
 const PersonalInfo = (props) => {
@@ -15,13 +17,11 @@ const PersonalInfo = (props) => {
     <Container>
       <div className={classes.Avatar_Wrapper}>
         {
-          props.personalInfo.profilePix ?  <img
-          className={classes.Avatar}
-          src={
-            props.personalInfo.profilePix
-          }
-          alt={props.personalInfo.username}
-        /> : <div className={classes.initials}><h3 style={{fontSize: 25, fontWeight: 600}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</h3></div>
+         props.personalInfo.profilePix ? 
+         <Avatar size={96}
+         src={<Image  src={ props.personalInfo.profilePix } />}
+       /> : <Avatar size={120} ><p style={{fontSize: 20}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</p></Avatar>
+
         }
        
       </div>
