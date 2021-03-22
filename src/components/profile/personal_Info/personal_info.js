@@ -18,10 +18,9 @@ const PersonalInfo = (props) => {
       <div className={classes.Avatar_Wrapper}>
         {
          props.personalInfo.profilePix ? 
-         <Avatar size={96}
+         <Avatar size={200} shape="circle" gap="10"
          src={<Image  src={ props.personalInfo.profilePix } />}
-       /> : <Avatar size={120} ><p style={{fontSize: 20}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</p></Avatar>
-
+       /> : <Avatar size={200} ><p style={{fontSize: 20}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</p></Avatar>
         }
        
       </div>
