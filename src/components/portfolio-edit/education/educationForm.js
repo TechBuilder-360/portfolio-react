@@ -45,9 +45,6 @@ const EducationForm = ({ education, closeForm }) => {
 
     setLoading(true);
     dispatch(educationAction(value));
-    if (!value.id) {
-      closeForm();
-    }
   };
 
   return (
@@ -140,7 +137,7 @@ const EducationForm = ({ education, closeForm }) => {
             {value.id ? (
               <Button
                 variant="outline-danger"
-                className="mt-15 ml-1"
+                className="ml-1 mt-15"
                 size="sm"
                 onClick={() => dispatch(delete_education(education.id))}
               >

@@ -11,6 +11,7 @@ const Experience = (props) => {
   const [form, setForm] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
   const experience = useSelector((state) => state.portfolio.experience);
+  const message = useSelector(state => state.portfolio.message);
   const { Panel } = Collapse;
 
   const handleCloseForm = () => {
@@ -26,6 +27,12 @@ const Experience = (props) => {
       setForm(null);
     }
   }, [formVisible]);
+
+  useEffect(() => {
+    if(message) {
+      setFormVisible(false);
+    }
+  }, [message]);
 
   // Populate accordion children with existing record
   const panels = experience.map((exp, i) => {

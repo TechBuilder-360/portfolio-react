@@ -21,7 +21,13 @@ const Social = () => {
     } else {
       setForm(null);
     }
-  }, [formVisible, message]);
+  }, [formVisible]);
+
+  useEffect(() => {
+    if(message) {
+      setFormVisible(false);
+    }
+  }, [message]);
   
   // Populate accordion children with existing record
   const panels = socialLinks.map((item, i) => (

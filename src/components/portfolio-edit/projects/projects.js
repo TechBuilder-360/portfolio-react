@@ -14,6 +14,7 @@ const Project = () => {
   const [form, setForm] = useState(null)
   const [formVisible, setFormVisible] = useState(false)
   const project = useSelector((state) => state.portfolio.project);
+  const message = useSelector(state => state.portfolio.message)
   const { Panel } = Collapse;
 
   const handleCloseForm = () => {
@@ -28,6 +29,12 @@ const Project = () => {
       setForm(null)
     }
   }, [formVisible, setForm, project]); 
+
+  useEffect(() => {
+    if(message) {
+      setFormVisible(false);
+    }
+  }, [message]);
 
 
   // Populate accordion children with existing record

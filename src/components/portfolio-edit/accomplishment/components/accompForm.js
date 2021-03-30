@@ -39,9 +39,7 @@ const AccompForm = ({ accomplishment, closeForm }) => {
 
     setLoading(true);
     dispatch(accomplishmentAction(value));
-    if (!value.id) {
-      closeForm();
-    }
+   
   };
 
   return (
@@ -123,7 +121,7 @@ const AccompForm = ({ accomplishment, closeForm }) => {
             {value.id ?
             <Button
               variant="outline-danger"
-              className="mt-15 ml-1"
+              className="ml-1 mt-15"
               size="sm"
               onClick={() => dispatch(deleteAccomplishment(value.id))}
             >

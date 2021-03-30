@@ -41,9 +41,6 @@ const SocialForm = ({link, label, id, closeForm}) => {
     e.preventDefault()
     setLoading(true);
     dispatch(socialAction(value))
-    if(!value.id){
-      closeForm();
-    }
   };
 
   return (
@@ -93,7 +90,7 @@ const SocialForm = ({link, label, id, closeForm}) => {
             {value.id ?
             <Button
               variant="outline-danger"
-              className="mt-15 ml-1"
+              className="ml-1 mt-15"
               size="sm"
               onClick={() => dispatch(delete_social(id))}
             >

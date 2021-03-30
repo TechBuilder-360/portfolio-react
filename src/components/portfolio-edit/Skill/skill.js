@@ -16,6 +16,7 @@ const Skill = () => {
   const [formVisible, setFormVisible] = useState(false);
   const skills = useSelector((state) => state.portfolio.skills);
   const subSkills = useSelector((state) => state.portfolio.subskill);
+  const message = useSelector(state => state.portfolio.message)
   
   const { Panel } = Collapse;
 
@@ -32,6 +33,13 @@ const Skill = () => {
       setForm(null);
     }
   }, [formVisible]);
+
+  
+  useEffect(() => {
+    if(message) {
+      setFormVisible(false);
+    }
+  }, [message]);
 
   const numberOfskillSubSkills = (skillId) => {
     const subskill = subSkills.filter(sub=> sub.skill === skillId)
