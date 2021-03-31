@@ -20,7 +20,7 @@ const PersonalInfo = (props) => {
          props.personalInfo.profilePix ? 
          <Avatar size={150} 
          src={props.personalInfo.profilePix}
-       /> : <Avatar size={200} ><p style={{fontSize: 20}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</p></Avatar>
+       /> : <Avatar size={150} ><p style={{fontSize: 20}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</p></Avatar>
         }
        
       </div>
