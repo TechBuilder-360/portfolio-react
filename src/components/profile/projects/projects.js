@@ -51,9 +51,9 @@ class Projects extends Component {
                       size="small"
                       title={project.title}
                       extra={
-                        <a onClick={() => this.showModal(id)}>
+                        <p style={{cursor: "pointer"}} onClick={() => this.showModal(id)}>
                           More
-                        </a>
+                        </p>
                       }
                       style={{ width: 300, border: "1px solid rgba(0, 0, 0, 0.3)", backgroundColor: "#CBC8C8" }}
                       key={project.id}

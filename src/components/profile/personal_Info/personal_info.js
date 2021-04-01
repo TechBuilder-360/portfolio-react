@@ -4,7 +4,7 @@ import Container from "../../../container/Container";
 import classes from "./personal_info.module.css";
 import flag from "../../../images/flag.png";
 import { findFlagUrlByCountryName } from "country-flags-svg";
-import { Avatar, Image } from 'antd';
+import { Avatar } from 'antd';
 
 
 
@@ -18,9 +18,9 @@ const PersonalInfo = (props) => {
       <div className={classes.Avatar_Wrapper}>
         {
          props.personalInfo.profilePix ? 
-         <Avatar size={200} shape="circle" gap="10"
-         src={<Image  src={ props.personalInfo.profilePix } />}
-       /> : <Avatar size={200} ><p style={{fontSize: 20}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</p></Avatar>
+         <Avatar size={150} 
+         src={props.personalInfo.profilePix}
+       /> : <Avatar size={150} ><p style={{fontSize: 20}}>{(props.personalInfo.firstName.charAt(0) + props.personalInfo.lastName.charAt(0)).toUpperCase()}</p></Avatar>
         }
        
       </div>

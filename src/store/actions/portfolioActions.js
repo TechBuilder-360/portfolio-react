@@ -12,7 +12,7 @@ export const headerToken = () => {
   return `JWT ${userCookie.token}`;
 };
 
-export const alertDuration = 10; //seconds
+export const alertDuration = 3; //seconds
 
 export const messages = (msg, status) => {
   msg = msg || ""
