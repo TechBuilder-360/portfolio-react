@@ -37,9 +37,6 @@ const AddProjects = ({ project, closeForm }) => {
     e.preventDefault()
     setLoading(true)
     dispatch(projectAction(value));
-    if(!value.id){
-      closeForm();
-    }
   }
 
   return (
@@ -94,7 +91,7 @@ const AddProjects = ({ project, closeForm }) => {
           </Button>
           {value.id ? <Button
               variant="outline-danger"
-              className="mt-15 ml-1"
+              className="ml-1 mt-15"
               size="sm"
               onClick={() => dispatch(deleteProject(project.id))}
             >

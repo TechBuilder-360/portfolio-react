@@ -71,7 +71,7 @@
     right: 30px;
     border: medium solid rgba(0, 0, 0, 0.185);
     border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent #6861C1;
+    border-color: transparent transparent transparent #666866;
   }
   
   /* Add arrows to the right container (pointing left) */
@@ -85,7 +85,7 @@
     left: 30px;
     border: medium solid rgba(0, 0, 0, 0.185);
     border-width: 10px 10px 10px 0;
-    border-color: transparent #6861C1 transparent transparent;
+    border-color: transparent #666866 transparent transparent;
   }
   
   /* Fix the circle for containers on the right side */
@@ -96,7 +96,7 @@
   /* The actual content */
   .content {
     padding: 10px 15px;
-    background-color: #6861C1;
+    background-color: #666866;
     position: relative;
     border-radius: 6px;
     color: #ffffff;
@@ -123,7 +123,7 @@
     left: 7%;
     border: medium solid rgba(0, 0, 0, 0.185);
     border-width: 10px 10px 10px 0;
-    border-color: transparent #6861C1 transparent transparent;
+    border-color: transparent #666866 transparent transparent;
     }
   
     /* Make sure all circles are at the same spot */

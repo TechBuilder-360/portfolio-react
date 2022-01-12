@@ -26,9 +26,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
 
     setLoading(true)
     dispatch(skillAction(value));
-    if(hide){
-      closeForm()
-    }
+   
   };
 
   return (
@@ -70,7 +68,7 @@ const AddForm = ({ skill, closeForm, hide }) => {
             {value.id ?
             <Button
               variant="outline-danger"
-              className="mt-15 ml-1"
+              className="ml-1 mt-15"
               size="sm"
               onClick={() => dispatch(removeSkill(value.id))}
             >
